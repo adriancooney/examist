@@ -1,0 +1,12 @@
+.DS_Store
+.ipynb_checkpoints
+__pycache__
+.cache
+*.pyc
+*.sublime-workspace
+src/config.py
+.sass-cache
+*.log
+data/dumps
+node_modules
+build
