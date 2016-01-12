@@ -1,12 +1,19 @@
+# Cache/System files
 .DS_Store
 .ipynb_checkpoints
 __pycache__
 .cache
 *.pyc
 *.sublime-workspace
-src/config.py
 .sass-cache
-*.log
-data/dumps
+
+# Dependencies and logs
 node_modules
+*.log
+npm-debug.log
+
+# Project
+data/dumps
+src/config.py
 build
+design/
