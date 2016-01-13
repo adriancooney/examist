@@ -16,6 +16,7 @@
 * Users.
     - Save their modules or join classes.
 * Allow users to give tips on upcoming exam.
+* Allow users to add modules to "My Modules".
 
 # Future
 * Support 
