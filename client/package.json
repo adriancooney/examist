@@ -23,7 +23,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
     "dev": "webpack-dev-server --hot --inline"
   },
   "author": "Adrian Cooney <cooney.adrian@gmail.com>",
