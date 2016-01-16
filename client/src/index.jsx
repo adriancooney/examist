@@ -10,6 +10,7 @@ render((
         <Route path="/" component={views.Container}>
             <IndexRoute component={pages.Home} />
             <Route path="about" component={pages.About}/>
+            <Route path="login" component={pages.Login}/>
         </Route>
     </Router>
 ), document.querySelector(".app"));

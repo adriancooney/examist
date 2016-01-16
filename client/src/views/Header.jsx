@@ -9,6 +9,7 @@ export default class Header extends Component {
                 <nav>
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/about">About</Link></li>
+                    <li><Link to="/login">Login</Link></li>                   
                 </nav>
             </header>
         );
