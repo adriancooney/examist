@@ -52,8 +52,6 @@ And within the application we would access our state properties:
 
     todos.addTodo()
 
-
-
 Remove even more boiler plate code by adding in a function that will wrap our function to set the first argument as the state and any returned data as the state (much like Redux's reducers, just scoped).
 
     export var addTodo = State.mutation((state, todo) => {
@@ -68,6 +66,12 @@ We could go even further and create classes that act on a particular scope. Any 
     export default class Todos extends State {
 
     }
+
+Infact, the more and more I think about this, the more ridiculous the whole notion of what Flux is doing becomes more and more crazy. Redux is nearly there with the notion of immutable state (and the sweet reference comparasion technique) but still feels like too much boilerplate. 
+
+Dan Abramov's talk on [Redux](https://www.youtube.com/watch?v=xsSnOQynTHs) was really eye opening and really get across the reasoning for his design decisions. I want to build on his work by mashing the likes of [NuclearJS](http://optimizely.github.io/nuclear-js/) and Redux. Essentially create a better API for Redux.
+
+
 
 ### Scenarios
 * Moving to the app via a URL.
