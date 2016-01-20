@@ -1,11 +1,10 @@
 export App from "./App";
 export Dashboard from "./Dashboard";
-export Modules from "./Modules";
-export Module from "./Module";
 export Paper from "./Paper";
 export Question from "./Question";
 export Link from "./Link";
 export LinkList from "./LinkList";
 export Solution from "./Solution";
 export SolutionList from "./SolutionList";
-export * as component from "./component";
+export * as component from "./components";
+export * as modules from "./modules";

@@ -12,8 +12,8 @@ render((
             <Route path="signup" component={views.Signup} />
             <Route component={views.app.App} /* onEnter={requireAuth} */>
                 <IndexRoute component={views.app.Dashboard} />
-                <Route path="modules" component={views.app.Modules} />
-                <Route path="module/:module" component={views.app.Module}>
+                <Route path="modules" component={views.app.modules.Modules} />
+                <Route path="module/:module" component={views.app.modules.Module}>
                     <Route path="paper/:year/:period" component={views.app.Paper} />
                     {/* Render the question. If we're not linking directly to a 
                         link or solution, just render the question comments. */}
