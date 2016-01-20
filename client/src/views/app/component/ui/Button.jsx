@@ -1,6 +1,6 @@
 import "../../../../../style/components/Button.scss";
-import React, { Component } from "react";
+import React from "react";
 
-export default function Button(props) {
+export default function Button() {
     return (<button className="Button"></button>);
 }

@@ -10,6 +10,10 @@ module.exports = {
             exclude: /node_modules/,
             loaders: ["react-hot", "babel"]
         }, {
+            test: /\.jsx?$/,
+            loader: "eslint-loader", 
+            exclude: /node_modules/
+        }, {
             test: /\.scss$/,
             loaders: ["style", "css", "sass"]
         }]
