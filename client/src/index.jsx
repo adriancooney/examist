@@ -12,9 +12,12 @@ render((
         <Route path="/" component={views.Container}>
             <Route path="login" component={views.Login}/>
             <Route path="signup" component={views.Signup} />
-            <IndexRoute component={views.app.App} /* onEnter={requireAuth} */>
+            <Route component={views.app.App} /* onEnter={requireAuth} */>
                 <IndexRoute component={views.app.Dashboard} />
-            </IndexRoute>
+                <Route path="modules" component={views.app.Modules} />
+                <Route path="module/:module" component={views.app.Module} />
+                <Route path="module/:module/paper/:year/:period" component={views.app.Paper} />
+            </Route>
         </Route>
     </Router>
 ), document.querySelector(".app"));
