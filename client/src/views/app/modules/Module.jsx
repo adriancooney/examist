@@ -1,22 +1,19 @@
 import React, { Component } from "react";
-import { Enum } from "../../../Util";
+import { range } from "lodash/util";
 
-export const PAPER_TYPE = Enum(
-    "UNAVAILABLE", // The paper was not available on the server
-    "UNINDEXED", // The paper is available but not yet indexed
-    "INDEXED" // The paper is available and is indexed
-);
-
-export function Dot({ type = PAPER_TYPE.UNAVAILABLE }) {
-    return (<span className={`Dot ${type}`}></span>);
-}
+import PaperGrid from "./PaperGrid";
 
 export default class Module extends Component {
     render() {
+        let papers = range(5).map((v, i) => {
+            return { year: 2015 - i }
+        });
+
         return (
             <div className="Module">
                 <h1>{ this.props.routeParams.module }</h1>
                 <h3>Module View</h3>
+                <PaperGrid papers={papers}/>
             </div>
         );
     }

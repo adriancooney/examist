@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Route, IndexRoute } from "react-router";
 
 import * as modules from "./modules";
+import * as paper from "./paper";
 import Dashboard from "./Dashboard";
-import Paper from "./Paper";
 import Question from "./Question";
 import Comments from "./Comments";
 import Solution from "./Solution";
@@ -25,7 +25,7 @@ export default (
         <IndexRoute component={Dashboard} />
         <Route path="modules" component={modules.Modules} />
         <Route path="module/:module" component={modules.Module}>
-            <Route path="paper/:year/:period" component={Paper} />
+            <Route path="paper/:year/:period" component={paper.Paper} />
             {/* Render the question. If we're not linking directly to a 
                 link or solution, just render the question comments. */}
             <Route path="paper/:year/:period/question/:id" component={Question}>
