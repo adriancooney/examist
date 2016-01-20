@@ -30,7 +30,7 @@ View the main page for the module.
 The paper for that module, year and period.
 
 ### /module/:module/paper/:year/:period/question/:question
-Link directly to a question. Alternatively, the user can omit the `:question` id and insert the question path into the query parameters for the URL e.g. `/module/:module/paper/:year/:period/question?q=1.1`.
+Link directly to a question. The question parameter is the path to the question e.g. `1.1.5`.
 
 ### /module/:module/paper/:year/:period/solution/:solution
 Link directly to a solution.
