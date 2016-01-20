@@ -1,4 +1,4 @@
-import "../../style/components/Button.scss";
+import "../../../style/components/Button.scss";
 import React, { Component } from "react";
 
 export default class Button extends Component {

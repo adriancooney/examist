@@ -1,20 +1,14 @@
 import "../../style/views/Container.scss";
 import React, { Component } from "react";
-import View from "../View";
-import Header from "./elements/Header";
-import Footer from "./elements/Footer";
+import { Header, Footer } from "./template";
 
-export default class Container extends View {
-    getInitialState() {
-        return this.load({ "user": User })
-    }
-
+export default class Container extends Component {
     render() {
         return (
             <div className="Container">
-                <Header user={this.state.user}/>
+                <Header />
                 <div>{this.props.children}</div>
-                <Footer/>
+                <Footer />
             </div>
         );
     }

@@ -2,15 +2,19 @@ import React from "react";
 import { render } from "react-dom";
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
-import views from "./views";
-import pages from "./pages";
+import * as views from "./views";
+
+console.log(views);
 
 render((
     <Router history={browserHistory}>
+        <Route path="/module/:module/paper/:year/:period/parse" component={views.parser.Parser} />
         <Route path="/" component={views.Container}>
-            <IndexRoute component={pages.Home} />
-            <Route path="about" component={pages.About}/>
-            <Route path="login" component={pages.Login}/>
+            <Route path="login" component={views.Login}/>
+            <Route path="signup" component={views.Signup} />
+            <IndexRoute component={views.app.App} /* onEnter={requireAuth} */>
+                <IndexRoute component={views.app.Dashboard} />
+            </IndexRoute>
         </Route>
     </Router>
 ), document.querySelector(".app"));

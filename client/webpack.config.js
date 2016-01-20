@@ -8,7 +8,7 @@ module.exports = {
         loaders: [{
             test: /\.jsx?$/,
             exclude: /node_modules/,
-            loaders: ["react-hot", "babel?presets[]=react&presets[]=es2015"]
+            loaders: ["react-hot", "babel"]
         }, {
             test: /\.scss$/,
             loaders: ["style", "css", "sass"]
