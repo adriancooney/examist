@@ -4,7 +4,7 @@ import { Enum } from "../../../Util";
 export const PAPER_TYPE = Enum(
     "UNAVAILABLE", // The paper was not available on the server
     "UNINDEXED", // The paper is available but not yet indexed
-    "INDEXED" // The paper is available and is indexed
+    "AVAILABLE" // The paper is available and is indexed
 );
 
 export default class Paper extends Component {
