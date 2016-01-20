@@ -15,7 +15,8 @@ export default class Module extends Component {
     render() {
         return (
             <div className="Module">
-                Module View
+                <h1>{ this.props.routeParams.module }</h1>
+                <h3>Module View</h3>
             </div>
         );
     }
