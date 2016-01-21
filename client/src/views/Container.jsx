@@ -1,15 +1,16 @@
-import "../../style/views/Container.scss";
+import "../../style/Container.scss";
 import React, { Component } from "react";
 import { Header, Footer } from "./template";
+import { Box, FlexBox, Solid } from "./ui";
 
 export default class Container extends Component {
     render() {
         return (
-            <div className="Container">
-                <Header />
-                <div>{this.props.children}</div>
-                <Footer />
-            </div>
+            <Box className="Container" vertical>
+                <Solid><Header /></Solid>
+                <FlexBox>{this.props.children}</FlexBox>
+                <Solid><Footer /></Solid>
+            </Box>
         );
     }
 }

@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "debug": "^2.2.0",
     "history": "^1.17.0",
     "immutable": "^3.7.6",
     "lodash": "^4.0.0",

@@ -1,4 +1,4 @@
-import "../../../../style/views/app/modules/PaperLink.scss"
+import "../../../../style/app/modules/PaperLink.scss"
 import React, { PropTypes } from "react";
 import { Link } from "react-router";
 import { PAPER_TYPE } from "../paper/Paper";
@@ -9,7 +9,7 @@ export default function PaperLink(props) {
 
     if(props.paper) {
         let paper = props.paper;
-        
+
         if(paper.isIndexed) type = PAPER_TYPE.AVAILABLE;
         else type = PAPER_TYPE.UNINDEXED;
 
