@@ -1,0 +1,32 @@
+@import "common/Fonts";
+@import "common/Spacing";
+
+.Header {
+    h1 {
+        font-family: $font-title;
+
+        a {
+            text-decoration: none;
+        }
+    }
+
+    nav {
+        text-align: right;
+        margin-top: $spacing-margin;
+        padding: $spacing-padding;
+
+        li {
+            display: inline-block;
+            margin: $spacing-margin;
+            font-family: $font-display;
+
+            a {
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}

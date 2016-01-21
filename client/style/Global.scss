@@ -1,0 +1,34 @@
+@import "lib/normalize.css";
+@import "common/Colors";
+@import "common/Spacing";
+@import "common/Fonts";
+
+/**
+ * Only modify this file WHEN YOU HAVE TO. The less
+ * style we have muddling up the global space the better.
+ *
+ * Use this file to modify the default tag styling for
+ * elements such as the <body> and <a> tags.
+ */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: $color-body;
+}
+
+a {
+    color: $color-link;
+}
+
+p {
+    line-height: 120%;
+}
+
+input {
+    padding: $spacing-padding/2;
+    font-size: 120%;
+    font-family: $font-display;
+    outline: none;
+}
