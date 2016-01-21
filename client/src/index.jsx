@@ -1,3 +1,4 @@
+import "../style/Global.scss";
 import React from "react";
 import { render } from "react-dom";
 import { Router, Route, browserHistory } from 'react-router';
@@ -12,6 +13,8 @@ render((
             <Route path="signup" component={views.Signup} />
             
             {views.app.App}
+
+            <Route path="*" component={views.error.Error404} />
         </Route>
     </Router>
 ), document.querySelector(".app"));
