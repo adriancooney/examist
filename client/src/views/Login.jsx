@@ -1,13 +1,18 @@
+import "../../style/Login.scss";
 import React, { Component } from "react";
+import { FlexBox, Input, Form } from "./ui";
 
 export default class Login extends Component {
     render() {
         return (
-            <div className="Login">
-                <input type="text" placeholder="Username"/>
-                <input type="password" placeholder="Password"/>
-                <input type="submit" value="submit"/>
-            </div>
+            <FlexBox className="Login" center middle>
+                <div className="login-box">
+                    <Form button="Login">
+                        <Input placeholder="Username" />
+                        <Input placeholder="Password" password />
+                    </Form>
+                </div>
+            </FlexBox>
         );
     }
 }

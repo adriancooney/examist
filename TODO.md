@@ -23,9 +23,7 @@
 
 # Standard
 * User login system (for 4BCT only).
+* Invite system.
 
 # UI Elements
 * Numeric notification on papers to indicate activity such as solutions or comments.
-
-# Bureaucracy
-* Push for it as FYP.

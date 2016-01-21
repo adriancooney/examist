@@ -1,0 +1,10 @@
+@import "common/Spacing";
+
+.Login {
+    .login-box {
+        border-radius: $spacing-radius;
+        padding: $spacing-padding * 2;
+        display: inline-block;
+        border: 1px solid rgba(0,0,0,0.2);
+    }
+}

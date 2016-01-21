@@ -1,6 +1,7 @@
 import "../../../style/Template.scss";
 import React from "react";
 import { Link } from "react-router";
+import * as Config from "../Config";
 import { Box, Flex } from "../ui";
 
 export default function Header() {
@@ -8,7 +9,7 @@ export default function Header() {
         <header className="Header">
             <Box>
                 <Flex>
-                    <h1><Link to="/">Examist</Link></h1>
+                    <h1><Link to="/">{ Config.APP_NAME }</Link></h1>
                 </Flex>
                 <Flex>
                     <nav>

@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function Button() {
-    return (<button className="Button"></button>);
+export default function Button(props) {
+    return (<button className="Button">{ props.children }</button>);
 }

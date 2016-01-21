@@ -1,3 +1,4 @@
+import "../../../../style/app/modules/PaperGrid.scss";
 import React, { Component, PropTypes } from "react";
 import { range } from "lodash/util";
 import { capitalize } from "lodash/string";

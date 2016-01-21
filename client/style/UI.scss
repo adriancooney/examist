@@ -1,13 +1,13 @@
+@import "common/Spacing";
+@import "common/Fonts";
+@import "common/Colors";
+
 .Box {
     display: flex;
 
-    &.box-vertical {
-        flex-direction: column;
-    }
-
-    &.box-center {
-        justify-content: center;
-    }
+    &.box-vertical { flex-direction: column; }
+    &.box-center { justify-content: center; }
+    &.box-middle { align-items: center; }
 }
 
 .Flex {
@@ -16,4 +16,40 @@
 
 .Solid {
     flex: none;
+}
+
+.Form {
+    .form-center {
+        text-align: center;
+    }
+
+    .Button {
+        margin-top: $spacing-margin;
+    }
+}
+
+.Input {
+    outline: none;
+    padding: $spacing-padding/2;
+    margin: $spacing-margin;
+    font-size: 120%;
+    font-family: $font-display;
+    display: block;
+}
+
+.Button {
+    margin: $spacing-margin;
+    padding: $spacing-padding/1.4 $spacing-padding;
+    border-radius: $spacing-radius;
+    border: none;
+    background: $color-blue;
+    font-family: $font-display;
+    text-transform: uppercase;
+    font-size: 80%;
+    color: white;
+    outline: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }

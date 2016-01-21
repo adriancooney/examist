@@ -1,3 +1,4 @@
+import "../../../style/app/App.scss";
 import React, { Component } from "react";
 import { Route, IndexRoute } from "react-router";
 

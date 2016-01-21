@@ -1,5 +1,37 @@
+@import "../../common/Spacing";
+@import "../../common/Fonts";
+
 .PaperGrid {
-    td {
-        min-width: 50px;
+    background: white;
+    padding: $spacing-padding;
+    font-family: $font-display;
+
+    table {
+        width: 100%;
+    }
+
+    tr {
+        th {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 140%;
+            padding-bottom: $spacing-margin/2;
+        }
+
+        th:first-child {
+            text-align: right;
+            padding-right: $spacing-padding;
+        }
+
+        td {
+            min-width: 50px;
+            padding: $spacing-padding/1.5 $spacing-padding/2;
+            text-align: center;
+        }
+
+        td:first-child {
+            text-align: right;
+            padding-right: $spacing-padding;
+        }
     }
 }

@@ -8,7 +8,7 @@
  * style we have muddling up the global space the better.
  *
  * Use this file to modify the default tag styling for
- * elements such as the <body> and <a> tags.
+ * elements such as the <body> and <a> tags i.e. named react tags.
  */
 * {
     box-sizing: border-box;
@@ -24,11 +24,4 @@ a {
 
 p {
     line-height: 120%;
-}
-
-input {
-    padding: $spacing-padding/2;
-    font-size: 120%;
-    font-family: $font-display;
-    outline: none;
 }

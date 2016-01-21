@@ -8,6 +8,7 @@ export default function Box(props) {
         className: "Box " + 
             (props.vertical ? "box-vertical " : "") +
             (props.center ? "box-center " : "") +
+            (props.middle ? "box-middle " : "") +
             (props.className || "")
     });
 
