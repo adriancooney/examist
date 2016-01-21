@@ -1,7 +1,19 @@
-.Row {
+.Box {
     display: flex;
+
+    &.box-vertical {
+        flex-direction: column;
+    }
+
+    &.box-center {
+        justify-content: center;
+    }
 }
 
-.Column {
+.Flex {
     flex: 1;
+}
+
+.Solid {
+    flex: none;
 }
