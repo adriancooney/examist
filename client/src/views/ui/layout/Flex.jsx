@@ -1,4 +1,4 @@
-import "../../../style/UI.scss";
+import "../../../../style/UI.scss";
 import React from "react";
 
 export default function Flex(props) {
