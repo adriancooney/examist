@@ -8,9 +8,9 @@ import * as views from "./views";
 render((
     <Router history={browserHistory}>
         <Route path="/module/:module/paper/:year/:period/parse" component={views.parser.Parser} />
-        <Route path="/" component={views.Container}>
-            <Route path="login" component={views.Login}/>
-            <Route path="signup" component={views.Signup} />
+        <Route path="/" component={views.templates.Container}>
+            <Route path="login" component={views.pages.Login}/>
+            <Route path="signup" component={views.pages.Signup} />
             
             {views.app.App}
 

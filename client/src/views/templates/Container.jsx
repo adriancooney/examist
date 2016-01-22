@@ -1,7 +1,8 @@
-import "../../style/Container.scss";
+import "../../../style/Container.scss";
 import React, { Component } from "react";
-import { Header, Footer } from "./template";
-import { Box, FlexBox, Solid } from "./ui";
+import Header from "./Header";
+import Footer from "./Footer";
+import { Box, FlexBox, Solid } from "../ui/layout";
 
 export default class Container extends Component {
     render() {

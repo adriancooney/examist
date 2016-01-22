@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { range } from "lodash/util";
 import { random } from "lodash/number";
-import { Box, Flex } from "../../ui";
+import { Box, Flex } from "../../ui/layout";
 
 import PaperGrid from "./PaperGrid";
 

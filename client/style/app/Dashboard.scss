@@ -1,0 +1,20 @@
+@import "../common/Colors";
+@import "../common/Spacing";
+
+.Dashboard {
+    h2 {
+        text-transform: uppercase;
+        font-size: 140%;
+
+        a { 
+            color: rgba(0,0,0,0.3);
+            font-size: 60%;
+            display: inline-block;
+            vertical-align: middle;
+
+            &:hover {
+                color: $color-link;
+            }
+        }
+    }
+}

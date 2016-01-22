@@ -20,14 +20,6 @@
             display: inline-block;
             margin: $spacing-margin;
             font-family: $font-display;
-
-            a {
-                text-decoration: none;
-
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
         }
     }
 }

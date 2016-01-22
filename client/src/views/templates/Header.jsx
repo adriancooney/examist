@@ -2,7 +2,7 @@ import "../../../style/Template.scss";
 import React from "react";
 import { Link } from "react-router";
 import * as Config from "../Config";
-import { Box, Flex } from "../ui";
+import { Box, Flex } from "../ui/layout";
 
 export default function Header() {
     return (

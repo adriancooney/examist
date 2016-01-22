@@ -1,6 +1,6 @@
-import "../../style/Login.scss";
+import "../../../style/Login.scss";
 import React, { Component } from "react";
-import { FlexBox, Input, Form } from "./ui";
+import { FlexBox, Input, Form } from "../ui/layout";
 
 export default class Login extends Component {
     render() {

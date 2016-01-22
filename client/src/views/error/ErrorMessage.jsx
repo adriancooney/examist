@@ -1,6 +1,6 @@
 import "../../../style/Error.scss";
 import React, { PropTypes } from "react";
-import { FlexBox } from "../ui";
+import { FlexBox } from "../ui/layout";
 
 export default function ErrorMessage(props) {
     let title = null;

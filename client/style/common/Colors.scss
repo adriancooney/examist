@@ -2,7 +2,19 @@ $color-light-grey: #f0f0f0;
 $color-dark-grey: #777;
 $color-blue: #418EE5;
 
+// Color names from sip
+$color-storm-dust: #626262;
+$color-swans-down: #D9EDEC;
+
 // Global styles
 $color-body: $color-light-grey;
 $color-link: $color-blue;
 $color-font-body: $color-dark-grey;
+
+// Avatar icon
+$color-avatar-circle: $color-storm-dust;
+$color-avatar-text: white;
+
+// Module link clip
+$color-module-link: white;
+$color-module-link-shadow: $color-swans-down;

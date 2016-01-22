@@ -18,8 +18,17 @@ body {
     background: $color-body;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    font-family: $font-display;
+}
+
 a {
     color: $color-link;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 p {
