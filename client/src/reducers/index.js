@@ -1,3 +1,4 @@
+// Each export here is a property on the global state object. neat.
 export user from "./user";
 
 // Instead of combining it in the main file cluttering it

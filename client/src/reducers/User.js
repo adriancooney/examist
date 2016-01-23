@@ -1,5 +1,8 @@
-const initialState = null;
+import { handleActions } from "redux-actions";
 
-export default function User(state = initialState, action) {
-    return state;
-}
+export default handleActions({
+    LOGIN: (state, action) => {
+        console.log("Handling action: ", action.payload);
+        return state;
+    }
+}, {});

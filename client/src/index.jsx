@@ -5,6 +5,7 @@ import { createHistory } from "history";
 import { Router, Route } from "react-router";
 import { syncHistory } from "redux-simple-router";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import promiseMiddleware from "redux-promise";
 import { Provider } from "react-redux";
 import * as reducers from "./reducers";
 import * as views from "./views";
@@ -14,21 +15,28 @@ const browserHistory = createHistory();
 
 const reduxRouterMiddleware = syncHistory(browserHistory);
 
+const logger = store => next => action => {
+  console.group(action.type)
+  console.info('dispatching', action)
+  let result = next(action)
+  console.log('next state', store.getState())
+  console.groupEnd(action.type)
+  return result
+}
+
 // Apply the redux-simple-router middleware
 // Sidenote: This is possibly the ugliest API ever (and it's
 // made by very smart people).
 const createStoreFinal = compose(
-    applyMiddleware(reduxRouterMiddleware),
+    applyMiddleware(reduxRouterMiddleware, promiseMiddleware, logger),
     window.devToolsExtension ? window.devToolsExtension() : f => f // Redux Devtools extension
 )(createStore)
 
 // Create the store
-const store = createStoreFinal(combineReducers(reducers));
+const store = createStoreFinal(combineReducers(Object.assign({}, reducers)));
 
 // Enable the devtools
 reduxRouterMiddleware.listenForReplays(store)
-
-console.log(views);
 
 // Render the App
 render((

@@ -1,5 +1,8 @@
 import React from "react";
 
 export default function Button(props) {
-    return (<button className="Button">{ props.children }</button>);
+    props = Object.assign({}, props, {
+        className: "Button " + (props.className || "")
+    })
+    return (<button {...props} />);
 }
