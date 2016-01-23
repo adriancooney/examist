@@ -1,4 +1,5 @@
-var path = require("path");
+var path = require("path"),
+    webpack = require("webpack");
 
 module.exports = {
     context: __dirname,
@@ -27,5 +28,11 @@ module.exports = {
         filename: "index.js",
         path: __dirname + "/build",
         publicPath: "/build/"
-    }
+    },
+
+    plugins: [
+        new webpack.DefinePlugin({
+            "__DEV__": true
+        })
+    ]
 };
