@@ -8,20 +8,26 @@ module.exports = {
     module: {
         loaders: [{
             test: /\.jsx?$/,
-            exclude: /node_modules/,
+            include: [path.resolve(__dirname, "src/")],
             loaders: ["react-hot", "babel"]
         }, {
             test: /\.jsx?$/,
-            loader: "eslint-loader", 
-            exclude: /node_modules/
+            include: [path.resolve(__dirname, "src/")],
+            loader: "eslint" 
         }, {
             test: /\.scss$/,
+            include: [path.resolve(__dirname, "style/")],
             loaders: ["style", "css", "sass"]
         }]
     },
 
     resolve: {
-        extensions: ['', '.js', '.jsx']
+        extensions: ['', '.js', '.jsx'],
+        fallback: path.join(__dirname, "node_modules")
+    },
+
+    resolveLoader: {
+        fallback: path.join(__dirname, "node_modules")
     },
 
     output: {

@@ -4,22 +4,27 @@ import { syncHistory } from "redux-simple-router";
 import promiseMiddleware from "redux-promise";
 import * as reducers from "./reducers";
 
-// Add redux-simple-router
-const reduxRouterMiddleware = syncHistory(browserHistory);
+// Redux middleware 
+let middleware = [
+    promiseMiddleware,
+    syncHistory(browserHistory)
+];
 
-// Compose the createStore function (wat api).
-const createStoreFinal = compose(
-    // Apply our middleware from redux-simple-router and redux-promise
-    applyMiddleware(reduxRouterMiddleware, promiseMiddleware),
+// CreateStore composition
+let composition = [
+    applyMiddleware(...middleware),
+];
 
-    // Redux Devtools extension
-    window.devToolsExtension ? window.devToolsExtension() : f => f 
-)(createStore)
+// Add in the redux dev tools chrome extension
+if(__DEV__ && typeof window !== "undefined" && window.devToolsExtension) composition.push(window.devToolsExtension())
+
+// Compose the createStore function
+const createStoreFinal = compose(...composition)(createStore)
 
 // Create the final store
-const store = createStoreFinal(combineReducers(Object.assign({}, reducers)));
+const store = createStoreFinal(combineReducers(reducers));
 
-// Enable the devtools
-reduxRouterMiddleware.listenForReplays(store)
+// Enable the devtools for redux-simple-router
+if(__DEV__) middleware[1].listenForReplays(store)
 
 export default store;
