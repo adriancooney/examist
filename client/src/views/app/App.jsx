@@ -2,6 +2,7 @@ import "../../../style/app/App.scss";
 import React, { Component } from "react";
 import { Route, IndexRoute } from "react-router";
 
+import { authorize } from "../../Middleware";
 import * as modules from "./modules";
 import * as paper from "./paper";
 import Dashboard from "./Dashboard";
@@ -23,7 +24,7 @@ export class App extends Component {
 }
 
 export default (
-    <Route component={App} /* onEnter={requireAuth} */>
+    <Route component={App} onEnter={authorize}>
         <IndexRoute component={Dashboard} />
         <Route path="modules" component={modules.Modules} />
         <Route path="module/:module" component={modules.Module}>
