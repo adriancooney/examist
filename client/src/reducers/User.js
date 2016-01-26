@@ -22,9 +22,5 @@ export default handleActions({
         error(state) {
             return state;
         }
-    },
-
-    USER_LOADING: (state) => {
-        return { ...state, loading: true };
     }
 }, null);

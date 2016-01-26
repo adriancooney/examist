@@ -1,7 +1,7 @@
 import { browserHistory } from "react-router";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { syncHistory } from "redux-simple-router";
-import promiseMiddleware from "redux-promise";
+import { promiseMiddleware } from "redux-pending";
 import * as reducers from "./reducers";
 
 // Redux middleware 

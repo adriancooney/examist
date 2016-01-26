@@ -1,6 +1,7 @@
 import "../../../style/Login.scss";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { isPending } from "redux-pending";
 import * as actions from "../../actions";
 import { FlexBox } from "../ui/layout";
 import { Form, Input } from "../ui/input";
@@ -53,7 +54,8 @@ class Login extends Component {
     };
 
     static selector = (state) => ({
-        user: selectors.User.current(state)
+        user: selectors.User.current(state),
+        isLoading: isPending(actions.User.types.USER_LOGIN)(state)
     });
 
     /*
@@ -69,17 +71,15 @@ class Login extends Component {
     };
 
     componentWillReceiveProps(props) {
-        console.log(props.user);
-
         // Once we log in, this component will recieve a user property from the current
         // state. When that happens, it means we have successfully logged in and we
         // can redirect to the LOGIN_REDIRECT.
-        if(props.user.id)
+        if(props.user)
             this.props.push(LOGIN_REDIRECT);
     }
 
     render() {
-        let form = this.props.user && this.props.user.loading ? <Loading /> : (
+        let form = this.props.isLoading ? <Loading /> : (
             <Form button="Login" onSubmit={::this.onLogin}>
                 <Input name="username" placeholder="Username" />
                 <Input name="password" placeholder="Password" password />
@@ -94,9 +94,6 @@ class Login extends Component {
     }
 
     onLogin({ username, password }) {
-        // Modify the state to show that we're starting a network request.
-        this.props.loading();
-
         // Dispatch the USER_LOGIN action and attempt to log the user in.
         this.props.login(username, password);
     }
