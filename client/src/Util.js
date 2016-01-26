@@ -1,3 +1,7 @@
+import { createAction } from "redux-actions";
+import { select } from "./Store";
+import { api } from "./selectors/User";
+
 /**
  * Create a simple String enum. Useful for usage
  * with Redux since Symbols aren't serializable.
@@ -12,4 +16,15 @@ export function Enum(...constants) {
     });
 
     return Object.freeze(num);
+}
+
+export function mapSelectors(map) {
+    return state => Object.keys(map).reduce((props, key) => {
+        props[key] = map[key](state);
+        return props;
+    }, {});
+}
+
+export function createNetworkAction(actionType, callback) {
+    return createAction(actionType, () => callback(select(api)), () => ({ network: true }));
 }

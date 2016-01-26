@@ -1,26 +1,18 @@
 import { handleActions } from "redux-actions";
+import { types } from "../actions/User";
+import API from "../API";
 
 export default handleActions({
-    USER_LOGIN: {
-        next(state, action) {
-            let response = action.payload;
-
-            if(response.key) {
-                return {
-                    id: 1,
-                    usename: "adrian",
-                    name: "Adrian Cooney",
-                    email: "cooney.adrian@gmail.com",
-                    key: response.key,
-                    loading: false
-                };
-            } else {
-                return state;
-            }
-        },
-
-        error(state) {
-            return state;
+    [types.USER_LOGIN]: (state, action) => {
+        const user = action.payload;
+        return {
+            ...user, 
+            api: new API(user.key)
         }
+    },
+
+    [types.USER_MODULES]: (state, action) => {
+        const { modules } = action.payload;
+        return {...state, modules }
     }
 }, null);

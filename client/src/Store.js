@@ -7,12 +7,16 @@ import * as reducers from "./reducers";
 // Redux middleware 
 let middleware = [
     promiseMiddleware,
-    syncHistory(browserHistory)
+    syncHistory(browserHistory),
+    () => next => action => {
+        console.log(`Dispatch: ${action.type}`, action.payload);
+        return next(action);
+    }
 ];
 
 // CreateStore composition
 let composition = [
-    applyMiddleware(...middleware),
+    applyMiddleware(...middleware)
 ];
 
 // Add in the redux dev tools chrome extension
