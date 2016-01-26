@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { isPending } from "redux-pending";
 import * as actions from "../../../actions";
 import * as selectors from "../../../selectors";
-import { mapSelectors } from "../../../Util";
 import { Box, Flex } from "../../ui/layout";
 import { Loading } from "../../ui/";
 import PaperGrid from "./PaperGrid";

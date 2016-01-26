@@ -1,5 +1,5 @@
 import "../../../style/Template.scss";
-import * as Config from "../Config";
+import * as Config from "../../Config";
 import React from "react";
 
 export default function Footer() {

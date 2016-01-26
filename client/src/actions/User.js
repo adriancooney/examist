@@ -4,6 +4,7 @@ import { Enum, createNetworkAction } from "../Util";
 
 export const types = Enum(
     "USER_LOGIN",
+    "USER_LOGOUT",
     "USER_MODULES"
 );
 
@@ -11,6 +12,11 @@ export const types = Enum(
  * Log the user in.
  */
 export const login = createAction(types.USER_LOGIN, API.login);
+
+/*
+ * Log out the user.
+ */
+export const logout = createAction(types.USER_LOGOUT);
 
 /*
  * Get the currently logged in User's modules.

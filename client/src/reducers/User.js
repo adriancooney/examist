@@ -11,8 +11,16 @@ export default handleActions({
         }
     },
 
+    [types.USER_LOGOUT]: () => {
+        return null;
+    },
+
     [types.USER_MODULES]: (state, action) => {
         const { modules } = action.payload;
-        return {...state, modules }
+
+        return {
+            ...state, 
+            modules
+        }
     }
 }, null);

@@ -5,6 +5,8 @@ import { Provider } from "react-redux";
 import store from "./Store";
 import * as views from "./views";
 
+// The only 
+
 // Export our app for rendering or testing.
 export default (
     <Provider store={store}>
@@ -21,7 +23,7 @@ export default (
                 
                 {views.app.App}
 
-                <Route path="*" component={views.error.Error404} />
+                <Route path="*" component={views.pages.Error404} />
             </Route>
         </Router>
     </Provider>
