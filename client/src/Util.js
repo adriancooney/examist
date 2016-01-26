@@ -26,5 +26,5 @@ export function mapSelectors(map) {
 }
 
 export function createNetworkAction(actionType, callback) {
-    return createAction(actionType, () => callback(select(api)), () => ({ network: true }));
+    return createAction(actionType, (...args) => callback(select(api), ...args), () => ({ network: true }));
 }

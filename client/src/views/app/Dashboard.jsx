@@ -10,6 +10,17 @@ import * as selectors from "../../selectors";
 import * as actions from "../../actions";
 
 class Dashboard extends Component {
+    static selectors = {
+        user: selectors.User.current,
+
+        // Loading states of our actions.
+        isLoadingModules: isPending(actions.User.types.USER_MODULES)
+    };
+
+    static actions = {
+        getModules: actions.User.getModules
+    };
+
     componentWillMount() {
         // If our user modules is null, it means we haven't attempted to load them
         // yet. If it's empty, it means the user has no modules.
@@ -30,11 +41,4 @@ class Dashboard extends Component {
     }
 }
 
-export default connect(mapSelectors({
-    user: selectors.User.current,
-
-    // Loading states of our actions.
-    isLoadingModules: isPending(actions.User.types.USER_MODULES)
-}), {
-    getModules: actions.User.getModules
-})(Dashboard);
+export default connect(mapSelectors(Dashboard.selectors), Dashboard.actions)(Dashboard);

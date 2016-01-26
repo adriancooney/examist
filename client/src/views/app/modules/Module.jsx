@@ -1,34 +1,45 @@
 import React, { Component } from "react";
-import { range } from "lodash/util";
-import { random } from "lodash/number";
+import { connect } from "react-redux";
+import { isPending } from "redux-pending";
+import * as actions from "../../../actions";
+import * as selectors from "../../../selectors";
+import { mapSelectors } from "../../../Util";
 import { Box, Flex } from "../../ui/layout";
-
+import { Loading } from "../../ui/";
 import PaperGrid from "./PaperGrid";
 
-export default class Module extends Component {
+class Module extends Component {
+    static selectors = (state, props) => ({
+        module: selectors.Module.byId(props.routeParams.module)(state),
+        isLoadingModule: isPending(actions.Module.types.MODULE)(state)
+    });
+
+    static actions = {
+        getModule: actions.Module.getModule
+    };
+
+    componentWillMount() {
+        if(!this.props.module)
+            this.props.getModule(this.props.routeParams.module)
+    }
+
     render() {
-        let mod = {
-            code: this.props.routeParams.module,
-            name: "Maths"
-        }
+        let mod = this.props.module;
 
-        let papers = range(5).map((v, i) => {
-            return { 
-                year: 2015 - i, 
-                period: ["autumn", "winter", "summer"][random(0, 2)],
-                isIndexed: random(0, 1) == 0,
-                module: mod.code
-            };
-        });
-
-        return (
-            <Flex className="Module">
-                <Box>
-                    <Flex><h1>{ mod.code }</h1></Flex>
-                    <Flex><h3>{ mod.name }</h3></Flex>
-                </Box>
-                <PaperGrid papers={papers} module={mod.code}/>
-            </Flex>
-        );
+        if(this.props.isLoadingModule) {
+            return <Loading />
+        } else if(mod) {
+            return (
+                <Flex className="Module">
+                    <Box>
+                        <Flex><h1>{ mod.code }</h1></Flex>
+                        <Flex><h3>{ mod.name }</h3></Flex>
+                    </Box>
+                    <PaperGrid papers={mod.papers} module={mod.code}/>
+                </Flex>
+            );
+        } else return (<div>Module not found.</div>);
     }
 }
+
+export default connect(Module.selectors, Module.actions)(Module);

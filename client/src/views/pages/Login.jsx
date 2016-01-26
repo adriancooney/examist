@@ -73,9 +73,9 @@ class Login extends Component {
     componentWillReceiveProps(props) {
         // Once we log in, this component will recieve a user property from the current
         // state. When that happens, it means we have successfully logged in and we
-        // can redirect to the LOGIN_REDIRECT.
+        // can redirect to the location passed in the location.state or LOGIN_REDIRECT.
         if(props.user)
-            this.props.push(LOGIN_REDIRECT);
+            this.props.push(props.location.state ? props.location.state.location : LOGIN_REDIRECT);
     }
 
     render() {
