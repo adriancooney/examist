@@ -29,8 +29,6 @@ export default class PaperGrid extends Component {
             </tr>
         );
 
-        console.log(periods);
-
         // Create our table body
         let body = Object.keys(periods).map((period) => {
 

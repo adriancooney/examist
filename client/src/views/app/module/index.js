@@ -1,4 +1,4 @@
 export Module from "./Module";
-export Modules from "./Modules";
+export ModuleList from "./ModuleList";
 export PaperLink from "./PaperLink";
 export PaperGrid from "./PaperGrid";

@@ -15,10 +15,9 @@ function Header(props) {
     action = props.user ?
         (<li><Link to="/logout">Logout</Link></li>) :
         ([
-            <li><Link to="/signup">Signup</Link></li>,
-            <li><Link to="/login">Login</Link></li>
+            <li key={1}><Link to="/signup">Signup</Link></li>,
+            <li key={2}><Link to="/login">Login</Link></li>
         ]);
-
 
     return (
         <header className="Header">

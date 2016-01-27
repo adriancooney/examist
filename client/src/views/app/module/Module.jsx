@@ -9,7 +9,7 @@ import PaperGrid from "./PaperGrid";
 
 class Module extends Component {
     static selectors = (state, props) => ({
-        module: selectors.Module.byId(props.routeParams.module)(state),
+        module: selectors.Module.byId(props.params.module)(state),
         isLoadingModule: isPending(actions.Module.types.MODULE)(state)
     });
 
@@ -19,7 +19,7 @@ class Module extends Component {
 
     componentWillMount() {
         if(!this.props.module)
-            this.props.getModule(this.props.routeParams.module)
+            this.props.getModule(this.props.params.module)
     }
 
     render() {
@@ -31,10 +31,13 @@ class Module extends Component {
             return (
                 <Flex className="Module">
                     <Box>
-                        <Flex><h1>{ mod.code }</h1></Flex>
+                        <Flex><h1>{ mod.code.toString().toUpperCase() }</h1></Flex>
                         <Flex><h3>{ mod.name }</h3></Flex>
                     </Box>
+                    
                     <PaperGrid papers={mod.papers} module={mod.code}/>
+
+                    { this.props.children }
                 </Flex>
             );
         } else return (<div>Module not found.</div>);

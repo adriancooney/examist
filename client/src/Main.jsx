@@ -5,8 +5,6 @@ import { Provider } from "react-redux";
 import store from "./Store";
 import * as views from "./views";
 
-// The only 
-
 // Export our app for rendering or testing.
 export default (
     <Provider store={store}>

@@ -2,17 +2,23 @@ import { browserHistory } from "react-router";
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import { syncHistory } from "redux-simple-router";
 import { promiseMiddleware } from "redux-pending";
+import Debug from "debug";
 import * as reducers from "./reducers";
+
+const debug = Debug("examist:dispatch");
 
 // Redux middleware 
 let middleware = [
     promiseMiddleware,
-    syncHistory(browserHistory),
-    () => next => action => {
-        console.log(`Dispatch: ${action.type}`, action.payload);
-        return next(action);
-    }
+    syncHistory(browserHistory)
 ];
+
+if(__DEV__) {
+    middleware.push(() => next => action => {
+        debug(`%c${action.type}`, "font-weight: bold", action.payload);
+        return next(action);
+    });
+}
 
 // CreateStore composition
 let composition = [

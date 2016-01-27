@@ -1,5 +1,8 @@
+import Debug from "debug";
 import { range } from "lodash/util";
 import { random } from "lodash/number";
+
+const debug = Debug("examist:api");
 
 export default class API {
     constructor(key) {
@@ -7,13 +10,13 @@ export default class API {
     }
 
     static request(method, url, data = {}, headers = {}) {
-        console.log(`${method.toUpperCase()} ${url} ${JSON.stringify(data)}${headers["Auth-Key"] ? " (authorized)" : ""}`);
+        debug(`>> %c${method.toUpperCase()} ${url}${headers["Auth-Key"] ? " (authorized)" : ""}`, "color: purple", data);
 
         return new Promise((resolve) => {
             setTimeout(resolve.bind(this, {
                 req: { code: 200 },
                 body: "Success"
-            }), 1000);
+            }), 300);
         });
     }
 
@@ -52,22 +55,58 @@ export default class API {
         }))
     }
 
-    getModule(id) {
-        return this.request("GET", `/module/${id}`).then(() => {
-            return {
-                module: {
-                    code: id,
-                    name: "Maths",
-                    papers: range(5).map((v, i) => {
-                        return { 
-                            year: 2015 - i, 
-                            period: ["autumn", "winter", "summer"][random(0, 2)],
-                            isIndexed: random(0, 1) == 0,
-                            module: id
-                        };
-                    })
-                }
-            }
-        });
+    getModule(code) {
+        return this.request("GET", `/module/${code}`).then(() => ({
+            module: Generator.module(code)
+        }));
+    }
+
+    getPaper(module, year, period) {
+        return this.request("GET", `/module/${module}/paper/${year}/${period}`).then(() => ({
+            paper: Generator.paper(module, year, period)
+        }));
     }
 }
+
+/*
+ * Dummy data generators
+ */
+const Generator = {
+    module(code) {
+        return {
+            code,
+            name: "Maths",
+            papers: range(5).map((v, i) => {
+                return { 
+                    year: 2015 - i, 
+                    period: ["autumn", "winter", "summer"][random(0, 2)],
+                    isIndexed: random(0, 1) == 0,
+                    module: code
+                };
+            })
+        }
+    },
+
+    paper(module, year, period) {
+        let id = Generator.getUID();
+        return {
+            id,
+            questions: range(10).map(Generator.question.bind(null, id)),
+            module, year, period
+        };
+    },
+
+    question(paper) {
+        return {
+            paper,
+            id: Generator.getUID(),
+            content: "What is the highest point on planet earth?",
+            path: [1, 1],
+        }
+    },
+
+    __uid: 0,
+    getUID() {
+        return Generator.__uid++;
+    }
+};
