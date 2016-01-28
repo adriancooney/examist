@@ -12,6 +12,7 @@ const YEARS = range(YEAR_START, YEAR_END);
 
 export default class PaperGrid extends Component {
     static propTypes = {
+        currentPaper: PropTypes.object,
         papers: PropTypes.array.isRequired,
         module: PropTypes.string.isRequired
     };
@@ -34,13 +35,14 @@ export default class PaperGrid extends Component {
 
             // Create the dot for each year
             let items = years.map((year) => {
-                return (<PaperLink paper={periods[period][year]}/>);
+                const paper = periods[period][year];
+                return (<PaperLink paper={paper} current={paper === this.props.currentPaper} />);
             });
 
-            // Add in our period as the first column
+            // Add in the paper period as the first column
             items.unshift(capitalize(period));
 
-            // Convert them to 
+            // Convert them to table cells
             items = items.map((v, i) => <td key={i}>{v}</td>);
 
             return (<tr key={period}>{ items }</tr>);

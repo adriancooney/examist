@@ -1,4 +1,6 @@
+import "../../../../style/app/Question.scss";
 import React, { Component, PropTypes } from "react";
+import { Box, Flex } from "../../ui/layout";
 import Path from "./Path";
 
 export default class Question extends Component {
@@ -9,7 +11,10 @@ export default class Question extends Component {
     render() {
         return (
             <div className="Question">
-                <Path path={this.props.question.path} />
+                <Box>
+                    <Path path={this.props.question.path} />
+                    <Flex><h5>{ this.props.question.content }</h5></Flex>
+                </Box>
             </div>
         );
     }

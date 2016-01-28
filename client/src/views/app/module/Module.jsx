@@ -8,8 +8,10 @@ import { Loading } from "../../ui/";
 import PaperGrid from "./PaperGrid";
 
 class Module extends Component {
-    static selectors = (state, props) => ({
-        module: selectors.Module.byId(props.params.module)(state),
+    static selectors = (state, { params }) => ({
+        module: selectors.Module.byId(params.module)(state),
+        paper: params.module && params.year && params.period ? 
+            selectors.Paper.getPaper(params.module, params.year, params.period)(state) : undefined,
         isLoadingModule: isPending(actions.Module.types.MODULE)(state)
     });
 
@@ -35,7 +37,7 @@ class Module extends Component {
                         <Flex><h3>{ mod.name }</h3></Flex>
                     </Box>
                     
-                    <PaperGrid papers={mod.papers} module={mod.code}/>
+                    <PaperGrid papers={mod.papers} module={mod.code} currentPaper={this.props.paper}/>
 
                     { this.props.children }
                 </Flex>

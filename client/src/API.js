@@ -55,12 +55,24 @@ export default class API {
         }))
     }
 
+    /**
+     * Get a module by code.
+     * @param  {String} code Code e.g. CT470
+     * @return {Promise} -> {Object}
+     */
     getModule(code) {
         return this.request("GET", `/module/${code}`).then(() => ({
             module: Generator.module(code)
         }));
     }
 
+    /**
+     * Get a paper module, year, period.
+     * @param  {String} module Code e.g. CT470
+     * @param  {Number} year   The year e.g. 2007
+     * @param  {String} period One of ["summer", "winter", "autumn", "spring"]
+     * @return {Promise} -> {Object}
+     */
     getPaper(module, year, period) {
         return this.request("GET", `/module/${module}/paper/${year}/${period}`).then(() => ({
             paper: Generator.paper(module, year, period)
@@ -76,14 +88,10 @@ const Generator = {
         return {
             code,
             name: "Maths",
-            papers: range(5).map((v, i) => {
-                return { 
-                    year: 2015 - i, 
-                    period: ["autumn", "winter", "summer"][random(0, 2)],
-                    isIndexed: random(0, 1) == 0,
-                    module: code
-                };
-            })
+            papers: range(5).map((v, i) => ({ 
+                ...Generator.paper(code, 2015 - i, ["autumn", "winter", "summer"][random(0, 2)]),
+                isIndexed: random(0, 1) == 0
+            }))
         }
     },
 

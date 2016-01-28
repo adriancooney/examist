@@ -6,6 +6,7 @@ import * as selectors from "../../../selectors";
 import { Loading, Empty } from "../../ui";
 import { QuestionList } from "../question";
 import { Enum } from "../../../Util";
+import PaperFooter from "./PaperFooter";
 
 export const PAPER_TYPE = Enum(
     "UNAVAILABLE", // The paper was not available on the server
@@ -34,25 +35,50 @@ class Paper extends Component {
     };
 
     componentWillMount() {
-        if(!this.props.paper)
-            this.props.getPaper(this.props.params.module, this.props.params.year, this.props.params.period);
+        const { paper, params: { module, year, period } } = this.props;
+
+        // When we directly link to the paper
+        if(!paper)
+            this.props.getPaper(module, year, period);
+    }
+
+    componentWillReceiveProps(props) {
+        const { paper, isLoadingPaper, params: { module, year, period } } = props;
+
+        // When we switch the paper from within the paper route, the componentDidMount
+        // doesn't trigger so it doesn't know to load another paper. Here we load the
+        // paper if the parameters change.
+        // 
+        // We have to check if it's not also currently loading a paper because when we
+        // dispatch the promise, our props get updated to tell us the paper is loading
+        // and paper will be null. If we didn't check if it was loading, the dispatch
+        // would be triggered twice.
+        if(!paper && !isLoadingPaper)
+            this.props.getPaper(module, year, period);
     }
 
     render() {
-        if(this.props.isLoadingPaper) {
+        const { isLoadingPaper, paper, questions } = this.props;
+
+        if(isLoadingPaper) {
             return <Loading />
         }
 
-        let questions = <Empty/>;
+        if(!paper) {
+            return <Empty/>
+        }
 
-        if(this.props.questions && this.props.questions.length) {
-            questions = <QuestionList questions={this.props.questions} />
+        let content = <Empty/>;
+
+        if(questions && questions.length) {
+            content = <QuestionList questions={this.props.questions} />
         }
 
         return (
             <div className="Paper">
                 <h3>Questions</h3>
-                { questions }
+                { content }
+                <PaperFooter paper={this.props.paper} />
             </div>
         );
     }

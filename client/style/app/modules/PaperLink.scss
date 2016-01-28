@@ -18,4 +18,8 @@
     &.link-unindexed {
         background-color: blue;
     }
+
+    &.current {
+        transform: scale(1.5);
+    }
 }
