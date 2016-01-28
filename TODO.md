@@ -27,3 +27,7 @@
 
 # UI Elements
 * Numeric notification on papers to indicate activity such as solutions or comments.
+
+# Dependencies and upgrades
+* Install `react-router-redux` instead of `redux-simple-router`.
+* Use `react`, `es2015` and `stage-0` preset with Babel.

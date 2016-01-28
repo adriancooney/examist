@@ -1,15 +1,25 @@
 import "../../../../style/UI.scss";
-import React from "react";
+import React, { Component, PropTypes } from "react";
 
-export default function Input(props) {
-    let type = props.password ? "password" : "text";
+export default class Input extends Component {
+    static propTypes = {
+        name: PropTypes.string.isRequired
+    };
 
-    props = Object.assign({}, props, {
-        className: "Input " + (props.className || ""),
-        type
-    });
+    render() {
+        let type = this.props.password ? "password" : "text";
 
-    return (
-        <input {...props} />
-    );
+        let props = Object.assign({}, this.props, {
+            className: "Input " + (this.props.className || ""),
+            type
+        });
+
+        return (
+            <input ref="input" {...props} />
+        );
+    }
+
+    getValue() {
+        return this.refs.input.value;
+    }
 }

@@ -7,14 +7,18 @@
     "debug": "^2.2.0",
     "history": "^1.17.0",
     "immutable": "^3.7.6",
+    "isomorphic-fetch": "^2.2.1",
     "lodash": "^4.0.0",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-redux": "^4.0.6",
-    "react-router": "^1.0.3",
+    "react-router": "^2.0.0-rc5",
     "redux": "^3.0.5",
+    "redux-actions": "^0.9.1",
+    "redux-promise": "^0.5.1",
     "redux-simple-router": "^2.0.4",
-    "reselect": "^2.0.2"
+    "reselect": "^2.0.2",
+    "superagent": "^1.7.1"
   },
   "devDependencies": {
     "babel-core": "^6.4.0",
@@ -22,7 +26,11 @@
     "babel-loader": "^6.2.1",
     "babel-plugin-lodash": "^2.0.1",
     "babel-plugin-transform-class-properties": "^6.4.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-export-extensions": "^6.4.0",
+    "babel-plugin-transform-function-bind": "^6.3.13",
+    "babel-plugin-transform-object-rest-spread": "^6.3.13",
+    "babel-plugin-transform-regenerator": "^6.4.4",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.3.13",
     "babel-register": "^6.4.3",
@@ -31,6 +39,7 @@
     "eslint-loader": "^1.2.0",
     "eslint-plugin-react": "^3.15.0",
     "node-sass": "^3.4.2",
+    "null-loader": "^0.1.1",
     "react-hot-loader": "^1.3.0",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
@@ -39,9 +48,10 @@
   },
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server --hot --inline",
+    "dev": "webpack-dev-server -d --hot --inline --history-api-fallback",
     "lint": "eslint src",
-    "test": "mocha --compilers js:babel-register src/test"
+    "test": "mocha --compilers js:babel-register src/test",
+    "build-test": "webpack test/index.js /tmp/test-examist.js --config webpack.test.config.js --target node"
   },
   "eslintConfig": {
     "parser": "babel-eslint",
@@ -97,6 +107,10 @@
     "plugins": [
       "transform-export-extensions",
       "transform-class-properties",
+      "transform-decorators-legacy",
+      "transform-function-bind",
+      "transform-regenerator",
+      "transform-object-rest-spread",
       "lodash"
     ]
   },
