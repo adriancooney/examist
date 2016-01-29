@@ -5,6 +5,7 @@ import { isPending } from "redux-pending";
 import * as actions from "../../actions";
 import { FlexBox } from "../ui/layout";
 import { Form, Input } from "../ui/input";
+import { ErrorMessage } from "../ui/error";
 import { Loading } from "../ui";
 import * as selectors from "../../selectors";
 import { select } from "../../Store";
@@ -55,7 +56,8 @@ class Login extends Component {
 
     static selector = (state) => ({
         user: selectors.User.current(state),
-        isLoading: isPending(actions.User.types.USER_LOGIN)(state)
+        isLoading: isPending(actions.User.types.USER_LOGIN)(state),
+        state: selectors.View.login(state)
     });
 
     /*
@@ -79,6 +81,8 @@ class Login extends Component {
     }
 
     render() {
+        let error = this.props.state.error ? <ErrorMessage error={this.props.state.error} /> : null;
+
         let form = this.props.isLoading ? <Loading /> : (
             <Form button="Login" onSubmit={::this.onLogin}>
                 <Input name="username" placeholder="Username" />
@@ -88,7 +92,10 @@ class Login extends Component {
 
         return (
             <FlexBox className="Login" center middle>
-                <div className="login-box">{ form }</div>
+                <div className="login-box">
+                    { error }
+                    { form }
+                </div>
             </FlexBox>
         );
     }

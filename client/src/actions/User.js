@@ -1,6 +1,6 @@
 import { createAction } from "redux-actions";
 import API from "../API";
-import { Enum, createNetworkAction } from "../Util";
+import { Enum, createNetworkAction, validate } from "../Util";
 
 export const types = Enum(
     "USER_LOGIN",
@@ -11,7 +11,10 @@ export const types = Enum(
 /*
  * Log the user in.
  */
-export const login = createAction(types.USER_LOGIN, API.login);
+export const login = createAction(types.USER_LOGIN, (username, password) => validate(() => {
+    if(!username) throw new Error("Please specify a username.");
+    if(!password) throw new Error("Please specify a password.");
+}).then(API.login.bind(API, username, password)));
 
 /*
  * Log out the user.

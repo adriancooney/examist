@@ -1,6 +1,10 @@
 @import "common/Spacing";
 
 .Login {
+    .ErrorMessage {
+        margin-bottom: $spacing-margin * 2;
+    }
+
     .login-box {
         border-radius: $spacing-radius;
         padding: $spacing-padding * 2;

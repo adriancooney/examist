@@ -1,4 +1,7 @@
-.Error {
+@import "common/Colors";
+@import "common/Spacing";
+
+.ErrorPage {
     text-align: center;
 
     h1 {
@@ -13,5 +16,17 @@
         text-align: left;
         display: inline-block;
         margin: 0 auto;
+    }
+}
+
+.ErrorMessage {
+    background: $color-error;
+    border-radius: $spacing-radius;
+    color: white;
+    text-align: center;
+
+    p {
+        padding: $spacing-margin/2;
+        margin: 0;
     }
 }

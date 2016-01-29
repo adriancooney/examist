@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router";
 import { connect } from "react-redux";
 import { isPending } from "redux-pending";
 import * as actions from "../../../actions";
@@ -25,19 +26,19 @@ class Module extends Component {
     }
 
     render() {
-        let mod = this.props.module;
+        let module = this.props.module;
 
         if(this.props.isLoadingModule) {
             return <Loading />
-        } else if(mod) {
+        } else if(module) {
             return (
                 <Flex className="Module">
                     <Box>
-                        <Flex><h1>{ mod.code.toString().toUpperCase() }</h1></Flex>
-                        <Flex><h3>{ mod.name }</h3></Flex>
+                        <Flex><h1><Link to={`/module/${module.code}`}>{ module.code.toString().toUpperCase() }</Link></h1></Flex>
+                        <Flex><h3>{ module.name }</h3></Flex>
                     </Box>
                     
-                    <PaperGrid papers={mod.papers} module={mod.code} currentPaper={this.props.paper}/>
+                    <PaperGrid papers={module.papers} module={module.code} currentPaper={this.props.paper}/>
 
                     { this.props.children }
                 </Flex>

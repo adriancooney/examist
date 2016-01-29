@@ -1,5 +1,5 @@
 export default function(state = null, action) {
-    if(action.error) {
+    if(action.error && action.meta && action.meta.network) {
         // Log the error if we're in debug mode
         if(__DEV__) console.error(`${action.type} action error:`, action.payload.stack);
 

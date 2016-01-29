@@ -18,6 +18,11 @@ export function Enum(...constants) {
     return Object.freeze(num);
 }
 
+/**
+ * Map selectors to the state.
+ * @param  {Object} map   Map of key -> state.
+ * @return {Function}     Selector.
+ */
 export function mapSelectors(map) {
     return state => Object.keys(map).reduce((props, key) => {
         props[key] = map[key](state);
@@ -25,6 +30,19 @@ export function mapSelectors(map) {
     }, {});
 }
 
+/**
+ * Create a network action that when fails, displays an error page.
+ * @param  {String}   actionType The action type.
+ * @param  {Function} callback   Callback with the API.
+ * @return {Function}            Action creator.
+ */
 export function createNetworkAction(actionType, callback) {
     return createAction(actionType, (...args) => callback(select(api), ...args), () => ({ network: true }));
+}
+
+export function validate(callback) {
+    return new Promise(resolve => {
+        callback();
+        resolve();
+    });
 }

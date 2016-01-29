@@ -9,7 +9,7 @@ import * as module from "./module";
 import * as paper from "./paper";
 import * as question from "./question";
 import { FlexBox } from "../ui/layout";
-import ErrorMessage from "../ui/error/ErrorMessage";
+import ErrorPage from "../ui/error/ErrorPage";
 import Logout from "./Logout";
 import Dashboard from "./Dashboard";
 import Comments from "./Comments";
@@ -21,7 +21,7 @@ import LinkList from "./LinkList";
 export class App extends Component {
     render() {
         let content = this.props.error ?
-            <ErrorMessage error={this.props.error} /> :
+            <ErrorPage error={this.props.error} /> :
             this.props.children;
 
         return (

@@ -10,7 +10,7 @@ function Header(props) {
     let user, action;
 
     if(props.user) 
-        user = (<li>Hi {props.user.name}</li>)
+        user = (<li key={1}>Hi {props.user.name.split(" ")[0]}</li>)
 
     action = props.user ?
         (<li><Link to="/logout">Logout</Link></li>) :
@@ -22,9 +22,7 @@ function Header(props) {
     return (
         <header className="Header">
             <Box>
-                <Flex>
-                    <h1><Link to="/">{ Config.APP_NAME }</Link></h1>
-                </Flex>
+                <h1><Link to="/">{ Config.APP_NAME }</Link></h1>
                 <Flex>
                     <nav>
                         { user }

@@ -4,6 +4,7 @@ export modules from "./modules";
 export questions from "./questions";
 export papers from "./papers";
 export error from "./error";
+export views from "./views";
 
 // Instead of combining it in the main file cluttering it
 // up, we can just export the router
