@@ -5,18 +5,12 @@ import { Route, IndexRoute } from "react-router";
 
 import * as selectors from "../../selectors";
 import { authorize } from "../../Middleware";
-import * as module from "./module";
-import * as paper from "./paper";
-import * as question from "./question";
 import { FlexBox } from "../ui/layout";
 import ErrorPage from "../ui/error/ErrorPage";
+import Module from "./Module";
+import Paper from "./Paper";
 import Logout from "./Logout";
 import Dashboard from "./Dashboard";
-import Comments from "./Comments";
-import Solution from "./Solution";
-import SolutionList from "./SolutionList";
-import Link from "./Link";
-import LinkList from "./LinkList";
 
 export class App extends Component {
     render() {
@@ -40,11 +34,10 @@ export default (
     <Route component={App} onEnter={authorize}>
         <IndexRoute component={Dashboard} />
         <Route path="logout" component={Logout} onEnter={Logout.onEnter} />
-        <Route path="modules" component={module.ModuleList} />
-        <Route path="module/:module" component={module.Module}>
-            <Route path="paper/:year/:period" component={paper.Paper} />
+        <Route path="module/:module" component={Module}>
+            <Route path="paper/:year/:period" component={Paper} />
             {/* Render the question. If we're not linking directly to a 
-                link or solution, just render the question comments. */}
+                link or solution, just render the question comments. 
             <Route path="paper/:year/:period/question/:path" component={question.Question}>
                 <IndexRoute component={Comments} />
 
@@ -57,7 +50,7 @@ export default (
                 <Route path="link/:id" component={Link}>
                     <Route path="comments" component={Comments}/>
                 </Route>
-            </Route>
+            </Route> */}
         </Route>
     </Route>
 );

@@ -1,4 +1,4 @@
-import "../../../../style/UI.scss";
+import "../../../../style/ui/Layout.scss";
 import React from "react";
 
 export default function Box(props) {

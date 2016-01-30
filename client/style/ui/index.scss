@@ -1,0 +1,52 @@
+@import "../common/Spacing";
+@import "../common/Colors";
+
+.Avatar {
+    background: $color-avatar-circle;
+    border-radius: 30px;
+    min-height: 20px;
+    min-width: 20px;
+    padding: $spacing-padding/1.4 $spacing-padding/2 $spacing-padding/1.8;
+    display: block;
+
+    h3 {
+        margin: 0;
+        font-size: 80%;
+        color: $color-avatar-text;
+    }
+}
+
+.Institution {
+    background: $color-institution;
+    border-radius: $spacing-radius * 3;
+
+    h1 {
+        padding: $spacing-padding * 1.5;
+        background: $color-dark-grey;
+        border-top-right-radius: $spacing-radius * 3;
+        border-top-left-radius: $spacing-radius * 3;
+        margin: 0;
+    }
+
+    > div {
+        padding: $spacing-padding;
+    }
+
+    h2 {
+        margin: 0;
+        margin-bottom: $spacing-margin;
+        font-size: 120%;
+    }
+
+    h3, h4 {
+        margin: 0;
+    }
+
+    h3 {
+        font-size: 160%;
+    }
+
+    .Box {
+        padding: $spacing-padding/3;
+    }
+}

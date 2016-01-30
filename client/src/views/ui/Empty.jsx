@@ -1,3 +1,4 @@
+import "../../../style/ui/index.scss";
 import React, { PropTypes } from "react";
 
 export default function Empty(props) {

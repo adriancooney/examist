@@ -109,7 +109,7 @@ const Generator = {
             paper,
             id: Generator.getUID(),
             content: "What is the highest point on planet earth?",
-            path: [1, 1],
+            path: [1, 1]
         }
     },
 

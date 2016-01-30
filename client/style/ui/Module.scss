@@ -1,0 +1,32 @@
+@import "../common/Spacing";
+@import "../common/Colors";
+
+.ModuleLink {
+    min-width: 145px;
+    display: inline-block;
+    padding: $spacing-padding;
+    border-radius: $spacing-radius;
+    background: $color-module-link;
+    box-shadow: 0 1px 0 $color-module-link-shadow;
+
+    h4 {
+        margin: 0 $spacing-margin/2 0 $spacing-margin;
+        text-align: center;
+        font-size: 140%;
+
+        a:hover {
+            text-decoration: none;
+            border-bottom: 1px solid $color-link;
+        }
+    }
+
+    .Avatar {
+        display: inline-block;
+    }
+}
+
+.ModuleList {
+    .ModuleLink {
+        margin: $spacing-margin/1.8;
+    }
+}

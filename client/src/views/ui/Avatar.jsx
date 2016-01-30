@@ -1,3 +1,4 @@
+import "../../../style/ui/index.scss";
 import React from "react";
 
 export default function Avatar(props) {

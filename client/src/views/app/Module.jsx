@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { Link } from "react-router";
 import { connect } from "react-redux";
 import { isPending } from "redux-pending";
-import * as actions from "../../../actions";
-import * as selectors from "../../../selectors";
-import { Box, Flex } from "../../ui/layout";
-import { Loading } from "../../ui/";
-import PaperGrid from "./PaperGrid";
+import * as actions from "../../actions";
+import * as selectors from "../../selectors";
+import { PaperGrid } from "../ui/paper";
+import { Loading } from "../ui/";
+import { Box, Flex } from "../ui/layout";
 
 class Module extends Component {
     static selectors = (state, { params }) => ({

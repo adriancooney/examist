@@ -1,0 +1,63 @@
+@import "../common/Spacing";
+@import "../common/Fonts";
+@import "../common/Colors";
+
+.Form {
+    .form-center {
+        text-align: center;
+    }
+
+    .Button {
+        margin-top: $spacing-margin;
+        margin-bottom: 0;
+    }
+
+    div[role="group"] {
+        border: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: $spacing-padding/2 0; 
+
+        input {
+            flex-grow: 1;
+            display: inline-flex;
+        }
+    }
+
+    label {
+        font-family: $font-display;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin: 0 $spacing-margin;
+        display: block;
+    }
+}
+
+.Input {
+    outline: none;
+    padding: $spacing-padding/2;
+    margin: $spacing-margin;
+    font-size: 120%;
+    font-family: $font-display;
+    display: block;
+}
+
+.Button {
+    margin: $spacing-margin;
+    padding: $spacing-padding/1.4 $spacing-padding $spacing-padding/2;
+    border-radius: $spacing-radius;
+    border: none;
+    background: $color-button-default;
+    border: 3px solid darken($color-button-default, 15%);
+    font-family: $font-display;
+    text-transform: uppercase;
+    font-size: 80%;
+    color: white;
+    outline: none;
+
+    &:hover {
+        text-decoration: underline;
+        background: lighten($color-button-default, 5%);
+    }
+}

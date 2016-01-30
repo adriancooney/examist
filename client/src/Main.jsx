@@ -9,7 +9,7 @@ import * as views from "./views";
 export default (
     <Provider store={store}>
         <Router history={browserHistory}>
-            {/* 
+            {/*
                 Here we have an entirely different application on a URL. We hoist this URL out of the
                 "/" route because we don't want the container.
             */}

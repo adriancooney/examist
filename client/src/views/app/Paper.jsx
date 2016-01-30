@@ -1,18 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { isPending } from "redux-pending";
-import * as actions from "../../../actions";
-import * as selectors from "../../../selectors";
-import { Loading, Empty } from "../../ui";
-import { QuestionList } from "../question";
-import { Enum } from "../../../Util";
-import PaperFooter from "./PaperFooter";
-
-export const PAPER_TYPE = Enum(
-    "UNAVAILABLE", // The paper was not available on the server
-    "UNINDEXED", // The paper is available but not yet indexed
-    "AVAILABLE" // The paper is available and is indexed
-);
+import * as actions from "../../actions";
+import * as selectors from "../../selectors";
+import { Loading, Empty } from "../ui";
+import { QuestionList } from "../ui/question";
+import { PaperFooter } from "../ui/paper";
 
 class Paper extends Component {
     static selectors = (state, props) => {

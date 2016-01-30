@@ -1,0 +1,9 @@
+app_name: Examist
+
+signup.institution_address: >
+    To sign up to {app_name}, it requires you to 
+    have a valid email address for your institutions.
+
+signup.young: >
+    {app_name} is still very young. We currently only support 
+    a select few universities.

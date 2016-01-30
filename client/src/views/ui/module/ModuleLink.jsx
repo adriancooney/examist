@@ -1,3 +1,4 @@
+import "../../../../style/ui/Module.scss";
 import React from "react";
 import { Link } from "react-router";
 import { Box, FlexBox } from "../layout";

@@ -1,4 +1,4 @@
-import "../../../style/Login.scss";
+import "../../../style/pages/Login.scss";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { isPending } from "redux-pending";

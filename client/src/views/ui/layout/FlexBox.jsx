@@ -1,3 +1,4 @@
+import "../../../../style/ui/Layout.scss";
 import React from "react";
 import Box from "./Box";
 

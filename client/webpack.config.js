@@ -18,6 +18,9 @@ module.exports = {
             test: /\.scss$/,
             include: [path.resolve(__dirname, "style/")],
             loaders: ["style", "css", "sass"]
+        }, {
+            test: /\.yaml$/,
+            loaders: ["json", "yaml"]
         }]
     },
 

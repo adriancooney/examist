@@ -1,3 +1,4 @@
+import "../../../../style/ui/Module.scss";
 import React, { PropTypes } from "react";
 import ModuleLink from "./ModuleLink";
 import Empty from "../Empty";

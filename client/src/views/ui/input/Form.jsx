@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from "react";
+import { Box } from "../layout";
+import Input from "./Input";
 import Button from "./Button";
 
 export default class Form extends Component {
@@ -10,8 +12,9 @@ export default class Form extends Component {
         super(props);
 
         let inputs = this.props.children.reduce((inputs, child, key) => {
-            inputs[child.props.name] = React.createElement(child.type, 
-                Object.assign({}, child.props, { key, ref: child.props.name }));
+            if(child.type === Input)
+                inputs[child.props.name] = React.createElement(child.type, 
+                    Object.assign({}, child.props, { key, ref: child.props.name }));
 
             return inputs;
         }, {});
@@ -21,14 +24,15 @@ export default class Form extends Component {
 
     render() {
         let buttonText = this.props.button || "Submit";
+
         return (
-            <div className="Form">
+            <Box vertical className="Form">
                 { Object.keys(this.state.inputs).map(key => this.state.inputs[key]) }
 
                 <div className="form-center">
                     <Button onClick={::this.onSubmit}>{ buttonText }</Button>
                 </div>
-            </div>
+            </Box>
         );
     }
 

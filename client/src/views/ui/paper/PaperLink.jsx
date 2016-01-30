@@ -1,7 +1,13 @@
 import "../../../../style/app/modules/PaperLink.scss"
 import React, { PropTypes } from "react";
 import { Link } from "react-router";
-import { PAPER_TYPE } from "../paper/Paper";
+import { Enum } from "../../../Util";
+
+export const PAPER_TYPE = Enum(
+    "UNAVAILABLE", // The paper was not available on the server
+    "UNINDEXED", // The paper is available but not yet indexed
+    "AVAILABLE" // The paper is available and is indexed
+);
 
 export default function PaperLink(props) {
     let type = PAPER_TYPE.UNAVAILABLE;

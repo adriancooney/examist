@@ -1,4 +1,4 @@
-import "../../../../style/UI.scss";
+import "../../../../style/ui/Input.scss";
 import React, { Component, PropTypes } from "react";
 
 export default class Input extends Component {
@@ -14,9 +14,18 @@ export default class Input extends Component {
             type
         });
 
-        return (
-            <input ref="input" {...props} />
-        );
+        let input = <input ref="input" {...props} />;
+
+        if(this.props.label) {
+            return (
+                <div role="group">
+                    <label htmlFor={this.props.name}>{this.props.label}</label>
+                    { input }
+                </div>
+            );
+        } else {
+            return input;
+        }
     }
 
     getValue() {
