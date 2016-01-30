@@ -8,7 +8,7 @@ export default handleActions({
         }
     },
 
-    [types.PENDING_USER_LOGIN]: () => {
+    ["PENDING_" + types.USER_LOGIN]: () => {
         return {};
     }
 }, {});
