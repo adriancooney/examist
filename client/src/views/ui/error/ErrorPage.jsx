@@ -12,7 +12,7 @@ export default function ErrorPage(props) {
     else message = props.message
 
     return (
-        <FlexBox vertical center className="ErrorPage">
+        <FlexBox vertical align="center" className="ErrorPage">
             { title }
             { message }
         </FlexBox>

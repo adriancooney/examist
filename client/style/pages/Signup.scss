@@ -1,0 +1,7 @@
+@import "../common/Spacing";
+
+.Signup {
+    > .Flex {
+        padding: $spacing-padding * 2;
+    }
+}

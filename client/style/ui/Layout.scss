@@ -1,9 +1,5 @@
 .Box {
     display: flex;
-
-    &.box-vertical { flex-direction: column; }
-    &.box-center { justify-content: center; }
-    &.box-middle { align-items: center; }
 }
 
 .Flex {

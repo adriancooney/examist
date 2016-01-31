@@ -14,7 +14,7 @@ export default function Module(props) {
         <div className="ModuleLink">
             <Box>
                 <div><Avatar initials={initials} /></div>
-                <FlexBox middle><h4><Link to={`/module/${props.code.toLowerCase()}`}>{ props.code }</Link></h4></FlexBox>
+                <FlexBox justify="center"><h4><Link to={`/module/${props.code.toLowerCase()}`}>{ props.code }</Link></h4></FlexBox>
             </Box>
         </div>
     );

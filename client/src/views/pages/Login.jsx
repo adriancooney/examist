@@ -91,7 +91,7 @@ class Login extends Component {
         );
 
         return (
-            <FlexBox className="Login" center middle>
+            <FlexBox className="Login" align="center" justify="center">
                 <div className="login-box">
                     { error }
                     { form }

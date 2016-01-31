@@ -19,6 +19,7 @@
 .Institution {
     background: $color-institution;
     border-radius: $spacing-radius * 3;
+    max-width: 320px;
 
     h1 {
         padding: $spacing-padding * 1.5;
