@@ -1,28 +1,40 @@
-import { handleActions } from "redux-actions";
-import { types } from "../actions/User";
+import { Reducer } from "../library";
 import API from "../API";
 
-export default handleActions({
-    [types.USER_LOGIN]: {
-        next(state, action) {
-            const user = action.payload;
-            return {
-                ...user, 
-                api: new API(user.key)
-            }
-        }
-    },
+/**
+ * User action types.
+ * @type {Enum}
+ */
+export const actions = Enum(
+    "USER_LOGIN",
+    "USER_LOGOUT",
+    "USER_SIGNUP",
+    "USER_MODULES"
+);
 
-    [types.USER_LOGOUT]: () => {
-        return null;
-    },
+/**
+ * User reducer.
+ * @type {Reducer}
+ */
+export default const User = new Reducer("user", null);
 
-    [types.USER_MODULES]: (state, action) => {
-        const { modules } = action.payload;
+/*
+ * Handle user logging in. Create new API instance.
+ */
+User.handleAction(actions.USER_LOGIN, (state, user) => ({
+    ...user, 
+    api: new API(user.key)
+});
 
-        return {
-            ...state, 
-            modules
-        }
-    }
-}, null);
+/*
+ * Handle user logging out. Return state to initial state.
+ */
+User.handleAction(actions.USER_LOGOUT, Reducer.initial);
+
+/*
+ * Handle receiving user's modules.
+ */
+User.handleAction(actions.USER_MODULES, (state, module) => ({
+    ...state, 
+    modules
+});
