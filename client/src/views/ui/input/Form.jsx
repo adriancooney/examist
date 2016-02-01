@@ -5,16 +5,23 @@ import Button from "./Button";
 
 export default class Form extends Component {
     static propTypes = {
-        onSubmit: PropTypes.func.isRequired
+        onSubmit: PropTypes.func.isRequired,
+        onChange: PropTypes.func
     };
 
     constructor(props) {
         super(props);
 
         let inputs = this.props.children.reduce((inputs, child, key) => {
-            if(child.type === Input)
-                inputs[child.props.name] = React.createElement(child.type, 
-                    Object.assign({}, child.props, { key, ref: child.props.name }));
+            if(child.type === Input) {
+                let name = child.props.name;
+                inputs[name] = React.createElement(child.type, {
+                    ...child.props, 
+                    key, 
+                    ref: name,
+                    onChange: this.onChange.bind(this, name)
+                });
+            }
 
             return inputs;
         }, {});
@@ -34,6 +41,10 @@ export default class Form extends Component {
                 </div>
             </Box>
         );
+    }
+
+    onChange(name, event) {
+        if(this.props.onChange) this.props.onChange(name, this.refs[name].getValue(), event);
     }
 
     onSubmit() {

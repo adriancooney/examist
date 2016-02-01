@@ -3,8 +3,13 @@ import { types } from "../../actions/User";
 
 export default handleActions({
     [types.USER_LOGIN]: {
-        throw(state, action) {
-            return { error: action.payload };
+        throw(state, { payload }) {
+            // Validation error. Display a message.
+            let { ref } = payload;
+
+            return { 
+                error: `Missing ${ref}.`
+            };
         }
     },
 

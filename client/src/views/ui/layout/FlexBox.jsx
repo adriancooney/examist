@@ -1,8 +1,6 @@
 import "../../../../style/ui/Layout.scss";
 import React from "react";
 import Box from "./Box";
-import Flex from "./Flex";
-import { pick } from "lodash/object";
 
 export default function FlexBox(props) {
     props = {

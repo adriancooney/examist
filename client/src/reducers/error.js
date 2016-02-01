@@ -1,7 +1,9 @@
+import { DEBUG } from "../Config";
+
 export default function(state = null, action) {
-    if(action.error && action.meta && action.meta.network) {
+    if(action.error && action.meta && action.meta.network && action.meta.fatal) {
         // Log the error if we're in debug mode
-        if(__DEV__) console.error(`${action.type} action error:`, action.payload.stack);
+        if(DEBUG) console.error(`${action.type} action error:`, action.payload.stack);
 
         // Return the error as the state
         return action.payload;

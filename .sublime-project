@@ -3,6 +3,9 @@
 	[
 		{
 			"path": "."
+		},
+		{
+			"path": "/Users/adrian/Dropbox/Projects/redux-pending"
 		}
 	]
 }

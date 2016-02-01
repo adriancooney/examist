@@ -38,21 +38,18 @@
     "eslint": "^1.10.3",
     "eslint-loader": "^1.2.0",
     "eslint-plugin-react": "^3.15.0",
-    "json-loader": "^0.5.4",
     "node-sass": "^3.4.2",
-    "null-loader": "^0.1.1",
     "react-hot-loader": "^1.3.0",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.11",
-    "webpack-dev-server": "^1.14.1",
-    "yaml-loader": "^0.1.0"
+    "webpack-dev-server": "^1.14.1"
   },
   "scripts": {
     "build": "webpack",
     "dev": "webpack-dev-server -d --hot --inline --history-api-fallback",
     "lint": "eslint src",
-    "test": "mocha --compilers js:babel-register src/test",
+    "test": "mocha --compilers scss:./test/lib/null-compiler.js,js:babel-core/register,jsx:babel-core/register ./test/src/**/*.js",
     "build-test": "webpack test/index.js /tmp/test-examist.js --config webpack.test.config.js --target node"
   },
   "eslintConfig": {
@@ -68,7 +65,9 @@
       "curly": 0,
       "eol-last": 0,
       "comma-spacing": 0,
-      "no-unused-vars": 1,
+      "no-unused-vars": [1, {
+        "varsIgnorePattern": "^_"
+      }],
       "no-use-before-define": 0,
       "no-trailing-spaces": 0,
       "no-undef": 2,

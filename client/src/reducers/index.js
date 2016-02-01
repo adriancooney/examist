@@ -2,6 +2,7 @@
 export user from "./user";
 export modules from "./modules";
 export questions from "./questions";
+export institutions from "./institutions";
 export papers from "./papers";
 export error from "./error";
 export views from "./views";

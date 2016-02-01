@@ -26,18 +26,46 @@ export default class API {
 
     /**
      * Log the user into the API.
-     * @param  {String} username User's username.
-     * @param  {String} password User's password.
+     * @param  {Object} details { username, password }
      * @return {Promise} -> {Object}
      */
-    static login(username, password) {
+    static login({ username, password }) {
         return API.request("POST", "/login", { username, password }).then(() => ({
             id: 1,
-            usename: "adrian",
+            username: "adrian",
             name: "Adrian Cooney",
             email: "cooney.adrian@gmail.com",
             loading: false,
             key: "f89sf0n7f0as97fn90sa7fn" 
+        }));
+    }
+
+    static signup({ username, email, password }) {
+        return API.request("POST", "/login", { username, email, password });
+    }
+
+    /**
+     * Get university by their domain name. e.g. nuigalway.ie. Used when
+     * finding the university on the signup page.
+     * @param  {String} domain The university domain.
+     * @return {Promise} -> {Insititution}
+     */
+    static getInstitutionByDomain(domain) {
+        return API.request("GET", `/institution/search?q=${domain}`).then(() => ({
+            id: 1,
+            shorthand: "NUIG",
+            name: "National University of Ireland, Galway",
+            image: "http://www.nuigalway.ie/cdn/images/dropdown-thumb-1.jpg",
+            domain: "nuigalway.ie",
+            colors: {
+                primary: "#68085B",
+                secondary: "#7DB8C5"
+            },
+            stats: {
+                students: 312,
+                modules: 1249,
+                papers: 14940
+            }
         }));
     }
 

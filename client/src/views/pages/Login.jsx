@@ -81,10 +81,10 @@ class Login extends Component {
     }
 
     render() {
-        let error = this.props.state.error ? <ErrorMessage error={this.props.state.error} /> : null;
+        let error = this.props.state.error ? <ErrorMessage message={this.props.state.error} /> : null;
 
         let form = this.props.isLoading ? <Loading /> : (
-            <Form button="Login" onSubmit={::this.onLogin}>
+            <Form button="Login" onSubmit={::this.props.login}>
                 <Input name="username" placeholder="Username" />
                 <Input name="password" placeholder="Password" password />
             </Form>
@@ -98,11 +98,6 @@ class Login extends Component {
                 </div>
             </FlexBox>
         );
-    }
-
-    onLogin({ username, password }) {
-        // Dispatch the USER_LOGIN action and attempt to log the user in.
-        this.props.login(username, password);
     }
 }
 

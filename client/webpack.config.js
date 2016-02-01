@@ -8,7 +8,7 @@ module.exports = {
     module: {
         loaders: [{
             test: /\.jsx?$/,
-            include: [path.resolve(__dirname, "src/")],
+            include: [path.resolve(__dirname, "src/"), path.resolve(__dirname, "i18n/")],
             loaders: ["react-hot", "babel"]
         }, {
             test: /\.jsx?$/,
@@ -41,7 +41,7 @@ module.exports = {
 
     plugins: [
         new webpack.DefinePlugin({
-            "__DEV__": true
+            "process.env.NODE_ENV": process.env.NODE_ENV || "\"development\""
         })
     ]
 };
