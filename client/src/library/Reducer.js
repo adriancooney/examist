@@ -1,3 +1,7 @@
+import Action from "./Action";
+
+const REDUCER_RESET = "@@REDUCER/RESET_ACTION";
+
 /*
  * Simple reducer classes that makes combining them a breeze.
  *
@@ -23,7 +27,12 @@ export default class Reducer {
         if(!name)
             throw new Error("Please specify a name for reducer.");
 
-        if(typeof initialState === "undefined")
+        if(typeof initialState === "function") {
+            reducer = initialState;
+            initialState = undefined;
+        }
+
+        if(!reducer && typeof initialState === "undefined")
             throw new Error(`Please specify an initial state for the reducer '${name}'.`);
 
         this.name = name;
@@ -52,7 +61,7 @@ export default class Reducer {
      * @return {Any}           The reduced state.
      */
     apply(state, action) {
-        if(this.reducer) return this.reducer.apply(null, state, action);
+        if(this.reducer) return this.reducer.call(null, state, action);
         else return this.reduce(state, action);
     }
 
@@ -92,7 +101,10 @@ export default class Reducer {
      */
     handleAction(actionType, handler) {
         if(this.reducer) 
-            throw new Error("Cannot specify both a master reducer in the Reducer constructor and use `handleAction`.");
+            throw new Error(`Cannot specify both a master reducer in the Reducer constructor and use \`handleAction\` in '${this.name}' reducer.`);
+
+        if(typeof actionType === "function" && actionType.type)
+            actionType = actionType.type;
 
         if(this.actionHandlers[actionType])
             throw new Error(`Already action handler defined for '${actionType}' in '${this.getName}' reducer.`);
@@ -112,10 +124,47 @@ export default class Reducer {
      * @param  {Function} handler    The error handler (state, error, options).
      */
     handleError(actionType, handler) {
+        if(typeof actionType === "function" && actionType.type)
+            actionType = actionType.type;
+        
         if(this.errorHandlers[actionType])
             throw new Error(`Already error handler defined for '${actionType}' in '${this.getName}' reducer.`);
 
         this.errorHandlers[actionType] = handler;
+    }
+
+    /**
+     * Create a new action and return the action creator.
+     *
+     * Creates a new action and allows specifying handlers right from the creator. Example:
+     *
+     *  const getUser = reducer.createAction("GET_USER", API.getUser).handle((state, user) => {
+     *      return { user }
+     *  });
+     *
+     *  // The use like
+     *  getUser("billy");
+     *  
+     * @param  {String}   type    The action type.
+     * @param  {Function} creator The action creator (Default value => value).
+     * @param  {Function}   meta  The meta creator (Default value => value).
+     * @return {Function}         Action creator.
+     */
+    createAction(type, creator, meta) {
+        return (new Action(type, this, { creator, meta })).creator();
+    }
+
+    /**
+     * Add a reset action that when dispatched, resets the reducer's state
+     * to the initial state.
+     *
+     * It's possible to use this on combined reducers!
+     * 
+     * @param  {String} type The action type.
+     */
+    resetAction(type) {
+        if(typeof type === "function" && type.type) type = type.type;
+        this.resetActionType = type;
     }
 
     /**
@@ -128,8 +177,47 @@ export default class Reducer {
     reduce(state, action) {
         state = state || this.initialState;
         let handler = action.error ? this.errorHandlers[action.type] : this.actionHandlers[action.type];
-        if(handler) return handler.call(this, state, action.payload, action.meta || {});
+        if(action.type === this.resetActionType) return this.initialState;
+        else if(handler) return handler.call(this, state, action.payload, action.meta || {});
         else return state;
+    }
+
+    /**
+     * Get the reducer to pass to Redux.
+     * @return {Function} The reducer.
+     */
+    getReducer() {
+        return this.apply.bind(this);
+    }
+
+    /**
+     * Given the global state, select the current reducers state. This is
+     * a slightly abstract concept and requires certain conditions to be
+     * true for it to work:
+     *     * Requires all reducers to be combined via Reducer.combine.
+     *     * Requires root reducer to be called "root" (omit name argument 
+     *       in Reducer.combine).
+     *
+     * This works by traversing all the way up the reducer tree, grabbing
+     * the reducers own state and returning it back the way down, recursively
+     * selecting only it's part and handing it to the child. The root reducer
+     * is a special case which returns the whole state.
+     * 
+     * @param  {Any} currentstate The current state.
+     * @return {Any}              The reducers current state.
+     */
+    getState(currentState) {
+        if(this.__parent) currentState = this.__parent.getState(currentState);
+        return this.name === "root" ? currentState : currentState[this.name];
+    }
+
+    /**
+     * Create a selector scoped to the current reducer.
+     * @param  {Function} selector The selector function on the reducer's state.
+     * @return {Function}          The scoped selector function.
+     */
+    select(selector) {
+        return state => selector(this.getState(state));
     }
 
     /**
@@ -139,11 +227,28 @@ export default class Reducer {
      * @return {Reducer}             The final reducer.
      */
     static combine(name, ...reducers) {
-        return new Reducer(name, (state, action) => {
-            return reducers.reduce((state, reducer) => {
-                state[reducer.getName()] = reducer.apply(state, action);
+        if(name instanceof Reducer) {
+            reducers.push(name);
+            name = "root";
+        }
+
+        let root = new Reducer(name, {}, (state, action) => {
+            // Reset the state if it's a reset action
+            if(root.resetActionType === action.type) {
+                state = undefined;
+                action = { type: REDUCER_RESET };
+            }
+
+            return reducers.reduce((nextState, reducer) => {
+                nextState[reducer.getName()] = reducer.apply(state, action);
+                return nextState;
             }, {});
         });
+
+        // Set a parent reference on the reducer
+        reducers.forEach(reducer => reducer.__parent = root);
+
+        return root;
     }
 
     /**

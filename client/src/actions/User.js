@@ -7,12 +7,7 @@ import {
     validate 
 } from "../Util";
 
-export const types = Enum(
-    "USER_LOGIN",
-    "USER_LOGOUT",
-    "USER_SIGNUP",
-    "USER_MODULES"
-);
+
 
 /*
  * Log the user in.

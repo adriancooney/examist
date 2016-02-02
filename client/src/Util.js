@@ -1,5 +1,4 @@
 import { createAction } from "redux-actions";
-import { select } from "./Store";
 import { api } from "./selectors/User";
 
 /**
