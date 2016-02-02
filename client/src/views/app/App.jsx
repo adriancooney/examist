@@ -2,7 +2,6 @@ import "../../../style/app/App.scss";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Route, IndexRoute } from "react-router";
-import * as selectors from "../../selectors";
 import { authorize } from "../../Middleware";
 import { FlexBox } from "../ui/layout";
 import ErrorPage from "../ui/error/ErrorPage";

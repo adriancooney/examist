@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { isPending } from "redux-pending";
-import * as actions from "../../actions";
-import * as selectors from "../../selectors";
 import { Loading, Empty } from "../ui";
 import { QuestionList } from "../ui/question";
 import { PaperFooter } from "../ui/paper";
@@ -24,7 +22,7 @@ class Paper extends Component {
     };
 
     static actions = {
-        getPaper: actions.Paper.getPaper
+        // getPaper: actions.Paper.getPaper
     };
 
     componentWillMount() {

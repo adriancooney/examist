@@ -37,7 +37,7 @@ const createStoreFinal = compose(...composition)(createStore)
 const store = createStoreFinal(rootReducer.getReducer());
 
 // Link the store back to the root reducer
-rootReducer.setStore(store);
+rootReducer.linkStore(store);
 
 // Enable the devtools for redux-simple-router
 if(DEBUG) 

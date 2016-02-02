@@ -1,8 +1,6 @@
 import "../../../style/pages/Signup.scss";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actions from "../../actions";
-import * as selectors from "../../selectors";
 import { Institution } from "../ui";
 import { Flex, Box } from "../ui/layout";
 import { Form, Input } from "../ui/input";
@@ -16,14 +14,14 @@ class Signup extends Component {
         let signupState = selectors.View.signup(state);
 
         return {
-            state: signupState,
-            institution: selectors.Institution.getByDomain(signupState.domain)(state)
+            // state: signupState,
+            // institution: selectors.Institution.getByDomain(signupState.domain)(state)
         }
     };
 
     static actions = {
-        setDomain: actions.views.Signup.setDomain,
-        getInstitutionByDomain: actions.Institution.getInstitutionByDomain
+        // setDomain: model.views.Signup.setDomain,
+        // getInstitutionByDomain: model.Institution.getInstitutionByDomain
     };
 
     render() {

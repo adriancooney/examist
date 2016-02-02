@@ -47,7 +47,7 @@ describe("Resource", () => {
         const paper = new Resource("paper", "id");
 
         const root = Reducer.combine(user, paper);
-        const state = root.apply(undefined, { type: "USER", payload: { id: 1, name: "Adrian" }});
+        const state = root.reduce(undefined, { type: "USER", payload: { id: 1, name: "Adrian" }});
 
         it("should get by Id", () => {
             const selector = user.selectByKey(1);

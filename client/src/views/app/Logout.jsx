@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as selectors from "../../selectors";
-import * as actions from "../../actions";
 
 const LOGOUT_REDIRECT = "/login";
 
@@ -30,6 +28,6 @@ class Logout extends Component {
 export default connect(state => ({ 
     user: selectors.User.current(state) 
 }), {
-    logout: actions.User.logout,
-    push: actions.Routing.push
+    // logout: actions.User.logout,
+    // push: actions.Routing.push
 })(Logout)

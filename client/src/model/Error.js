@@ -1,7 +1,7 @@
 import { Reducer } from "../library";
 import { DEBUG } from "../Config";
 
-export default new Reducer("error", null, (state, action) => {
+export default new Reducer("error", (state = null, action) => {
     if(action.error && action.meta && action.meta.network && action.meta.fatal) {
         // Log the error if we're in debug mode
         if(DEBUG) console.error(`${action.type} action error:`, action.payload.stack);

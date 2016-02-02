@@ -1,5 +1,5 @@
 import assert from "assert";
-import { Enum, types, validate } from "../../src/Util";
+import { Enum, types, validate, selector } from "../../src/Util";
 
 describe("Util", () => {
     describe("Enum", () => {
@@ -137,6 +137,14 @@ describe("Util", () => {
             return validate({
                 "foo": ""
             }).catch(err => done());
+        });
+    });
+
+    describe("selector", () => {
+        const sel = selector({ foo: (state) => state });
+        it("should return a selector", () => {
+            assert(typeof sel === "function");
+            assert(sel.length === 1);
         });
     });
 });

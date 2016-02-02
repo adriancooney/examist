@@ -22,12 +22,15 @@ export function Enum(...constants) {
  * @param  {Object} map   Map of key -> state.
  * @return {Function}     Selector.
  */
-export function mapSelectors(map) {
+export function selector(map) {
     return state => Object.keys(map).reduce((props, key) => {
         props[key] = map[key](state);
         return props;
     }, {});
 }
+
+/** @type {Function} Legacy */
+export const mapSelectors = selector;
 
 /**
  * Create a network action that has no unintended side-effects if it

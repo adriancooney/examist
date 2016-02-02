@@ -34,4 +34,9 @@ export const getModules = User.createAction("USER_MODULES").handle((state, modul
  */
 export const selectAPI = User.select(user => user.api);
 
+/*
+ * Select the current user.
+ */
+export const selectCurrent = User.select(user => user);
+
 export default User;

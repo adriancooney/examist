@@ -1,7 +1,7 @@
 import Reducer from "../../../src/library/Reducer";
 import assert from "assert";
 
-describe.only("Reducer", () => {
+describe("Reducer", () => {
     describe("constructor", () => {
         it("should error when no name is passed", () => {
             assert.throws(() => new Reducer(), /name/i);
@@ -75,19 +75,18 @@ describe.only("Reducer", () => {
         });
     });
 
-    describe("#reduce", () => {
-        it("should correctly pass the initialState to actions and empty meta object when absent", next => {
+    describe("#reduceActions", () => {
+        it("should correctly pass the empty meta object when absent", next => {
             const initialState = {};
             const r = new Reducer("foo", initialState);
 
             r.handleAction("FOO", function(state, payload, meta) {
                 assert.equal(this, r);
-                assert.equal(initialState, state);
-                assert(meta); // Ensure meth
+                assert(meta); // Ensure meta
                 next();
             });
 
-            r.reduce(undefined, { type: "FOO" });
+            r.reduceActions(undefined, { type: "FOO" });
         });
 
         it("should pass the correct parameters", next => {
@@ -103,7 +102,7 @@ describe.only("Reducer", () => {
                 next();
             });
 
-            r.reduce(state, { type: "FOO", payload, meta });
+            r.reduceActions(state, { type: "FOO", payload, meta });
         });
 
         it("should correctly handle errors", next => {
@@ -113,29 +112,39 @@ describe.only("Reducer", () => {
             r.handleAction("FOO", () => next(new Error("Calling action instead of error handler.")));
             r.handleError("FOO", () => next());
 
-            r.reduce(undefined, { type: "FOO", payload, error: true });
+            r.reduceActions(undefined, { type: "FOO", payload, error: true });
         });
 
-        it("should return the untouched state if not actions match", () => {
+        it("should return the untouched state if no actions match", () => {
             const r = new Reducer("foo", {});
-            const state = { foo: "bar" };
-            assert.equal(state, r.reduce(state, { type: "UNKNOWN"}));
+            const state = { bar: 1 };
+            assert.equal(state, r.reduceActions(state, { type: "UNKNOWN"}));
         });
     });
 
-    describe("#apply", () => {
+    describe("#reduce", () => {
+        it("should correctly pass the initial state", next => {
+            const initialState = {};
+            const a = new Reducer("foo", initialState);
+            a.handleAction("FOO", state => {
+                assert.equal(initialState, state);
+                next();
+            });
+            a.reduce(undefined, { type: "FOO" });
+        });
+
         it("should apply the master reducer", next => {
             const a = new Reducer("foo", () => {
                 next();
             });
 
-            a.apply("foo", "bar");
+            a.reduce("foo", { type: "bar" });
         });
 
         it("should apply the reducer reducer", next => {
             const a = new Reducer("foo", {});
             a.handleAction("foo", () => next());
-            a.apply(null, { type: "foo" });
+            a.reduce(null, { type: "foo" });
         });
     });
 
@@ -146,7 +155,7 @@ describe.only("Reducer", () => {
         const root = Reducer.combine(a, b, c);
 
         it("should combine reducers by name", () => {
-            const state = root.apply(undefined, { type: "UNDEFINED_ACTION" });
+            const state = root.reduce(undefined, { type: "UNDEFINED_ACTION" });
 
             assert(state.a);
             assert(state.b);
@@ -181,6 +190,22 @@ describe.only("Reducer", () => {
                 assert.equal(d.getState(state).foo, 1);
             });
         });
+
+        describe("#apply", () => {
+            it("should handle an action", () => {
+                const d = new Reducer("d", {});
+                const e = new Reducer("e", {});
+                const f = Reducer.combine("f", d, e);
+                const g = Reducer.combine(new Reducer("t", {}), f).getReducer();
+
+                d.handleAction("FOO", (state) => ({ foo: 1 }));
+
+                let state = g(undefined, { type: "@@INIT" });
+                state = g(state, { type: "FOO" });
+
+                assert.equal(state.f.d.foo, 1);
+            });
+        })
     });
 
     describe("#resetAction", () => {
@@ -197,7 +222,7 @@ describe.only("Reducer", () => {
             const b = new Reducer("b", {});
             const root = Reducer.combine(a, b);
             root.resetAction("FOO");
-            assert.deepEqual(root.apply({ "foo": "bar"}, { type: "FOO" }), initialState);
+            assert.deepEqual(root.reduce({ "foo": "bar", a: { bar: 1 }}, { type: "FOO" }), initialState);
         });
     });
 });

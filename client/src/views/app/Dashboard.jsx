@@ -3,22 +3,21 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router";
 import { isPending } from "redux-pending";
-import { mapSelectors } from "../../Util";
+import * as model from "../../model";
+import { selector } from "../../Util";
 import { Loading } from "../ui/";
 import { ModuleList } from "../ui/module/";
-import * as selectors from "../../selectors";
-import * as actions from "../../actions";
 
 class Dashboard extends Component {
-    static selectors = {
-        user: selectors.User.current,
+    static selectors = selector({
+        user: model.User.selectCurrent,
 
         // Loading states of our actions.
-        isLoadingModules: isPending(actions.User.types.USER_MODULES)
-    };
+        isLoadingModules: isPending(model.User.getModules.type)
+    });
 
     static actions = {
-        getModules: actions.User.getModules
+        getModules: model.User.getModules
     };
 
     componentWillMount() {
@@ -41,4 +40,4 @@ class Dashboard extends Component {
     }
 }
 
-export default connect(mapSelectors(Dashboard.selectors), Dashboard.actions)(Dashboard);
+export default connect(Dashboard.selectors, Dashboard.actions)(Dashboard);

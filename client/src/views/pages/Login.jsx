@@ -2,13 +2,11 @@ import "../../../style/pages/Login.scss";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { isPending } from "redux-pending";
-import * as actions from "../../actions";
+import * as model from "../../model";
 import { FlexBox } from "../ui/layout";
 import { Form, Input } from "../ui/input";
 import { ErrorMessage } from "../ui/error";
 import { Loading } from "../ui";
-import * as selectors from "../../selectors";
-import { select } from "../../Store";
 
 /**
  * The path to login on successful redirect.
@@ -49,15 +47,14 @@ const LOGIN_REDIRECT = "/";
  */
 class Login extends Component {
     static actions = {
-        login: actions.User.login,
-        loading: actions.User.loading,
-        push: actions.Routing.push
+        login: model.User.login,
+        push: model.Routing.push
     };
 
     static selector = (state) => ({
-        user: selectors.User.current(state),
-        isLoading: isPending(actions.User.types.USER_LOGIN)(state),
-        state: selectors.View.login(state)
+        user: model.User.selectCurrent(state),
+        isLoading: isPending(model.User.login.type)(state),
+        state: model.views.Login.getState(state)
     });
 
     /*
@@ -66,7 +63,7 @@ class Login extends Component {
      * back to the LOGIN_REDIRECT.
      */
     static onEnter = (nextState, replace) => {
-        const user = select(selectors.User.current);
+        const user = model.User.selectCurrent();
 
         if(user)
             replace(LOGIN_REDIRECT);

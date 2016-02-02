@@ -1,7 +1,5 @@
 import Action from "./Action";
 
-const REDUCER_RESET = "@@REDUCER/RESET_ACTION";
-
 /*
  * Simple reducer classes that makes combining them a breeze.
  *
@@ -51,18 +49,6 @@ export default class Reducer {
      */
     getName() {
         return this.name;
-    }
-
-    /**
-     * Reduce the state using the current reducer.
-     * 
-     * @param  {Any} state     The current state.
-     * @param  {Object} action The action object.
-     * @return {Any}           The reduced state.
-     */
-    apply(state, action) {
-        if(this.reducer) return this.reducer.call(null, state, action);
-        else return this.reduce(state, action);
     }
 
     /**
@@ -145,13 +131,13 @@ export default class Reducer {
      *  // The use like
      *  getUser("billy");
      *  
-     * @param  {String}   type    The action type.
-     * @param  {Function} creator The action creator (Default value => value).
-     * @param  {Function}   meta  The meta creator (Default value => value).
-     * @return {Function}         Action creator.
+     * @param  {String}   type        The action type.
+     * @param  {Function} transformer The action creator (Default value => value).
+     * @param  {Function} meta        The meta creator (Default value => value).
+     * @return {Function}             Action creator.
      */
-    createAction(type, creator, meta) {
-        return (new Action(type, this, { creator, meta })).creator();
+    createAction(type, transformer, meta) {
+        return (new Action(type, { reducer: this, transformer, meta })).creator();
     }
 
     /**
@@ -180,17 +166,33 @@ export default class Reducer {
     }
 
     /**
+     * Reduce the state using the current reducer.
+     * 
+     * @param  {Any} state     The current state.
+     * @param  {Object} action The action object.
+     * @return {Any}           The reduced state.
+     */
+    reduce(state, action) {
+        if(typeof action !== "object" && !action.type)
+            throw new Error(`Attempting to reduce invalid action in '${this.name}' reducer.`);
+
+        state = typeof state === "undefined" ? this.initialState : state;
+        if(!this.reducer && action.type === this.resetActionType) return this.initialState;
+        else if(this.reducer) return this.reducer.call(null, state, action);
+        else return this.reduceActions(state, action);
+    }
+
+    /**
      * Reduce the state given the actions. If no handler is found,
      * the initial state is returned.
      * @param  {Any}    state  The current state.
      * @param  {Object} action The action dispatched.
      * @return {Any}           The reduced state.
      */
-    reduce(state, action) {
-        state = state || this.initialState;
+    reduceActions(state, action) {
+        // Grab the action handler
         let handler = action.error ? this.errorHandlers[action.type] : this.actionHandlers[action.type];
-        if(action.type === this.resetActionType) return this.initialState;
-        else if(handler) return handler.call(this, state, action.payload, action.meta || {});
+        if(handler) return handler.call(this, state, action.payload, action.meta || {});
         else return state;
     }
 
@@ -199,7 +201,7 @@ export default class Reducer {
      * @return {Function} The reducer.
      */
     getReducer() {
-        return this.apply.bind(this);
+        return this.reduce.bind(this);
     }
 
     /**
@@ -231,7 +233,14 @@ export default class Reducer {
      */
     getState(currentState) {
         if(this.__parent) currentState = this.__parent.getState(currentState);
-        return this.name === "root" ? (this.store ? this.store.getState() : currentState) : currentState[this.name];
+
+        if(this.name === "root" && typeof currentState === "undefined" && !this.store) 
+            throw new Error("Root reducer has not been linked to store. Current state must be passed otherwise.");
+
+        if(this.name === "root") {
+            if(currentState) return currentState;
+            else return this.store.getState();
+        } else return currentState[this.name];
     }
 
     /**
@@ -256,14 +265,12 @@ export default class Reducer {
         }
 
         let root = new Reducer(name, {}, (state, action) => {
-            // Reset the state if it's a reset action
-            if(root.resetActionType === action.type) {
-                state = undefined;
-                action = { type: REDUCER_RESET };
-            }
-
             return reducers.reduce((nextState, reducer) => {
-                nextState[reducer.getName()] = reducer.apply(state, action);
+                
+                nextState[reducer.getName()] = action.type !== root.resetActionType ?
+                    reducer.reduce(state[reducer.getName()], action) :
+                    reducer.initialState;
+
                 return nextState;
             }, {});
         });
