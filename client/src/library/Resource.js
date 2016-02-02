@@ -1,5 +1,4 @@
 import Reducer from "./Reducer";
-import { Enum } from "../Util";
 import { unionBy } from "lodash/array";
 import { pick } from "lodash/object";
 
@@ -23,8 +22,11 @@ export default class Resource extends Reducer {
             this.cleaner = cleaner;
         }
 
+        // The resource action type
+        this.type = name.toUpperCase();
+
         // Bind the actions
-        this.handleAction(name.toUpperCase(), this.onLoad.bind(this));
+        this.handleAction(this.type, this.onLoad.bind(this));
     }
 
     /**
@@ -51,8 +53,9 @@ export default class Resource extends Reducer {
 
     /**
      * When a single resource is loaded.
-     * @param  {Array}  loadedResources  The loaded resources (i.e. state of the reducer).
-     * @param  {Object} resource         The merged, loaded resources. (i.e. the new state of the reducer).
+     * @param   {Array}  loadedResources  The loaded resources (i.e. state of the reducer).
+     * @param   {Any}    resources        The new resources.
+     * @returns {Object}                  The merged, loaded resources (i.e. the new state of the reducer).
      */
     onLoad(loadedResources, resources) {
         return unionBy(Array.isArray(resources) ? resources : [resources].filter(this.clean.bind(this)), 
@@ -75,7 +78,7 @@ export default class Resource extends Reducer {
      * @return {Function}         Action creator.
      */
     createResourceAction(creator, meta) {
-        return this.createAction(this.name.toUpperCase(), creator, meta);
+        return this.createAction(this.type, creator, meta);
     }
 
     /**

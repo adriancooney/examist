@@ -1,5 +1,5 @@
 import { select } from "./Store";
-import * as selectors from "./selectors";
+import * as model from "./model";
 
 /**
  * Require authorization to enter a route.
@@ -7,7 +7,7 @@ import * as selectors from "./selectors";
  * @param  {Function} replace   The state to replace it with.
  */
 export function authorize(nextState, replace) {
-    const user = select(selectors.User.current);
+    const user = model.User.selectCurrent();
     const { location } = nextState;
 
     if(!user)

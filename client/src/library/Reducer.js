@@ -228,7 +228,7 @@ export default class Reducer {
      * selecting only it's part and handing it to the child. The root reducer
      * is a special case which returns the whole state.
      * 
-     * @param  {Any} currentstate The current state.
+     * @param  {Any} currentState The current state.
      * @return {Any}              The reducers current state.
      */
     getState(currentState) {

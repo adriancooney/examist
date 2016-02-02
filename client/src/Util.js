@@ -1,5 +1,4 @@
 import { createAction } from "redux-actions";
-import { api } from "./selectors/User";
 
 /**
  * Create a simple String enum. Useful for usage
@@ -23,7 +22,15 @@ export function Enum(...constants) {
  * @return {Function}     Selector.
  */
 export function selector(map) {
-    return state => Object.keys(map).reduce((props, key) => {
+    const keys = Object.keys(map);
+
+    // Ensure we have all functions
+    keys.forEach(key => {
+        if(typeof map[key] !== "function")
+            throw new Error(`All selectors passed in \`selector\` map must be functions. '${key}' is not.`);
+    });
+
+    return state => keys.reduce((props, key) => {
         props[key] = map[key](state);
         return props;
     }, {});
@@ -43,14 +50,14 @@ export const mapSelectors = selector;
  * @param  {Boolean}  fatal      Flag whether or not the request is fatal. (Default false).
  * @return {Function}            Action creator.
  */
-export function createRequestAction(actionType, callback, authorized = false, fatal = false) {
-    return createAction(actionType, (...args) => {
-        if(callback) {
-            if(authorized) return callback(select(api), ...args);
-            else return callback(...args);
-        }
-    }, () => ({ network: true, fatal }));
-}
+// export function createRequestAction(actionType, callback, authorized = false, fatal = false) {
+//     return createAction(actionType, (...args) => {
+//         if(callback) {
+//             if(authorized) return callback(select(api), ...args);
+//             else return callback(...args);
+//         }
+//     }, () => ({ network: true, fatal }));
+// }
 
 /**
  * Create a fatal request action that if it fails, displays
@@ -62,9 +69,9 @@ export function createRequestAction(actionType, callback, authorized = false, fa
  * @param  {Function} callback   Callback with args.
  * @return {Function}            Action creator.
  */
-export function createFatalRequestAction(actionType, callback) {
-    return createAction(actionType, callback, false, true);
-}
+// export function createFatalRequestAction(actionType, callback) {
+//     return createAction(actionType, callback, false, true);
+// }
 
 /**
  * Create an authorized request (non-fatal). The callback is
@@ -79,9 +86,9 @@ export function createFatalRequestAction(actionType, callback) {
  * @param  {Function} callback   Callback with (api, ...args).
  * @return {Function}            Action creator.
  */
-export function createAuthorizedRequestAction(actionType, callback) {
-    return createRequestAction(actionType, callback, true);
-}
+// export function createAuthorizedRequestAction(actionType, callback) {
+//     return createRequestAction(actionType, callback, true);
+// }
 
 /**
  * Create an authorized and fatal request action. Combination of
@@ -91,9 +98,9 @@ export function createAuthorizedRequestAction(actionType, callback) {
  * @param  {Function} callback   Callback with args.
  * @return {Function}            Action creator.
  */
-export function createFatalAuthorizedRequestAction(actionType, callback) {
-    return createRequestAction(actionType, callback, true, true);
-}
+// export function createFatalAuthorizedRequestAction(actionType, callback) {
+//     return createRequestAction(actionType, callback, true, true);
+// }
 
 /**
  * Use react proptypes to validate data.

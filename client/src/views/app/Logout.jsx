@@ -1,9 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { selector } from "../../Util";
+import * as model from "../../model";
 
 const LOGOUT_REDIRECT = "/login";
 
 class Logout extends Component {
+    static selector = selector({
+        user: model.User.selectCurrent
+    });
+
+    static actions = {
+        logout: model.User.logout,
+        push: model.Routing.push
+    };
+
     componentDidMount() {
         this.props.logout();
     }
@@ -25,9 +36,4 @@ class Logout extends Component {
     }
 }
 
-export default connect(state => ({ 
-    user: selectors.User.current(state) 
-}), {
-    // logout: actions.User.logout,
-    // push: actions.Routing.push
-})(Logout)
+export default connect(Logout.selector, Logout.actions)(Logout);

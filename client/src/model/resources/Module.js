@@ -8,4 +8,13 @@ const Module = new Resource("module", "id");
 export const getModule = Module.createStatefulResourceAction(User.selectAPI, 
     (api, code) => api.getModule(code));
 
+/**
+ * Select a module by code.
+ * @param  {String} code Module code.
+ * @return {Function}      Selector.
+ */
+export const selectByCode = (code) => {
+    return Module.select(modules => modules.find(module => module.code === code));
+}
+
 export default Module;

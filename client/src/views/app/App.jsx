@@ -2,15 +2,23 @@ import "../../../style/app/App.scss";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Route, IndexRoute } from "react-router";
+import * as model from "../../model";
 import { authorize } from "../../Middleware";
 import { FlexBox } from "../ui/layout";
+import { selector } from "../../Util";
 import ErrorPage from "../ui/error/ErrorPage";
 import Module from "./Module";
 import Paper from "./Paper";
 import Logout from "./Logout";
 import Dashboard from "./Dashboard";
 
+console.log(model.Error);
+
 export class App extends Component {
+    static selector = selector({
+        error: model.Error.getState
+    });
+
     render() {
         let content = this.props.error ?
             <ErrorPage error={this.props.error} /> :
@@ -24,9 +32,7 @@ export class App extends Component {
     }
 }
 
-App = connect(state => ({
-    error: selectors.Error.getError(state)
-}))(App);
+App = connect(App.selector)(App);
 
 export default (
     <Route component={App} onEnter={authorize}>

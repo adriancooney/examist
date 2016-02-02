@@ -1,28 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { isPending } from "redux-pending";
+import * as model from "../../model";
 import { Loading, Empty } from "../ui";
 import { QuestionList } from "../ui/question";
 import { PaperFooter } from "../ui/paper";
 
 class Paper extends Component {
-    static selectors = (state, props) => {
-        const paper = selectors.Paper.getPaper(
-            props.params.module,
-            props.params.year,
-            props.params.period
-        )(state);
+    static selector = (state, props) => {
+        const paper = model.resources.Paper.getPaper(props.params.module, props.params.year, props.params.period)(state);
 
         return {
-            paper, questions: paper ? selectors.Paper.getQuestions(paper.id)(state) : null,
+            paper, questions: paper ? model.resources.Questions.selectByPaper(paper.id)(state) : null,
 
             // Loading states
-            isLoadingPaper: isPending(actions.Paper.types.PAPER)(state)
+            isLoadingPaper: isPending(model.resources.Paper.getPaper)(state)
         }
     };
 
     static actions = {
-        // getPaper: actions.Paper.getPaper
+        getPaper: model.resources.Paper.getPaper
     };
 
     componentWillMount() {
@@ -75,4 +72,4 @@ class Paper extends Component {
     }
 }
 
-export default connect(Paper.selectors, Paper.actions)(Paper);
+export default connect(Paper.selector, Paper.actions)(Paper);

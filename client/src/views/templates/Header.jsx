@@ -2,11 +2,11 @@ import "../../../style/Template.scss";
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router";
-import * as selectors from "../../selectors";
+
 import * as Config from "../../Config";
 import { Box, Flex } from "../ui/layout";
 
-function Header(props) {
+export default function Header(props) {
     let user, action;
 
     if(props.user) 
@@ -35,7 +35,3 @@ function Header(props) {
         </header>
     );
 }
-
-export default connect(state => ({
-    user: selectors.User.current(state)
-}))(Header)

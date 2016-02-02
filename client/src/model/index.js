@@ -23,7 +23,7 @@ export default Reducer.combine(
  * Models
  */
 export * as User from "./User";
-export * as Error from "./Error";
+export Error from "./Error";
 export { routeActions as Routing } from "redux-simple-router";
 export * as resources from "./resources";
 export * as views from "./views";

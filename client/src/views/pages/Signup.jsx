@@ -1,6 +1,7 @@
 import "../../../style/pages/Signup.scss";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import * as model from "../../model";
 import { Institution } from "../ui";
 import { Flex, Box } from "../ui/layout";
 import { Form, Input } from "../ui/input";
@@ -11,17 +12,17 @@ const MATCH_EMAIL = /[^@]+@((?:[-_a-zA-Z]+\.?)+\.\w+)/
 
 class Signup extends Component {
     static selector = (state) => {
-        let signupState = selectors.View.signup(state);
+        let signupState = model.view.Signup.getState(state);
 
         return {
-            // state: signupState,
-            // institution: selectors.Institution.getByDomain(signupState.domain)(state)
+            state: signupState,
+            institution: model.resources.Institution.selectByDomain(signupState.domain)(state)
         }
     };
 
     static actions = {
-        // setDomain: model.views.Signup.setDomain,
-        // getInstitutionByDomain: model.Institution.getInstitutionByDomain
+        setDomain: model.views.Signup.setDomain,
+        getInstitutionByDomain: model.resources.Institution.getByDomain
     };
 
     render() {
