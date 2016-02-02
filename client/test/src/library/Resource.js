@@ -42,7 +42,7 @@ describe("Resource", () => {
         });
     });
 
-    describe("#getByKey", () => {
+    describe("#selectByKey", () => {
         const user = new Resource("user", "id");
         const paper = new Resource("paper", "id");
 
@@ -50,7 +50,7 @@ describe("Resource", () => {
         const state = root.apply(undefined, { type: "USER", payload: { id: 1, name: "Adrian" }});
 
         it("should get by Id", () => {
-            const selector = user.getByKey(1);
+            const selector = user.selectByKey(1);
             assert(typeof selector === "function");
 
             const value = selector(state);

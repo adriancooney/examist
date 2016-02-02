@@ -155,6 +155,18 @@ export default class Reducer {
     }
 
     /**
+     * Create action that requires state to complete.
+     * @param  {String}   type     The action type.
+     * @param  {Function} selector The bounded selector that returns the state.
+     * @param  {Function} creator  The action creator. Now with a extra first argument that the select returned.
+     * @param  {Function} meta     The meta creator.
+     * @return {Function}          Action creator.
+     */
+    createStatefulAction(type, selector, creator, meta) {
+        return this.createAction(type, (...args) => creator(...[selector(), ...args]), meta);
+    }
+
+    /**
      * Add a reset action that when dispatched, resets the reducer's state
      * to the initial state.
      *
@@ -191,6 +203,17 @@ export default class Reducer {
     }
 
     /**
+     * Link a store to the root reducer.
+     * @param {Store} store The final redux store.
+     */
+    linkStore(store) {
+        if(this.name !== "root") 
+            throw new Error("Only 'root' reducers can be linked to a store.");
+
+        this.store = store;
+    }
+
+    /**
      * Given the global state, select the current reducers state. This is
      * a slightly abstract concept and requires certain conditions to be
      * true for it to work:
@@ -208,7 +231,7 @@ export default class Reducer {
      */
     getState(currentState) {
         if(this.__parent) currentState = this.__parent.getState(currentState);
-        return this.name === "root" ? currentState : currentState[this.name];
+        return this.name === "root" ? (this.store ? this.store.getState() : currentState) : currentState[this.name];
     }
 
     /**

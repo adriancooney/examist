@@ -29,4 +29,9 @@ export const getModules = User.createAction("USER_MODULES").handle((state, modul
     modules
 }));
 
+/*
+ * Select the current api.
+ */
+export const selectAPI = User.select(user => user.api);
+
 export default User;

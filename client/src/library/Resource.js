@@ -64,7 +64,28 @@ export default class Resource extends Reducer {
      * @param  {Any}      key The resource key.
      * @return {Function}     The selector function.
      */
-    getByKey(key) {
+    selectByKey(key) {
         return this.select(resources => resources.find(resource => this.getResourceKey(resource) === key));
+    }
+
+    /**
+     * Create an action that updates the resource.
+     * @param  {Function} creator The action transformer.
+     * @param  {Function} meta    The meta creator.
+     * @return {Function}         Action creator.
+     */
+    createResourceAction(creator, meta) {
+        return this.createAction(this.name.toUpperCase(), creator, meta);
+    }
+
+    /**
+     * Create a resource action that requires tate.
+     * @param  {Function} selector The bounded selector function.
+     * @param  {Function} creator  The action transformer.
+     * @param  {Function} meta     The meta creator.
+     * @return {Function}          Action creator.
+     */
+    createStatefulResourceAction(selector, creator, meta) {
+        return this.createStatefulAction(this.name.toUpperCase(), selector, creator, meta);
     }
 }

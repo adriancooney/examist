@@ -16,4 +16,4 @@ export default Reducer.combine(
     resources,
     new Reducer("routing", routeReducer),
     new Reducer("pending", pendingReducer)
-).getReducer();
+);

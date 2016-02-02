@@ -4,7 +4,7 @@ import { syncHistory } from "redux-simple-router";
 import { promiseMiddleware } from "redux-pending";
 import Debug from "debug";
 import { DEBUG, TEST } from "./Config";
-import * as reducers from "./reducers";
+import rootReducer from "./model";
 
 const debug = Debug("examist:dispatch");
 
@@ -34,7 +34,10 @@ if(DEBUG && typeof window !== "undefined" && window.devToolsExtension)
 const createStoreFinal = compose(...composition)(createStore)
 
 // Create the final store
-const store = createStoreFinal(combineReducers(reducers));
+const store = createStoreFinal(rootReducer.getReducer());
+
+// Link the store back to the root reducer
+rootReducer.setStore(store);
 
 // Enable the devtools for redux-simple-router
 if(DEBUG) 
