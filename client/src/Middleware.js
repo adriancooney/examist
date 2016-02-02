@@ -1,4 +1,3 @@
-import { select } from "./Store";
 import * as model from "./model";
 
 /**

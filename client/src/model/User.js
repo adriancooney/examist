@@ -1,5 +1,4 @@
 import { Reducer } from "../library";
-import { Enum } from "../Util";
 import API from "../API";
 
 /**

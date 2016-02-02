@@ -12,8 +12,6 @@ import Paper from "./Paper";
 import Logout from "./Logout";
 import Dashboard from "./Dashboard";
 
-console.log(model.Error);
-
 export class App extends Component {
     static selector = selector({
         error: model.Error.getState

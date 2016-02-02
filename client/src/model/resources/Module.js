@@ -1,4 +1,4 @@
-import { Resource, Reducer } from "../../Library";
+import { Resource } from "../../library";
 import User from "../User";
 
 const Module = new Resource("module", "id");

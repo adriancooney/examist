@@ -1,4 +1,4 @@
-import { Resource } from "../../Library";
+import { Resource } from "../../library";
 
 const Question = new Resource("question", "id");
 

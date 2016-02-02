@@ -1,4 +1,4 @@
-import { Reducer } from "../../Library";
+import { Reducer } from "../../library";
 import * as User from "../User";
 
 const Login = new Reducer("login", {});

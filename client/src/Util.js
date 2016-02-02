@@ -1,5 +1,3 @@
-import { createAction } from "redux-actions";
-
 /**
  * Create a simple String enum. Useful for usage
  * with Redux since Symbols aren't serializable.

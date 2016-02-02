@@ -3,7 +3,7 @@ export default class Action {
         this.type = type;
         this.reducer = reducer;
         this.transformer = transformer || (f => f);
-        this.meta = meta || (f => ({}));
+        this.meta = meta || (() => ({}));
     }
 
     /**

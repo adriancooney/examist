@@ -1,8 +1,6 @@
 import "../../../style/Template.scss";
 import React from "react";
-import { connect } from "react-redux";
 import { Link } from "react-router";
-
 import * as Config from "../../Config";
 import { Box, Flex } from "../ui/layout";
 

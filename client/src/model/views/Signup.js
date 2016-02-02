@@ -1,4 +1,4 @@
-import { Reducer } from "../../Library";
+import { Reducer } from "../../library";
 
 const Signup = new Reducer("signup", {});
 

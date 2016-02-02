@@ -1,5 +1,5 @@
 import { browserHistory, createMemoryHistory } from "react-router";
-import { createStore, combineReducers, applyMiddleware, compose } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import { syncHistory } from "redux-simple-router";
 import { promiseMiddleware } from "redux-pending";
 import Debug from "debug";

@@ -1,4 +1,4 @@
-import { Resource, Reducer } from "../../Library";
+import { Resource } from "../../library";
 import API from "../../API";
 
 const Institution = new Resource("institution", "id");
