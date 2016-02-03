@@ -58,8 +58,10 @@ export default class Resource extends Reducer {
      * @returns {Object}                  The merged, loaded resources (i.e. the new state of the reducer).
      */
     onLoad(loadedResources, resources) {
-        return unionBy(Array.isArray(resources) ? resources : [resources].filter(this.clean.bind(this)), 
-            loadedResources, this.key);
+        if(this.debug) this.debug("Handling incoming resource(s): ", resources);
+        resources = Array.isArray(resources) ? resources : [resources]
+        resources = resources.map(this.clean.bind(this));
+        return unionBy(resources, loadedResources, this.key);
     }
 
     /**
@@ -69,6 +71,18 @@ export default class Resource extends Reducer {
      */
     selectByKey(key) {
         return this.select(resources => resources.find(resource => this.getResourceKey(resource) === key));
+    }
+
+    /**
+     * Add an action to the resource that when dispatched, creates
+     * the current resource.
+     * @param   {String}   actionType The action type.
+     * @param   {Function} extractor  A function to return the resource(s).
+     * @returns {Action}              The producer action.
+     */
+    addProducerHandler(actionType, extractor) {
+        return this.handleAction(actionType, 
+            (resources, resource) => this.onLoad(resources, extractor ? extractor(resource) : resource));
     }
 
     /**
@@ -89,6 +103,26 @@ export default class Resource extends Reducer {
      * @return {Function}          Action creator.
      */
     createStatefulResourceAction(selector, creator, meta) {
-        return this.createStatefulAction(this.name.toUpperCase(), selector, creator, meta);
+        return this.createStatefulAction(this.type, selector, creator, meta);
+    }
+
+    /**
+     * Return a selector creator that will select all the 
+     * resources that property matches the value passed to
+     * the selector.
+     * @param  {String} prop The property name.
+     * @return {Function}    The selector creator which takes (value);
+     */
+    selectByProp(prop) {
+        return value => this.select(resources => resources.find(resource => resource[prop] === value));
+    }
+
+    /**
+     * Like `selectByProp` except select all matching resources.
+     * @param  {String} prop The property name.
+     * @return {Function}    The selector creator which takes (value);
+     */
+    selectAllByProp(prop) {
+        return value => this.select(resources => resources.filter(resource => resource[prop] === value));
     }
 }

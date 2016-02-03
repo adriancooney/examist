@@ -1,3 +1,5 @@
+import Debug from "debug";
+import { DEBUG } from "../Config";
 import Action from "./Action";
 
 /*
@@ -40,6 +42,9 @@ export default class Reducer {
         
         if(reducer) // Register a master reducer
             this.reducer = reducer;
+
+        // Debugging
+        if(DEBUG) this.debug = Debug("examist:reducer:" + this.name);
     }
 
     /**
@@ -92,6 +97,9 @@ export default class Reducer {
         if(typeof actionType === "function" && actionType.type)
             actionType = actionType.type;
 
+        if(typeof actionType !== "string") 
+            throw new Error(`Action type must be a string in '${this.name}' reducer.`)
+
         if(this.actionHandlers[actionType])
             throw new Error(`Already action handler defined for '${actionType}' in '${this.getName}' reducer.`);
 
@@ -100,6 +108,7 @@ export default class Reducer {
             handler = handler.next;
         }
 
+        if(DEBUG) this.debug(`Adding action handler for '${actionType}'.`);
         this.actionHandlers[actionType] = handler;
     }
 
@@ -149,7 +158,7 @@ export default class Reducer {
      * @return {Function}          Action creator.
      */
     createStatefulAction(type, selector, creator, meta) {
-        return this.createAction(type, (...args) => creator(...[selector(), ...args]), meta);
+        return this.createAction(type, (...args) => creator(...[selector(this.getRoot().getState()), ...args]), meta);
     }
 
     /**
@@ -192,8 +201,10 @@ export default class Reducer {
     reduceActions(state, action) {
         // Grab the action handler
         let handler = action.error ? this.errorHandlers[action.type] : this.actionHandlers[action.type];
-        if(handler) return handler.call(this, state, action.payload, action.meta || {});
-        else return state;
+        if(handler) {
+            if(DEBUG) this.debug(`Handling action '${action.type}'.`, action.payload);
+            return handler.call(this, state, action.payload, action.meta || {});
+        } else return state;
     }
 
     /**
@@ -250,6 +261,14 @@ export default class Reducer {
      */
     select(selector) {
         return state => selector(this.getState(state));
+    }
+
+    /**
+     * Return the root reducer (if any linked).
+     * @return {Reducer} The root reducer.
+     */
+    getRoot() {
+        return this.__parent ? this.__parent.getRoot() : (this.name === "root" ? this : null);
     }
 
     /**

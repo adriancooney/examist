@@ -2,7 +2,7 @@ import "../../../style/Container.scss";
 import React from "react";
 import { connect } from "react-redux";
 import * as model from "../../model";
-import { selector } from "../../Util";
+import { selector } from "../../library/Selector";
 import Header from "./Header";
 import Footer from "./Footer";
 import { Box, FlexBox, Solid } from "../ui/layout";

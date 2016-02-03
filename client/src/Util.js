@@ -1,3 +1,5 @@
+import { selector } from "./library/Selector";
+
 /**
  * Create a simple String enum. Useful for usage
  * with Redux since Symbols aren't serializable.
@@ -12,26 +14,6 @@ export function Enum(...constants) {
     });
 
     return Object.freeze(num);
-}
-
-/**
- * Map selectors to the state.
- * @param  {Object} map   Map of key -> state.
- * @return {Function}     Selector.
- */
-export function selector(map) {
-    const keys = Object.keys(map);
-
-    // Ensure we have all functions
-    keys.forEach(key => {
-        if(typeof map[key] !== "function")
-            throw new Error(`All selectors passed in \`selector\` map must be functions. '${key}' is not.`);
-    });
-
-    return state => keys.reduce((props, key) => {
-        props[key] = map[key](state);
-        return props;
-    }, {});
 }
 
 /** @type {Function} Legacy */

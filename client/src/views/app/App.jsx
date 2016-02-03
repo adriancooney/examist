@@ -5,7 +5,7 @@ import { Route, IndexRoute } from "react-router";
 import * as model from "../../model";
 import { authorize } from "../../Middleware";
 import { FlexBox } from "../ui/layout";
-import { selector } from "../../Util";
+import { selector } from "../../library/Selector";
 import ErrorPage from "../ui/error/ErrorPage";
 import Module from "./Module";
 import Paper from "./Paper";

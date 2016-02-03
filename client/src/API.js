@@ -75,11 +75,7 @@ export default class API {
      */
     getModules() {
         return this.request("GET", "/profile/modules").then(() => ({
-            modules: range(6).map(() => {
-                return {
-                    code: "CT" + Math.floor(Math.random() * 1000)
-                }
-            })
+            modules: range(6).map(() => Generator.module("CT" + Math.floor(Math.random() * 1000)))
         }))
     }
 

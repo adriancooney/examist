@@ -26,7 +26,7 @@ export default resources;
 /*
  * Export models.
  */
-export Paper from "./Paper";
-export Module from "./Module";
-export Question from "./Question";
-export Institution from "./Institution";
+export * as Paper from "./Paper";
+export * as Module from "./Module";
+export * as Question from "./Question";
+export * as Institution from "./Institution";

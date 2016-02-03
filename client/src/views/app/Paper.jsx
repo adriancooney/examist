@@ -7,16 +7,10 @@ import { QuestionList } from "../ui/question";
 import { PaperFooter } from "../ui/paper";
 
 class Paper extends Component {
-    static selector = (state, props) => {
-        const paper = model.resources.Paper.getPaper(props.params.module, props.params.year, props.params.period)(state);
-
-        return {
-            paper, questions: paper ? model.resources.Questions.selectByPaper(paper.id)(state) : null,
-
-            // Loading states
-            isLoadingPaper: isPending(model.resources.Paper.getPaper)(state)
-        }
-    };
+    static selector = (state, props) => ({
+        paper: model.resources.Paper.selectPaperWithQuestions(props.params)(state),
+        isLoadingPaper: isPending(model.resources.Paper.getPaper)(state)
+    });
 
     static actions = {
         getPaper: model.resources.Paper.getPaper
@@ -46,7 +40,8 @@ class Paper extends Component {
     }
 
     render() {
-        const { isLoadingPaper, paper, questions } = this.props;
+        const { isLoadingPaper, paper } = this.props;
+        const questions = paper.questions;
 
         if(isLoadingPaper) {
             return <Loading />
@@ -59,14 +54,14 @@ class Paper extends Component {
         let content = <Empty/>;
 
         if(questions && questions.length) {
-            content = <QuestionList questions={this.props.questions} />
+            content = <QuestionList questions={questions} />
         }
 
         return (
             <div className="Paper">
                 <h3>Questions</h3>
                 { content }
-                <PaperFooter paper={this.props.paper} />
+                <PaperFooter paper={paper} />
             </div>
         );
     }

@@ -4,13 +4,14 @@ import { connect } from "react-redux";
 import { Link } from "react-router";
 import { isPending } from "redux-pending";
 import * as model from "../../model";
-import { selector } from "../../Util";
+import { selector } from "../../library/Selector";
 import { Loading } from "../ui/";
 import { ModuleList } from "../ui/module/";
 
 class Dashboard extends Component {
     static selectors = selector({
         user: model.User.selectCurrent,
+        userModules: model.User.selectModules,
 
         // Loading states of our actions.
         isLoadingModules: isPending(model.User.getModules.type)
@@ -29,7 +30,7 @@ class Dashboard extends Component {
 
     render() {
         let modules = !this.props.user.modules || this.props.isLoadingModules ? 
-            <Loading /> : <ModuleList modules={this.props.user.modules} />;
+            <Loading /> : <ModuleList modules={this.props.userModules} />;
 
         return (
             <div className="Dashboard">

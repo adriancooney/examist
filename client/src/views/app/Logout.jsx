@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { selector } from "../../Util";
+import { selector } from "../../library/Selector";
 import * as model from "../../model";
 
 const LOGOUT_REDIRECT = "/login";

@@ -2,16 +2,17 @@ import React, { Component } from "react";
 import { Link } from "react-router";
 import { connect } from "react-redux";
 import { isPending } from "redux-pending";
-import * as model from "../../model";
+import Model, * as model from "../../model";
 import { PaperGrid } from "../ui/paper";
 import { Loading } from "../ui/";
 import { Box, Flex } from "../ui/layout";
 
 class Module extends Component {
     static selector = (state, { params }) => ({
-        module: model.resources.Module.selectByCode(params.module)(state),
-        paper: params.module && params.year && params.period ? model.resources.Paper.selectPaper(params.module, params.year, params.period)(state) : undefined,
-        isLoadingModule: isPending(model.resources.Module.type)(state)
+        module: model.resources.Module.selectByCodeWithPapers(params.module)(state),
+        paper: params.module && params.year && params.period ? 
+            model.resources.Paper.selectPaper(params.module, params.year, params.period)(state) : null,
+        isLoadingModule: isPending(model.resources.Module.getModule.type)(state)
     });
 
     static actions = {
@@ -19,6 +20,7 @@ class Module extends Component {
     };
 
     componentWillMount() {
+        console.log(Model.getState());
         if(!this.props.module)
             this.props.getModule(this.props.params.module)
     }
