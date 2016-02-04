@@ -1,21 +1,25 @@
-import fyp.server.config
+import logging
 from flask import Flask
-from fyp.server.response import fail
+from logging.handlers import RotatingFileHandler
+from fyp.server.response import fail, respond
 from fyp.server.exc import HttpException
+from fyp.server import config
+from fyp.server.config import Session
 
 app = Flask(__name__)
 session = Session()
 
-@app.route()
-def get_index():
-    pass
+@app.route("/institution/<institution>")
+def get_institution(institution):
+    """Get an institution by id."""
+    return respond({ 'institution': institution })
 
 @app.errorhandler(HttpException)
 def handle_http_exception(exception):
     return fail(exception.code, exception.message)
 
 if not config.APP_DEBUG:
-    @app.errorhandler(Exception):
+    @app.errorhandler(Exception)
     def handle_exception(exception):
         return fail(500, str(exception))
 

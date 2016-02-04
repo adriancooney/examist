@@ -23,3 +23,4 @@ The client is a pretty large app. It's built using React so we have great compos
 
 ## Python style guide
 * Double quotes always.
+* Package imports first, local package imports second.
