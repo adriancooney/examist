@@ -1,10 +1,14 @@
+import Root from "../Root";
 import { omit } from "lodash/object";
 import { Resource } from "../../library";
 import { collapse, reduce, compose } from "../../library/Selector"
 import * as User from "../User";
 import * as Paper from "./Paper";
 
-const Module = new Resource("module", "id", {
+const Module = Root.resources.Module; 
+
+Module.configure({
+    key: "id", 
     cleaner: module => omit(module, "papers")
 });
 
@@ -39,5 +43,3 @@ export const selectByCodeWithPapers = compose(selectByCode, (module) => {
  * Enure modules loaded by user get store in modules resource.
  */
 Module.addProducerHandler(User.getModules, ({ modules }) => modules);
-
-export default Module;

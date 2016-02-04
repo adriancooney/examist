@@ -7,11 +7,11 @@ export default class Resource extends Reducer {
         // Create our resource under the pluralized name
         super(name.toLowerCase() + "s", []);
 
-        if(typeof key === "undefined")
-            throw new Error("Resource key parameter (string or function) is required.");
+        // if(typeof key === "undefined")
+        //     throw new Error("Resource key parameter (string or function) is required.");
 
-        if(typeof key !== "string" && typeof key !== "function")
-            throw new Error("Resource key parameter must be string describing key prop or function which returns key.");
+        // if(typeof key !== "string" && typeof key !== "function")
+        //     throw new Error("Resource key parameter must be string describing key prop or function which returns key.");
 
         this.key = key;
 

@@ -32,8 +32,8 @@ export default class Reducer {
             initialState = undefined;
         }
 
-        if(!reducer && typeof initialState === "undefined")
-            throw new Error(`Please specify an initial state for the reducer '${name}'.`);
+        // if(!reducer && typeof initialState === "undefined")
+            // throw new Error(`Please specify an initial state for the reducer '${name}'.`);
 
         this.name = name;
         this.initialState = initialState;
@@ -298,6 +298,37 @@ export default class Reducer {
         reducers.forEach(reducer => reducer.__parent = root);
 
         return root;
+    }
+
+    static create(reducers, name) {
+        // Create the reducers
+        let map = Object.keys(reducers).reduce((newReducers, key) => {
+            let reducer = reducers[key];
+
+            if(typeof reducer === "object" && !(reducer instanceof Reducer))
+                reducer = Reducer.create(reducer, key);
+
+            newReducers[key] = reducer;
+
+            return newReducers;
+        }, {});
+
+        // Convert all the keys to reducers
+        let mapped = Object.keys(map).map(key => map[key])  ;
+        if(name) mapped.unshift(name);
+
+        // Create the reducer (root if no name)
+        let combined = Reducer.combine(...mapped);
+
+        // Let the models be accessible from the root reducer by key
+        Object.keys(map).forEach(key => {
+            if(combined[key])
+                throw new Error(`Key '${key}' already in use when creating reducers${name ? " in " + name : ""}.`);
+
+            combined[key] = map[key];
+        });
+
+        return combined;
     }
 
     /**

@@ -1,8 +1,9 @@
+import Root from "../Root";
 import { Resource } from "../../library";
 import { compose } from "../../library/Selector";
 import * as User from "../User";
-import Question from "./Question";
-import Module from "./Module"
+import * as Question from "./Question";
+import * as Module from "./Module"
 
 const Paper = new Resource("paper", "id");
 
@@ -48,5 +49,3 @@ export const selectPaperWithQuestions = compose(selectPaper, paper => state => (
  * @return {Function}     Selector.
  */
 export const selectByModule = Paper.selectAllByProp("module");
-
-export default Paper;
