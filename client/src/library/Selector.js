@@ -50,6 +50,7 @@ export function collapse(...selectors) {
  * Reduce the selectors by passing the returned value from
  * each selector's return value to creator function and then the state to
  * the returned selector
+ * @param  {Any}         initial   The initial value.
  * @param  {...Function} selectors The selectors.
  * @return {Function}              The final selector.
  */
@@ -68,5 +69,8 @@ export function reduce(initial, ...selectorCreators) {
  * @return {Function}                    The final selector.
  */
 export function compose(...selectorCreators) {
-    return initial => reduce(initial, ...selectorCreators)
+    return initial => state => selectorCreators.reduce((selectorValue, selectorCreator) => {
+        if(selectorValue === null || typeof selectorValue === "undefined") return null;
+        else return selectorCreator(selectorValue)(state);
+    }, initial);
 }

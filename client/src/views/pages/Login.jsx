@@ -54,7 +54,7 @@ class Login extends Component {
     static selector = (state) => ({
         user: model.User.selectCurrent(state),
         isLoading: isPending(model.User.login.type)(state),
-        state: model.views.Login.getState(state)
+        state: model.views.Login.default.getState(state)
     });
 
     /*

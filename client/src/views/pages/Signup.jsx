@@ -12,7 +12,7 @@ const MATCH_EMAIL = /[^@]+@((?:[-_a-zA-Z]+\.?)+\.\w+)/
 
 class Signup extends Component {
     static selector = (state) => {
-        let signupState = model.view.Signup.getState(state);
+        let signupState = model.views.Signup.default.getState(state);
 
         return {
             state: signupState,

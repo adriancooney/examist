@@ -10,5 +10,5 @@ export default Reducer.combine("views", Login, Signup);
 /*
  * Model.
  */
-export Login from "./Login";
-export Signup from "./Signup";
+export * as Login from "./Login";
+export * as Signup from "./Signup";

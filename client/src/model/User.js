@@ -44,6 +44,11 @@ export const login = User.createAction("USER_LOGIN", API.login).handle((state, u
 export const logout = User.createAction("USER_LOGOUT").handle(Reducer.initial);
 
 /*
+ * Handle signing up.
+ */
+export const signup = User.createAction("USER_SIGNUP", API.signup);
+
+/*
  * Get the user's modules.
  */
 export const getModules = User.createStatefulAction("USER_MODULES", selectAPI, (api) => api.getModules()).handle((state, { modules }) => ({

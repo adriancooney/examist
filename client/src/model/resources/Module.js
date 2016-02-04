@@ -1,8 +1,7 @@
 import { omit } from "lodash/object";
 import { Resource } from "../../library";
-import { collapse, reduce, compose } from "../../library/Selector"
+import { compose } from "../../library/Selector"
 import * as User from "../User";
-import * as Paper from "./Paper";
 
 const Module = new Resource("module", "id", {
     cleaner: module => omit(module, "papers")
@@ -23,6 +22,10 @@ export const selectByCode = (code) => {
     return Module.select(modules => modules.find(module => module.code === code));
 };
 
+export const selectPapers = code => state => {
+    return state.resources.papers.filter(paper => paper.module === code);
+};
+
 /**
  * Select a module by ID (or code) and include papers.
  * @param  {Number}   id Module id.
@@ -31,7 +34,7 @@ export const selectByCode = (code) => {
 export const selectByCodeWithPapers = compose(selectByCode, (module) => {
     return state => module ? ({ 
         ...module, 
-        papers: Paper.selectByModule(module.code)(state)
+        papers: selectPapers(module.code)(state)
     }) : null;
 });
 

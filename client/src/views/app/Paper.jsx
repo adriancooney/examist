@@ -25,23 +25,19 @@ class Paper extends Component {
     }
 
     componentWillReceiveProps(props) {
-        const { paper, isLoadingPaper, params: { module, year, period } } = props;
+        const { isLoadingPaper, params: { module, year, period } } = props;
 
-        // When we switch the paper from within the paper route, the componentDidMount
-        // doesn't trigger so it doesn't know to load another paper. Here we load the
-        // paper if the parameters change.
-        // 
-        // We have to check if it's not also currently loading a paper because when we
-        // dispatch the promise, our props get updated to tell us the paper is loading
-        // and paper will be null. If we didn't check if it was loading, the dispatch
-        // would be triggered twice.
-        if(!paper && !isLoadingPaper)
+        // Previous state
+        let prevModule = this.props.params.module;
+        let prevYear = this.props.params.year;
+        let prevPeriod = this.props.params.period;
+
+        if(!isLoadingPaper && (prevModule !== module || prevYear !== year || prevPeriod !== period))
             this.props.getPaper(module, year, period);
     }
 
     render() {
         const { isLoadingPaper, paper } = this.props;
-        const questions = paper.questions;
 
         if(isLoadingPaper) {
             return <Loading />
@@ -51,6 +47,7 @@ class Paper extends Component {
             return <Empty/>
         }
 
+        const questions = paper.questions;
         let content = <Empty/>;
 
         if(questions && questions.length) {

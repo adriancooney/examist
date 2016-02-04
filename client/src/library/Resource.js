@@ -60,7 +60,18 @@ export default class Resource extends Reducer {
     onLoad(loadedResources, resources) {
         if(this.debug) this.debug("Handling incoming resource(s): ", resources);
         resources = Array.isArray(resources) ? resources : [resources]
-        resources = resources.map(this.clean.bind(this));
+        resources = resources.map(resource => {
+            if(typeof resource === "undefined")
+                throw new Error("Unable to handle undefined resource.");
+
+            let cleaned = this.clean(resource);
+
+            if(typeof cleaned === "undefined")
+                throw new Error("Error while cleaning: returned undefined.");
+
+            return cleaned;
+        });
+
         return unionBy(resources, loadedResources, this.key);
     }
 
