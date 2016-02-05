@@ -15,10 +15,12 @@ class User(Base, Assistant):
 
     password = Column(String(length=64))
     salt = Column(String(length=20))
-
-    # institution = Column(Integer, "institution.id")
     
     def login(self, password):
+        """Log the current user instance in. This does 2 things:
+            1. Compares the password.
+            2. Creates new session.
+        """
         hash = User.hash(password, self.salt)
 
         if hash != self.password:
