@@ -17,7 +17,7 @@ class Session:
 
 def test_get_method():
     # Make sure the classmethod exists
-    assert bool(Example.get)
+    assert bool(Example.getBy)
 
     session = Session()
-    Example.get(session, foo=1)
+    Example.getBy(session, foo=1)

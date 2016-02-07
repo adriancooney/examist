@@ -3,7 +3,7 @@ from fyp.server.exc import NotFound
 
 class Assistant:
     @classmethod
-    def get(model, session, **kwargs):
+    def getBy(model, session, **kwargs):
 
         where = None
         for attr, value in kwargs.iteritems():
@@ -17,4 +17,4 @@ class Assistant:
         try:
             return session.query(model).filter(where).one()
         except NoResultFound:
-            raise NotFound(model.__name__, "%s not found where %s not found." % (model.__name__, str(where)))
+            raise NotFound(model.__name__)

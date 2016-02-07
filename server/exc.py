@@ -23,3 +23,9 @@ class LoginError(HttpException):
     """403, Bad credentials"""
     def __init__(self, username):
         HttpException.__init__(self, 403, "Login failed. Invalid credentials for '%s'." % username)
+
+class AlreadyExists(HttpException):
+    """409, Conflict"""
+    def __init__(self, entity, key, value):
+        HttpException.__init__(self, 409, "%s already exists with %s '%s'." % (entity, key, value))
+

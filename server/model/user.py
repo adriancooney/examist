@@ -1,22 +1,39 @@
 import hashlib
-from sqlalchemy.orm import relationship
+import random
 from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm import relationship
+from sqlalchemy.ext.hybrid import hybrid_property
+from fyp.server.model.session import Session
 from fyp.server.exc import LoginError
-from fyp.server.model.base import Base
-from fyp.server.library import assistant
+from fyp.server.database import Model
+from fyp.server.library import Assistant
+from fyp.server.library.util import find
 
-class User(Base, Assistant):
+ALPHABET = "abcdefghijklmnopqrstuvwxyz1234567890"
+
+class User(Model, Assistant):
     __tablename__ = "user"
 
     id = Column(Integer, primary_key=True)
     name = Column(String)
-    username = Column(String, unique=True)
     email = Column(String, unique=True)
 
     password = Column(String(length=64))
     salt = Column(String(length=20))
+
+    sessions = relationship("Session", backref="user")
+
+    @hybrid_property
+    def active_session(self):
+        return find(self.sessions, lambda session: session.active)
+
+    def __init__(self, name, email, password):
+        self.name = name
+        self.email = email
+        self.salt = User.generateSalt()
+        self.password = User.hash(password, self.salt)
     
-    def login(self, password):
+    def login(self, session, password):
         """Log the current user instance in. This does 2 things:
             1. Compares the password.
             2. Creates new session.
@@ -24,9 +41,14 @@ class User(Base, Assistant):
         hash = User.hash(password, self.salt)
 
         if hash != self.password:
-            raise LoginError(self.username)
+            raise LoginError(self.email)
 
         # Create session token
+        userSession = Session(self)
+        session.add(userSession)
+        session.commit()
+
+        return userSession
 
     @staticmethod
     def hash(password, salt):

@@ -40,8 +40,8 @@ export default class API {
         }));
     }
 
-    static signup({ username, email, password }) {
-        return API.request("POST", "/login", { username, email, password });
+    static signup({ name, email, password }) {
+        return API.request("POST", "/user", { name, email, password });
     }
 
     /**
