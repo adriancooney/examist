@@ -6,8 +6,8 @@ const Login = new Reducer("login", {});
 /*
  * Handle when a user forgets to enter a field in the login.
  */
-Login.handleError(User.login, (state, { ref }) => ({
-    error: `Missing ${ref}.`
+Login.handleError(User.login, (state, error) => ({
+    error
 }));
 
 /*

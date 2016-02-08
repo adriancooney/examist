@@ -1,6 +1,9 @@
+import url from "url";
 import Debug from "debug";
+import fetch from "isomorphic-fetch";
 import { range } from "lodash/util";
 import { random } from "lodash/number";
+import { API_BASE_URL } from "./Config";
 
 const debug = Debug("examist:api");
 
@@ -9,8 +12,8 @@ export default class API {
         this.key = key;
     }
 
-    static request(method, url, data = {}, headers = {}) {
-        debug(`>> %c${method.toUpperCase()} ${url}${headers["Auth-Key"] ? " (authorized)" : ""}`, "color: purple", data);
+    static fakeRequest(method, path, data = {}, headers = {}) {
+        debug(`>> %c${method.toUpperCase()} ${path}${headers["Auth-Key"] ? " (authorized)" : ""}`, "color: purple", data);
 
         return new Promise((resolve) => {
             setTimeout(resolve.bind(this, {
@@ -20,7 +23,32 @@ export default class API {
         });
     }
 
-    request(method, url, data) {
+    static request(method, path, data = {}, headers = {}) {
+        method = method.toUpperCase(); // Normalize the method
+
+        debug(`>> %c${method} ${path}${headers["Auth-Key"] ? " (authorized)" : ""}`, "color: purple", data);
+
+        return fetch(url.format({ ...API_BASE_URL, pathname: path }), {
+            method, 
+            headers: {
+                ...headers,
+                "Content-Type": "application/json"
+            }, 
+            body: method !== "GET" ? JSON.stringify(data) : undefined
+        }).then(response => {
+            return Promise.all([response.json(), response]);
+        }).then(([body, response]) => {
+            if(response.status >= 400) throw new HTTPError(response.status, body.message, body);
+            
+            return body;
+        });
+    }
+
+    fakeRequest(method, path, data) {
+        return API.fakeRequest(method, url, data, { "Auth-Key": this.key });
+    }
+
+    request(method, path, data) {
         return API.request(method, url, data, { "Auth-Key": this.key });
     }
 
@@ -29,18 +57,18 @@ export default class API {
      * @param  {Object} details { username, password }
      * @return {Promise} -> {Object}
      */
-    static login({ username, password }) {
-        return API.request("POST", "/login", { username, password }).then(() => ({
-            id: 1,
-            username: "adrian",
-            name: "Adrian Cooney",
-            email: "cooney.adrian@gmail.com",
-            loading: false,
-            key: "f89sf0n7f0as97fn90sa7fn" 
-        }));
+    static login({ email, password }) {
+        return API.request("POST", "/login", { email, password });
     }
 
-    static signup({ name, email, password }) {
+    /**
+     * Create a new user.
+     * @param  {String} options.name     User's name.
+     * @param  {String} options.email    User's email.
+     * @param  {String} options.password User's password.
+     * @return {Promise} -> {Response}
+     */
+    static createUser({ name, email, password }) {
         return API.request("POST", "/user", { name, email, password });
     }
 
@@ -51,7 +79,7 @@ export default class API {
      * @return {Promise} -> {Insititution}
      */
     static getInstitutionByDomain(domain) {
-        return API.request("GET", `/institution/search?q=${domain}`).then(() => ({
+        return API.fakeRequest("GET", `/institution/search?q=${domain}`).then(() => ({
             id: 1,
             shorthand: "NUIG",
             name: "National University of Ireland, Galway",
@@ -74,7 +102,7 @@ export default class API {
      * @return {Promise} -> {Object{modules: Array}}
      */
     getModules() {
-        return this.request("GET", "/profile/modules").then(() => ({
+        return this.fakeRequest("GET", "/profile/modules").then(() => ({
             modules: range(6).map(() => Generator.module("CT" + Math.floor(Math.random() * 1000)))
         }))
     }
@@ -85,7 +113,7 @@ export default class API {
      * @return {Promise} -> {Object}
      */
     getModule(code) {
-        return this.request("GET", `/module/${code}`).then(() => ({
+        return this.fakeRequest("GET", `/module/${code}`).then(() => ({
             module: Generator.module(code)
         }));
     }
@@ -98,9 +126,18 @@ export default class API {
      * @return {Promise} -> {Object}
      */
     getPaper(module, year, period) {
-        return this.request("GET", `/module/${module}/paper/${year}/${period}`).then(() => ({
+        return this.fakeRequest("GET", `/module/${module}/paper/${year}/${period}`).then(() => ({
             paper: Generator.paper(module, year, period)
         }));
+    }
+}
+
+class HTTPError extends Error {
+    constructor(status, message, body) {
+        super(`${status}: ${message}`);
+        this.status = status;
+        this.message = message;
+        this.body = body;
     }
 }
 

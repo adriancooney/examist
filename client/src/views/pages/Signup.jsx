@@ -1,6 +1,7 @@
 import "../../../style/pages/Signup.scss";
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { isPending } from "redux-pending";
 import * as model from "../../model";
 import { Institution } from "../ui";
 import { Flex, Box } from "../ui/layout";
@@ -22,7 +23,9 @@ class Signup extends Component {
 
     static actions = {
         setDomain: model.views.Signup.setDomain,
-        getInstitutionByDomain: model.resources.Institution.getByDomain
+        getInstitutionByDomain: model.resources.Institution.getByDomain,
+        createUser: model.User.create,
+        isLoadingNewUser: isPending(model.User.create.type)
     };
 
     render() {

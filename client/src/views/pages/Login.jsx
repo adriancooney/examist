@@ -78,11 +78,11 @@ class Login extends Component {
     }
 
     render() {
-        let error = this.props.state.error ? <ErrorMessage message={this.props.state.error} /> : null;
+        let error = this.props.state.error ? <ErrorMessage message={this.props.state.error.message} /> : null;
 
         let form = this.props.isLoading ? <Loading /> : (
             <Form button="Login" onSubmit={::this.props.login}>
-                <Input name="username" placeholder="Username" />
+                <Input name="email" placeholder="Email" />
                 <Input name="password" placeholder="Password" password />
             </Form>
         );

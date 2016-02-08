@@ -16,7 +16,7 @@ let middleware = [
 
 if(DEBUG) {
     middleware.push(() => next => action => {
-        debug(`%c${action.type}`, "font-weight: bold", action.payload);
+        debug(`%c${action.type}`, "font-weight: bold; " + (action.error ? "color: red;" : ""), action.payload);
         return next(action);
     });
 }

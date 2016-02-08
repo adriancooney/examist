@@ -202,7 +202,7 @@ export default class Reducer {
         // Grab the action handler
         let handler = action.error ? this.errorHandlers[action.type] : this.actionHandlers[action.type];
         if(handler) {
-            if(DEBUG) this.debug(`Handling action '${action.type}'.`, action.payload);
+            if(DEBUG) this.debug(`Handling ${action.error ? "errored " : ""}action '${action.type}'.`, action.payload);
             return handler.call(this, state, action.payload, action.meta || {});
         } else return state;
     }

@@ -11,7 +11,6 @@ const User = new Reducer("user", null);
  * Select the current api.
  */
 export const selectAPI = User.select(user => {
-    console.log("USER STATE", user);
     return user.api;
 });
 
@@ -46,7 +45,7 @@ export const logout = User.createAction("USER_LOGOUT").handle(Reducer.initial);
 /*
  * Handle signing up.
  */
-export const signup = User.createAction("USER_SIGNUP", API.signup);
+export const create = User.createAction("USER_SIGNUP", API.createUser);
 
 /*
  * Get the user's modules.
