@@ -7,14 +7,14 @@ export default class Input extends Component {
     };
 
     render() {
-        let type = this.props.password ? "password" : "text";
+        const type = this.props.password ? "password" : "text";
 
-        let props = Object.assign({}, this.props, {
-            className: "Input " + (this.props.className || ""),
-            type
+        const props = Object.assign({}, this.props, {
+            type,
+            className: "Input " + (this.props.error ? "input-error " : "") + (this.props.className || "")
         });
 
-        let input = <input ref="input" {...props} />;
+        const input = <input ref="input" {...props} />;
 
         if(this.props.label) {
             return (

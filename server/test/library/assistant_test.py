@@ -1,8 +1,11 @@
+from marshmallow import Schema, fields
 from fyp.server.library import Assistant
 
 class Example(Assistant):
     foo = 1
-    pass
+
+    def __init__(self):
+        self.foo = "bar"
 
 class Session:
     def one(self):

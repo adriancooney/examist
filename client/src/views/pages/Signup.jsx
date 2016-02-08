@@ -24,6 +24,7 @@ class Signup extends Component {
     static actions = {
         setDomain: model.views.Signup.setDomain,
         getInstitutionByDomain: model.resources.Institution.getByDomain,
+
         createUser: model.User.create,
         isLoadingNewUser: isPending(model.User.create.type)
     };
@@ -37,8 +38,8 @@ class Signup extends Component {
                 </Flex>
                 <Flex grow={2.5}>
                     <Form onSubmit={::this.onSubmit} onChange={::this.onChange}>
-                        <Input name="name" label="Name" placeholder="e.g. John Smith"/>
-                        <Input name="email" label="Institution Email" placeholder="e.g. john.smith@nuigalway.ie"/>
+                        <Input name="name" label="Name" placeholder="e.g. John Smith" />
+                        <Input name="email" label="Institution Email" placeholder="e.g. john.smith@nuigalway.ie" />
                         <Input name="password" label="Password" password />
                     </Form>
                 </Flex>
@@ -49,8 +50,13 @@ class Signup extends Component {
         );
     }
 
-    onSubmit() {
-
+    /**
+     * Create the new user.
+     * @private
+     * @param  {Object} details Form values.
+     */
+    onSubmit(details) {
+        this.props.createUser(details);
     }
 
     /*

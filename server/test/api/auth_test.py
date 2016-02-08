@@ -12,14 +12,15 @@ def test_login(user, client):
     # Check to see if a session exists for the user
     assert user.sessions[0]
 
-    # Check we have the key returned
+    # Check we have the key returned and user
     data = loads(resp.get_data())
-
     assert data["key"] == user.sessions[0].key
+    assert data["name"]
+    assert data["id"]
 
 def test_login_missing_params(client):
-    resp = client.post("/login", content_type="application/json")
-    assert_api_error(resp, 422)
+    resp = client.post("/login", data=dumps({ "email": "d@a.ie" }), content_type="application/json")
+    assert_api_error(resp, 422, "password")
 
 def test_login_invalid_email(user, client):
     resp = client.post("/login", data=dumps({

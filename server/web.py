@@ -29,13 +29,21 @@ for rule in sorted([rule for rule in app.url_map.iter_rules()], key = str):
 # App errors
 @app.errorhandler(HttpException)
 def handle_http_exception(exception):
-    return fail(exception.code, exception.message)
+    return fail(exception.code, exception.message, exception.meta)
 
 # Parameter errors
 @app.errorhandler(422)
 def handle_validation_error(err):
-    messages = ["%s, %s" % (name, msg[0]) for name, msg in err.data["messages"].iteritems()]
-    return fail(422, messages[0])
+    messages = [(name, msg[0]) for name, msg in err.data["messages"].iteritems()]
+    name, message = messages[0]
+    return fail(422, message, { "field": name })
+
+if config.APP_DEBUG:
+    @app.after_request
+    def handle_after_request(resp):
+        resp.headers["Access-Control-Allow-Origin"] = "*"
+        resp.headers["Access-Control-Allow-Headers"] = "origin, content-type, accept"
+        return resp
 
 if not config.APP_DEBUG:
     @app.errorhandler(Exception)
@@ -50,7 +58,7 @@ if __name__ == '__main__':
         app.logger.addHandler(handler)
 
     # Connect it to the datavase
-    app.config["SQLALCHEMY_DATABASE_URI"] = config.DATABASE_URI.format(**config)
+    app.config["SQLALCHEMY_DATABASE_URI"] = config.DATABASE_URI.format(**config.__dict__)
     db.init_app(app)
 
     app.run(port=config.APP_PORT, host=config.APP_HOST, debug=config.APP_DEBUG)

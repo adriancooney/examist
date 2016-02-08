@@ -1,6 +1,7 @@
 from flask import Blueprint, request, session
 from webargs import fields, validate
 from webargs.flaskparser import use_kwargs
+from fyp.server.library.util import merge
 from fyp.server.database import db
 from fyp.server.response import respond
 from fyp.server.model import User
@@ -25,10 +26,8 @@ def auth(email, password):
         # Get the user
         user = User.getBy(db.session, email=email)
     except NotFound:
-        raise HttpException(403, "Account not found with email '%s'" % email)
+        raise HttpException(403, "Account not found." % email, { "email": email })
 
     session = user.login(db.session, password)
 
-    return respond({
-        "key": session.key
-    })
+    return respond(merge({ "key": session.key}, user.dump(UserSchema(exclude=("password",)))))

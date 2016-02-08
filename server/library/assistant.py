@@ -1,3 +1,4 @@
+from sqlalchemy.orm import class_mapper, ColumnProperty
 from sqlalchemy.orm.exc import NoResultFound
 from fyp.server.exc import NotFound
 
@@ -18,3 +19,7 @@ class Assistant:
             return session.query(model).filter(where).one()
         except NoResultFound:
             raise NotFound(model.__name__)
+
+    def dump(self, schema):
+        return schema.dump({ prop.key: getattr(self, prop.key) for prop in class_mapper(self.__class__).iterate_properties 
+            if isinstance(prop, ColumnProperty) }).data

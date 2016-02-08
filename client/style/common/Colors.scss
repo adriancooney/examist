@@ -1,4 +1,6 @@
+// Simple colors
 $color-light-grey: #f0f0f0;
+$color-grey: #DDD;
 $color-dark-grey: #777;
 $color-blue: #418EE5;
 
@@ -13,15 +15,16 @@ $color-body: $color-light-grey;
 $color-link: $color-blue;
 $color-font-body: $color-dark-grey;
 
+// Theme styles
+$color-error: $color-flame;
+
 // Input
 $color-button-default: $color-blue;
+$color-input-border: $color-grey;
 
 // Insititution
 $color-institution: white;
 $color-institution-header: $color-dark-grey;
-
-// Error
-$color-error: $color-flame;
 
 // Avatar icon
 $color-avatar-circle: $color-storm-dust;

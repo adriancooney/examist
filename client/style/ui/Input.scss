@@ -41,6 +41,11 @@
     font-size: 120%;
     font-family: $font-display;
     display: block;
+    border: 2px solid $color-input-border;
+
+    &.input-error {
+        border: 2px dashed $color-error;
+    }
 }
 
 .Button {

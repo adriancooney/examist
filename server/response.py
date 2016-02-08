@@ -8,6 +8,13 @@ def success():
     that do not return any data."""
     return respond(None)
 
-def fail(code, message):
+__EMPTY__ = {} # Save allocating one every time no meta exists
+
+def fail(code, message, meta = None):
     """Return a error object when action fails."""
-    return respond({ 'error': True, 'message': message }, code)
+
+    return respond({ 
+        "error": True, 
+        "message": message,
+        "meta": meta if meta else __EMPTY__
+    }, code)
