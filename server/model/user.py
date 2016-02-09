@@ -57,7 +57,7 @@ class User(Model, Assistant):
     @staticmethod
     def extract_institution(email):
         """Extract the insititution (domain) from an email."""
-
+        pass
 
     @staticmethod
     def hash(password, salt):

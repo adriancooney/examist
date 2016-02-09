@@ -1,30 +1,19 @@
-import logging
-from logging.handlers import RotatingFileHandler
 from flask import Flask, Blueprint
 from fyp.server import api
-from fyp.server.database import db
 from fyp.server.response import fail, respond
 from fyp.server.exc import HttpException
 from fyp.server import config
 
 app = Flask(__name__)
 
-# Surpress warning
+# Connect it to the database
+app.config["SQLALCHEMY_DATABASE_URI"] = config.DATABASE_URI.format(**config.__dict__)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-print "Blueprints:"
+# Register all the blueprints
 for name, blueprint in api.__dict__.iteritems():
     if isinstance(blueprint, Blueprint):
-        print "\t %s" % name
         app.register_blueprint(blueprint)
-
-# Print out all the rules
-print "Routes:"
-for rule in sorted([rule for rule in app.url_map.iter_rules()], key = str):
-    for method in rule.methods:
-        if method == "OPTIONS" or method == "HEAD":
-            continue
-        print "\t %s \t %s" % (method, str(rule))
 
 # App errors
 @app.errorhandler(HttpException)
@@ -39,6 +28,7 @@ def handle_validation_error(err):
     return fail(422, message, { "field": name })
 
 if config.APP_DEBUG:
+    # Allow for CORS in development
     @app.after_request
     def handle_after_request(resp):
         resp.headers["Access-Control-Allow-Origin"] = "*"
@@ -46,19 +36,7 @@ if config.APP_DEBUG:
         return resp
 
 if not config.APP_DEBUG:
+    # Handle app exceptions and don't let the app die
     @app.errorhandler(Exception)
     def handle_exception(exception):
         return fail(500, str(exception))
-
-if __name__ == '__main__':
-    if config.APP_LOG:
-        handler = RotatingFileHandler(config.APP_LOG, maxBytes=10000, backupCount=1)
-        handler.setLevel(logging.DEBUG)
-        logging.getLogger('werkzeug').addHandler(handler)
-        app.logger.addHandler(handler)
-
-    # Connect it to the datavase
-    app.config["SQLALCHEMY_DATABASE_URI"] = config.DATABASE_URI.format(**config.__dict__)
-    db.init_app(app)
-
-    app.run(port=config.APP_PORT, host=config.APP_HOST, debug=config.APP_DEBUG)
