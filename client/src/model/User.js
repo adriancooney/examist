@@ -45,7 +45,7 @@ export const logout = User.createAction("USER_LOGOUT").handle(Reducer.initial);
 /*
  * Handle signing up.
  */
-export const create = User.createAction("USER_SIGNUP", API.createUser);
+export const create = User.createAction("USER_CREATE", (details) => API.createUser(details));
 
 /*
  * Get the user's modules.

@@ -14,13 +14,17 @@ ALPHABET = "abcdefghijklmnopqrstuvwxyz1234567890"
 class User(Model, Assistant):
     __tablename__ = "user"
 
+    # Attributes
     id = Column(Integer, primary_key=True)
     name = Column(String)
     email = Column(String, unique=True)
-
     password = Column(String(length=64))
     salt = Column(String(length=20))
 
+    # Foreign keys
+    institution_id = Column(Integer, ForeignKey("institution.id"))
+
+    # Relationships
     sessions = relationship("Session", backref="user")
 
     @hybrid_property
@@ -49,6 +53,11 @@ class User(Model, Assistant):
         session.commit()
 
         return userSession
+
+    @staticmethod
+    def extract_institution(email):
+        """Extract the insititution (domain) from an email."""
+
 
     @staticmethod
     def hash(password, salt):

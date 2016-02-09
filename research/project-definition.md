@@ -94,7 +94,12 @@ The purpose of this project is to create an online platform where students can l
 This will be an online project. The technology for this project would be split up into two parts, frontend and backend. Each part will interact with the other heavily.
 
 ## Frontend
-The frontend will be built atop modern HTML5 technologies. React, a popular javascript library by Facebook, will be used to create the user interface. The project will make heavy use of CSS3 technologies and preprocessors such as SASS for the design of the interface.
+The frontend will be built atop modern HTML5 technologies that are todays standard on build Single Page Applications. The following libaries, frameworks and tools will be used:
+
+* React, a popular javascript library by Facebook, will be used to create the user interface for the app. It's commonly reffered to as the "V" in MVC (Model-View-Controller). It allows the application to be decomposed into reusable, testable components that can be combined together to build an extremely performant and usable application.
+* Redux could be described as the Model for the application however it's a radically methodology for building user interface than your common patterns. It forces the designer to have a single object that describes the state for the *entire application*. To update the state, the designer dispatches *actions* in response to user input which updates the state. This allows the designer to completely decouple the state from the UI for a streamlined testing experience since the application has zero side-effects or unintended behavior.
+* SASS, a superset of CSS and preprocessor, will be used to seperate the CSS into modules on a component scale.
+* Webpack, a source compiler, will bring all these technologies together into a single package for distribution on the web
 
 ### Paper Parser
 The exam paper parser will be a graphical user interface for parsing exam papers. Users will be able to view their exam papers, highlight questions and associate their index in the paper (such as "Section A, part b."). This process will only need to be completed once.
@@ -110,36 +115,44 @@ This will allow users to browse past exam papers with ease. It will show past qu
 ![](image/popular.png)
 
 ## Backend
-Javascript and Python will be the languages of choice for building the backend. Using the latest technologies from each ecosystem such as virtualenv for Python and Babel (ES6) for Javascript. These are mature, battle tested technologies that perform well and are extremely flexible for any task. Python will be the powerhouse behind the exam paper parsing technology and the API/ORM interaction.
+The backend will be coded in Python and powered by a Flask and SQL Alchemy teamset. Flask will power the HTTP API side of things which will use SQL Alchemy as the ORM to interface with our RDBMS of choice, PostgreSQL.
 
 ### API
-The API will be built to interact with the frontend. It will serve it's data in a JSON format via a GraphQL or REST style interface. It will be built to be highly scalable and work with any client capable of interacting with it. 
+The API will be designed according to the RESTFUL style and will respond with simple JSON. The frontend will interact via this API with simple header based authentication. Each endpoint will be tested, secure and only respond to valid data without side-effects.
 
 ### Database
 A relational database will power the persistence side of things. PostgreSQL will be the RDBMS of choice and SQL Alchemy for the ORM. This will store all the content of the exam papers from the modules to paper questions. For version control of the question content, git may be explored as an alternative.
 
-# Constraints
-* Short timeline.
-* 1 developer.
+### Static Server
+Static assets do not need to be served by the Flask API since they don't change during the applications lifetime. The assets will be served with Nginx, an extremely fast HTTP server. Nginx will serve all the Javascript, CSS and HTML assets to the users.
+
+### Deployment
+A container based format will be used to deploy the app such as Docker. Docker allows the application environment to be replicated exactly when developing as it would be in production. It uses a declarative application description language that automatically generates the application environment on demand.
 
 # Deliverables
-* Fully versioned control source code.
-* Usable, aesthetically pleasing design design.
-* Functionality outlined in objectives with features feasible in the given timeline.
-* Fully functioning and online with active users under a valid domain.
-* Deployable application for unix based systems.
+* Fully versioned control source code with detailed log.
+* Modular and tested codebase.
+* Usable, aesthetically pleasing application design.
+* Functionality outlined above in objectives with features feasible in the given timeline.
+* Deployable application in a container based format.
+* An online application with active users under a valid domain.
 
 # Schedule
 This is a high level schedule for the following months working on the project. It does not account for the inevitable time spent fixing bugs and research that may be required to complete tasks so purposefully not all time is accounted for.
 
------------- ----------------------------------------
- Month        Completed                              
------------- ----------------------------------------
- 1            Exam parser interface and backend.     
+------------ --------------------------------------------------------------------------
+Week         Completed                              
+------------ --------------------------------------------------------------------------
+1, 2         User interface research, design considerations and choices.
+             Building foundations for UI with React, react-router and Redux.
 
- 2, 3         Collaborative user features such as    
-              posting solutions, commenting and linking 
-              content.
+3, 4,        Building RESTFUL API backend using Python, Flask and SQL 
+             Alchemy. Design decisions and research. User login and authentication.
 
-4, 5          Examiner interface and exam explorer.
------------- ----------------------------------------
+5, 6, 7, 8   Building interface elements: Signup, module picker, module viewer, paper 
+             parser, paper viewer, solution poster, commenting, link voting.
+
+9            Containerizing, deploying online and initial MVP release.
+
+10           Building exam paper generator and tester.
+------------ --------------------------------------------------------------------------
