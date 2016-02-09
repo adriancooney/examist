@@ -1,12 +1,12 @@
 from flask import Blueprint, request, session
 from webargs import fields, validate
 from webargs.flaskparser import use_kwargs
-from fyp.server.library.util import merge
-from fyp.server.database import db
-from fyp.server.response import respond
-from fyp.server.model import User
-from fyp.server.api.schemas import UserSchema
-from fyp.server.exc import HttpException, NotFound
+from server.library.util import merge
+from server.database import db
+from server.response import respond
+from server.model import User
+from server.api.schemas import UserSchema
+from server.exc import HttpException, NotFound
 
 Auth = Blueprint("auth", __name__)
 
@@ -26,7 +26,7 @@ def auth(email, password):
         # Get the user
         user = User.getBy(db.session, email=email)
     except NotFound:
-        raise HttpException(403, "Account not found." % email, { "email": email })
+        raise HttpException(403, "Account not found.", { "email": email })
 
     session = user.login(db.session, password)
 

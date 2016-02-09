@@ -1,8 +1,8 @@
 import logging
 from logging.handlers import RotatingFileHandler
-from fyp.server.database import db
-from fyp.server.web import app
-from fyp.server import config
+from server.database import db
+from server.web import app
+from server import config
 
 if __name__ == "__main__":
     # Create logs

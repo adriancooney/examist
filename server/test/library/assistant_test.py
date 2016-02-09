@@ -1,5 +1,5 @@
 from marshmallow import Schema, fields
-from fyp.server.library import Assistant
+from server.library import Assistant
 
 class Example(Assistant):
     foo = 1

@@ -3,11 +3,11 @@ import random
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.hybrid import hybrid_property
-from fyp.server.model.session import Session
-from fyp.server.exc import LoginError
-from fyp.server.database import Model
-from fyp.server.library import Assistant
-from fyp.server.library.util import find
+from server.model.session import Session
+from server.exc import LoginError
+from server.database import Model
+from server.library import Assistant
+from server.library.util import find
 
 ALPHABET = "abcdefghijklmnopqrstuvwxyz1234567890"
 

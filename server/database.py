@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from fyp.server import config
+from server import config
 
 db = SQLAlchemy()
 
@@ -10,8 +10,8 @@ if __name__ == "__main__":
     # Flask migrations
     from flask_script import Manager
     from flask_migrate import Migrate, MigrateCommand
-    from fyp.server import model
-    from fyp.server.web import app
+    from server import model
+    from server.web import app
 
     db.init_app(app)
     migrate = Migrate(app, db)

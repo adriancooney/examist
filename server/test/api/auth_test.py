@@ -1,4 +1,4 @@
-from fyp.server.test import assert_api_error
+from server.test import assert_api_error
 from json import dumps, loads
 
 def test_login(user, client):
@@ -20,7 +20,7 @@ def test_login(user, client):
 
 def test_login_missing_params(client):
     resp = client.post("/login", data=dumps({ "email": "d@a.ie" }), content_type="application/json")
-    assert_api_error(resp, 422, "password")
+    assert_api_error(resp, 422, meta={"field": "password"})
 
 def test_login_invalid_email(user, client):
     resp = client.post("/login", data=dumps({
@@ -28,7 +28,7 @@ def test_login_invalid_email(user, client):
         "password": "root"
     }), content_type="application/json");
 
-    assert_api_error(resp, 403, "email")
+    assert_api_error(resp, 403, meta={ "email": "unknown@email.com" })
 
 def test_login_invalid_password(user, client):
     resp = client.post("/login", data=dumps({

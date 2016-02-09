@@ -1,10 +1,10 @@
 import pytest
 import traceback
 from sqlalchemy_utils import database_exists, create_database, drop_database
-from fyp.server.web import app as _app
-from fyp.server import config
-from fyp.server.database import db as _db
-from fyp.server import model
+from server.web import app as _app
+from server import config
+from server.database import db as _db
+from server import model
 
 DB_NAME = config.DB_NAME + "_test"
 

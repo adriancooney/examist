@@ -1,6 +1,6 @@
 from sqlalchemy.orm import class_mapper, ColumnProperty
 from sqlalchemy.orm.exc import NoResultFound
-from fyp.server.exc import NotFound
+from server.exc import NotFound
 
 class Assistant:
     @classmethod

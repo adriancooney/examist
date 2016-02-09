@@ -2,11 +2,11 @@ from flask import Blueprint, request, session
 from sqlalchemy.exc import IntegrityError
 from webargs import fields, validate
 from webargs.flaskparser import parser, use_args
-from fyp.server.database import db
-from fyp.server.response import respond, success
-from fyp.server import model
-from fyp.server.api.schemas import UserSchema
-from fyp.server.exc import NotFound, LoginError, AlreadyExists
+from server.database import db
+from server.response import respond, success
+from server import model
+from server.api.schemas import UserSchema
+from server.exc import NotFound, LoginError, AlreadyExists
 
 User = Blueprint("user", __name__)
 

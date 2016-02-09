@@ -1,6 +1,7 @@
 import re
 from json import dumps, loads
-from fyp.server.model import User
+from server.test import assert_api_error
+from server.model import User
 
 USER_NAME = "Adrian"
 USER_EMAIL = "a.cooney10@nuigalway.ie"
@@ -47,9 +48,4 @@ def test_create_missing_param(client):
         "email": USER_EMAIL
     }), content_type="application/json")
 
-    assert resp.status_code == 422
-
-    data = loads(resp.get_data())
-
-    assert data["error"]
-    assert re.match(r"password", data["message"])
+    assert_api_error(resp, 422, meta={"field": "password" })

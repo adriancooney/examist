@@ -1,8 +1,8 @@
 from flask import Flask, Blueprint
-from fyp.server import api
-from fyp.server.response import fail, respond
-from fyp.server.exc import HttpException
-from fyp.server import config
+from server import api
+from server.response import fail, respond
+from server.exc import HttpException
+from server import config
 
 app = Flask(__name__)
 

@@ -1,7 +1,7 @@
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String
-from fyp.server.database import Model
-from fyp.server.library import Assistant
+from server.database import Model
+from server.library import Assistant
 
 class Institution(Model, Assistant):
     __tablename__ = "institution"
