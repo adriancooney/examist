@@ -13,7 +13,7 @@
     "react-dom": "^0.14.6",
     "react-redux": "^4.0.6",
     "react-router": "^2.0.0-rc5",
-    "redux-pending": "^0.1.1",
+    "redux-pending": "^0.1.2",
     "redux": "^3.0.5",
     "redux-actions": "^0.9.1",
     "redux-promise": "^0.5.1",
