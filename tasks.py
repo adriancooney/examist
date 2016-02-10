@@ -2,11 +2,12 @@ import os
 from invoke import run, task
 from jinja2 import Template
 from sqlalchemy.sql import text
-from server.web import app
-from server.database import db
 
 @task(name="db")
 def database(force=False):
+    from server.web import app
+    from server.database import db
+    
     with app.app_context():
         # Create the database
         if force:
