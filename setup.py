@@ -7,5 +7,5 @@ setup(
     author = 'Adrian Cooney',
     author_email = 'cooney.adrian@gmail.com',
     url = 'https://github.com/examist',
-    packages = ['server']
+    package_dir = { 'server': 'server' }
 )
