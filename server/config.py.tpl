@@ -23,10 +23,9 @@ from sqlalchemy.orm import sessionmaker
 {{ var("DB_PORT", DB_PORT, default="5432", str=False) }}
 {{ var("DB_NAME", DB_NAME) }}
 
-{{ var("APP_PORT", APP_PORT, str=False) }}
+{{ var("APP_PORT", APP_PORT, default="5000", str=False) }}
 {{ var("APP_HOST", APP_HOST, default="127.0.0.1") }}
-{{ var("APP_DEBUG", APP_DEBUG, default="False", str=False) }}
+{{ var("APP_DEBUG", APP_DEBUG, default="True", str=False) }}
 {{ var("APP_LOG", APP_LOG, required=False) }}
-{{ var("DB_NAME", DB_NAME) }}
 
 DATABASE_URI = "postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
