@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup, find_packages
 
 setup(
     name = 'Examist',
@@ -8,5 +8,5 @@ setup(
     author_email = 'cooney.adrian@gmail.com',
     url = 'https://github.com/examist',
     package_dir = { 'server': '' },
-    packages = ['server', 'server.api', 'server.library', 'server.test', 'server.model']
+    packages = ["server"] + ["server.%s" % pkg for pkg in find_packages()]
 )
