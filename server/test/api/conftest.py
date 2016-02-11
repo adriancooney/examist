@@ -66,7 +66,19 @@ def session(db, monkeypatch, request):
     return db.session
 
 @pytest.fixture
-def user(session):
+def institution(session):
+    instit = model.Institution(
+        name="National University of Ireland",
+        code="NUIG",
+        domain="nuigalway.ie",
+    )
+
+    session.add(instit)
+    session.commit()
+    return instit
+
+@pytest.fixture
+def user(institution, session):
     """Creates a default, not logged in user."""
     user = model.User(name="Adrian", email="a.cooney10@nuigalway.ie", password="root")
     session.add(user)

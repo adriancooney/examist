@@ -10,7 +10,6 @@ class Institution(Model, Assistant):
     name = Column(String)
     code = Column(String, unique=True)
     domain = Column(String, unique=True)
-    shorthand = Column(String)
     image = Column(String)
 
     color_primary = Column(String(7))

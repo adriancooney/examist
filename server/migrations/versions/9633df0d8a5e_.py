@@ -1,4 +1,4 @@
-"""empty message
+"""Users, sessions and institutions.
 
 Revision ID: 9633df0d8a5e
 Revises: None

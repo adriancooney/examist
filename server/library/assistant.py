@@ -18,7 +18,7 @@ class Assistant:
         try:
             return session.query(model).filter(where).one()
         except NoResultFound:
-            raise NotFound(model.__name__)
+            raise NotFound(model.__name__, kwargs)
 
     def dump(self, schema):
         return schema.dump({ prop.key: getattr(self, prop.key) for prop in class_mapper(self.__class__).iterate_properties 

@@ -6,18 +6,19 @@ from server.database import db
 from server.response import respond, success
 from server import model
 from server.api.schemas import UserSchema
-from server.exc import NotFound, LoginError, AlreadyExists
+from server.exc import NotFound, LoginError, AlreadyExists, InvalidEntity
 
 User = Blueprint("user", __name__)
 
 @User.route("/user", methods=["POST"])
 @use_args(UserSchema())
 def create(details):
-    user = model.User(**details)
-
     try:
+        user = model.User(**details)
         db.session.add(user)
         db.session.commit()
+    except NotFound as nf:
+        raise InvalidEntity("Institution", "domain", nf.meta["fields"]["domain"])
     except IntegrityError as ie:
         raise AlreadyExists("User", "email", details["email"])
 

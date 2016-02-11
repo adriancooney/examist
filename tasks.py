@@ -13,4 +13,5 @@ def config():
         # that need to be set.
         tpl = Template(config.read())
 
+        # Print the template to stdout
         print tpl.render(**os.environ)

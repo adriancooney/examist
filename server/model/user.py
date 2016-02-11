@@ -4,10 +4,11 @@ from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.hybrid import hybrid_property
 from server.model.session import Session
-from server.exc import LoginError
-from server.database import Model
+from server.exc import LoginError, NotFound
+from server.database import Model, db
 from server.library import Assistant
 from server.library.util import find
+from server.model.institution import Institution
 
 ALPHABET = "abcdefghijklmnopqrstuvwxyz1234567890"
 
@@ -31,11 +32,19 @@ class User(Model, Assistant):
     def active_session(self):
         return find(self.sessions, lambda session: session.active)
 
-    def __init__(self, name, email, password):
+    def __init__(self, name, email, password, institution=None):
         self.name = name
         self.email = email
         self.salt = User.generateSalt()
         self.password = User.hash(password, self.salt)
+
+        domain = User.extract_domain(self.email)
+
+        if not institution:
+            institution = Institution.getBy(db.session, domain=domain)
+
+        # Now we need to get the institution by their email
+        self.institution_id = institution.id
     
     def login(self, session, password):
         """Log the current user instance in. This does 2 things:
@@ -55,9 +64,9 @@ class User(Model, Assistant):
         return userSession
 
     @staticmethod
-    def extract_institution(email):
+    def extract_domain(email):
         """Extract the insititution (domain) from an email."""
-        pass
+        return email.split("@")[1]
 
     @staticmethod
     def hash(password, salt):
