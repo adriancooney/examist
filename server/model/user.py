@@ -41,6 +41,7 @@ class User(Model, Assistant):
         domain = User.extract_domain(self.email)
 
         if not institution:
+            # Raises not found if the institution isn't found
             institution = Institution.getBy(db.session, domain=domain)
 
         # Now we need to get the institution by their email
