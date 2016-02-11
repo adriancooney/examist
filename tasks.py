@@ -3,18 +3,6 @@ from invoke import run, task
 from jinja2 import Template
 from sqlalchemy.sql import text
 
-@task(name="db")
-def database(force=False):
-    from server.web import app
-    from server.database import db
-    
-    with app.app_context():
-        # Create the database
-        if force:
-            db.drop_all()
-            
-        db.create_all()
-
 @task
 def config():
     """Generate a config based on the environment variables."""
