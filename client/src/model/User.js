@@ -29,9 +29,19 @@ export const selectModules = (state) => {
 }
 
 /*
+ * Handle signing up.
+ */
+export const create = User.createAction("USER_CREATE", API.createUser);
+
+/*
  * Login the user.
  */
-export const login = User.createAction("USER_LOGIN", API.login).handle((state, user) => ({
+export const login = User.createAction("USER_LOGIN", API.login);
+
+/*
+ * Handle login and signup.
+ */
+User.handleActions([login, create], (state, user) => ({
     ...user,
     modules: null,
     api: new API(user.key)
@@ -41,11 +51,6 @@ export const login = User.createAction("USER_LOGIN", API.login).handle((state, u
  * Logout the current user.
  */
 export const logout = User.createAction("USER_LOGOUT").handle(Reducer.initial);
-
-/*
- * Handle signing up.
- */
-export const create = User.createAction("USER_CREATE", (details) => API.createUser(details));
 
 /*
  * Get the user's modules.

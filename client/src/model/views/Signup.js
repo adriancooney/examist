@@ -5,24 +5,23 @@ const Signup = new Reducer("signup", {
     error: null
 });
 
-/**
+/*
  * Set the current domain.
  */
-export const setDomain = Signup.createAction("SET_DOMAIN").handle((state, domain) => {
+export const setDomain = Signup.createAction("SIGNUP_SET_DOMAIN").handle((state, domain) => {
     return { ...state, domain };
 });
 
 /*
+ * Remove the error.
+ */
+export const clearError = Signup.createAction("SIGNUP_CLEAR_ERROR").handle(state => ({ ...state, error: null }));
+
+/*
  * Handle a signup error.
  */
-Signup.handleAction(User.create, {
-    next(state) {
-        return { ...state, error: null };
-    },
-
-    error(state, error) {
-        return { ...state, error };
-    }
+Signup.handleError(User.create, (state, error) => {
+    return { ...state, error };
 });
 
 export default Signup;

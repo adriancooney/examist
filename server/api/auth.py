@@ -29,5 +29,6 @@ def auth(email, password):
         raise HttpException(403, "Account not found.", { "email": email })
 
     session = user.login(db.session, password)
+    db.session.commit()
 
     return respond(merge({ "key": session.key}, user.dump(UserSchema(exclude=("password",)))))

@@ -113,6 +113,15 @@ export default class Reducer {
     }
 
     /**
+     * Handle multiple actions with a single handler.
+     * @param  {Array}    actions Array of action strings.
+     * @param  {Function} handler Action handler.
+     */
+    handleActions(actions, handler) {
+        return actions.forEach(action => this.handleAction(action, handler));
+    }
+
+    /**
      * Handle a errored action. See `handleAction`.
      *         
      * @param  {String}   actionType The action type.
@@ -125,6 +134,7 @@ export default class Reducer {
         if(this.errorHandlers[actionType])
             throw new Error(`Already error handler defined for '${actionType}' in '${this.getName}' reducer.`);
 
+        if(DEBUG) this.debug(`Adding error handler for '${actionType}'.`);
         this.errorHandlers[actionType] = handler;
     }
 

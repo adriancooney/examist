@@ -47,21 +47,20 @@ class User(Model, Assistant):
         # Now we need to get the institution by their email
         self.institution_id = institution.id
     
-    def login(self, session, password):
+    def login(self, session, password=None):
         """Log the current user instance in. This does 2 things:
             1. Compares the password.
             2. Creates new session.
         """
-        hash = User.hash(password, self.salt)
+        if password:
+            hash = User.hash(password, self.salt)
 
-        if hash != self.password:
-            raise LoginError(self.email)
+            if hash != self.password:
+                raise LoginError(self.email)
 
         # Create session token
         userSession = Session(self)
         session.add(userSession)
-        session.commit()
-
         return userSession
 
     @staticmethod

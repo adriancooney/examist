@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { isPending } from "redux-pending";
 import * as model from "../../model";
 import { Institution } from "../ui";
+import { ErrorMessage } from "../ui/error";
 import { Flex, Box } from "../ui/layout";
 import { Form, Input } from "../ui/input";
 import { content } from "../../i18n";
@@ -23,6 +24,7 @@ class Signup extends Component {
 
     static actions = {
         setDomain: model.views.Signup.setDomain,
+        clearError: model.views.Signup.clearError,
         getInstitutionByDomain: model.resources.Institution.getByDomain,
 
         createUser: model.User.create,
@@ -30,6 +32,8 @@ class Signup extends Component {
     };
 
     render() {
+        const error = this.props.state.error ? <ErrorMessage error={this.props.state.error} /> : null;
+
         return (
             <Box className="Signup">
                 <Flex>
@@ -37,6 +41,7 @@ class Signup extends Component {
                     <p>{ content("signup_young") }</p>
                 </Flex>
                 <Flex grow={2.5}>
+                    { error }
                     <Form onSubmit={::this.onSubmit} onChange={::this.onChange}>
                         <Input name="name" label="Name" placeholder="e.g. John Smith" />
                         <Input name="email" label="Institution Email" placeholder="e.g. john.smith@nuigalway.ie" />
@@ -64,6 +69,10 @@ class Signup extends Component {
      * they type.
      */
     onChange(name, value) {
+        // Remove any errors if we have any
+        if(this.props.state.error) this.props.clearError();
+
+        // Show the institution dynamically if it exists
         if(name === "email") {
             let email = value.toLowerCase(); // Emails are case insensitive!
             let matched = email.match(MATCH_EMAIL);

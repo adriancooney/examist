@@ -3,7 +3,7 @@ import Debug from "debug";
 import fetch from "isomorphic-fetch";
 import { range } from "lodash/util";
 import { random } from "lodash/number";
-import { API_BASE_URL } from "./Config";
+import { API_BASE_URL, DEBUG } from "./Config";
 
 const debug = Debug("examist:api");
 
@@ -12,23 +12,12 @@ export default class API {
         this.key = key;
     }
 
-    static fakeRequest(method, path, data = {}, headers = {}) {
-        debug(`>> %c${method.toUpperCase()} ${path}${headers["Auth-Key"] ? " (authorized)" : ""}`, "color: purple", data);
-
-        return new Promise((resolve) => {
-            setTimeout(resolve.bind(this, {
-                req: { code: 200 },
-                body: "Success"
-            }), 300);
-        });
-    }
-
     static request(method, path, data = {}, headers = {}) {
         method = method.toUpperCase(); // Normalize the method
 
-        debug(`>> %c${method} ${path}${headers["Auth-Key"] ? " (authorized)" : ""}`, "color: purple", data);
+        debug(`>> %c${method} ${API_BASE_URL}${path}${headers["Auth-Key"] ? " (authorized)" : ""}`, "color: purple", data);
 
-        return fetch(url.format({ ...API_BASE_URL, pathname: path }), {
+        return fetch(API_BASE_URL + path, {
             method, 
             headers: {
                 ...headers,
@@ -36,16 +25,25 @@ export default class API {
             }, 
             body: method !== "GET" ? JSON.stringify(data) : undefined
         }).then(response => {
+            // Hold yer horser
+            if(DEBUG) {
+                return new Promise(resolve => setTimeout(() => resolve(response), 1000));
+            } else return response;
+        }).then(response => {
             return Promise.all([response.json(), response]);
+        }).catch(error => {
+            // Match invalid JSON response
+            if(error instanceof SyntaxError && error.message.match(/Unexpected end of input/))
+                throw new InvalidResponse("Invalid JSON response.");
         }).then(([body, response]) => {
-            if(response.status >= 400) throw new HTTPError(response.status, body.message, body);
-            
+            debug("<< %s", response.status, body)
+
+            // Throw any HTTP errors
+            if(response.status >= 400) 
+                throw new HTTPError(response.status, body.message, body);
+
             return body;
         });
-    }
-
-    fakeRequest(method, path, data) {
-        return API.fakeRequest(method, url, data, { "Auth-Key": this.key });
     }
 
     request(method, path, data) {
@@ -132,7 +130,7 @@ export default class API {
     }
 }
 
-class HTTPError extends Error {
+export class HTTPError extends Error {
     constructor(status, message, body) {
         super(`${status}: ${message}`);
         this.status = status;
@@ -140,6 +138,8 @@ class HTTPError extends Error {
         this.body = body;
     }
 }
+
+export class InvalidResponse extends Error {}
 
 /*
  * Dummy data generators

@@ -1,9 +1,17 @@
+import co from "co";
+import { isGeneratorFunction } from "../Util";
+
 export default class Action {
     constructor(type, { reducer, transformer, meta } = {}) {
         this.type = type;
         this.reducer = reducer;
-        this.transformer = transformer || (f => f);
         this.meta = meta || (() => ({}));
+
+        // Add some generator support
+        if(transformer && isGeneratorFunction(transformer)) transformer = co.wrap(transformer);
+        else if(!transformer) transformer = (f => f);
+
+        this.transformer = transformer;
     }
 
     /**
@@ -17,8 +25,9 @@ export default class Action {
      */
     creator() {
         let actionCreator = (...args) => {
-            let payload = this.transformer(...args);
-            let meta = this.meta(...args);
+            const payload = this.transformer(...args);
+            const meta = this.meta(...args);
+            console.log("PAYLOAD", payload instanceof Promise);
             return this.toObject(payload, meta);
         }
 

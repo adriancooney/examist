@@ -3,7 +3,7 @@ var path = require("path"),
 
 module.exports = {
     context: __dirname,
-    entry: "./src/index.jsx",
+    entry: ["./node_modules/regenerator/runtime.js", "./src/index.jsx"],
 
     module: {
         loaders: [{

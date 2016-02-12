@@ -20,67 +20,26 @@ export function Enum(...constants) {
 export const mapSelectors = selector;
 
 /**
- * Create a network action that has no unintended side-effects if it
- * fails. If the fatal falg is set to true and the request fails, an
- * error page is displayed. The request is also unauthorized unless 
- * specified by the authorized flag.
- * @param  {String}   actionType The action type.
- * @param  {Function} callback   Callback.
- * @param  {Boolean}  authorized Flag whether or not the request is authorized. (Default false).
- * @param  {Boolean}  fatal      Flag whether or not the request is fatal. (Default false).
- * @return {Function}            Action creator.
+ * Determine whether a function is a generator or not.
+ * Nabbed from: https://github.com/tj/co/blob/master/index.js#L220-L225
+ * @param  {Any}         obj The value to determine if generator or not.
+ * @return {Boolean}     Generator or not.
  */
-// export function createRequestAction(actionType, callback, authorized = false, fatal = false) {
-//     return createAction(actionType, (...args) => {
-//         if(callback) {
-//             if(authorized) return callback(select(api), ...args);
-//             else return callback(...args);
-//         }
-//     }, () => ({ network: true, fatal }));
-// }
+export function isGeneratorFunction(obj) {
+    var constructor = obj.constructor;
+    if (!constructor) return false;
+    if ('GeneratorFunction' === constructor.name || 'GeneratorFunction' === constructor.displayName) return true;
+    return isGenerator(constructor.prototype);
+}
 
 /**
- * Create a fatal request action that if it fails, displays
- * an error screen related to the request. e.g. Attempting to
- * find the `/about` page results in a 404. The request is
- * unauthorized.
- * 
- * @param  {String}   actionType The action type.
- * @param  {Function} callback   Callback with args.
- * @return {Function}            Action creator.
+ * Check if `obj` is a generator.
+ * @param  {Mixed}   obj
+ * @return {Boolean}
  */
-// export function createFatalRequestAction(actionType, callback) {
-//     return createAction(actionType, callback, false, true);
-// }
-
-/**
- * Create an authorized request (non-fatal). The callback is
- * passed an authenticated API instance for usage with the
- * request. This requires the user to be logged in.
- *
- * e.g. 
- *
- *     const getModules = createAuthorizedRequestAction("GET_MODULES", (api) => api.getModules())
- *     
- * @param  {String}   actionType Action type.
- * @param  {Function} callback   Callback with (api, ...args).
- * @return {Function}            Action creator.
- */
-// export function createAuthorizedRequestAction(actionType, callback) {
-//     return createRequestAction(actionType, callback, true);
-// }
-
-/**
- * Create an authorized and fatal request action. Combination of
- * `createFatalRequestAction` and `createAuthorizedRequestAction`.
- * 
- * @param  {String}   actionType Action Type.
- * @param  {Function} callback   Callback with args.
- * @return {Function}            Action creator.
- */
-// export function createFatalAuthorizedRequestAction(actionType, callback) {
-//     return createRequestAction(actionType, callback, true, true);
-// }
+export function isGenerator(obj) {
+  return 'function' == typeof obj.next && 'function' == typeof obj.throw;
+}
 
 /**
  * Use react proptypes to validate data.

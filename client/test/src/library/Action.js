@@ -43,4 +43,19 @@ describe("Action", () => {
             }, b.creator()());
         });
     });
+
+    describe("generator", () => {
+        it("should execute a generator", () => {
+            const a = new Action(EXAMPLE_ACTION, {
+                transformer: function*(b) {
+                    const a = yield new Promise(resolve => setTimeout(() => resolve(100), 15));
+                    assert.equal(b, 10)
+                    assert.equal(a, 100);
+                }
+            });
+
+            const creator = a.creator();
+            return creator(10).payload;
+        });
+    });
 });

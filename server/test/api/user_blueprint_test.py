@@ -21,7 +21,14 @@ def test_create(session, institution, client):
     user = session.query(User).filter(User.email == USER_EMAIL).one()
 
     assert user, "User does not exist"
+    assert user.sessions[0], "User is not logged in"
     assert user.institution.id == institution.id, "Insitution is not added to user"
+
+    # Check we have the key returned and user
+    data = loads(resp.get_data())
+    assert data["key"] == user.sessions[0].key
+    assert data["name"]
+    assert data["id"]
 
 def test_create_unknown_institution(client):
     """POST /user { name, email, password }"""
