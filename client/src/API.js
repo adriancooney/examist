@@ -92,22 +92,7 @@ export default class API {
      * @return {Promise} -> {Insititution}
      */
     static getInstitutionByDomain(domain) {
-        return API.fakeRequest("GET", `/institution/search?q=${domain}`).then(() => ({
-            id: 1,
-            shorthand: "NUIG",
-            name: "National University of Ireland, Galway",
-            image: "http://www.nuigalway.ie/cdn/images/dropdown-thumb-1.jpg",
-            domain: "nuigalway.ie",
-            colors: {
-                primary: "#68085B",
-                secondary: "#7DB8C5"
-            },
-            stats: {
-                students: 312,
-                modules: 1249,
-                papers: 14940
-            }
-        }));
+        return API.request("GET", `/institution/search?domain=${domain}`);
     }
 
     /**

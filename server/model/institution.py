@@ -16,3 +16,4 @@ class Institution(Model, Assistant):
     color_secondary = Column(String(7))
 
     users = relationship("User", backref="institution")
+    modules = relationship("User", backref="institution")

@@ -15,3 +15,9 @@ def test_search_institution(institution, client):
     data = loads(resp.get_data())
     assert data["id"] == institution.id
 
+def test_get_institution(institution, client):
+    resp = client.get("/institution/" + str(institution.id))
+    assert resp.status_code == 200
+
+    data = loads(resp.get_data())
+    assert data["id"] == institution.id
