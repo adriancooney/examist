@@ -6,7 +6,12 @@ def test_search_no_domain(client):
 
 def test_search_no_institutions(client):
     resp = client.get("/institution/search?domain=foo.com")
+    assert_api_error(resp, 404)
+
+def test_search_institution(institution, client):
+    resp = client.get("/institution/search?domain=nuigalway.ie")
+    assert resp.status_code == 200
 
     data = loads(resp.get_data())
+    assert data["id"] == institution.id
 
-    print resp

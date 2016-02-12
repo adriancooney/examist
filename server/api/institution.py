@@ -12,5 +12,5 @@ Institution = Blueprint("institution", __name__)
 @Institution.route("/institution/search", methods=["GET"])
 @use_kwargs({ "domain": fields.Str(required=True) }, locations=("query",))
 def search_institution(domain):
-    print domain
-    pass
+    print "GETTING BY DOMAIN", domain
+    return respond(model.Institution.getBy(db.session, domain=domain).dump())
