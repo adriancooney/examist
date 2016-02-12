@@ -10,7 +10,8 @@ import { Form, Input } from "../ui/input";
 import { content } from "../../i18n";
 
 // Primitive email check.
-const MATCH_EMAIL = /[^@]+@((?:[-_a-zA-Z]+\.?)+\.\w+)/
+const MATCH_EMAIL = /[^@]+@((?:[-_a-zA-Z]+\.?)+\.\w+)/;
+const SIGNUP_REDIRECT = "/";
 
 class Signup extends Component {
     static selector = (state) => {
@@ -18,7 +19,8 @@ class Signup extends Component {
 
         return {
             state: signupState,
-            institution: model.resources.Institution.selectByDomain(signupState.domain)(state)
+            institution: model.resources.Institution.selectByDomain(signupState.domain)(state),
+            user: model.User.selectCurrent(state)
         }
     };
 
@@ -26,10 +28,22 @@ class Signup extends Component {
         setDomain: model.views.Signup.setDomain,
         clearError: model.views.Signup.clearError,
         getInstitutionByDomain: model.resources.Institution.getByDomain,
-
         createUser: model.User.create,
+        push: model.Routing.push,
         isLoadingNewUser: isPending(model.User.create.type)
     };
+
+    static onEnter = (nextState, replace) => {
+        const user = model.User.selectCurrent();
+
+        if(user)
+            replace(SIGNUP_REDIRECT);
+    };
+
+    componentWillReceiveProps(props) {
+        if(props.user) 
+            this.props.push(SIGNUP_REDIRECT);
+    }
 
     render() {
         const error = this.props.state.error ? <ErrorMessage error={this.props.state.error} /> : null;

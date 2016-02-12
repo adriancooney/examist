@@ -17,7 +17,7 @@ export default (
 
             <Route path="/" component={views.templates.Container}>
                 <Route path="login" component={views.pages.Login} onEnter={views.pages.Login.onEnter} />
-                <Route path="signup" component={views.pages.Signup} />
+                <Route path="signup" component={views.pages.Signup} onEnter={views.pages.Signup.onEnter}/>
                 
                 {views.app.App}
 
