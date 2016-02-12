@@ -1,4 +1,5 @@
 # FYP
+![Codeship](https://codeship.com/projects/cbaa04d0-b1be-0133-3eff-7e5a34091697/status?branch=master)
 
 # Client
 ## Installation
