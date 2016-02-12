@@ -7,7 +7,7 @@ class HttpException(Exception):
 
 class NotFound(HttpException):
     """404 Not Found Exception."""
-    def __init__(self, entity_name, fields=None):
+    def __init__(self, entity_name="Item", fields=None):
         HttpException.__init__(self, 404, "%s not found." % entity_name, { 
             "entity": entity_name,
             "fields": fields

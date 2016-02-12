@@ -1,17 +1,17 @@
 from flask import Blueprint, request, session
 from webargs import fields, validate
 from webargs.flaskparser import use_kwargs
-from server.library.util import merge
+from server.model import User
 from server.database import db
 from server.response import respond
-from server.model import User
-from server.api.schemas import UserSchema
 from server.exc import HttpException, NotFound
+from server.library.util import merge
+from server.library.schema import schema
 
 Auth = Blueprint("auth", __name__)
 
 @Auth.route("/login", methods=["POST"])
-@use_kwargs(UserSchema(only=('email', 'password')))
+@use_kwargs(schema(User, only=('email', 'password')))
 def auth(email, password):
     """Log a user in.
         POST { username: String, password: String }
@@ -31,4 +31,4 @@ def auth(email, password):
     session = user.login(db.session, password)
     db.session.commit()
 
-    return respond(merge({ "key": session.key}, user.dump(UserSchema(exclude=("password",)))))
+    return respond(merge({ "key": session.key}, user.dump(exclude=("password",))))

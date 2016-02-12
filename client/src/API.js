@@ -12,6 +12,14 @@ export default class API {
         this.key = key;
     }
 
+    /**
+     * Make a request to the path supplied on API_BASE_URL.
+     * @param  {String} method  GET|PUT|POST|DELETE|OPTIONS|HEAD
+     * @param  {String} path    The pathname of the URL e.g. /login
+     * @param  {Object} data    The data to supply in the request body (JSON encoded).
+     * @param  {Object} headers The headers to send with the request.
+     * @return {Promise} -> {Response} Resolves to response data object.
+     */
     static request(method, path, data = {}, headers = {}) {
         method = method.toUpperCase(); // Normalize the method
 
@@ -46,6 +54,13 @@ export default class API {
         });
     }
 
+    /**
+     * Make an authorized request to the API.
+     * @param  {String} method See API.request.
+     * @param  {String} path   See API.request.
+     * @param  {Object} data   See API.request.
+     * @return {Promise}       See API.request.
+     */
     request(method, path, data) {
         return API.request(method, url, data, { "Auth-Key": this.key });
     }

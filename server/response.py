@@ -1,4 +1,5 @@
 from flask import jsonify
+from server.exc import HttpException
 
 def respond(data, code = 200):
     return jsonify(**data) if data else "", code
@@ -9,6 +10,10 @@ def success():
     return respond(None)
 
 __EMPTY__ = {} # Save allocating one every time no meta exists
+
+def abort(httpException):
+    assert isinstance(httpException, HttpException), "Abort response requires HttpException"
+    return fail(httpException.code, httpException.message, httpException.meta)
 
 def fail(code, message, meta = None):
     """Return a error object when action fails."""
