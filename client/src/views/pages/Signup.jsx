@@ -9,8 +9,7 @@ import { Flex, Box } from "../ui/layout";
 import { Form, Input } from "../ui/input";
 import { content } from "../../i18n";
 
-// Primitive email check.
-const MATCH_EMAIL = /[^@]+@((?:[-_a-zA-Z]+\.?)+\.\w+)/;
+const MATCH_EMAIL = /[^@]+@((?:[-_a-zA-Z]+\.?)+\.\w+)/; // Primitive email check.
 const SIGNUP_REDIRECT = "/";
 
 class Signup extends Component {
@@ -33,6 +32,12 @@ class Signup extends Component {
         isLoadingNewUser: isPending(model.User.create.type)
     };
 
+    /*
+     * Make sure they're not already logged in when trying to signup,
+     * if so, redirect the back to the dashboard. This scenario isn't
+     * really possible unless they open the console and somehow mani-
+     * pulate the history manually but every check counts (tm).
+     */
     static onEnter = (nextState, replace) => {
         const user = model.User.selectCurrent();
 
@@ -40,6 +45,10 @@ class Signup extends Component {
             replace(SIGNUP_REDIRECT);
     };
 
+    /*
+     * On successful signin, we'll recieve our current user prop so
+     * we can redirect them to their dashboard.
+     */
     componentWillReceiveProps(props) {
         if(props.user) 
             this.props.push(SIGNUP_REDIRECT);
@@ -94,7 +103,10 @@ class Signup extends Component {
             if(matched) {
                 let [ _, domain ] = matched;
 
+                // Postpone the check if the user changes their input
                 if(this.checkInsititutionDomain) clearTimeout(this.checkInsititutionDomain);
+
+                // Display the institution after X timeout
                 this.checkInsititutionDomain = setTimeout(this.loadInstitution.bind(this, domain), 500)
             }
         }
@@ -105,6 +117,9 @@ class Signup extends Component {
         clearTimeout(this.checkInsititutionDomain);
     }
 
+    /*
+     * Load the insititution for the institution card.
+     */
     loadInstitution(domain) {
         this.props.setDomain(domain);
         this.props.getInstitutionByDomain(domain);
