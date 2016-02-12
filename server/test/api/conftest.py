@@ -51,6 +51,7 @@ def client(db, app):
 @pytest.fixture
 def session(db, monkeypatch, request):
     """Creates a new database session for a test."""
+    print marker("SESSION START")
     connection = db.engine.connect()
     transaction = connection.begin()
 
@@ -61,6 +62,7 @@ def session(db, monkeypatch, request):
         transaction.rollback()
         connection.close()
         db.session.remove()
+        print marker("SESSION ROLLBACK")
 
     request.addfinalizer(teardown)
     return db.session
@@ -74,13 +76,14 @@ def institution(session):
     )
 
     session.add(instit)
-    session.commit()
     return instit
 
 @pytest.fixture
 def user(institution, session):
     """Creates a default, not logged in user."""
-    user = model.User(name="Adrian", email="a.cooney10@nuigalway.ie", password="root")
+    user = model.User(name="Adrian", email="a.cooney10@nuigalway.ie", password="root", institution=institution)
     session.add(user)
-    session.commit()
     return user
+
+def marker(text, spacer="-", size=40):
+    return "\n\n{} {} {}\n".format(spacer*size, text, spacer*size)
