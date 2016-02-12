@@ -28,18 +28,13 @@ def create(details):
     except IntegrityError as ie:
         raise AlreadyExists("User", "email", details["email"])
 
-@User.route("/user/<user>", methods=["GET", "PUT"])
+@User.route("/user/<int:user>", methods=["GET", "PUT"])
 def get_or_update_user(user): 
+    # Get the user
+    user = model.User.query.get(user)
+
     if request.method == "GET":
-        try:
-            user_id = int(user)
-        except ValueError:
-            raise NotFound()
-
-        user = model.User.get(user_id)
         schema = UserSchema(exclude=("password",))
-        data, _ = schema.dump(user)
-
-        return respond(data)
+        return respond(user.dump(schema))
     elif request.method == "PUT":
         pass

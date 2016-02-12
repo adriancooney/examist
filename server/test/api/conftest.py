@@ -76,6 +76,7 @@ def institution(session):
     )
 
     session.add(instit)
+    session.flush()
     return instit
 
 @pytest.fixture
@@ -83,6 +84,7 @@ def user(institution, session):
     """Creates a default, not logged in user."""
     user = model.User(name="Adrian", email="a.cooney10@nuigalway.ie", password="root", institution=institution)
     session.add(user)
+    session.flush()
     return user
 
 def marker(text, spacer="-", size=40):

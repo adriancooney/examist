@@ -58,3 +58,9 @@ def test_create_missing_param(client):
     }), content_type="application/json")
 
     assert_api_error(resp, 422, meta={ "field": "password" })
+
+def test_get_user(user, client):
+    resp = client.get("/user/" + str(user.id))
+    data = loads(resp.get_data())
+    assert data["name"] == user.name
+    assert data["id"] == user.id
