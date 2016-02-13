@@ -1,9 +1,9 @@
-from flask import Blueprint, request, session
+from flask import Blueprint, request, session, g
 from webargs import fields, validate
 from webargs.flaskparser import use_kwargs
 from server.model import User
 from server.database import db
-from server.response import respond
+from server.response import respond, success
 from server.exc import HttpException, NotFound
 from server.library.util import merge
 from server.library.schema import schema
@@ -38,4 +38,4 @@ def auth(email, password):
 @Auth.route("/auth", methods=["GET"])
 @authorize
 def check_auth():
-    return "Hello world!"
+    return success()
