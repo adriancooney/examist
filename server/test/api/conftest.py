@@ -1,6 +1,7 @@
 import pytest
 import traceback
 from sqlalchemy_utils import database_exists, create_database, drop_database
+from server.test import APIClient
 from server.web import app as _app
 from server import config
 from server.database import db as _db
@@ -46,6 +47,7 @@ def db(app, request):
 @pytest.fixture(scope="session")
 def client(db, app):
     """Creates a new test client."""
+    app.test_client_class = APIClient
     return app.test_client()
 
 @pytest.fixture
