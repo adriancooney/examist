@@ -33,6 +33,11 @@ class LoginError(HttpException):
             "username": username    
         })
 
+class Unauthorized(HttpException):
+    """401, Unauthorized"""
+    def __init__(self):
+        HttpException.__init__(self, 401, "Unauthorized.")
+
 class AlreadyExists(HttpException):
     """409, Conflict"""
     def __init__(self, entity, key, value):

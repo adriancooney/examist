@@ -7,6 +7,7 @@ from server.response import respond
 from server.exc import HttpException, NotFound
 from server.library.util import merge
 from server.library.schema import schema
+from server.middleware import authorize
 
 Auth = Blueprint("auth", __name__)
 
@@ -28,7 +29,13 @@ def auth(email, password):
     except NotFound:
         raise HttpException(403, "Account not found.", { "email": email })
 
-    session = user.login(db.session, password)
+    session = user.login(password)
+    db.session.add(user)
     db.session.commit()
 
     return respond(merge({ "key": session.key}, user.dump(exclude=("password",))))
+
+@Auth.route("/auth", methods=["GET"])
+@authorize
+def check_auth():
+    return "Hello world!"

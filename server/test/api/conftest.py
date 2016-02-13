@@ -91,5 +91,15 @@ def user(institution, session):
     session.flush()
     return user
 
+@pytest.fixture
+def auth_client(user, session, client):
+    userSession = user.login("root")
+    session.add(user)
+    session.flush()
+
+    client.default_environ["headers"] = [("Auth-Key", "%s" % userSession.key)]
+    
+    return client
+
 def marker(text, spacer="-", size=40):
     return "\n\n{} {} {}\n".format(spacer*size, text, spacer*size)

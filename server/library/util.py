@@ -1,3 +1,34 @@
+from functools import wraps
+
+def middleware(middlewareFunc):
+    """Simple function to abstract the middleware decoration process. This function itself
+    is a decorator to create middleware. Example:
+
+        @middleware
+        def authorize():
+            # Do middlewary stuff
+            pass
+
+        @app.route("/")
+        @authorize
+        def my_route(my_args):
+            pass
+
+    """
+    @wraps(middlewareFunc)
+    def middlewareDecorater(viewFunc):
+
+        @wraps(viewFunc)
+        def viewDecorated(*args, **kwargs):
+            view = middlewareFunc()
+
+            # Return the middlewares response if any otherwise continue to the route
+            return view if view else viewFunc(*args, **kwargs)
+
+        return viewDecorated
+
+    return middlewareDecorater
+
 def find(items, predicate):
     """Simple find in array function. Returns first match."""
     for item in items:

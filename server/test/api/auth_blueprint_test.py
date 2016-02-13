@@ -1,3 +1,4 @@
+from server.test.api.conftest import marker
 from server.test import assert_api_error
 from json import dumps, loads
 
@@ -7,11 +8,10 @@ def test_login(user, client):
         "password": "root"
     });
 
+    assert resp.status_code == 200
+
     # Check we have the key returned and user
     data = loads(resp.get_data())
-    print "RESP", data
-
-    assert resp.status_code == 200
 
     # Check to see if a session exists for the user
     assert user.sessions[0]
@@ -38,3 +38,25 @@ def test_login_invalid_password(user, client):
     });
 
     assert_api_error(resp, 403, "Invalid credentials")
+
+def test_auth_check_no_key(client):
+    resp = client.get("/auth")
+    assert_api_error(resp, 422, "Missing", meta={ "field": "Auth-Key" })
+
+def test_auth_check_invalid_key(client):
+    resp = client.get("/auth", headers=[("Auth-Key", "INVALID_LOL")])
+    assert_api_error(resp, 401, "Unauthorized")
+
+def test_auth_check_expired_key(auth_client, user, session):
+    currentSession = user.sessions[0]
+    currentSession.active = False
+
+    session.add(currentSession)
+    session.commit()
+
+    resp = auth_client.get("/auth")
+    assert_api_error(resp, 401, "Unauthorized")
+
+def test_auth_check(auth_client):
+    resp = auth_client.get("/auth")
+    assert resp.status_code == 200

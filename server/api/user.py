@@ -17,9 +17,10 @@ def create(details):
     try:
         user = model.User(**details)
         db.session.add(user)
+        db.session.flush()
 
         # Log the user in
-        session = user.login(db.session)
+        session = user.login()
         db.session.commit()
 
         userSchema = schema(model.User, exclude=("password",))
