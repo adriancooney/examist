@@ -1,5 +1,7 @@
 import pytest
 import traceback
+import random
+from faker import Faker
 from sqlalchemy_utils import database_exists, create_database, drop_database
 from server.test import APIClient
 from server.web import app as _app
@@ -7,6 +9,7 @@ from server import config
 from server.database import db as _db
 from server import model
 
+fake = Faker()
 DB_NAME = config.DB_NAME + "_test"
 
 @pytest.fixture(scope="session")
@@ -87,6 +90,20 @@ def user(institution, session):
     """Creates a default, not logged in user."""
     user = model.User(name="Adrian", email="a.cooney10@nuigalway.ie", password="root", institution=institution)
     session.begin(subtransactions=True)
+    session.add(user)
+    session.flush()
+    return user
+
+@pytest.fixture
+def user_with_modules(user, session):
+    # Add five modules
+    for i in range(0, 5):
+        user.modules.append(model.Module(
+            name=fake.job(), 
+            code=random.choice(["CT", "MA", "ENG"]) + str(random.randint(100, 900)),
+            institution=user.institution
+        ))
+
     session.add(user)
     session.flush()
     return user
