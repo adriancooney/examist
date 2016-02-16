@@ -9,13 +9,11 @@ from server.exc import NotFound, LoginError, AlreadyExists, InvalidEntity
 
 Profile = Blueprint("Profile", __name__)
 
-moduleSchema = schema(model.Module, many=True)
-
-print moduleSchema
+moduleSchema = schema(model.Module)
 
 @Profile.route("/profile/modules/", methods=["GET"], strict_slashes=False)
 @authorize
 def get_modules():
     return respond({ 
-        "modules": moduleSchema.dump(g.user.modules) 
+        "modules": moduleSchema.dump(g.user.modules, many=True).data
     })

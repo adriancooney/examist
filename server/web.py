@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint
+from flask import Flask, Blueprint, request
 from server import api
 from server.response import fail, respond, abort
 from server.exc import HttpException, NotFound
@@ -35,6 +35,10 @@ def handle_http_exception(exception):
 if config.APP_DEBUG:
     # Print SQLAlchemy queries
     app.config["SQLALCHEMY_ECHO"] = True
+
+    @app.before_request
+    def handle_before_request():
+        print "[SERVER] >>>>> %s %s %r" % (request.method, request.path, request.data)
 
     # Allow for CORS in development
     @app.after_request
