@@ -34,8 +34,8 @@ export function isGeneratorFunction(obj) {
 
 /**
  * Check if `obj` is a generator.
- * @param  {Mixed}   obj
- * @return {Boolean}
+ * @param  {Mixed}   obj The object to check.
+ * @return {Boolean} Whether or not generator.
  */
 export function isGenerator(obj) {
   return 'function' == typeof obj.next && 'function' == typeof obj.throw;

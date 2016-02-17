@@ -26,6 +26,14 @@ class MissingParameter(InvalidRequest):
             "type": type
         })
 
+class UnacceptableParameter(HttpException):
+    """403 Invalid parameter, valid parameter found but unacceptable"""
+    def __init__(self, parameter, reason):
+        HttpException.__init__(self, 403, "Unacceptable value for '%s' parameter. %s", {
+            "parameter": parameter
+        })
+
+
 class LoginError(HttpException):
     """403, Bad credentials"""
     def __init__(self, username):

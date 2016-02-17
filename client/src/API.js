@@ -100,9 +100,7 @@ export default class API {
      * @return {Promise} -> {Object{modules: Array}}
      */
     getModules() {
-        return this.fakeRequest("GET", "/profile/modules").then(() => ({
-            modules: range(6).map(() => Generator.module("CT" + Math.floor(Math.random() * 1000)))
-        }))
+        return this.request("GET", "/profile/modules");
     }
 
     /**
@@ -128,6 +126,23 @@ export default class API {
             paper: Generator.paper(module, year, period)
         }));
     }
+
+    /**
+     * Test if the auth key is valid.
+     * @return {Promise} -> {Response}
+     */
+    checkAuth() {
+        return this.request("GET", "/auth");
+    }
+
+    /**
+     * Create a new API from an Auth key. 
+     * @param  {String} key The Auth key.
+     * @return {Promise} -> {Response} Verify the auth key.
+     */
+    static fromAuthKey(key) {
+        return (new API(key)).checkAuth();
+    }
 }
 
 export class HTTPError extends Error {
@@ -140,6 +155,7 @@ export class HTTPError extends Error {
 }
 
 export class InvalidResponse extends Error {}
+export class InvalidAuthKey extends Error {}
 
 /*
  * Dummy data generators

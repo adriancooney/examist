@@ -118,7 +118,7 @@ export default class Reducer {
      * @param  {Function} handler Action handler.
      */
     handleActions(actions, handler) {
-        return actions.forEach(action => this.handleAction(action, handler));
+        actions.forEach(action => this.handleAction(action, handler));
     }
 
     /**

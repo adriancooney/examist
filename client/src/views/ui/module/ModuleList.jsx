@@ -4,7 +4,8 @@ import ModuleLink from "./ModuleLink";
 import Empty from "../Empty";
 
 export default function ModuleList(props) { 
-    let modules = props.modules.map((mod, i) => <ModuleLink code={mod.code} key={i} />)
+    let modules = props.modules.map((mod, i) => 
+        <ModuleLink code={mod.code} name={mod.name} key={i} />)
 
     if(!modules.length) {
         modules = <Empty item="Modules" />
