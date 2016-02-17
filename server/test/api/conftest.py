@@ -1,6 +1,8 @@
 import pytest
 import traceback
 import random
+import os
+import json
 from faker import Faker
 from sqlalchemy_utils import database_exists, create_database, drop_database
 from server.test import APIClient
@@ -9,8 +11,12 @@ from server import config
 from server.database import db as _db
 from server import model
 
-fake = Faker()
 DB_NAME = config.DB_NAME + "_test"
+
+# Data generation
+fake = Faker()
+with open(os.path.join(os.path.dirname(__file__), "../data/example.json")) as data_file:
+    data = json.load(data_file)
 
 @pytest.fixture(scope="session")
 def app(request):
@@ -95,15 +101,25 @@ def user(institution, session):
     return user
 
 @pytest.fixture
-def user_with_modules(user, session):
+def modules(session, institution):
+    modules = []
+
     # Add five modules
-    for i in range(0, 5):
-        user.modules.append(model.Module(
-            name=fake.job(), 
-            code=random.choice(["CT", "MA", "ENG"]) + str(random.randint(100, 900)),
-            institution=user.institution
+    for module in data["modules"]:
+        modules.append(model.Module(
+            name=module["name"], 
+            code=module["code"],
+            institution=institution
         ))
 
+    session.add_all(modules)
+    session.flush()
+
+    return modules
+
+@pytest.fixture
+def user_with_modules(user, modules, session):
+    user.modules = modules
     session.add(user)
     session.flush()
     return user

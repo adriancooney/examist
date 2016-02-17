@@ -15,4 +15,4 @@ def search_institution(domain):
 
 @Institution.route("/institution/<int:instit>", methods=["GET"])
 def get_institution(instit):
-    return respond(model.Institution.query.get(instit).dump())
+    return respond(model.Institution.getBy(db.session, id=instit).dump())

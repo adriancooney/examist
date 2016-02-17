@@ -1,0 +1,18 @@
+{
+    "modules": [{
+        "code": "CT437",
+        "name": "Computer Security and Forensic Computing"    
+    }, {
+        "code": "CT475",
+        "name": "Machine Learning & Data Mining"
+    }, {
+        "code": "CT475",
+        "name": "Software Engineering III"
+    }, {
+        "code": "CT414",
+        "name": "Distributed Systems & Co Operative Computing"    
+    }, {
+        "code": "CT421",
+        "name": "Artificial Intelligence"
+    }]
+}
