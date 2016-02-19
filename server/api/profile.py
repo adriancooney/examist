@@ -17,7 +17,7 @@ patchParams = { "module": fields.Int(required=True) }
 
 @Profile.route("/profile/modules/", methods=["GET", "PATCH"], strict_slashes=False)
 @authorize
-def get_modules():
+def get_and_update_modules():
     if request.method == "GET":
         # Return the user's modules
         return respond({ 
