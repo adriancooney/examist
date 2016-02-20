@@ -8,11 +8,16 @@ import Footer from "./Footer";
 import { Box, FlexBox, Solid } from "../ui/layout";
 
 function Container(props) {
+    console.log("Rendering.");
     return (
         <Box className="Container" vertical>
-            <Solid><Header user={props.user}/></Solid>
+            <Solid>
+                <Header user={props.user} />
+            </Solid>
             <FlexBox>{props.children}</FlexBox>
-            <Solid><Footer /></Solid>
+            <Solid>
+                <Footer />
+            </Solid>
         </Box>
     );
 }

@@ -1,4 +1,3 @@
-import url from "url";
 import Debug from "debug";
 import fetch from "isomorphic-fetch";
 import { range } from "lodash/util";
@@ -62,7 +61,7 @@ export default class API {
      * @return {Promise}       See API.request.
      */
     request(method, path, data) {
-        return API.request(method, url, data, { "Auth-Key": this.key });
+        return API.request(method, path, data, { "Auth-Key": this.key });
     }
 
     /**

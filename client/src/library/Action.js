@@ -27,7 +27,6 @@ export default class Action {
         let actionCreator = (...args) => {
             const payload = this.transformer(...args);
             const meta = this.meta(...args);
-            console.log("PAYLOAD", payload instanceof Promise);
             return this.toObject(payload, meta);
         }
 

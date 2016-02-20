@@ -130,6 +130,7 @@ def auth_client(user, session, client):
     session.add(user)
     session.flush()
 
+    setattr(client, "key", userSession.key)
     client.default_environ["headers"] = [("Auth-Key", "%s" % userSession.key)]
     
     return client

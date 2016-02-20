@@ -60,3 +60,12 @@ def test_auth_check_expired_key(auth_client, user, session):
 def test_auth_check(auth_client):
     resp = auth_client.get("/auth")
     assert resp.status_code == 200
+
+        # Check we have the key returned and user
+    data = loads(resp.get_data())
+
+    # Check to see if a session exists for the user
+    assert data["key"] == getattr(auth_client, "key")
+    assert data["name"]
+    assert data["id"]
+

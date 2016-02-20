@@ -33,9 +33,13 @@ def auth(email, password):
     db.session.add(user)
     db.session.commit()
 
-    return respond(merge({ "key": session.key}, user.dump(exclude=("password",))))
+    return respond(merge({ 
+        "key": session.key
+    }, user.dump(exclude=("password",))))
 
 @Auth.route("/auth", methods=["GET"])
 @authorize
 def check_auth():
-    return success()
+    return respond(merge({ 
+        "key": g.user.active_session.key
+    }, g.user.dump(exclude=("password",))))

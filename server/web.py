@@ -44,7 +44,7 @@ if config.APP_DEBUG:
     @app.after_request
     def handle_after_request(resp):
         resp.headers["Access-Control-Allow-Origin"] = "*"
-        resp.headers["Access-Control-Allow-Headers"] = "origin, content-type, accept"
+        resp.headers["Access-Control-Allow-Headers"] = "origin, content-type, accept, auth-key"
         return resp
 
 if not config.APP_DEBUG:

@@ -1,4 +1,5 @@
 import { Reducer } from "../library";
+import { BROWSER } from "../Config";
 import API from "../API";
 
 /**
@@ -39,13 +40,23 @@ export const create = User.createAction("USER_CREATE", API.createUser);
 export const login = User.createAction("USER_LOGIN", API.login);
 
 /*
+ * Restore the user's session.
+ */
+export const restore = User.createAction("USER_RESTORE");
+
+/*
  * Handle login and signup.
  */
-User.handleActions([login, create], (state, user) => ({
-    ...user,
-    modules: null,
-    api: new API(user.key)
-}));
+User.handleActions([login, create, restore], (state, user) => {
+    // Save the session key to localstorage
+    if(BROWSER) window.localStorage.sessionKey = user.key;
+    
+    return {
+        ...user,
+        modules: null,
+        api: new API(user.key)
+    };
+});
 
 /*
  * Logout the current user.
