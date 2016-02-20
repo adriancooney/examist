@@ -13,6 +13,6 @@ Login.handleError(User.login, (state, error) => ({
 /*
  * Reset any errors when they attempt to login again.
  */
-Login.handleAction("PENDING_" + User.login.type, Reducer.initial);
+Login.handleAction("PENDING_" + User.login.type, Login.initial);
 
 export default Login;

@@ -320,7 +320,7 @@ export default class Reducer {
      *  
      * @return {Any} The initial state.
      */
-    static initial() {
+    initial() {
         return this.initialState;
     }
 }

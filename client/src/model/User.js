@@ -61,7 +61,13 @@ User.handleActions([login, create, restore], (state, user) => {
 /*
  * Logout the current user.
  */
-export const logout = User.createAction("USER_LOGOUT").handle(Reducer.initial);
+export const logout = User.createAction("USER_LOGOUT").handle(() => {
+    // Remove the variable from localstorage
+    if(BROWSER) window.localStorage.removeItem("sessionKey");
+
+    // Return the initial state
+    return User.initial();
+});
 
 /*
  * Get the user's modules.

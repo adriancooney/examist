@@ -7,8 +7,12 @@ import { Box, Flex } from "../ui/layout";
 export default function Header(props) {
     let user, action;
 
-    if(props.user) 
-        user = (<li key={1}>Hi {props.user.name.split(" ")[0]}</li>)
+    if(props.user) {
+        let name = props.user.name.split(" ")[0];
+        name = name[0].toUpperCase() + name.substr(1);
+
+        user = (<li key={1}>Hi {name}</li>)
+    }
 
     action = props.user ?
         (<li><Link to="/logout">Logout</Link></li>) :

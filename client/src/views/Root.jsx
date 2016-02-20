@@ -10,7 +10,7 @@ class Root extends Component {
     };
 
     state = {
-        pendingLogin: true
+        pendingLogin: false
     };
 
     /*
@@ -31,9 +31,11 @@ class Root extends Component {
 
         if(key) {
             const updateState = () => this.setState({ pendingLogin: false });
+
+            this.setState({ pendingLogin: true });
             API.fromAuthKey(key)
-                .then(this.props.restore)
-                .then(updateState)
+                .then(this.props.restore) // Restore the user
+                .then(updateState) // Render the router regardless of outcome
                 .catch(updateState);
         }
     }
