@@ -34,7 +34,7 @@ class Dashboard extends Component {
 
         return (
             <div className="Dashboard">
-                <h2>Your Modules <Link to="#">edit</Link></h2>
+                <h2>Your Modules <Link to="/modules/pick">edit</Link></h2>
                 { modules }
             </div>
         );

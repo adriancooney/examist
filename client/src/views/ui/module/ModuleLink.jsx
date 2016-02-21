@@ -4,15 +4,32 @@ import { Link } from "react-router";
 import { Box, FlexBox } from "../layout";
 
 export default function Module(props) {
-    const { code, name } = props.module;
+    let { code, name } = props.module;
     const link = `/module/${code.toLowerCase()}`;
+
+    let match = code.match(/([A-Z]+)(\d+)(-\d+)?/);
+
+    if(match) {
+        let [ full, category, number ] = match;
+        code = (
+            <h4>
+                <Link to={link}>
+                    <strong>{ category }</strong>
+                    <br/>
+                    { number }
+                </Link>
+            </h4>
+        );
+    } else {
+        code = <h4><Link to={link}>{ code }</Link></h4>
+    }
 
     return (
         <div className="ModuleLink">
             <Box>
                 <FlexBox justify="center">
-                    <h4><Link to={link}>{ code }</Link></h4>
-                    <h4><Link to={link}>{ name }</Link></h4>
+                    { code }
+                    <h3><Link to={link}>{ name }</Link></h3>
                 </FlexBox>
             </Box>
         </div>

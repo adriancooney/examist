@@ -1,226 +1,2904 @@
-name,code
-"Accountancy",AY
-"Anaesthetics",AE
-"Anatomy",AN
-"Anatomy / Physiology",AP
-"Ancient Classics",AC
-"Applied Computing & Information Technology",CI
-"Applied Mathematical Science",AS
-"Applied Mathematics",AM
-"Archaeology",AR
-"Arts Administration",AA
-"Astronomy",AT
-"Bacteriology",BR
-"Biochemistry",BI
-"Biochemistry / Chemistry",BC
-"Biological Sciences",BL
-"Biology",BO
-"Biomedical Engineering Science",BES
-"Biomedical Science",BM
-"Biotechnology",BG
-"Botany",BT
-"Botany/Environmental Science",BV
-"Breton",BE
-"Celtic Studies",CL
-"Chemistry",CH
-"Chemistry, Ex,Physics, Mathematics",CP
-"Civil Engineering",CE
-"Classical Civilisation",CC
-"Commerce",CM
-"Community Development",CD
-"Computing",CS
-"Creative Writing",CW
-"Culture And Colonialism",CU
-"Digital Enterprise",DER
-"Diploma In Applied Communications",DA
-"Diploma In Journalism",DJ
-"Diploma In Management",DM
-"Earth & Ocean Science",EOS
-"Economics",EC
-"Education",ED
-"Electronic Engineering",EE
-"Electronic Engineering/Experimental Physics",EA
-"English",EN
-"English (Programme B)",BB
-"Environmental Science",EV
-"Experimental Medicine",EM
-"Experimental Physics",EP
-"Film Studies",FS
-"Fine Art",FA
-"French",FR
-"Gaeilge",NG
-"Gaeilge",SG
-"Gaeilge (Cursa A)",GA
-"General Practice",GP
-"Geology",GE
-"Geophysics",IY
-"German",GR
-"Greek",GK
-"Health Promotion",HP
-"Health Studies",HS
-"History",HI
-"Human Rights",HR
-"Hydrology",EH
-"Immunology",IM
-"Industrial Engineering",IE
-"Information Technology",CT
-"Information Technology",IF
-"Information Technology",TH
-"Irish Studies",IR
-"Irish Studies",IS
-"Italian",IT
-"Latin",LA
-"Leann Ceilteach",LC
-"Legal Science",LW
-"Léann an Aistriúcháin",LN
-"Management",MG
-"Management Information Systems",MS
-"Marine Microbiology",RM
-"Marine Science",MR
-"Marketing",MK
-"Mathematical Physics",MP
-"Mathematical Studies",MH
-"Mathematics",MA
-"Mathematics / Mathematical Physics",MM
-"Mechanical Engineering",ME
-"Medical Science",MV
-"Medicine",MD
-"Meteorology",MT
-"Microbiology",MI
-"Neuroscience",NS
-"Non-Specific Foundation Module",FM
-"Nursing Practice",NP
-"Nursing Studies",NU
-"Obstetrics",OB
-"Obstetrics & Gynaecology",OG
-"Occupational Health And Ergonomics",OH
-"Occupational Health And Hygiene",HO
-"Oceanography",OC
-"Ophthalmology",OP
-"Oto-Rhino-Laryngology",OT
-"Paediatrics",PD
-"Pathology",PA
-"Pharmacology",PM
-"Pharmacology",TG
-"Philosophy",PI
-"Physiology",SI
-"Podiatry",PO
-"Political Science",PN
-"Psychiatry",SY
-"Psychological Studies",PY
-"Psychology",PS
-"Radiology",RA
-"Social Care",SC
-"Social Sciences",SS
-"Sociological And Political Studies",SP
-"Sociology",SO
-"Spanish",SH
-"Statistics",ST
-"Surgery",SU
-"Theatre & Performance",TP
-"Tireolaiocht",TI
-"Training And Education",TE
-"Unknown Subject Area",AIT_
-"Unknown Subject Area",AJ
-"Unknown Subject Area",BCP
-"Unknown Subject Area",BME
-"Unknown Subject Area",BMM
-"Unknown Subject Area",BPS
-"Unknown Subject Area",BST
-"Unknown Subject Area",CA
-"Unknown Subject Area",CCS
-"Unknown Subject Area",CEL
-"Unknown Subject Area",CN
-"Unknown Subject Area",CPB
-"Unknown Subject Area",CSS
-"Unknown Subject Area",CY
-"Unknown Subject Area",DFS
-"Unknown Subject Area",DK
-"Unknown Subject Area",DLE
-"Unknown Subject Area",DR
-"Unknown Subject Area",DT
-"Unknown Subject Area",EAS
-"Unknown Subject Area",ECS
-"Unknown Subject Area",EG
-"Unknown Subject Area",EI
-"Unknown Subject Area",ELM
-"Unknown Subject Area",ELP
-"Unknown Subject Area",EN2X
-"Unknown Subject Area",EN3X
-"Unknown Subject Area",ENG
-"Unknown Subject Area",EOC
-"Unknown Subject Area",FU_N
-"Unknown Subject Area",GDT
-"Unknown Subject Area",GF
-"Unknown Subject Area",GG
-"Unknown Subject Area",GLA
-"Unknown Subject Area",GPN
-"Unknown Subject Area",GS
-"Unknown Subject Area",HKU
-"Unknown Subject Area",HSR
-"Unknown Subject Area",ICS
-"Unknown Subject Area",IL
-"Unknown Subject Area",JCU
-"Unknown Subject Area",LAS
-"Unknown Subject Area",LT
-"Unknown Subject Area",MDI
-"Unknown Subject Area",MIC
-"Unknown Subject Area",MLS
-"Unknown Subject Area",MMD
-"Unknown Subject Area",MME
-"Unknown Subject Area",MMG
-"Unknown Subject Area",MMS
-"Unknown Subject Area",MVS
-"Unknown Subject Area",MW
-"Unknown Subject Area",NFB
-"Unknown Subject Area",NPY
-"Unknown Subject Area",OM
-"Unknown Subject Area",PBP
-"Unknown Subject Area",PF
-"Unknown Subject Area",PH
-"Unknown Subject Area",PHE
-"Unknown Subject Area",PI2X
-"Unknown Subject Area",QUB_
-"Unknown Subject Area",REM
-"Unknown Subject Area",RI
-"Unknown Subject Area",RU
-"Unknown Subject Area",SA
-"Unknown Subject Area",SCI
-"Unknown Subject Area",SP3X
-"Unknown Subject Area",SPA
-"Unknown Subject Area",SPL
-"Unknown Subject Area",STA
-"Unknown Subject Area",TCD_
-"Unknown Subject Area",TLC
-"Unknown Subject Area",UC
-"Unknown Subject Area",UCB_
-"Unknown Subject Area",UCC_
-"Unknown Subject Area",UCD_
-"Unknown Subject Area",UL_A
-"Unknown Subject Area",UL_C
-"Unknown Subject Area",UL_E
-"Unknown Subject Area",UL_F
-"Unknown Subject Area",UL_H
-"Unknown Subject Area",UL_M
-"Unknown Subject Area",UL_P
-"Unknown Subject Area",UL_W
-"Unknown Subject Area",WM
-"Unknown Subject Area",YC
-"Unknown subject area",CO
-"Unknown subject area",DS
-"Unknown subject area",EX
-"Unknown subject area",FL
-"Unknown subject area",LS
-"Unknown subject area",OY
-"Unknown subject area",PG
-"Unknown subject area",PT
-"Unknown subject area",RG
-"Unknown subject area",SE
-"Unknown subject area",SL
-"Unknown subject area",TM
-"Unknown subject area",TN
-"Unknown subject area",TR
-"Unknown subject area",TT
-"Welsh",WE
-"Women's Studies",WS
-"Zoology",ZO
+BG502-2,Biotechnology II
+BG503-1,Biotechnology III
+BG202-1,Biotechnology II
+BG414-1,Advanced Biochemistry
+BG415-1,Molecular & Cellular Biology
+BG416-1,Biotechnologies
+BG417-1,Applications of Biotechnology
+BG102-1,Biotechnology I
+BG503-3,Biotechnology III
+BG406-1,"Fermentation, Proteomics, Neurobiology"
+BG407-1,Process Technology; Molecular genetics; Apoptosis
+BG408-1,Advanced Techniques in Biotechnology
+BG409-1,Signal Transduction: Plant Biotechnology; Biopharmaceuticals
+PH341-1,Measurement of Health Hazards at Work
+AN412-4,Anatomy Written Papers
+AN412-5,Anatomy Written Papers
+AN424-1,Anatomy Written Papers
+AN424-2,Anatomy Written Papers
+AN424-4,Anatomy Written Papers
+AN424-5,Anatomy Written Papers
+AR113-1,Prehistoric Ireland & Europe
+AR115-1,"Celts, Vikings & Normans"
+AR225-1,Hunters And Farmers In Early Europe
+AR234-1,The Archaeology Of The Celtic World
+AR236-1,Interpretation in Archaeology
+AR237-1,Early Medieval Ireland 500-800
+AR246-1,"Castles, Colonists & Crannogs 1100-1350"
+AR329-1,The Archaeology Of The Medieval Irish Church
+AR332-1,The Development Of The Castle In Medieval Europe
+AR333-1,Interpretation in Archaeology 2
+AR334-1,Ancient Civilisations: The Rise of Complex Societies
+AR336-1,Europe in the Bronze Age
+AR343-1,Public Archaeology
+AR344-1,Debating Irish Prehistory
+AR347-1,Palaeoecology - Reconstructing Past Environments
+AT201-1,Observational Astronomy
+AT202-1,Astrophysical Concepts
+AT301-1,Stellar Astronomy
+AT302-1,Computational Astronomy
+AT401-1,High Energy Astrophysics
+AT402-1,Interstellar And Plasma Physics
+AT404-1,Written Papers
+AT404-2,Written Papers
+AT404-3,Written Papers
+AT404-4,Written Papers
+AT404-5,Written Papers
+AT404-6,Written Papers
+AT404-7,Written Papers
+AY400.4-1,Business Taxation
+AY871-1,Accounting
+BG412-1,Biotechnology Written Papers
+BG412-2,Biotechnology Written Papers
+BG412-3,Biotechnology Written Papers
+BG412-4,Biotechnology Written Papers
+BI206-1,Gene Technologies and Molecular Medicine
+BI207-1,Metabolism and Cell Signalling
+BI309-1,Cell Biology
+BI313-1,Cell Signalling
+BI317-1,Human Molecular Genetics
+BI318-1,Human Nutrition
+BI319-1,Molecular Biology
+BI321-1,Protein Biochemistry
+BI429-1,Advanced Chromosome Biology
+BI445-1,Biomolecules
+BI446-1,Current Topics in Bioscience
+CH102-1,Chemistry
+BI448-1,Modern Biotechnologies
+BI449-1,Molecular and Cellular Biology
+BI452-1,Biochemistry Principles and Experimental Design
+BI451-1,Research Paper Analysis
+BI204-1,Biomolecules in the Cell
+BI205-1,The Cell Factory
+BI306-1,Human Nutrition
+BI314-1,Biochemistry I
+BI315-1,Biochemistry II
+BI316-1,Biochemistry
+BI434-1,"Biomolecules: Structures, Interactions & Signalling"
+BI435-1,"Molecular Biology, Cell Biology & Molecular Genetics"
+BI436-1,Research Paper Analysis
+BI437-1,Current Topics in Bioscience
+BI441-1,Advanced Technologies in Biochemistry & Cell Biology
+BI442-1,Research Paper Analysis
+BI308-1,Advanced Techniques For Biologists
+BI307-1,Immuno Technology
+BI110-1,Introduction to Biochemistry
+BI217-1,Chemotherapeutics
+BI218-1,Molecular Medicine
+BI403-1,Biochemistry Papers
+BI403-2,Biochemistry Papers
+BI403-3,Biochemistry Papers
+BI403-4,Biochemistry Papers
+BI403-5,Biochemistry Papers
+AY590-1,International Corporate Finance
+AY872-1,Financial Management I
+AY874-1,Accounting For Management Decisions
+AY875-1,Financial Management II
+BO101-2,Biology
+AY625-1,"Performance Management, Ethics and Governance"
+AY316-1,Business Taxation
+AY318-1,Financial Management
+AY323-1,Strategic Management Accounting
+AY110-1,Accounting
+AY206-1,Financial Accounting I
+AY305-1,Financial Accounting II
+BI208-1,Protein Structure and Function
+AY309-1,Financial Accounting III
+AY220.2-1,Management Accounting 2
+AY516-2,Management Accounting And Finance
+AY519-1,Accounting & Finance
+AY519-2,Accounting & Finance
+AY213-1,Business Finance I
+AY221.2-1,Business Finance
+BI410-1,Biochemistry
+BI426-1,Biochemistry Papers
+BI426-2,Biochemistry Papers
+BI426-4,Biochemistry Papers
+BI426-5,Biochemistry Papers
+BME2100-1,Materials I
+BME400-1,Biomechanics
+BME402-1,Computational Methods in Engineering Analysis
+BME403-1,Medical Implant and Device Design
+BME6101-1,Computational Methods in Engineering Analysis
+BME327-1,Materials II
+BME512-1,Mechanics of Materials_UCSB
+BME514-1,Structure and Properties I - UCSB
+BO101-1,Biology
+BO201-1,Molecular and Cellular Biology
+BO202-1,Evolution and the Tree of Life
+BO106-1,Introduction to Biological and Cellular Processes
+BO120-1,Biology I
+BO111-1,Biology
+BO111-2,Biology
+BO121-1,Biology II
+BPS202-1,Fundamentals in Aquatic Plant Science
+BPS203-1,"Plant Diversity, Physiology & Adaptation"
+BPS204-1,Genetics and AgriBiosciences
+BPS302-1,Plant Ecology
+BPS303-1,"Soils, Climate and Palaeobotany"
+BPS304-1,AgriBiosciences for Sustainable Global Development
+BPS305-1,Plant and Agricultural Genetics
+BPS306-1,Applied Aquatic Plant Science
+BPS307-1,Plant Physiology and Systems Biology
+BPS402-1,Current Topics in Algal Research
+BPS403-1,"Plant Genetics, Cell & Systems Biology"
+BPS404-1,Palaeobotany and Climate Change
+BPS405-1,Ecology and Conservation Issues
+BPS406-1,Current Topics in Plant Science
+BPS5101-1,"Climate Change, Agricultural & Global Food Security"
+AN208-1,Neuroanatomy
+AY100.1-1,Accounting
+AY102-1,Accounting
+BPS5102-1,"Climate Change, Agriculture, Nutrition & Global Health"
+BPS5103-1,Policy & Scenarios for Climate Change Adaptation & Mitigation
+BPS5104-1,"Gender, Agriculture & Climate Justice"
+BPS5105-1,Low-Emissions & Climate-Smart Agriculture & AgriFood Systems
+BPS5106-1,"Climate Change Adaptation, Mitigation & Risk Management"
+BPS5107-1,"Monitoring Climate Change: Past, Present, Future"
+BPS5108-1,"Climate Change, Natural Resources & Livelihoods"
+BPS5109-1,AgriBiological Responses to Climate Change
+BR402.R-1,Bacteriology
+BT208-1,Aquatic Plant Science
+BT209-1,"Plants, Humans & Environment"
+BT311-1,Plant and agri-biosciences for sustainable development
+BT312-1,Applied Aquatic Plant Science
+BT316-1,Plant Ecology & Palaeoecology
+BT415-1,Advanced Topics in Algal Research
+BT424-1,Ecology and Conservation Issues
+BT430-1,"History of Plants, Atmosphere & Climate Change"
+BT431-1,Plant Evolution & Cell Biology
+BT432-1,Current Topics in Plant Science
+BT433-1,Plant Genetics & Biotechnology for Food and Livelihood Security
+BT217-1,Plants & the Environment
+BT317-1,Aquatic Plant Science II: Ecology & Utilisation
+BT318-1,Applications of Plant Science in Biotechnology & Ecology
+BT422-1,Botany
+BT216-1,Aquatic Plant Science I
+BT416-1,Plant Biotechnology
+BT417-1,Contemporary Topics in Plant Science
+BT423-1,Long-term Climate Change and Human Impact
+BT421-1,Marine Plant Science
+BT402-1,Quaternary Palaeoecology
+BT406-1,Applied Ecology
+BT408-1,Botany Paper I
+BT409-2,Botany Paper II
+BT410-3,Botany Paper III
+CC108-1,Myth & Religion in the Ancient City
+CC109-1,Rome & the Genesis of Europe
+CC211-1,Early Greece
+CC232-1,Beginning Latin Part 2
+CCS201-1,Studies in the Ancient Imagination
+CCS204-1,Visualising Antiquity
+CCS302-1,Classics & Continuity
+CCS305-1,Expressions of Power in Antiquity
+CCS307-1,Ireland & the Ancient World
+CCS301-1,Representing Rome
+CC321-1,Latin Texts from Medieval Ireland and Britain
+CCS309-1,Reading Texts in Latin
+CC314-1,New Horizons in Classics
+CC315-1,Tragedy & Tradition: From Seneca to Shakespeare
+CC317-1,Discourses of Power in the Roman World
+CC319-1,Introduction to Reading Latin Verse
+CC224-1,Greek Society
+BR402-1,Bacteriology
+CC229-1,Sexuality & Gender in Ancient Greece
+CC303-1,Literature Of The Principate
+CC110-1,"Investigating Ancient Greece: Archaeology, Art, Literature"
+CC111-1,"Investigating Ancient Rome: Archaeology, Art, Literature"
+CC228-1,The History of the Roman Empire
+CC230-1,Beginning Latin Part 1
+CC306-1,The Art And Architecture Of The Roman Empire
+CC100-1,Classical Civilisation
+CC100-2,Classical Civilisation
+CC220-1,The Hellenistic World
+CC225-1,Greek Philosophy
+CC226-1,The Roman Conquest of Ireland
+CC310-1,The Roman Novel
+CC313-1,The Heroic Theme: from Ancient Greece to Gaelic Ireland
+CE141-1,Introduction to Engineering and Design
+CE102-1,Surveying
+CE141-2,Introduction to Engineering and Design
+CE107-1,Fundamentals Of Civil Engineering
+CE109-1,Fundamentals Of Environmental Engineering
+CE111-CB1,Engineering Graphics 1
+CE112-CB1,Engineering Graphics 11
+CE117-1,Introduction To Computing
+CE118-1,Introduction To Surveying
+CE119-1,Fundamentals of Project & Construction Management
+CE221-1,Building Systems
+CE222-1,Civil Engineering Materials and Design
+CE223-1,Computer Aided Design and Surveying
+CE224-1,Engineering Hydraulics I
+CE226-1,Principles of Building
+CE227-1,Strength of Materials
+CE225-1,Engineering Materials
+CE202-1,Principles Of Building
+CE207-1,Engineering Materials
+CE213-1,Strength Of Materials
+CE216-1,Database Applications & Computer Programming
+CE217-1,Elementary Hydraulics
+CE215-1,Introduction To Strength Of Materials
+CE3100-1,Design of Structures
+CE3100-2,Design of Structures
+CE3101-1,Geomechanics and Geology
+CE3102-1,Structural Design I
+CE3102-2,Structural Design I
+CE334-1,Construction Operations
+CE335-1,Engineering Hydraulics II
+CE336-1,Environmental Engineering
+CE340-1,Solids and Structures
+CE340-2,Solids and Structures
+CE341-1,Structural Engineering Design 1
+CE341-2,Structural Engineering Design 1
+CE342-1,Structures I
+CE343-1,Sustainable Energy
+CE344-1,Transportation Systems and Infrastructue I
+CE333-1,Mechanics of Materials
+CE337-1,Introduction to Geomechanics
+CE346-2,Structural Engineering Design 1
+CE307-1,Environmental Engineering
+CE312-1,Elementary Soil Mechanics
+CE313-1,Highway And Traffic Engineering I
+CE318-1,Construction Operations I
+CE319-1,Construction Operations II
+CE320-1,Solids And Structures I
+CE321-1,Solids And Structures II
+CE322-1,Design Of Concrete Structures
+CE323-1,Design Of Steel Structures
+CE327-1,Civil Engineering Infrastructure Design I
+CE327-2,Civil Engineering Infrastructure Design I
+CE329-1,Sustainable Energy
+CE330-1,Engineering Hydraulics I
+CE331-1,Offshore Energy I
+CE332-1,Structures I
+CE319.II-1,Construction Operations II
+CE462-1,Coastal and Offshore Engineering
+CE463-1,Computational Methods in Energy Systems Engineering
+CE464-1,Design of Sustainable Environmental Systems I
+CE465-1,Design of Concrete Structures
+CE466-1,Energy in Buildings
+CE469-1,Hydrology and Water Resource Engineering
+CE472-1,Structural Analysis
+CE473-1,Strucural Design II
+CE473-2,Strucural Design II
+CE474-1,Structural Engineering Design II
+CE474-2,Structural Engineering Design II
+CE475-1,Sustainable Energy & Energy in Buildings
+CE476-1,The Built Environment
+CE477-1,Theoretical and Applied Geomechanics
+CE432-1,Airborne Pollution
+CE448-1,The Built Environment (Architecture & Planning)
+CE405-1,Design Of Structures
+CE405-2,Design Of Structures
+CE414-1,Geotechnical Engineering
+CE419-1,Project Management
+CE421-1,Structural Analysis I
+CE427-1,Design Of Concrete Structures
+CE439-1,Coastal Engineering
+CE441-1,Offshore Engineering
+CE442-1,"Design of Water, Wastewater & Waste Treatment Systems"
+CE445-1,Civil Engineering Infrastructure Design II
+CE451-1,Engineering Hydrology I
+CE452-1,Engineering Hydraulics II
+CE346-1,Structural Engineering Design 1
+CE454-1,Sustainable Energy and Energy in Buildings
+CE455-1,Energy in Buildings
+CE457-1,Computational Methods in Energy Systems Engineering
+CE457-CB1,Computational Methods in Energy Systems Engineering
+CE458-1,Offshore Energy II
+CE459-1,Structures II
+CE413-1,Computational Methods In Civil Engineering
+CE418-CB1,Highway And Traffic Engineering II
+CE429-1,Inelastic Structural Design
+CE434-1,Bituminous Materials
+CE440-1,Structural Analysis II
+CE443-1,Sustainable Energy & Environmental Systems
+CE428-1,Advanced Concrete Design
+CE511-1,Computational Methods in Civil Engineering
+CE514-1,Transportation Systems and Infrastructure II
+CE515-1,Sustainable Energy & Energy in Buildings
+CE513-1,Offshore Engineering
+CE6101-1,Coastal and Offshore Engineering I
+CE6102-1,Design of Sustainable Environmental System I
+CE6103-1,Design of Sustainable Environmental Systems II
+CH101-1,Chemistry
+CH101-2,Chemistry
+CH107-1,Ceimic
+CH107-2,Ceimic
+CH120-1,Chemistry: Molecular Science
+CH120-2,Chemistry: Molecular Science
+CH130-1,Chemistry: The World of the Molecule
+CH130-2,Chemistry: The World of the Molecule
+CH140-1,Engineering Chemistry
+CH202-1,Organic Chemistry
+CH203-1,Physical Chemistry
+CH204-1,Inorganic Chemistry
+CH205-1,Analytical & Environmental Chemistry
+CH307-1,Inorganic Chemistry
+CH311-1,Organic Chemistry
+CH313-1,Physical Chemistry
+CH326-1,Analytical Chemistry & Molecular Structure
+CH332-1,Drug Design & Drug Discovery
+CH335-1,Industrial Chemistry
+CH339-1,Industrial Validation
+CH429-1,Physical Chemistry I
+CH432-1,Physical Chemistry II
+CH438-1,Bioorganic Chemistry
+CH439-1,"Mechanisms, Polymer Chemistry and Photochemistry"
+CH441-1,Biopharmaceutical Chemistry
+CE509-1,Advanced Structures
+CH442-1,Industrial Biochemistry
+CH445-1,Advanced Inorganic Chemistry
+CH446-1,Bioinorganic and Inorganic Medicinal Chemistry
+CH448-1,Spectroscopic & Physical Methods and Application
+CH449-1,Selective Synthesis and Organometallic Chemistry
+CH101-3,Chemistry
+CH107-3,Ceimic
+CH130-3,Chemistry: The World of the Molecule
+CH319-1,Inorganic Chemistry
+CH320-1,Physical Chemistry
+CH324-1,Validation & Industrial Chemistry
+CH327-1,Validation & Industrial Chemistry
+CH329-1,Approaches to Drug Design and Discovery
+CH430-1,Inorganic Chemistry I
+CH431-1,Organic Chemistry I
+CH433-1,Inorganic Chemistry II
+CH434-1,Organic Chemistry II
+CH110-1,Fundamentals of Chemistry
+CH111-1,Engineering and Medical Chemistry
+CH328-1,Molecular Modelling & Drug Design
+CH106-1,Chemistry 1&11
+CH112-1,Ceimic - Innealtóireacht
+CH304-1,Analytical And Industrial Chemistry
+CH308-1,Determination Of Molecular Structure
+CH314-1,Cheminformatics & Validation
+CH103-1,Chemistry
+CH105-1,Chemistry 1
+CH108-1,Chemistry
+CH424-1,Physical Chemistry I / Inorganic Chemistry
+CH425-1,Organic Chemistry I/Problem Solving in Chemistry
+CH426-1,Physical Chemistry II/Bioinorganic Chemistry
+CH427-1,Organic Chemistry II/Problem Solving in Chemistry II
+CH109-1,Ceimic
+CH407-1,Chemistry Paper 1
+CH408-2,Chemistry Paper 2
+CH409-3,Chemistry Paper 3
+CH411-4,Chemistry Paper 4
+CI200-1,Doing Business in China - Language & Culture 1
+CI300-1,Doing Business in China - Language & Culture 1
+CI301-1,Doing Business in China - Language & Culture 2
+CM768-W,New York: Operations & Supply Chain Management
+CM769-W,New York: Designing & Leading Innovative Ventures
+CM771-W,New York: Information Systems for Supply Chain Management
+CM826-W,Montana - Operations Management
+CM770-W,New York: Data Warehousing
+CM101-1,Financial Management
+CP102-1,Chemistry/Physics
+CP102-2,Chemistry/Physics
+CS102-1,Computer Science
+CS102-2,Computer Science
+CS103-1,Computer Science
+CS204-1,Computer Science
+CS209-1,Algorithms And Scientific Computing
+EE346-1,Electrical Power and Machines
+CH306-1,Analytical & Environmental Chemistry
+CS211-1,Programming and Operating Systems
+CS304-1,Mathematical And Logical Aspects Of Computing
+CS310-1,Mathematical And Logical Aspects Of Computing
+CS319-1,Scientific Computing
+CS402-1,Cryptography
+CS423-1,Neural Network
+CS424-1,Object Oriented Programming/Internet Programming
+CS428-1,Advanced Operating Systems
+CS212-1,"Modelling, Analysis & Simulation"
+CS105-1,Introduction to Programming
+CS427-1,Elements of Software Engineering
+CS103.R-1,Computer Science
+CS305-1,Computing Techniques Of Applied Mathematics
+CS207-1,Languages & Operating Systems
+CS305.II-1,Computing Techniques of Applied Mathematics
+CS208-1,Oop Programming In C+Operating Systems
+EC165-1,An Mhicreacnamaíocht
+CS409-1,Advanced Topics in Computing Science
+CT103-1,Programming
+CT108-1,Next-Generation Technologies I
+CT1101-1,Programming I
+CT1102-1,Programming II
+CT1103-1,Fundamental Network & System Administration
+CT1104-1,HPC Technology & Administration
+CT1105-1,HPC System Operations & Management
+CT1110-1,Engineering Computing I
+CT122-CB1,Applications Programming
+CT123-1,Computer Systems
+CT111-1,Programming & Logical Foundations I
+CT112-1,Programming & Logical Foundations II
+CT113-1,Computing Systems & Applications
+CT140-1,Engineering Computing
+CT140-2,Engineering Computing
+CT109-1,Computer Systems & PC Applications
+CT121-CB1,Computer Systems & Applications
+CT2103-1,Systems Analysis & Design
+CT2104-1,Web Application Development
+CT2105-1,Web-based Information Systems
+CT216-1,Software Engineering I
+CT229-1,Programming II
+CT230-1,Database Systems I
+CT248-1,Introduction to Modelling
+CT255-1,Next Generation Technologies II
+CT232-1,Methodology
+CT233-1,Information Systems
+CT241-1,Information Systems I
+CT244-1,Information Systems II
+CT245-1,Technological Frameworks II
+CT223-1,Operating Systems
+CT249.I-1,Game Design & Programming
+CT241.A-1,Information Systems I
+CT246-1,Introduction to Programming
+CT240-1,Programming-Algorithms
+CT243-1,Programming- Data Structures
+CT303-1,Networks & Communications
+CT317-1,Systems Approach
+CT318-1,Human Computer Interaction
+CT319-1,Artificial Intelligence
+CT326-1,Programming III
+CT331-1,Programming Paradigms
+CT332-1,Databases Systems II
+CT335-1,Object Oriented Programming
+CT336-1,Graphics And Image Processing
+CT338-1,Software Engineering & Project Management
+CT339-1,Object Oriented Programming
+CT345-1,Introduction to Modelling
+CT360-1,Next Generation Technologies III
+CT306-1,Formal Methods
+CT343-1,Scientific Computing
+CT331.R-1,Programming Paradigms
+CT344-1,Medical Informatics
+CT323-1,Biomedical Systems
+CT342-1,Semantic Web Services
+CT341-1,Artificial Intelligence
+CT404-1,Graphics & Image Process
+CT411-1,Multi-Media Development
+CT414-1,Distributed Systems & Co Operative Computing
+CT420-1,Real Time Systems
+CT423-1,Systems Theory
+CT439-1,Programming III
+CT474-1,SmartGrid
+CT406-1,Advanced Programming
+CT407-1,Applied Software Engineering
+CT432-1,Distributed Systems & Co Operative Computing
+CT470-1,Object Oriented Programming
+CT425-1,Advanced Communications
+CT433-1,Advanced Studies in IT
+CT503-1,Software Engineering
+CT511-1,Databases
+CT534-1,User Centred Design
+CT537-1,Software Engineering 1
+CT538-1,"Architecture, Operating Systems & Networks for .NET"
+CT542-1,"Architect, Operating Systems & Networks for Unix"
+CT545-1,Enterprise Java Programming
+CT546-1,.NET Programming
+CT548-1,Object Oriented Software Design & Development
+CT549-1,SmartGrid
+CT437-1,Computer Security and Forensic Computing
+CT514-1,IT Strategy
+CT547-1,Data Storage and Retrieval
+CT214-1,Logical Foundations Of Computing
+CT536-1,Object Oriented Software Development 1
+CT543-1,Object Oriented Software Development II
+CT516-1,Computer Architecture And Operating Systems
+CT517-1,Computer Communications
+CT532-1,Internet Programming
+CT560-1,Introduction to Biomedical Systems
+CT520-1,GUI And Object Oriented Programming
+CT522-1,Software Engineering Methods
+CT518-1,Algorithms And Logical Methods
+CT519-1,Applications Programming
+CT521-1,Database Development
+CT627-CB1,Service Oriented Architecture Concepts
+CT602-1,Industrial Automation
+CT853-1,Algorithmics & Logical Methods
+CT861-1,Computing Architecture & Operating Systems
+CT863-1,Interactive Media Technologies
+CT865-1,Human Computer Interaction
+CT866-1,Computer Communications
+CT870-1,Internet Programming
+CT871-1,Software Engineering Methods
+CT874-1,Programming I
+CT875-1,Programming II
+CT854-1,Application Programming
+CT857-1,Database Development
+CT862-1,GUI & Object Oriented Programming
+DJ869-1,Government and Politics
+DJ879-1,Media Ethics
+EC132-1,Applied Economics
+EC135-1,Principles of Microeconomics
+EC136-1,Principles of Macroeconomics
+EC139-1,Principles of Microeconomics
+EC141-1,Principles of Macroeconomics
+EC142-1,Principles of Microeconomics
+EC143-1,Principles of Macroeconomics
+CT509-1,Programming
+EC166-1,An Mhaicreacnamaíocht
+EC133-1,Introductory Microeconomics
+EC145-1,Prionsabail na Micreacnamaíochta
+EC146-1,Prionsbail na Maicreacnamaíochta
+EC191-1,Introduction to Environment & Society
+EC105-1,Economics
+EC118-1,Economics
+EC109-1,Eacnamaíocht
+EC100.1-1,Economics
+EC125-1,Geilleagar
+EC131-1,Public Policy
+EC100-1,Economics
+CT254-1,Information Systems in Health Care
+CT211-1,Next-Generation Technologies II
+EC134-1,Introductory Macroeconomics
+EC118.R-1,Economics
+EC207-1,Irish Economic History
+EC209-1,Managerial Economics
+EC213-1,Macroeconomics
+EC219-1,Comparative Economic Thought
+EC247-1,Introduction to Financial Economics
+EC259-1,Economics of Public Policy
+EC267-1,Economics of Public and Social Policy
+EC268-1,Intermediate Macroeconomics
+EC269-1,Intermediate Microeconomics
+EC272-1,Economics of Family Policy
+EC206-1,Macroeconomics
+EC251-1,Cost Benefit Analysis
+EC265-1,Sustainable/Ecological Economics
+EC274-1,"Ireland, Europe, and the Global Economy"
+EC215-1,Microeconomics
+EC217-1,Macroeconomics
+EC225-1,Economics Of The Welfare State
+EC226-1,Cost Benefit Analysis
+EC229-1,Quantitative Methods in Economics
+EC273-1,Mathematics for Economics
+EC275-1,Statistics for Economics
+EC218-1,Mathematical Economics
+EC222-1,Techniques Of Analysis
+EC233-1,Research Methods In Economics
+EC250-1,Cost Benefit Analysis
+EC252.2-1,Managerial Economics
+EC253.2-1,Macroeconomics
+EC254-1,Economics of Social Policy and the Welfare State
+EC255-1,Comparative Economics Theories
+EC207.CM-1,Irish Economic History
+EC225.CM-1,Economics Of The Welfare State
+EC248-1,Microeconomics
+EC248.CM-1,Microeconomics
+EC249-1,Comparative Economic Thought
+EC256-1,Macroeconomics
+EC257-1,Mathematical Economics
+EC258-1,Cost Benefit Analysis
+EC261-1,Rural Gerontology
+EC262-1,Public Policy for Dependent Older People
+EC325-1,History Of Economic Thought
+EC345-1,Health Economics
+EC357-1,Development Economics
+EC362-1,Economics Of Financial Markets
+EC369-1,Money And Banking
+EC382-1,International Economics
+EC386-1,Public Economics
+EC388-1,Environmental And Natural Resource Economics
+EC341-1,Irish And European Economy
+EC349-1,Economic Theory
+CT417-1,Software Engineering III
+CT475-1,Machine Learning & Data Mining
+EC102-1,Introduction To Macroeconomics
+EC353-1,European Economy (Irish Economy II)
+EC301-1,Irish Economy I/Geilleagar na hEireann I
+EC363-1,Econometrics
+EC378-1,Economics Of Technological Change
+EC381-1,Game Theory And Industrial Organization
+EC385-1,Advanced Economic Theory
+EC393-1,Methodology of Economics
+EC383-1,Regional And Urban Economics
+EC410-1,Economics Of Financial Markets Seminar I
+EC411-1,Economics Of Financial Markets Seminar II
+EC420-1,International Monetary Economics
+EC423-1,Ireland in the Global Economy
+EC424-1,Topics in Macroeconomic Theory
+EC425-1,Topics in Microeconomic Theory
+EC427-1,"Ireland, Europe & the Global Economy"
+EC412-1,Technology & Society
+EC422-1,Applied Econometrics
+EC409-1,Irish Economy
+EC418-1,European Economy
+EC441.4-1,Quantitative Methods
+EC442.4-1,Economic Theory
+EC445-1,Comparative European Economy
+EC501-1,Microeconomic Theory
+EC506-1,Econometrics
+EC5100-1,Agricultural Economics and Policy
+EC5103-1,Natural Resource Governanace
+EC5104-1,Applied Portfolio Management
+EC5105-1,Applied Health Econometrics
+EC5106-1,Market Access in the Healthcare Industry
+EC5109-1,Macroeconomic Theory and Policy
+EC515-1,Data Management & Survey Techniques
+EC517-1,Cost Benefit Analysis & Evaluation
+EC520-1,Health & Social Care
+EC526-1,Public Sector Economics
+EC561-1,Economic Modelling
+EC563-1,International Finance
+EC564-1,Financial Econometrics 1
+EC565-1,Seminar in Financial Economics 1
+EC566-1,Quantitative Methods in Finance
+EC568-1,Seminar in Financial Economics 2
+EC429-1,Marine Economics
+EC572-1,Health Systems & Policy Analysis
+EC576-1,International Monetary Economics
+EC577-1,Irish Economic Policy
+EC579-1,App. Health Tech. Assessment & Decision Modelling
+EC584-1,Economic Evaluation in Health Care
+EC500-1,Economics (Examination & Thesis)
+EC500-2,Economics (Examination & Thesis)
+EC500-3,Economics (Examination & Thesis)
+EC500-4,Economics (Examination & Thesis)
+EC502-1,Macroeconomic Theory
+EC5101-1,Marine Economics and Policy
+EC5102-1,Renewable Energy Economics and Policy
+EC516-1,Policy & Planning Analysis
+EC567-1,Financial Econometrics 2
+EC518-1,Environmental Economics
+EC562-1,Urban and Rural Resource Governance
+EC573-1,Health Technology Assessment
+EC519-1,Local & Rural Development
+EC524-1,Transition Economics
+EC537-1,Economics of Innovation
+EC548-1,Irish Economic Policy
+EC525-1,International Macroeconomics
+EC569-1,Decision Modelling
+EC510-1,Economics
+EC871-1,Economics 1
+ED807-1,Written Paper
+ED710-1,Written Examination & Continuous Assessment
+ED804-1,Written Examination Papers & Continuous Assessment
+ED328-1,Theories of Technology-Enhanced Learning
+ED123-4,Educational Psychology 2 & Special Educational Needs
+ED129-1,"Social, Personal & Health Education (STM)"
+ED175-3,Business Studies
+ED176-3,Economics
+ED177-3,Catechetics
+ED178-3,English
+ED179-3,Gaeilge
+ED180-3,Geography
+ED181-3,History
+ED182-3,"Civic, Social & Political Education"
+ED183-3,Mathematics
+ED184-3,Modern Languages
+ED185-3,Music
+ED186-3,Physical Sciences
+ED187-3,Biological Sciences
+ED191-1,"Curriculum & Assessment, History & Philosophy"
+ED192-2,Educational Psychology I
+ED193-2,Education & Society I
+ED196-4,Education & Society 2
+ED197-3,Skills of Teaching 2
+ED501-1,Education
+ED502-1,Paper II
+ED895-1,Siceolaíocht agus Scileanna Teagaisc
+ED897-2,"Socheolaíocht, Stair agus Fealsúnacht an Oideachas"
+EE130-1,Fundamentals of Electrical & Electronic Engineering I
+EE131-1,Fundamentals of Electrical & Electronic Engineering II
+EE106-1,Analogue Electronics
+EE109-1,Fundamentals Of Electronic Engineering
+EE219-1,Analogue Systems Design I
+EE220-1,Digital Systems I
+EE224-1,Microprocessor Systems Engineering
+EE230-1,Electrical Circuits & Systems
+EE231-1,Electronic Instrumentation and Sensors
+EE232-1,Fundamentals of Electromagnetic Theory
+EE206.I-1,Microprocessor Systems Engineering I
+EE206.II-1,Microprocessor Systems Engineering II
+EE211-1,Analogue Systems Design I
+EE212-1,Biomedical Electronics & Instrumentation
+EE214-1,Fundamentals of Electromagnetic Theory
+EE221-1,Electrical Circuits & Systems I
+EE222-1,Electrical Circuits & Systems II
+EE202-1,Electrical Circuits And Systems
+EE202-2,Electrical Circuits And Systems
+EE3100-1,Analogue Systems Design I
+EE3101-1,Electromechanical Power Conversion
+EE342-1,Analogue Systems Design II
+EE343-1,Communication Signals and Systems
+EE344-1,Communication Systems Engineering
+EE345-1,Digital Systems II
+EE347-1,Embedded Systems Applications Programming
+EE348-1,Engineering Electromagnetics
+EE350-1,Fundamentals of Electromagnetic Theory
+EE352-1,Linear Control Systems
+EE353-1,Microprocessor Systems Engineering
+HI520-1,History of Science
+EE354-1,"Power, Machines & Control"
+EE357-1,Signals and Communications
+EE349-1,Exercise Prescription and Programming
+EE351-1,Kinesiology of Human Movement
+EE356-1,Sports & Exercise Psychology
+EE302.I-1,Electrical Power And Machines I
+EE302.II-1,Electrical Power And Machines
+EE308-1,Signals And Communications
+EE308-2,Signals And Communications
+EE314-1,Communications Systems Engineering
+EE315-1,Semiconductor Technology
+EE316-1,Digital Systems II
+EE318-1,Linear Control Systems I
+EE321-1,Analogue Systems Design II
+EE323-1,Infrastructure for Embedded Systems Programming
+AR239-1,Landscapes of Cult & Kingship:The ancient royal sites of Ireland
+EE207-1,Digital Systems I
+EE324-1,Embedded Systems Application Programming
+EE328-1,Engineering Electromagnetics
+EE329-1,Linear Control Systems II
+EE334-1,Kinesiology of Human Movement
+EE335-1,Sports & Exercise Psychology
+EE336-1,Exercise Prescription & Programming
+EE302-1,Electrical Power And Machines
+EE302-2,Electrical Power And Machines
+EE310-1,Linear Control Systems
+EE328.II-1,Engineering Electromagnetics
+EE333-1,Applied Sports & Exercise Physiology
+EE442-1,Advanced Power Electronics
+EE444-1,Communications and Signal Processing Applications
+EE445-1,Digital Signal Processing
+EE446-1,Embedded Systems Applications Processing
+EE447-1,Engineering Electromagnetics
+EE448-1,Power Electronics
+EE450-1,Power Systems
+EE451-1,System on Chip Design I
+EE452-1,System on Chip Design II
+EE453-1,Telecommunications Software Applications
+EE441-1,Advanced RF Engineering Electromagentics
+EE449-1,"Power, Machines & Control"
+EE409-1,Digital Signal Processing
+EE409-2,Digital Signal Processing
+EE409.I-1,Digital Signal Processing I
+EE411-1,Power Electronics
+EE411-2,Power Electronics
+EE423-1,Telecommunications Software Applications
+EE423-2,Telecommunications Software Applications
+EE427-1,Digital Systems Design & VHDL
+EE427-2,Digital Systems Design & VHDL
+EE432-1,Advanced RF Engineering Electromagnetics
+EE435-1,Embedded Systems Application Programming
+EE436-1,Signals & Communication
+EE436-2,Signals & Communication
+EE437-1,Linear Control Systems II
+EE438-1,Power Systems
+EE461-1,Communication Systems Engineering
+EE439-1,Linear Control Systems I
+EE407-1,E.M. Theory And Applications
+EE431-1,Electromagnetics & Instrumentation
+EE6101-1,Advanced Power Electronics
+EE6102-1,Power Systems
+EH305-1,Hydrology And Hydrogeology
+EH406-1,Engineering Hydrology I
+EH201-1,Elementary Hydraulics
+EH305.I-1,Hydrology and Hydrogeology
+EH305.II-1,Hydrology and Hydrogeology
+EH403-1,Hydrology
+EH405-1,Engineering Hydraulics II
+EH407-1,Engineering Hydrology II
+EH306-1,Engineering Hydraulics I
+EH204-1,Hydraulics
+EI140-1,Fundamentals of Engineering
+EI140-2,Fundamentals of Engineering
+EI160-CB1,Engineering Graphics
+EN124-1,Introduction to English 1
+EN125-1,Introduction to English 2
+EN2110-1,Literature of the American South
+EN2111-1,Nineteenth-Century Gothic Fiction
+EN383-1,Literature And Culture : Romanticism
+EN385-1,Drama And Theatre Studies
+EN387-1,Specialist Studies : Twentieth Century Literature
+EN388-1,Studies In Modern Irish Literature
+ENG203-1,Genre Studies
+ENG214-1,Irish Literature in English Before 1900
+ENG238-1,Nineteenth Century British Literature
+ENG302-1,Modernism/Postmodernism
+ENG303-1,19th Century American Literature
+ENG304-1,Contemporary Literature
+EN384-1,Specialist Studies : 19th Century
+EN264-1,Studies In Medieval Literature
+EN265-1,Studies In Renaissance Literature
+EN267-1,Studies In Genres And Their Histories
+EN288-1,Specialist Studies
+EN291-1,Studies In Critical Theory And Practice
+EN386-1,Literature And Culture : (Post)Modernism
+EN576-1,Studies in Medieval Literature: Drama
+EOS104-1,Introduction to Earth & Ocean Sciences
+EOS104-2,Introduction to Earth & Ocean Sciences
+EOS104.I-1,Introduction to Earth & Ocean Sciences
+EOS104.II-1,Introduction to Earth & Ocean Sciences
+EOS222-1,Ancient Earth Environments
+EOS223-1,Introduction to Palaeontology & Evolution
+EOS224-1,Crystallography and Mineralogy
+EOS225-1,Optical Microscopy of Minerals and Rocks
+EOS229-1,Properties of the Ocean
+EOS230-1,Ocean Processes
+EOS303-1,Ocean Dynamics
+EOS304-1,Aquatic Geochemistry
+EOS305-1,Introduction to Applied Field Hydrology
+EOS320-1,Applied and Environmental Geophysics
+EOS321-1,Igneous Petrology
+EOS322-1,Metamorphic Petrology
+EOS323-1,Sediments and the Sedimentary Record
+EOS324-1,Applied Palaeobiology
+EOS402-1,Global Change
+EOS406-1,Natural & Manmade Hazards
+EOS407-1,History of Life
+EOS409-1,Biophysical Interactions in the Ocean
+EOS417-1,Petrotectonics
+EOS418-1,Applied Field Hydrogeology
+EOS419-1,Applied and Marine Geophysics
+EOS422-1,Sedimentary Basins
+EOS6101-1,Global Change
+EOS212-1,Sediments and Biosphere I
+EOS213-1,Introduction to Ocean Science
+EOS216-1,Geology for Engineers 1
+EOS228-1,"Crystals, Minerals & Rocks"
+EOS311-1,Environmental Geoscience
+EOS312-1,Sediments & Biosphere 2
+EOS313-1,Marine Geoscience
+EOS314-1,Igneous & Metamorphic Petrology
+EOS410-1,Geology For Engineers II
+EOS412-1,Environments and the History of Life
+EOS413-1,Biophysical and Biogeochemical Interaction in the Oceans
+EOS414-1,Petrogenesis of Igneous and Metamorphic Rocks
+EOS415-1,Applied Geoscience
+EOS221-1,Fundamental Skills 1 in Earth & Ocean Sciences
+EOS315-1,Plate Tectonics & Structural Geology
+EOS411-1,Environmental and Marine Geophysics
+EOS211-1,Evolution of the Earth
+EOS213.I-1,Introduction to Ocean Science
+FR107-1,French Language 1B
+EOS416-1,"Climate Change, Energy and Resource Management"
+EOS420-1,Climate Change
+EOS421-1,"Energy, Natural Resources and Sustainable Management"
+EOS214-1,Materials of the Lithosphere
+EOS226-1,Introduction to Field & Environmental Geology
+EP505-1,Occupational Hygiene
+EP517-1,Clinical Instrumentation
+EP518-1,Radiation Fundamentals
+EP328-1,Physics Of The Environment I
+EP329-1,Physics Of The Environment II
+EP352-1,Nuclear and Plasma Physics
+EP353-1,Electronic Systems and Signals
+EP354-1,Thermal Physics and Materials
+EP356-1,Quantum Physics
+EP406-1,Spectroscopy
+EP407-1,Solid State Physics
+EP408-1,Optoelectronics
+EP435-1,Electromagnetism and Relativity
+EP457-1,Quantum Mechanics
+EP458-1,Nanotechnology
+EP459-1,Applied Optics
+EP463-1,Atmospheric Physics
+EP464-1,Signal & Image Processing
+EP465-1,Radiation & Medical Physics
+EP466-1,Astrophysics
+EP211-1,"Electricity And Magnetism, Electrical Circuits"
+EP212-1,"Mechanics, Oscillations And Waves"
+EP213-1,Modern Physics
+EP214-1,Thermodynamics
+EP317-1,Occupational Hygiene
+EP355-1,Computational Physics
+EP101-1,Experimental Physics
+EP104-1,Principles of Physics
+EP351-1,Wave Optics
+EP514-1,Lasers And Applications
+EP532-1,Medical Imaging
+EP102-1,Experimental Physics
+EP106-1,Introduction to Medical Physics
+EP311-1,"Light, Electricity And Magnetism, And X-Rays"
+EP312-1,Electronics And Devices
+EP324-1,Signal Analysis
+EP325-1,Quantum Physics
+EP326-1,Solid State Electronics
+EP339-1,Instrumentation
+EP343-1,Atmospheric Composition and Climate Change I
+EP344-1,Atmospheric Composition and Climate Change II
+EP429-1,Networking
+EP441-1,Written Papers
+EP441-2,Written Papers
+EP441-3,Written Papers
+EP441-4,Written Papers
+EP441-5,Written Papers
+EP441-6,Written Papers
+EP441-7,Written Papers
+EV203-1,Ecological Survey Techniques
+EV306-1,Legislation for Environmental Scientists
+EV307-1,Nature Conservation & Habitat Management
+EV405-1,Environmental Impact Assessment
+EV406-1,Environmental Science Seminars
+EV202-1,Environmental Management
+EV302-1,Environmental Management
+EV303-1,Environmental Legislation
+EV401-1,Environmental Management
+EV401-2,Environmental Management
+EV201-1,Environmental Management/Legislation
+FA318-1,"Innovation, Creativity & Enterprise"
+FR105-1,French
+FR105-2,French
+FR110-1,French Language IX
+FR1100-1,Introduction to French Language and Culture
+FR1100-2,Introduction to French Language and Culture
+FR111-1,French Language 2X
+FR137-1,French for Biotechnology I
+FR216-1,French for Biotechnology II
+FR252-1,French
+FR256-1,French
+FR256-2,French
+FR266-1,French Language 5
+FR267-1,La France mise en scène
+FR268-1,Identités francophones
+FR269-1,"Lecture du français: Textes, Contextes, Idées"
+FR270-1,Langue poétique/  langue vivante
+FR299.II-1,French Language II (VS)
+FR356-1,French
+FR356-2,French
+FR364-1,French for Biotechnology III
+FR365-1,Advanced French for Science
+FR366-1,French and Francophone Studies 10
+FR371-1,French Literature & Culture 7
+FR372-1,French Literature & Culture 8
+FR379-1,French Language 6
+FR360-1,French Society & Racism
+FR228-1,French & Francophone Studies 4
+FR262-1,French Literature & Culture 3
+FR265-1,French Literature & Culture 6
+FR374-1,French Literature & Culture 10
+FR506.II-1,French Language IV (VS)
+FR129-1,French for Improvers I
+FR259-1,French
+FR263-1,French Literature & Culture 4
+FR352-1,French
+FR363-1,French
+FR255-1,French
+FR335-1,19th Century Novel
+FR346-1,Poetry and Otherness
+FR355-1,French
+FR106-1,French Language 1A
+FR108-1,French Literature & Culture 1
+FR205-1,17th Century Ideas
+FR206-1,Media in France
+FR207-1,18th Century Ideas
+FR208-1,19th Century French Poetry
+FR231-1,French Language 11
+FR245-1,French Naturalist Fiction - E.Zola
+FR249-1,French Cinema
+FR260-1,French Language IIA
+FR261-1,French Language IIB
+FR310-1,Reading History as Literature
+FR331-1,French Language 111
+FR334-1,The French Retreat from Empire
+FR345-1,Post Romanticism
+FR348-1,20th Century French Novel
+FR349-1,French Renaissance Humanism
+FR353-1,Sociolinguistics of French
+FR359-1,Gender & Modernity in France
+FR361-1,Media and Information
+FR101-1,French Language I
+FR209-1,The French and Francophone Chanson
+FR210-1,Multiculturalism in France
+FR222-1,Formes breves
+FR237-1,Francophone Literatures I
+FR247-1,French Language 11
+FR258-1,Introduction to Sociolinguistics
+FR288-1,Introduction To Linguistics
+FR354-1,Comparing Medieval Texts
+FR411-1,French Language IV
+FS301-1,Studies in European Cinema I
+FS302-1,Studies in European Cinema II
+GA2104-1,Scríobh agus Léamh 2 A2
+GA2106-1,Scríobh agus Léamh 2 B1
+GA2108-1,Léamh agus Scríobh 2 B2
+GF400-1,Cruinneas na Gaeilge 4
+GF302-1,Aistriúchán Feidhmeach Téacsanna 1
+GF305-1,Aistriúchán Feidhmeach Téacsanna 2
+GP501-1,General Practice
+GP603-1,General Practice: Section A - Written Professional Exam
+GP201-1,Medical Professionalism 1
+GP202-1,Medical Professionalism 2
+GR106-1,Legal German
+GR1100-1,German Language and Culture (Advanced)
+GR1100-2,German Language and Culture (Advanced)
+GR1101-1,German Language and Culture (Beginners)
+GR1101-2,German Language and Culture (Beginners)
+GR130-1,Beginners German Language 1
+GR131-1,Beginners German Language 2
+GR138-1,Beginners German for B. Corp Law and BCL students
+GR140-1,German Language I (Beginners)
+GR141-1,German Language I (Advanced)
+GR142-1,Advanced German Language 1
+GR150-1,German for Biotechnology I
+GR208-1,Legal German
+GR223-1,German
+GR223-2,German
+GR224-1,Beginner's German for Science
+GR235-1,History of German Literature & Culture II
+GR236-1,German Language I
+GR237-1,German Language II
+LW329-1,Tort
+GR239-1,History of German Literature & Culture I
+GR241-1,German for Biotechnology II
+GR252-1,German
+GR317-1,Legal German
+GR337-1,German Cultural Studies I
+GR339-1,German Cultural Studies III
+GR341-1,German Language I
+GR342-1,German Language II
+GR353-1,German
+GR356-1,Applied Language - German
+GR356-2,Applied Language - German
+GR358-1,German for Biotechnology III
+GR143-1,Advanced German Language 2
+GR340-1,German Cultural Studies IV
+GR253-1,German
+GR328-1,German
+GR352-1,German
+GR141-2,German Language I (Advanced)
+GR431-1,German Language IV
+GR331-1,German Language III
+GR508-1,German Language
+GR508-2,German Language
+GR550-1,Advanced Language Skills (German)
+GR201-1,German Language II
+GR215-1,German for Improvers II
+GR219-1,History of German Literature & Culture I
+GR220-1,History of German Literature & Culture 2
+GR230-1,German Language I
+GR301-1,German Language III
+GR301-2,German Language III
+GR326-1,History of German Literature & Culture 3
+GR327-1,"Literature & Culture of the ""Wiener Moderne"""
+GR330-1,History of German Literature & Culture 4
+GR128-1,German for Improvers I
+GR222-1,German
+GR227-1,Literature & Love
+GR234.I-1,German Language II (VS)
+GR234.II-1,German Language II (VS)
+GR258-1,Introduction to Sociolinguistics
+GR288-1,Introduction To Linguistics
+GR322-1,Literature and the Arts
+GR334.I-1,German Language III (VS)
+GR355-1,Applied Language - German
+HI111-1,War & Society in the Age of the Great War
+HI112-1,War & Society in the Age of the French Revolution
+HI170-1,"Europe, 1918-1989"
+HI208-1,The Two Irelands in the 20th Century
+HI2100-1,"Ireland in a Global Context, 1922-2002"
+HI2102-1,"The Modern United States, 1865-2008"
+HI211-1,Medieval Ireland 5th-9th Century
+HI2111-1,Ireland Under the Union:  1801-1922
+HI262-1,Medieval Europe C1050-1250
+HI267-1,Reformation Europe
+HI267.E-1,Reformation Europe
+HI292-1,"Central Europe, 1867-1918"
+HI362-1,Party & Power In 19th & 20th Century British History.
+HI376-1,Popular Culture In Pre-Industrial Europe
+HI407-1,Catholic Identity in Early Modern Europe
+HI459-1,"The Tudors: Religion, State & Society"
+HI488-1,"Labour in Irish Society & Politics, c. 1760-1960"
+HI493-1,Economy and Society in Early Modern Europe
+HI579-1,"From Beveridge to Thatcher: Politics, society, economy&welfare; in Britain, 48-92"
+HI585-1,"Debates and Controversies in European Women's History, 1780-1939"
+HI204-1,"18th Century Ireland, 1691-1801"
+HI204.E-1,18th Century Ireland 1691-1801
+HI251-1,Ireland In The Nineteenth Century
+HI3100-1,Brave New World: Globalisation since 1945
+HI327-1,Early Irish Law
+HI358-1,The Tudor Conquest Of Ireland
+HI492-1,The Family in Modern Ireland
+HI576-1,"European Warfare, 1618-1714"
+HI576.E-1,"European Warfare, 1618-1714"
+HI171-1,Social History of Ireland 1850-1922
+HI259-1,"Rise Of Modern America, 1865-1996"
+HI337-1,Nazi Germany
+HI349-1,Media And Empire
+HI365-1,Native North Americans: From Pre-History To Present
+HI368-1,The Development Of Irish Script From The Cathach of Colm To The Book Of kells
+HI577.E-1,Topics and Themes in Twentieth-century Irish History
+HI577.II-1,Topics and Themes in Twentieth-century Irish History
+HI223-1,Aspects Of Modern Irish History 1750 - 1900
+HI288-1,State & Society in Early Modern Europe 1555-1685
+HI304-1,"Cultural Revival and State Formation in Ireland, c.1880-1939"
+HI312-1,"Poverty,Crime And Gender In Europe 1780-1914"
+HI442-1,The French Fourth and Fifth Republics
+HI564.II-1,Irish History from the Famine to Independence
+HI568-1,The First Century of Crusading
+HI169-1,"The British Empire, 1756-1968"
+HI345-1,Women In Medieval Society
+HI403-1,The Military in the 17th & 18th Century Europe
+HI408-1,"The Rise & Fall of the British World, 1870-1970"
+HI521-1,"The Making of Britain, 1780-1900"
+HI253-1,"Gender, Work And Family In Ireland, 1850-1922"
+HI263-1,Government Policy And Economic Development In Ireland Since  1922
+HI328-1,The Northern Ireland Problem
+HI359-1,The Crusades: Idea And Reality
+HI461-1,The Irish Emigrant Experience 1800-1939
+HI252-1,"Problems In The History Of Ireland, 1580-1700"
+HI289-1,"The British Empire, 1815-1880"
+HI291-1,"The British Empire, 1880 - 1945"
+HI296-1,The Roman Empire
+HI417-1,Labour in Irish Society & Politics in Ireland c.1800-1960
+HI418-1,"Ireland & the War of the Three Kingdoms, 1638-1660"
+HI426-1,Nature and Society in Victorian Britain
+HI477-1,"Cicero and the Fall of the Roman Republic, 106-42 BC"
+HI485-1,"Rome and the Conquest of the Mediterranean, 264-146 BC"
+HI158-1,Catholic Identity in Early Modern Europe
+HI229-1,Medieval Europe 5th - 9th Century
+HI230-1,European Social History 1650 - 1750
+HI244-1,British History 1450-1603
+HI317-1,"Science, Technology & Progress"
+HI248-1,"Medieval Europe, c1250-1500"
+HI274-1,The Rise & Fall of the Roman Empire
+HI314-1,History Of The Book In The Industrial Age
+HI315-1,"Iona, Columba And Kells - The History & Literature Of An Early Irish Monastery"
+HI411-1,Race & Class in the American South 1865-1950
+HI422-1,"The Rise & Fall of the British Raj, 1780-1947"
+HI427-1,The Habsburg Empire 1492-1714
+HI435-1,The German Kaiserreich:State & Society 1870-1918
+HI453-1,The History of the United States since 1861
+HI454-1,"The US & the American Century, 1941-1975"
+HI455-1,European Imperialism 1870-1918
+HI456-1,American Labour History since 1865
+HP302-1,Occupational Health
+HP440-1,Health & the Work Environment
+HP501-1,Occupational Health
+HP846-1,Foundations of Health Promotion
+HP848-1,Determinants of Health
+HP303-1,Environmental Epidemiology
+HP805-1,Health And Public Policy
+HP837-1,Research Project Protocol
+HP844-1,Health Informatics
+HP858-1,Health Services
+HP861-1,Epidemiological and Statistical Methods in Health Services Research
+HP862-1,"Evaluation, Quality and Economics in Health Services Research"
+HP864-1,Determinants of Health - HSR
+HP401.R-1,Behavioural Science
+HP805.HR-1,Health & Public Policy
+IE131-1,Introduction to Safety & Risk
+IE221-1,Health & Safety Practice
+IE225-1,Project Planning and Organisation
+IE226-1,Quality Management
+IE309-1,Operations Research
+IE319-1,Operations Strategy
+IE323-1,Information Systems Ergonomics
+IE342-1,Safety Systems Design
+IE345-1,Logistics and Transportation
+IE417-1,Ergonomic Design of the Workplace
+IE444-1,Human & Systems Reliability
+IE444-2,Human & Systems Reliability
+IE446-1,Project Management
+IE448-1,Safety & Construction
+IE450-1,Lean Systems
+IE520-1,Ergonomics
+IE520-2,Ergonomics
+IE522-1,Safety And Risk Management
+IE332-1,Quality Management
+IE447-1,Regulatory Affairs & Case Studies
+IE581-1,Management Systems
+IE209-1,Fundamentals of Operations Engineering
+IE228-1,Operations Systems and Safety Technology
+IE321-1,Operations Research I
+IE828-1,Operations Management
+IE119-1,Introduction to Health & Safety for Engineers
+IE122-1,Health & Safety Systems and Policy
+IE317-1,Business Logistics
+IE424-1,Operations Strategy
+IE222-1,Industrial Systems I
+IE223-1,Industrial Systems II
+IE433-1,Quality Engineering
+IE213-1,Database Applications
+IE324-1,Systems Simulation
+IE329-1,Logistics
+IE423-1,Computer Integrated Manufacturing
+IE879-1,Statistical Quality Control II
+IE120-1,Health & Safety Systems And Policy I
+IE203-1,Production Engineering
+IE445-1,Measurement & Calibration
+IE574-1,Operations & Supply Chain Management
+IE814-1,Tools and Methodologoies for Quality and Environmental Management
+IE815-1,Quality and Regulatory Systems
+IE864-1,Reliability & Maintenance
+IE878-1,Statistical Quality Control I
+IE884-1,Measurement & Calibration
+IE109-1,Computing And Information Systems
+IE110-1,Introduction To Industrial Engineering
+IE427-1,Systems Engineering
+IE873-1,Quality Management I
+IE874-1,Quality Management II
+IE882-1,"Safety, Liability & Environment"
+IR120.I-1,Imagining Modern Ireland: An Introduction to Irish Culture Studies
+IR120.II-1,Imagining Modern Ireland: An Introduction to Irish Culture Studies
+IT105-1,Italian
+IT1100-1,Italian Language and Culture
+IT125-1,Italian Language 2
+IT236-1,Intermediate language II
+IT324-1,Language 111
+IT334-1,Italian Language
+IT251-1,Italian Language II
+IT343-1,Italian Culture & Society IV
+IT238-1,Italian Culture & Society I
+IT239-1,Italian Culture & Society II
+IT342-1,Italian Culture & Society III
+IT124-1,Italian Language 1
+IT226-1,Twentieth-Century Fiction
+IT227-1,Recent Italian Cinema
+IT232-1,The Modern Italian Short Story
+IT235-1,Intermediate Language I
+IT289-1,Dante
+IT317-1,Boccaccio
+IT327-1,Machiavelli
+IT335-1,Translation Techniques - Part 2
+IT338-1,Twentieth Century Italian Poetry
+IT515-1,Text & Document Translation (Italian)
+IT207-1,Dante (Part 1)
+IT208-1,Early Italian Art
+IT215-1,Language II
+IT222-1,Translation Techniques - Part I
+IT258-1,Introduction to Sociolinguistics
+IT288-1,Introduction To Linguistics
+IT325-1,Dante (Part 2)
+IT326-1,Renaissance Art
+LA311-1,Advanced Classical and Late-Antique Latin
+LA312-1,Advanced Medieval Latin
+LA313-1,Latin Texts and Contexts
+LA315-1,Style and Artistry in Classical Latin
+LA100-1,Latin (Beginners)
+LA100-2,Latin (Beginners)
+LA120-1,Introduction to Latin Part I
+LA122-1,Introduction to Latin Part II
+LA217-1,Introduction to Reading Latin Prose
+LA219-1,Intermediate Medieval Latin I
+LA220-1,Intermediate Latin Prose Text
+LA222-1,Intermediate Medieval Latin II
+LA515-1,Latin Language
+LN103-1,Gnéithe den Aistriúchán
+LN104-1,Cruinnscríobh agus Aistriúchán
+LN201-1,Aistriúchán Feidhmeach Téacsanna I
+LN303-1,Aistriúchán Feidhmeach Téacsanna 3
+LN203-1,Gramadach agus Litriú na Gaeilge I
+LN204-1,Aistriúchán Feidhmeach Téacsanna II
+LW103.I-1,Irish Legal Systems
+LW108-1,Irish Legal System
+LW109-1,Legal French
+LW117-1,Constitutional Law
+LW117-2,Constitutional Law
+LW118-1,Contract
+LW122-1,Legal Procedure
+LW125-1,Key Issues in Irish Law
+LW127-1,Family Law
+LW130-1,Irish Legal Systems
+LW131-1,Irish Legal Systems
+LW170-1,Introduction to Health and Safety Law
+LW190-1,Business Law 1
+LW114-1,Law And Social Policy
+LW160-1,Business Law
+LW160.DB-1,Business Law
+LW106-1,Law Of Contract
+LW121-1,Irish Legal Systems
+LW116-1,Public Law II
+LW160.R-1,Business Law
+LW202-1,Contract I
+LW203-1,Tort I
+LW205-1,Contract II
+LW206-1,Torts II
+LW212-1,Labour Law I
+LW213-1,Legal French I
+LW214-1,Health & Safety Law
+LW215-1,Commercial Law
+LW216-1,Labour Law II
+LW217-1,Environmental Legislation
+LW225-1,Land Law I
+LW226-1,Land Law II
+LW227-1,Constitutional Law I
+LW228-1,Constitutional Law II
+LW229-1,Company Law I
+LW231-1,Company Law II
+LW232-1,Housing Law & Policy
+LW238-1,Family Law I
+LW239-1,Family Law II
+LW262-1,Tort
+LW263-1,Equity I
+LW265-1,Equity II
+LW290-1,Business Law II
+LW222-1,European Community Law I
+LW223-1,European Community Law II
+LW224-1,European Community Law
+LW250.2-1,Business Law I
+LW220-1,Sociology Of Law
+LW222.R-1,European Community Law I
+LW223.R-1,European Community Law II
+LW229.R-1,Company Law I
+LW231.R-1,Company Law II
+LW251-1,Health Law & Policy
+LW301-1,Criminal Law I
+LW304-1,Criminal Law II
+LW308-1,Jurisprudence
+LW308-2,Jurisprudence
+LW302-1,Constitutional Law I
+LW305-1,Constitutional Law II
+LW301.R-1,Criminal Law I
+LW3101-1,Criminal Law I
+LW3102-1,Criminal Law II
+LW318-1,Evidence
+LW312.II-1,Family Law II
+LW323-1,Public International Law
+LW327-1,Constitutional Law
+LW328-1,Contract
+LW323.II-1,Public International Law II
+LW323.I-1,Public International Law
+LW324-1,Revenue Law
+LW333-1,Comparative Competition Law
+LW337-1,Administrative Law I
+LW330-1,Criminal Law
+LW337.II-1,Administrative Law I
+LW343-1,International Protection Of Human Rights
+LW354-1,Media Law
+LW356-1,Industrial And Intellectual Property Law
+LW357-1,Environmental Law I
+LW358-1,Environmental Law II
+LW354.R-1,Media Law
+LW312-1,Family Law
+LW356.R-1,Industrial And Intellectual Property Law
+LW360-1,Equity I
+LW361-1,Planning And Law I
+LW363-1,Equity II
+LW364-1,International Trade Law
+LW365-1,Criminology
+LW370-1,Comparative Disability Law
+LW377-1,Company Law I
+LW378-1,Company Law II
+LW379-1,Legal & Business Ethics
+LW371-1,Alternative Dispute Resolution
+LW372-1,Insurance Law
+LW374-1,Banking Law
+LW372.R-1,Insurance Law
+LW380-1,Legal French II
+LW385-1,European Human Rights
+LW382-1,International Business Law
+LW384-1,Business Law
+LW383-1,Information Technology Law
+LW394-1,Criminal Justice
+LW398-1,English Land Law
+LW393-1,Entertainment Law
+LW394.R-1,Criminal Justice
+LW405-1,Health Law & Policy
+LW409-1,Criminal Law I
+LW4101-1,European Union Law I
+LW4102-1,European Union Law II
+LW4103-1,Administrative Law I
+LW4104-1,Administrative Law II
+LW411-1,Company Law I
+LW413-1,Criminal Law II
+LW414-1,Company Law II
+LW415-1,Law of the Sea
+LW419-1,Health and Safety Law
+LW422-1,Administrative Law II
+LW423-1,Advanced Business Law
+LW426-1,EU Competition Law
+LW427-1,European Union Law I
+LW428-1,European Union Law II
+LW490-1,Legal Studies
+LW429-1,European Union Law
+LW418-1,Immigration Law
+LW404-1,Commercial Law II
+LW405.I-1,Health Law & Policy
+LW405.II-1,Health Law & Policy
+LW408-1,European Community Law I
+LW412-1,European Community Law II
+LW401-1,Ec Competition Law
+LW403-1,Commercial Law I
+LW422.R-1,Administrative Law II
+LW406-1,Education and the Law
+LW501-1,Legal Studies
+LW503-1,European Union Law I
+LW504-1,European Union Law II
+LW513-1,Evidence I
+LW514-1,Evidence II
+LW517-1,Public International Law I
+LW518-1,Public International Law II
+LW502-1,Information Technology: Law & Regulation
+LW505-1,Law & Policy Relating to Business Enterprise
+LW871-1,Media Law
+LW952-1,U.Of Maine  International Law
+MA102-1,Anailís agus Algéabar
+MA102-2,Anailís agus Algéabar
+MA109-1,Statistics for Business
+MA119-1,Mathematics for Business
+MA133-1,Analysis and Algebra 1
+MA134-1,Anailís agus Algéabar 1
+MA135-1,Analysis and Algebra 2
+MA136-1,Anailís agus Algéabar 2
+MA140-1,Engineering Calculus
+MA160-1,Mathematics
+MA160-2,Mathematics
+MA161-2,Mathematical Studies
+MA180-1,Mathematics (Honours)
+MA180-2,Mathematics (Honours)
+MA185-1,Analysis and Algebra 1
+MA186-1,Analysis and Algebra 2
+MA190-1,Mathematics (Honours)
+MA190-2,Mathematics (Honours)
+MA199-1,Statistics & Probability & Maths Of Finance
+MA199-2,Statistics & Probability & Maths Of Finance
+MA199-3,Statistics & Probability & Maths Of Finance
+MA101-1,Calculus I
+MA103-1,Algebra I
+MA111-1,Mathematics Of Finance I
+MA112-1,Probability And Statistics I
+MA113-1,Probability And Statistics II
+MA114-1,Mathematics & Statistics for Business
+MA114-2,Mathematics & Statistics for Business
+MA181-1,Analysis
+MA183-1,Algebra
+MA115-1,Anailís
+MA116-1,Algéabar
+MA121-1,Calculus and Algebra 1
+MA122-1,Calculus and Algebra 2
+MA150-1,Mathematics
+MA150-2,Mathematics
+MA100-1,Mathematics
+MA100-2,Mathematics
+MA130.R-1,Mathematics
+MA130.R-2,Mathematics
+MA203-1,Linear Algebra
+MA204-1,Discrete Mathematics
+MA208-1,Quantitative Techniques for Business
+MA2101-1,Mathematics and Applied Mathematics I
+MA211-1,Calculus I
+MA212-1,Calculus II
+MA215-1,Mathematical Molecular Biology I
+MA216-1,Mathematical Molecular Biology II
+MA161-1,Mathematical Studies
+MA217-1,Statistical Methods for Business
+MA218-1,Advanced Statistical Methods for Business
+MA283-1,Linear Algebra
+MA284-1,Discrete Mathematics
+MA286-1,Analysis I
+MA287-1,Analysis II
+MA222-1,History Of Mathematics 11
+MA254-1,Engineering Algebra
+MA227-1,Probability And Statistics 1
+MA228-1,Probability And Statistics II
+MA235-1,Probability
+MA236-1,Statistical Inference
+MA237-1,Statistics I
+MA238-1,Statistics II
+MA256-1,Engineering Calculus
+MA260-1,Engineering Numerical Analysis
+MA278-1,Engineering Statistics
+MA221-1,History Of Mathematics 1
+MA296-1,Linear Algebra & Discrete Mathematics (Ma203&Ma204;)
+MA296-2,Linear Algebra & Discrete Mathematics (Ma203&Ma204;)
+MA241-1,Calculus II
+MA250-1,Mathematics
+MA250-2,Mathematics
+MA297-1,Curriculum Studies in Mathematics
+MA252.2-1,Mathematics
+MA219-1,Linear Algebra
+MA224-1,Discrete Mathematics
+MA232-1,Calculus I
+MA242-1,Statistics I
+MA243-1,Statistics II
+MA244-1,Algebra
+MA246-1,Analysis I
+MA247-1,Analysis II
+MA301-1,Advanced Calculus
+MA302-1,Complex Variable
+MA311-1,Annuities & Life Assurance
+MA313-1,Linear Algebra I
+MA324-1,Introduction to Bioinformatics (Honours)
+MA334-1,Geometry
+MA335-1,Algebraic Structures
+MA341-1,Metric Spaces
+MA342-1,Topology
+MA343-1,Groups I
+MA344-1,Groups II
+MA378-1,Numerical Analysis II
+MA385-1,Numerical Analysis I
+MA310-1,Actuarial Mathematics I
+MA314-1,Linear Algebra II
+MA322-1,Applied Statistics
+MA325-1,Mathematical And Logical Aspects Of Computing 1
+MA326-1,Mathematical And Logical Aspects Of Computing 11
+MA328-1,Statistics (Honours)
+MA337-1,Statistics I
+MA338.II-1,Statistics II
+MA387-1,Statistics
+MA391-1,Statistics II
+MA327-1,Numerical Mathematics
+MA358-1,Numerical Mathematics
+MA338-1,Statistics II
+MA307-1,Biostatistics
+MA410-1,Artificial Intelligence
+MA416-1,Rings
+MA418-1,Differential Equations With Financial Derivatives
+MA437-1,Introduction to Mathematical Research Topics I
+MA438-1,Introduction to Mathematical Research Topics II
+MA482-1,Functional Analysis
+MA490-1,Measure Theory
+MA491-1,Field Theory
+MA492-1,Cryptography
+MA495-1,Actuarial Mathematics: Life Contingencies II
+MA419-1,Statistics
+MA461-1,Probabilistic Models for Molecular Biology
+MA494-1,Stochastic Processes
+MA440-1,Statistics
+MA484-1,Statistics
+MA486-1,Statistics II
+MA424-1,Algebraic Structures
+MA481-1,Measure Theory And Functional Analysis
+MA481.3-1,Measure Theory and Functional Analysis
+MA483.3-1,Field Theory
+MA5103-1,Topics in Mathematics 3
+MA5104-1,Topics in Mathematics 4
+MA530-1,Numerical Analysis I
+MA531-1,Numerical Analysis II
+MA532-1,Groups I
+MA533-1,Groups II
+MA534-1,Topics in Analysis I
+MA535-1,Topics in Analysis II
+MA536-1,Statistics I
+MA537-1,Statistics II
+MA538-1,Advanced Algebra I
+MA539-1,Advanced Algebra II
+MA542-1,Number Theory I
+MA543-1,Number Theory II
+MA544-1,Mathematical Logic I
+MA545-1,Mathematical Logic II
+MA547-1,Topics in Analysis
+MA548-1,Topics in Algebra
+MA549-1,Topics in Probability/Statistics
+MA551-1,Topics in Topology and Algebraic Topology
+MA540-1,Advanced Analysis I
+MA541-1,Advanced Analysis II
+MA550-1,Topics in Group Theory
+MD103-1,Introduction to Medicine
+MD1101-1,Basics of body structure/musculoskeletal system
+MD121-1,Cardiovascular System
+MD122-1,Respiratory System
+MD123-CB1,Renal System
+MD124-1,Gastro-Intestinal System
+MD137-CB1,Principles of Physiology
+MD138-CB1,"Biomolecules, Metabolism and Energy"
+MD139-1,Medical Professionalism 1
+MD139-CB1,Medical Professionalism 1
+MD140-CB1,"Metabolism, Nutrition and Health"
+MD103-2,Introduction to Medicine
+MD135-1,Musculoskeletal System and Peripheral Nerves
+MD136-1,General Principles of Human Body Structure
+MD121-CB1,Cardiovascular System
+MD105-1,Introduction to Anatomy/Musculoskeletal
+MD106-1,Introduction to Pharmacology
+MD107-CB1,Introduction to Physiology
+MD109-CB1,Introduction to Biochemistry
+MD124-CB1,Gastro-Intestinal System
+MD125-1,Nutrition
+MD128-CB1,Professionalism 1.1
+MD104-1,The Central Nervous System (CNS)
+MD107-1,Introduction to Physiology
+MD109-1,Introduction to Biochemistry
+MD122-CB1,Respiratory System
+MD123-1,Renal System
+MD120-1,Professionalism 1
+MD126-1,Professionalism 2
+MD112-1,Clinical Teaching Methodologies
+MD116-1,Assessment of Clinical Teaching
+MD201-CB1,Health & Disease
+MD201-CB2,Health & Disease
+MD202-1,Medical Professionalism 2
+MD202-CB1,Medical Professionalism 2
+MD204-CB1,Drugs and Disease
+MD206-1,Molecular Medicine
+MD209-CB1,Organ Failure
+MD210-1,"Genes, Gametes & Embryos"
+MD214-CB1,Introduction to Pharmacology
+MD224-CB1,The Central Nervous System
+MD224-1,The Central Nervous System
+MD200-CB1,Organ Failure
+MD201-1,Health & Disease
+MD201-2,Health & Disease
+MD203-1,Endocrinology
+MD207-CB1,Professionalism 2.1
+MD208-CB1,Professionalism 2.2
+MD213-CB1,Genetics
+MD216-1,Reproduction & Development
+MD204-1,Drugs and Disease
+MD213-1,Genetics
+MD200-1,Organ Failure
+MD205-1,Medical Professionalism 1
+MD302-CB1,Health and Disease II
+MD302-CB2,Health and Disease II
+MD304-CB1,Global Health and Development
+MD313-1,Foundations in Clinical Management
+MD314-CB1,Foundations in Clinical Theory
+MD316-1,Professionalism - Core Clinical Skills
+MD316-CB1,Professionalism - Core Clinical Skills
+MD302-1,Health and Disease II
+MD302-2,Health and Disease II
+MD304-1,Global Health and Development
+MD316-2,Professionalism - Core Clinical Skills
+MD301-1,Forensic Medicine
+MD306-1,Care of the Elderly
+MD306-CB1,Care of the Elderly
+MD307-1,Acute Hospital Care
+MD307-CB1,Acute Hospital Care
+MD308-1,"Respiratory, Critical & Peri-operative Care"
+MD308-CB1,"Respiratory, Critical & Peri-operative Care"
+MD309-1,Cardiovascular Studies
+MD309-CB1,Cardiovascular Studies
+MD310-1,Gastrointestinal Studies
+MD305-1,Foundations of Clinical Medicine
+MD305-CB1,Foundations of Clinical Medicine
+MD420-1,Primary Care & Mental Health
+MD420-CB1,Primary Care & Mental Health
+MD422-1,Women's & Children's Health
+MD422-2,Women's & Children's Health
+MD422-CB1,Women's & Children's Health
+MD415-1,Paediatrics
+MD415-CB1,Paediatrics
+MD416-1,Obstetrics & Gynaecology
+MD416-CB1,Obstetrics & Gynaecology
+MD417-CB1,General Practice
+MD414-1,Psychiatry
+MD414-CB1,Psychiatry
+MD408-1,Medical Law/Medical Ethics/Human Rights
+MD410-CB1,Medical Information & Medical Education
+MD511-1,Introduction to Biostatistics I
+MD542-1,Advanced Clinical Theory
+MD542-2,Advanced Clinical Theory
+MD542-CB1,Advanced Clinical Theory
+MD542-CB2,Advanced Clinical Theory
+MD504-1,Advanced Clinical Practice
+MD505-1,Specialist Clinical Practice
+MD505-2,Specialist Clinical Practice
+MD505-CB1,Specialist Clinical Practice
+MD505-CB2,Specialist Clinical Practice
+MD503-CB1,Medical Informatics
+MD501-1,Preventive Medicine
+MD502-1,Forensic Medicine
+MD604-1,Medicine
+MD604-2,Medicine
+MD604-3,Medicine
+MD605-1,Medicine - Section A - WrittenProfessional Exam
+MD620-CB1,Medical Informatics
+MD621-CB1,Biostatistics
+MD623-1,Elective
+MD310-CB1,Gastrointestinal Studies
+MD604-CB1,Medicine
+ME219-1,Design 1
+ME221-1,Fundamentals of Operation Engineering
+ME222-1,Safety Technology
+ME223-1,Thermodynamics and Fluid Mechanics
+ME301-1,Fluid Dynamics
+ME304-1,Mechanical Analysis And Design
+ME312-1,Automated Systems
+ME353-1,Quality Systems
+ME402-1,Advanced Mechanical Analysis And Design
+ME424-1,Energy Conversion
+ME426-1,Turbomachines and Advanced Fluid Dynamics
+ME429-1,Polymer Engineering
+ME430-1,Regulatory Affairs and Case Studies
+ME431-1,Systems Reliability
+ME516-1,Advanced Mechanics of Materials
+ME522-1,Operations Management
+ME572-1,Human Reliability
+ME355-1,Mechanical Design II for Sports & Exercise
+ME427-1,Mechanical Analysis & Design
+ME517-1,Combustion Science and Engineering
+ME518-1,Composite Materials
+ME520-1,Research Methods
+ME207-1,Introduction To Fluid Mechanics
+ME208-1,Theory Of Machines I
+ME214-1,Years Work (Workshop Practice)
+ME215-1,Instrumentation
+ME218-1,Introduction to Biomedical Engineering
+ME326-1,Metals And Metals Processing
+ME347-1,Mechanical Vibrations
+ME416-1,Biomechanics
+ME417-1,Biomedical Production And Environmental Services
+ME421-1,Medical Implant And Device Design
+ME423-1,Polymers & Polymer Composites
+ME501-1,Finite Element Methods In Engineering Analysis
+ME107-1,Years Work (Workshop Practice)
+ME112-1,Fundamentals Of Mechanical Engineering
+ME152-1,Introduction to Engineering Computing
+ME512-1,Advanced Finite Elements in Biomedical Engineering
+ME315-1,Analysis Of Vibrations And Control Systems
+ME403-1,Computer Control Of Electromechanical Systems
+ME419-1,Power Systems
+ME114-1,Engineering Computing 1 (Fortran)
+ME321-1,Biomaterials
+ME422-1,Tissue Engineering
+ME510-1,Introduction to Biomechanics
+MG110-1,Introduction to Management
+MG206-1,Management of Organisational Change
+MG222.2-1,Organisational Behaviour
+MG203-1,Business Organisation And Management
+MG203-2,Business Organisation And Management
+MG204-1,Business & Society
+MG307-1,New Enterprise Development
+MG308-1,Organisational Behaviour
+MG323-1,International Business
+MG325-1,Employment Relations
+MG326-1,Employee Relations: Rights And Obligations
+MG327-1,Global Employment Relations
+MG328-1,Human Resource Management
+MG332-1,Work and Organisations
+MG333-1,Cross Cultural Management
+MG334-1,Strategic Management
+MG331-1,Business Management & Finance
+MG317-1,New Enterprise Development
+MG330-1,Business Management & Finance
+ME352-1,Mechanical Vibrations
+MG329-1,Contemporary Issues in Business Policy & Management
+MG360.3-1,Entrepreneurship
+MG309-1,Business Negotiations
+MG315-1,Management Of Organisational Change
+MG321-1,Industrial Relations & Human Resource Management
+MG304-1,Management Of Human Resources
+MG322-1,Industrial Relations: Rights And Obligations
+MG324-1,International & Comparative Industrial Relations
+MG410-1,Enterprise Development & Management
+MG412-1,Business Negotiations
+MG400.4-1,Strategic Management
+MG440.4-1,Management of Organisational Change
+MG529-1,Introduction To Business
+MG533-1,Strategic Management
+MG557-1,Strategic Management
+MG571-1,Strategic Management
+MG576-1,Change Management
+MG582-1,International & Cross Cultural Management
+MG534-1,Business Policy
+MG558-1,Leadership and Change
+MG566-1,Human Resource Development
+MG568-1,Reward Systems
+MG569-1,Industrial Relations and Employment Law
+MG573-1,International Human Resource Management
+MG581-1,Global Business
+MG583-1,International HRM
+MG562-1,Innovation & Technology Management
+MG575-1,Organisation Theory
+MG501-1,Business Policy
+MG528-1,Strategic Management
+MG550-1,Management of Human Resources
+MG554-1,Entrepreneurship
+MG565-1,Employee Relations
+MG539-1,Management & Organisation
+MG544-1,People Management & Development
+MG552-1,Innovation & Technology Management
+MG602-1,Strategic Management
+MG6101-1,Global Business and HR in Context
+MG6102-1,"Leading, Managing and Developing People"
+MG6104-1,Business Ethics and Corporate Social Responsibility
+MG6106-1,Reward Management
+MG6107-1,Learning and Development
+MG6108-1,International Human Resource Management
+MG6110-1,Organisational Design and Development
+MG6111-1,Innovation Management
+MG604-1,Innovation & the Learning Organisation
+MG624-1,Organisation Studies and Strategic Leadership
+MG608-1,Applied HR and Strategic Management
+MG610-1,Knowledge Management & the Learning Organisation
+MG613-1,Advanced Human Resources & Strategic Management
+MG612-1,Innovation & Technology Management
+MG603-1,People Management & Development
+MG606-1,Contemporary Issues in Business Management
+MG851-1,Business Organisation
+MG872-1,Communications In Organizations
+MG876-1,Communications In Organisations
+MG875-1,Management
+MI204-1,Microbes and the Environment
+MI306-1,Marine Microbiology
+MI322-1,Environmental Microbiology
+MI323-1,Food and Industrial Microbiology
+MI324-1,Immunology and Recombinant Techniques
+MI325-1,Microbial Infectious Diseases
+MI326-1,Microbial Metabolic and Molecular Systems
+MI437-1,Bacterial Pathogenesis
+MI438-1,Marine Microbiology and Nutrient Cycling
+MI439-1,The Meaning of Life: Bioinformatics
+MI440-1,Dynamics of microbial gene regulation
+MI441-1,Anaerobic Microbial Biotechnology & Systems Biology
+MI442-1,Bioprocessors and Recombinant Protein Production
+MI5101-1,Quality Management Systems
+MI5102-1,Industrial Microbiology
+MI5105-1,DNA and Immuno Diagnostic Technology
+MI855-1,Microbiology
+MI855-2,Microbiology
+MI855-3,Microbiology
+MIC504-1,The Art of Reading
+MI211-1,The Microbial Cell
+MI212-1,Microbes And The Environment
+MI312-1,Microbiology
+MI316-1,Industrial And Environmental Microbiology
+MI317-1,Molecular  And Cellular Microbiology
+MI318-1,Environmental Microbiology I
+MI319-1,Environmental Microbiology II
+MI403-1,Environmental Microbiology & Waste Management
+MI403-2,Environmental Microbiology & Waste Management
+MI412-1,Advanced Environmental Microbiology
+MI430-1,Environmental Microbiology
+MI435-1,Molecular Microbial Ecology
+MI436-1,Molecular Systems Biology
+MIC501-1,Contemporary Literary Genres
+MI422-1,Microbiology
+MI421-1,Marine Microbial Processes
+MI213-1,Genetics
+MI401-1,Microbiology
+MI401-2,Microbiology
+MI401-3,Microbiology
+MK101-1,Introduction to Marketing
+MK203-1,Buyer Behaviour Analysis
+MK204-1,Marketing Principles
+MK206-1,Consumer Behaviour
+MK207-1,Action Marketing
+MK301-1,Marketing Research
+MK303-1,Global Marketing
+MK311-1,The Marketing of Services
+MK312-1,Marketing Policy & Strategy
+MK312-2,Marketing Policy & Strategy
+MK314-1,Media & Marketing Communications
+MK341-1,Brand Management
+MK5101-1,Digital Marketing
+MK5104-1,Marketing Analytics
+MK561-1,Strategic Marketing Policy
+MK563-1,Research Methods
+MK565-1,Cases in Strategic Marketing
+MK566-1,Strategic Brand Management
+MK567-1,Services Marketing Theory
+MK568-1,Selling & Sales Management
+MK569-1,E-Business Marketing
+MK570-1,New Product Development & Innovation
+MK575-1,Global Marketing
+MK576-1,Social Marketing
+MK578-1,Business to Business Marketing
+MK579-1,Global Marketing Management
+MK231-1,Fundamentals of Marketing
+MK232-1,Financial & Legal Issues in Marketing
+MK234-1,Principles of Selling Process
+MK562-1,Applied Marketing Research
+MK315-1,Marketing Seminar
+MK316-1,Social and Non-Profit Marketing
+MK571-1,Special Topics In Marketing
+MK572-1,Managing Services
+MK574-1,Customer Service & Relationship Management
+MK564-1,Advanced Consumer Behaviour
+MK220.2-1,Marketing Principles
+MK330.3-1,Marketing Research
+MK440.4-1,Marketing Management
+MK440.4-2,Marketing Management
+MK441.4-1,Marketing Communications
+MK501-1,Strategic Marketing
+MK501-2,Strategic Marketing
+MK503-1,Seminar In Marketing
+MK508-1,Contemporary Issues in Marketing
+MK515-1,Services Marketing
+MK551-1,Services Marketing
+MK553-1,Marketing Strategy
+MK340-1,e Marketing
+MK509-1,Marketing Principles
+MK543-1,Research Methods
+MK100-1,Marketing I
+MK302-1,International Marketing
+MK305-1,Marketing Management
+MK305-2,Marketing Management
+MK308-1,Services Marketing
+MK309-1,Marketing Communications
+MK871-1,Marketing I
+MK877-1,Marketing Research
+MM140-1,Engineering Mathematical Methods
+MM245-1,Numerical Analysis I
+MM246-1,Numerical Analysis II
+MM255-1,Numerical Analysis
+MM120-1,Mathematical Methods for Engineers
+MMS120-W,Written Modules
+MM245.A-1,Discrete Mathematics
+MM250-1,Numerical Analysis I
+MM251-1,Numerical Analysis II
+MMS111-CB1,Statistics
+MP120-1,Engineering Mechanics
+MP171-1,Introduction to Applied Mathematics
+MP172-1,Introduction to Mathematical Modelling
+MP180-1,Applied Mathematics
+MP180-2,Applied Mathematics
+MP191-1,Mathematical Methods I
+MP211-1,"Modelling, Analysis and Simulation"
+MP231-1,Mathematical Methods I
+MP232-1,Mathematical Methods II
+MP236-1,Mechanics I
+MP237-1,Mechanics II
+MP305-1,Modelling I
+MP307-1,Modelling II
+MP340-1,Modelling I
+MP345-1,Mathematical Methods I
+MP346-1,Mathematical Methods II
+MP356-1,Quantum Mechanics I
+MP357-1,Quantum Mechanics II
+MP403-1,Cosmology And General Relativity
+MP406-1,Classical Elasticity
+MP410-1,Non-Linear Elasticity
+MP491-1,Non Linear Systems
+MP553-1,Advanced Applied Mathematics for Engineers 1
+MP554-1,Advanced Applied Mathematics for Engineers 2
+MP365-1,Fluid Mechanics
+MP366-1,Electromagnetism
+MP494-1,Partial Differential Equations
+MP207-1,Methods Of Mathematical Physics I
+MP209-1,Methods Of Mathematical Physics I
+MP252-1,Engineering Applied Mathematics II
+MP254-1,Engineering Applied Mathematics I
+MP291-1,Mathematical Methods II
+MP341-1,Modelling II
+MP391-1,Mathematical Modelling
+MP452-1,Applied Mathematics
+MP165-1,Applied Mathematics (written)
+MP181-1,Introduction to Applied Mathematics
+MP182-1,Introduction to Mathematical Modelling
+MP363-1,Methods Of Mathematical Physics I
+MP364-1,Methods Of Mathematical Physics II
+MP191.R-1,Mathematical Methods I
+MP204-1,Mechanics
+MP205-1,Methods Of Mathematical Physics I
+MP206-1,Methods Of Mathematical Physics II
+MP208-1,Methods Of Mathematical Physics II
+MP212-1,Mechanics I
+MP213-1,Mechanics II
+MP250-1,Mathematical Physics (Pass)
+MP250-2,Mathematical Physics (Pass)
+MP324-1,Quantum Mechanics (Hons)
+MP141-1,Introduction to Mathematical Physics I
+MP142-1,Introduction to Mathematical Physics II
+MP214-1,Mechanics I
+MP215-1,Mechanics II
+MP323-1,Electromagnetic Theory And Fluid Mechanics
+MP131-1,Introduction to Mathematical Physics 1
+MP132-1,Introduction to Mathematical Physics II
+MP150-1,Mathematical Physics (Pass)
+MP292-1,Mechanics
+MP293-1,Methods of Mathematical Physics I
+MP294-1,Methods of Mathematical Physics II
+MP295-1,Methods of Mathematical Physics I
+MP296-1,Methods of Mathematical Physics II
+MP332-1,Calculus Of Variations
+MP103-1,Introduction to Mathematical Physics
+MP103-2,Introduction to Mathematical Physics
+PH337-1,Thermal Physics
+MP323.I-1,Electromagnetic Theory and Fluid Mechanics
+MP335-1,Classical Elasticity
+MR323-1,"Introduction to Marine Ecology I - Microbiology, Biostatistics and Biosensing"
+MR324-1,Introduction to Marine Ecology II - Marine Plant Science and Benthic & Pelagic Z
+MR325-1,"Introduction to Marine Ecology I - Microbiology, Biostatistics & Biosensing"
+MR326-1,Introduction to Marine Ecology II - Marine Plane Science and Benthic & Pelagic Z
+MR401-1,Advanced Topics In Marine Science
+MR401-2,Advanced Topics In Marine Science
+MR420-1,Marine Science
+MS110-1,Business Systems Analysis
+MS111-1,Business Application Development I
+MS113-1,Information Systems Technology
+MS115-1,Business Information Systems
+MS117-1,Information Systems and Project Management
+MS119-1,Business Data Communications
+MS120-1,Business Information Systems
+MS121-1,Business Information Management
+MS116-1,Information Systems in Organisations
+MS102-1,Management Information Systems
+MS104-1,Management Information Systems
+MS105-1,Business Systems Analysis and Design
+MS107-1,Information Systems Technology
+MS109-1,Business Application Development
+MS102.R-1,Management Information Systems
+MS216-1,Networks & Communications
+MS217-1,Information and Operations Management
+MS218-1,Database Technologies
+MS221-CB1,Advanced Application Development II
+MS222-1,Decision Modelling and Analytics
+MS223-1,E-Business Strategy and Practice
+MS203-1,Information Systems Management
+MS219-1,E-Business
+MS214-CB1,Business Application Development II
+MS215-CB1,Business Application Development III
+MS211-1,Networks and Communications I
+MS210-1,Database Systems I
+MS212-1,E.Business
+MS213-1,Networks & Communications II
+MS314-1,Applied Systems Analysis
+MS319-1,Enterprise Systems
+MS320-1,E Business Technologies
+MS322-1,Advanced Database Technologies
+MS323-1,User Experience Design
+MS325-1,Contemporary Project Management
+MS315-1,Advanced Programming
+MS302-1,Systems Analysis I
+MS308-1,Electronic Commerce
+MS315.R-1,Advanced Programming
+MS303-1,Management Decision Systems
+MS310-1,Data Base Technologies
+MS311-1,Programme Design & Development
+MS316-1,Database Systems II
+MS403-1,IS Strategy & Planning
+MS411-1,Contemporary Issues in Information Systems
+MS413-1,Cloud Computing
+MS414-1,Business Intelligence and Analytics
+MS402-1,Management Decision Systems
+MS410-1,Information Systems Project Management
+MS412-1,Information Systems Innovation
+MS440.4-1,Electronic Commerce
+MS509-1,Management Information Systems
+MS506-1,Systems Analysis & Design
+MS513-1,Electronic Commerce Strategy
+MS528-1,Information Systems Innovation
+MS521-1,E Business Strategy
+MS801-1,Web Design & Development
+MS802-1,Information Systems Strategy and Innovation
+MS803-1,Business Data Communications
+MS804-1,Systems Development & Project Management
+MS805-1,Database Systems
+MS806-CB1,Business Applications Programming
+MS807-1,Information Systems Management
+MS809-1,Enterprise Systems
+MS810-1,Information Systems Security & Ethics
+MS814-1,Decision Systems & Business Analytics
+MS815-CB1,Advanced Applications Programming
+MS820-1,Interactive Systems Design
+MS821-1,Applied Systems Analysis
+MS873-1,Management Information Systems I
+MS808-1,Electronic Commerce Strategy
+MS813-1,Information Systems Innovation
+MS840-1,Interactive Programming I
+MS841-CB1,Interactive Programming II
+MS856-1,Internet & Multimedia Development I
+MS881-1,Internet Technologies
+MS885.I-1,Database Systems & Languages I
+MS885.II-1,Database Systems & Languages II
+MS842-1,Interactive Systems Design
+MS844-1,Information Systems Engineering
+MS850-1,"Operating Systems, Networks & Telecommunications"
+MS862-1,Applied Systems Analysis
+MS880-1,Business Information Systems
+MS899-1,Business Information Systems
+MV507-1,Grammar of Old & Middle Irish I
+MV506-1,Grammar of Old & Middle Irish 2
+MV510-1,Elementary Medieval Latin
+MV511-1,Intermediate Medieval Latin 1
+MV512-1,Intermediate Medieval Latin 2
+MV513-1,Advanced Medieval Latin
+NG1100-1,An Ghaeilge Bheo
+NG1100-2,An Ghaeilge Bheo
+NG227-1,Teanga Na Nua-Ghaeilge I
+NG228-1,Teanga Na Nua-Ghaeilge II
+NG259-1,An Nualitríocht I
+NG260-1,Litríocht na Gaeilge 1200-1900 I
+NG262-1,Teanga agus Pobal I
+NG325-1,Teanga Na Nua-Ghaeilge IV
+NG351-1,Teanga Na Nua-Ghaeilge 111
+NG363-1,Litríocht na Gaeilge 1200-1900 II
+NG364-1,Litríocht na Gaeilge II
+NG365-1,Teanga agus Pobal II
+NG366-1,Litríocht na Gaeilge I
+NG125-1,Litríocht Chomhaimseartha na Gaeilge
+NG126-1,Saíocht agus Sochaí na Gaeilge
+NG261-1,An Nualitríocht II
+NG523-1,Teanga na Nua-Ghaeilge
+NG127-1,Ceartúsáid na Gaeilge
+NG367-1,Traditional Music in Context
+NG533-1,Tradtional Music & Political Resistance
+NG123-1,Ceartúsáid na Gaeilge I
+NG124-1,Ceartúsáid na Gaeilge II
+NG101-1,Teanga Na Nua-Ghaeilge (Labhairt Agus Scriobh)
+NG102-2,Litríocht Agus Oidhreacht +
+NG353-1,Litríocht An Fichiú hAois 111
+NG500-1,Nua-Ghaeilge
+NS301-1,Neuroanatomy
+NS306-1,Neurophysiology
+NS308-1,Neuroscience
+NS302-1,Neuropharmacology
+NS410.R-1,Neuroscience
+NS410.R-2,Neuroscience
+NU115-1,Biological Sciences I
+NU115-2,Biological Sciences I
+NU116-1,Social Sciences 1
+NU116-2,Social Sciences 1
+NU117-1,Nursing Management of the Physically III Adult 1
+NU183-1,Caring for Mental Health Service Users with Enduring Mental Health Needs 1
+NU185-1,Principles and Practice of Clinical Nursing 1
+NU186-1,Principles & Practices of Midwifery
+NU192-1,Midwifery Anatomy & Physiology & Clinical Skills
+NU194-1,The Neonate Requiring Special Care
+NU195-1,Care Of The Woman Experiencing Complications III
+NU140-1,Intensive Care Nursing 1
+NU141-1,Intensive Care Nursing 2
+PH110-1,Fisic
+NU196-1,Care Of The Woman Experiencing Complications I
+NU121-1,"Psychological, Philosophical & Sociological Approaches to Healthcare I & II (NG)"
+NU121-2,"Psychological, Philosophical & Sociological Approaches to Healthcare I & II (NG)"
+NU122-1,Introduction to the Biological Sciences (NG)
+NU128-1,"Anatomy, Physiology & Pharmacology (Theory) (NG)"
+NU197-1,Care Of The Woman Experiencing Complications II
+NU123-1,The Nature of Nursing (NG)
+NU124-CB1,Introduction to Research (Theory) (NG)
+NU132-1,The Nature of Psychiatric Nursing (PY)
+NU142-1,Intensive Nursing Care 3
+NU150-1,Palliative Approaches to Symptom Management
+NU151-1,The Lived Experience of Palliative Nursing
+NU169-1,Experiencing Cancer
+NU172-1,The Nature of Midwifery
+NU173-1,Introduction to the Biological Sciences
+NU174-CB1,Introduction to Research
+NU177-1,"Psychological, Philosophical & Sociological Approaches to Health Care"
+NU177-2,"Psychological, Philosophical & Sociological Approaches to Health Care"
+NU178-1,"Anatomy, Physiology & Pharmacology"
+NU180-1,"Psychological, Philosophical & Sociological Approaches to Health Care I & II"
+NU180-2,"Psychological, Philosophical & Sociological Approaches to Health Care I & II"
+NU207-1,The Neonate Requiring Special Care
+NU237-1,The Management of Specialist Client Groups
+NU246-1,Midwifery Studies I
+NU248-1,Social Sciences II
+NU249-1,Biological Sciences II
+NU250-1,Nursing Management of the Physically Ill Adult 2
+NU249-2,Biological Sciences II
+NU213-1,Aspects of Biomedical Science (Theory)
+NU219-1,Fundamental Issues in Health Care
+NU234-1,Aspects of Biomedical Science
+NU250-2,Nursing Management of the Physically Ill Adult 2
+NU214-1,"The Nursing Management of the Patient with Acute, Critical or Chronic Illness"
+NU215-1,The Nursing Management of Specialist Client Groups(Theory)
+NU218-1,Fundamental Approaches to & Principles of General Nursing II
+NU226-1,The Nursing Management of Specialist Client Groups
+NU228-1,The Nursing Management of the Patient with an Acute or Chronic Mental Illness
+NU235-1,Application of the Biological Sciences to Midwifery
+NU236-1,Normal Midwifery Care
+NU238-1,The Neonate I & II
+NU240-1,Fundamental Approaches to and Principles of Midwifery II
+NU241-1,Fundamental Issues in Health Care
+NU222-1,Fundamental Approaches & Principles of Psychiatric Nursing
+NU306-1,Biological Sciences III
+NU306-2,Biological Sciences III
+NU308-1,Midwifery Studies II
+NU333-1,Research Methods II
+NU335-1,The Nursing Management of Specialist Client Groups 1
+NU336-1,The Nursing Management of the Physically ill Adult III
+NU336-2,The Nursing Management of the Physically ill Adult III
+NU313-1,Evaluating and Using Research Evidence
+NU325-1,Caring for the Physically Ill Adult (Theory 1)
+NU330-1,Caring for the Physically Ill Adult (Theory 2)
+NU326-1,Nursing Management of a Patient with Severe or Chronic Mental Illness II (Theory
+NU405-1,Leading & Developing Practice
+NU422-1,Leadership in Nursing Practice
+NU473-1,Leadership and Clinical Governance in Nursing and Midwifery Practice
+NU483-1,Leadership in Midwifery and Nursing Practice
+NU414-1,Advanced Nursing Studies IV
+NU553.M-1,Application of the Biological Sciences to Midwifery
+NU554.M-1,Normal Midwifery Care I
+NU556.M-1,Normal Midwifery Care II
+NU560-1,Care of the Woman at Risk II
+NU560.M-1,Care of the Woman at Risk II
+NU561-1,The Neonate Requiring Special Care
+NU561.M-1,The Neonate Requiring Special Care
+NU585-1,Child and Maternal Health (Non Midwife Cohort)
+NU553-1,Application of the Biological Sciences to Midwifery
+NU554-1,Normal Midwifery Care I
+NU556-1,Normal Midwifery Care II
+NU546-1,Specialist 2 (Major Trauma & Surgical Emergencies)
+NU545-1,Specialist I (Medical Emergencies)
+NU557-1,Care of the Woman at Risk I
+NU501-1,Concepts and Theories of Nursing/Midwifery
+NU502-1,Advanced Research Methods
+NU507-1,Nursing Leadership
+NU514-1,Developing Practice
+NU518-1,Assessing Learning
+NU538-1,Facilitating Teaching and Learning
+NU611-1,Specialist I (Medical Emergencies)
+NU612-1,Specialist 2 (Major Trauma & Surgical Emergencies)
+NU780-1,Promoting Public Health & Well Being
+NU735-1,Child & Maternal Health
+NU721-1,The Neonate Requiring Special Care
+NU724-1,Care of the Woman Experiencing Complications I
+NU725-1,Care of the Woman Experiencing Complications II
+NU726-1,Care of the Woman Experiencing Complications III
+NU841-1,Accident & Emergency Nursing (1) Emergency Care
+NU842-1,Accident & Emergency Nursing (2) Critical Emergencies
+NU885-1,Health Across the Lifespan
+NU844-1,Perioperative Nursing 1
+NU845-1,Perioperative Nursing 2
+NU821-1,Professional Issues In Nursing
+NU827-1,Principles of Orthopaedic Nursing (Specialist Module I)
+NU828-1,Orthopaedic Trauma (Specialist Module II)
+NU829-1,Orthopaedic Specialities and Rehabilitation (Specialist Module III)
+NU843-1,Accident & Emergency Nursing (3) Special Issues In Nursing Patients In A&E;
+NU846-1,Perioperative Nursing 3
+NU883-1,Concepts & Principles of Community Nursing & Primary Health Care
+NU926-1,The Nursing Management of the Physically ill - Int A
+NU927-1,The Nursing Management of the Physically ill - Int B
+OC423-1,Oceanography
+OC421-1,Chemical Oceanography
+OC422-1,Physical Oceanography
+OG601-1,Obs. & Gyn.
+OY108-1,Enabling Occupation - Physical Disability
+OY108-2,Enabling Occupation - Physical Disability
+OY111-1,Mental Health 2
+OY214-1,Enabling Occupation - Paediatrics
+OY309-1,Neurology
+OY310-1,Social Policy
+OY409-1,Preparation for Practice
+OY308-1,Standardised Testing
+OY103-1,Enabling Occupation - Mental Health
+OY108.R-1,Enabling Occupation - Physical Disability
+OY208-1,Enabling Occupation - Paediatrics
+OY404-1,Management
+OY405-1,Synthesis for Practice
+PA405-1,Elements Of Pathology
+PA200-1,Health & Disease
+PA402-1,Pathology
+PA402.R-1,Pathology
+PD501-1,Paediatrics
+PD605-1,Paediatrics: Section A - Written Professional Exam
+PH101-1,Physics
+PH101-2,Physics
+PH109-1,Physics Special Topics
+PH140-1,Engineering Physics
+PH150-1,Introduction to Physics
+PH215-1,"Electricity, Magnetism and Circuits"
+PH216-1,Mechanics
+PH217-1,"Light, Atomic and Nuclear Physics"
+PH218-1,Thermodynamics
+PH222-1,Astrophysical Concepts
+PH223-1,Observational Astronomy
+PH317-1,Occupational Hygiene
+PH328-1,Physics of the Environment I
+PH329-1,Physics of the Environment II
+PH331-1,Wave Optics
+PH332-1,Electronics
+PH333-1,Quantum Physics
+PH334-1,Computational Physics
+PH335-1,Nuclear & Particle Physics
+PH336-1,Signal Analysis
+PH338-1,Properties of Materials
+PH339-1,Radiation and Medical Physics
+PH340-1,Biomedical Physics
+PH362-1,Stellar Astrophysics
+PH421-1,Quantum Mechanics
+PH422-1,Solid State Physics
+PH423-1,Applied Optics and Imaging
+PH424-1,Electromagnetism and Special Relativity
+PH425-1,Lasers and Spectroscopy
+PH428-1,Atmospheric Physics and Climate Change
+PH429-1,Nanotechnology
+PH430-1,Biophotonics
+PH431-1,Medical Image Processing
+PH466-1,Astrophysics
+PH5102-1,Clinical Instrumentation
+PH5103-1,Radiation Fundamentals
+PH5105-1,Physics of Radiotherapy
+PH5106-1,Hospital and Radiation Safety
+PH5107-1,Monitoring for Health Hazards at Work
+PH103-1,Astronomy I
+PH106-1,Introduction to Medical Physics
+PH108-1,Physics
+PH211-1,"Electricity, Magnetism & Electrical Circuits"
+PH212-1,"Mechanics, Oscillations and Waves"
+PH213-1,Modern Physics
+PH214-1,Thermodynamics
+PH301-1,Radiation and Medical Physics
+PH302-1,Medical Imaging and Radiotherapy
+PH306-1,Nuclear and Particle Physics
+PH353-1,Electronic Systems & Signals
+PH354-1,Thermal Physics & Materials
+PH355-1,Computational Physics
+PH356-1,Quantum Physics
+PH363-1,Astronomical Data Analysis
+PH402-1,Medical Imaging & Image Processing
+PH403-1,Biophotonics
+PH407-1,Solid State Physics
+PH408-1,Optoelectronics
+PH435-1,Electromagnetism and Relativity
+PH457-1,Quantum Mechanics
+PH458-1,Nanotechnology
+PH459-1,Applied Optics
+PH463-1,Atmospheric Physics
+PH464-1,Signal & Image Processing
+PH465-1,Radiation & Medical Physics
+PH104-1,Physics
+PH352-1,Nuclear & Plasma Physics
+PH406-1,Spectroscopy
+PH221-1,Observational Astronomy & Astronomy and the History of Ideas
+PI107-1,Introduction To The History Of Philosophy
+PI1101-1,Critical Thinking and Persuasive Writing
+PI213-1,Ancient Philosophy
+PI216-1,History Of Modern Philosophy
+PI246-1,American Pragmatism
+PI249-1,Philosophy of Language & Logic
+PI310-1,"Topics In Applied Philosophy: Disability, Poverty And Human  Freedom"
+PI334-1,History of European Idealism
+PI108-1,Introduction To Practical Ethics
+PI316-1,Philosophy Of Science
+PI327-1,Philosophy Of Religion
+PI333-1,Readings in Phenomenology
+PI328-1,Marxism And Existentialism
+PI129-1,Advanced Philosophical Text
+PI241-1,History Of Irish Thought
+PI315-1,Philosophy of Mind
+PI235-1,Philosophy of Enlightenment
+PI246.E-1,American Pragmatism
+PI312-1,Philosophy Of Mind/Epistemology
+PI381-1,Philosophy of Science
+PI118-1,"Philosophy, Meaning and Human Values I"
+PI203-1,History Of Contemporary European Philosophy
+PI217-1,Philosophy Of Art And Literature
+PI234-1,Topics in Practical Philosophy
+PI332-1,Astronomy In The History Of Ideas
+PH351-1,Wave Optics
+PM208-1,Fundamental Concepts in Pharmacology
+PM209-1,Applied Concepts in Pharmacology
+PM210-1,Molecular Pharmacology and Signalling
+PM309-1,Drugs and Disease I
+PM309-2,Drugs and Disease I
+PM310-1,Drugs and Disease II
+PM310-2,Drugs and Disease II
+PM311-1,Introduction to Toxicology
+PM312-1,Applied pharmacology
+PM432-1,Experimental Pharmacology
+PM432-2,Experimental Pharmacology
+PM434-1,Molecular Pharmacology & Therapeutics
+PM435-1,Advanced Technologies for Therapeutics
+PM436-1,Advanced Toxicology
+PM5101-1,Central Neurotransmission
+PM5102-1,Experimental Methods in Pharmacology
+PM5103-1,Experimental Neuropharmacology
+PM5105-1,Neuropharmacology & Therapeutics
+PM5109-1,Experimental Toxiocology
+PM5111-1,Advanced Toxicology
+PM524-1,Neuropharmacology I
+PM525-1,Neuropharmacology II
+PM526-1,Neuropharmacology III
+PM530-1,Experimental Toxicology
+PM531-1,Advances in Toxicology
+PM551-1,Principles of Pharmacology
+PM552-1,Principles of Toxicology
+PM203-1,Fundamentals of Pharmacology I
+PM204-1,Fundamentals of Pharmacology II
+PM304-1,Basic Pharmacology
+PM305-1,Principles of Toxicology
+PM306-1,Pharmacology I
+PM307-1,Pharmacology II
+PM420-1,Drug Development & Delivery
+PM421-1,Molecular Pharmacology
+PM422-1,Experimental Pharmacology
+PM430-1,Advanced Principles of Toxicology
+PM206-1,Central Nervous System II
+PM419-1,Neuropharmacology
+PM523-1,Neuroscience and Pharmacology
+PM523-2,Neuroscience and Pharmacology
+PM110-1,Introduction to Pharmacology
+PM205-1,Central Nervous System 1
+PM401.R-1,Pharmacology
+PM415-1,Pharmacology Written Papers
+PM415-2,Pharmacology Written Papers
+PM415-3,Pharmacology Written Papers
+PM415-4,Pharmacology Written Papers
+PM415-5,Pharmacology Written Papers
+PM418-2,Pharmacology Written Papers
+PM418-3,Pharmacology Written Papers
+PM418-4,Pharmacology Written Papers
+PM418-5,Pharmacology Written Papers
+PM521-1,Pharmacology
+PO202-CB1,Introduction to Pharmacology
+PO2102-1,Microbiology
+PO305-CB1,Pharmacology in Health & Disease
+PO305-1,Pharmacology in Health & Disease
+PO202-1,Introduction to Pharmacology
+PO102-1,Podiatry Theory 1
+PS122-1,Introductory Psychology 1
+PS124-1,Introductory Psychology 2
+PS151-1,Health Psychology
+PS159-1,Psychology 2: Health & Social Psychology
+PS214-1,Developmental Psychology 1
+PS219-1,Research Methods in Psychology
+PS220-1,Psychology of Learning
+PS3100-1,Historical and Conceptual Issues in Psychology
+PS320-1,Memory & Cognition
+PS322-1,Health Psychology
+PS329-1,Service Learning in Psychology
+PS334-1,Applied Behaviour Analysis
+PS339-1,Behavioural Medicine
+PS340-1,Neuropsychology
+PS343-1,Pediatric Clinical Behavioural Interventions
+PS405-1,Advanced Research Methods in Psychology
+PS407-1,"Forensic, Abnormal & Clinical Psychology"
+PS415-1,"Perception, Attention & Performance"
+PS416-1,Applied Organisational Psychology
+PS419-1,"Relational Frame Theory, Language & Cognition"
+PS427-1,"Forensic, Abnormal & Clinical Psychology"
+PS576-1,Foundations of Health Psychology
+PS577-1,Models of Health-related Behaviour and Cognition
+PS579-1,Research Methods in Health Psychology
+PS587-1,Psychological Processes in Illness and Health Care
+PS588-1,Biobehavioural Processes in Health and Illness
+PS317-1,History of Psychology & Current Issues
+PS585-1,Perspectives in Health Psychology
+PS541-1,Applied Health Psychology
+PS580-1,Psychosomatic Influences on Health
+PS129-1,Developmental Psychology I
+PS130-1,Psychology of Learning
+PS127-1,Introductory Psychology 2
+PS321-1,Development Psychology 2
+PS332-1,Cognitive Neuropsychology
+PS578-1,Health Psychology in Applied Settings
+PS126-1,Introductory Psychology 1
+PS417-1,Psychology of Aesthetics & the Arts
+PS418-1,Issues in the Cognitive Neurosciences
+PS581-1,Current Issues in Health Psychology
+PS217-1,Cognitive Psychology
+PS318-1,Psychological Measurement
+PS510-1,"Ethics, Assessment & Intervention"
+PS511-1,Behaviour Change Procedures
+PS512-1,Principles of Applied Behaviour Analysis
+PS513-1,Research Methods & Design
+PS516-1,Clinical Behavioural Interventions & Person Centred Behavioural Procedures
+PS517-1,Advanced Principles in Applied Behaviour Analysis
+PS518-1,Advanced Research Methods and Design
+PS519-1,Developmental Disorders
+SC817-1,Working with People with a Disability
+SC824-1,Introduction to Social Research Skills
+SC827-1,Research Methodology in the Social Sciences
+SC828-1,Social Care Theory and Practice 1
+SC830-1,Health and Social Care Services
+SC850-1,Social Care Theory & Practice 2
+SC855-1,Working with Children and Young People
+SC810-1,Working With Older People
+SG111-1,Early & Medieval History of the Celts
+SG116-1,"Celtic Mythology, Religion & Folklore"
+SG221-1,Medieval Irish Language I
+SG222-1,Medieval Irish Language II
+SG317-1,Medieval Irish Language III
+SG319-1,Medieval Irish Language IV
+SG510-1,Grammar of Old & Middle Irish I
+SG511-1,Grammar of Old & Middle Irish II
+SG523-1,Readings in Medieval Irish (B): Law Texts
+SG524-1,Readings in Medieval Irish (D): Allegory and Mythology
+SG525-1,Readings in Medieval Irish (C): Poetry
+SG526-1,Readings in Medieval Irish (A): Prose Tales
+SG513-1,Reading in Medieval Irish
+SG515-1,Comparative Linguistics
+SG218-1,"Families, Filí & Fools of the Celts"
+SG219-1,The Celtic Languages in the Modern World
+SG312-1,Saints & Sinners in the Celtic World
+SG201-1,Medieval Irish Language I
+SG216-1,The Stories of Medieval Wales
+SG304-1,Medieval Irish Language II
+SG308-1,Aspects of Literature in Irish in the 18th & 19th Centuries
+SG310-1,Twentieth-Century Welsh Literature
+SG203-1,Celtic Culture & Society I
+SG204-1,Celtic Culture & Society II
+SG214.II-1,"Poets & Courts: Irish, Scottish Gaelic & Welsh Literature c.1150-1400"
+SG309-1,Aspects of Scottish Gaelic Literature in the 18th & 19th Centuries
+SG353-1,Téacsanna Rúraíochta 1
+SG356-1,Scéalaíocht Na Ríthe
+SH102-1,Spanish Language I (Beginners)
+SH1100-1,Intensive Beginners Spanish Language and Culture
+SH1101-1,Intermediate Spanish Language and Culture
+SH140-1,Intermediate Spanish Language
+SH216-1,Spanish Language II (Applied)
+SH216-2,Spanish Language II (Applied)
+SH224-1,Spanish Language II (Law/IT)
+SH226-1,Spanish Language II A
+SH227-1,Spanish Language II B
+SH228-1,Spanish Language II C
+SH232-1,Hispanic Literature & Culture I
+SH233-1,Hispanic Literature & Culture II
+SH325-1,Spanish Language III (Law)
+SH336-1,Hispanic Literature & Culture III
+SH337-1,Hispanic Literature & Culture IV
+SH358.II-2,Spanish Language III (Applied)
+SH112-1,Beginners Spanish Language I
+SH113-1,Beginners Spanish Language II
+SH131-1,Intermediate Spanish Language I
+SH132-1,Intermediate Spanish Language II
+SH216.II-1,Spanish Language II (Applied)
+SH340-2,Spanish Language IV
+SH505-1,Translation Studies I
+SH342-1,Traducción y Contexto
+SH350.II-1,Spanish for Visiting Students III (Commerce)
+SH530-1,Latin-American Literature I
+SH233.R-1,Hispanic Literature & Culture II
+SH301-1,Spanish Language III
+SH301-2,Spanish Language III
+SH328-1,Latin American Literature & Culture III
+SH531-1,Latin-American Literature II
+SH101-1,Spanish Language I (Advanced)
+SH114-1,Advanced Spanish Language 1
+SH116-1,Advanced Spanish Language 2
+SH214-1,Modern Spanish Theatre
+SH218-1,Latin American Literature and Culture 1
+SH223-1,Modern Spanish Fiction
+SH316-1,Latin American Literature And Culture II
+SH317-1,Golden Age Literature And Culture
+SH320-1,Hispanic Crime Narrative
+SH323-1,"Spanish in Context: Discourse, Use & Function in Spanish"
+SH334.II-1,"Spanish Language for Visiting Students, Level 3"
+SH334.II-2,"Spanish Language for Visiting Students, Level 3"
+SH335-1,Contemporary Latin American Studies
+SH355-1,Economic And Social Spanish III
+SH357-1,Economic And Social Spanish IV
+SH358.II-1,Spanish Language III (Applied)
+SH359-1,Economic And Social Spanish III
+SH515-1,Text & Document Translation (Spanish)
+SH550-1,Advanced Language Skills (Spanish)
+SH550-2,Advanced Language Skills (Spanish)
+SH212-1,Economic And Social Spanish I
+SH213-1,Economic And Social Spanish II
+SH215-1,Introduction To Spanish Lyrical Poetry
+SH219-1,Spanish Language II (Written)
+SH219-2,Spanish Language II (Written)
+SH225-1,Economic And Social Spanish I
+SH234.II-1,"Spanish Language for Visiting Students, Level 2"
+SH234.II-2,"Spanish Language for Visiting Students, Level 2"
+SH258-1,Introduction to Sociolinguistics
+SH288-1,Introduction To Linguistics
+SH326-1,Spanish Sociolinguistics
+SH327-1,Latin American Cinema
+SH500-1,Spanish
+SH502-1,Translation
+SH503-1,Latin-American Novel 1
+SH504-1,Latin-American Novel II
+SH510-1,Temas hispánicos
+SI206-1,Introduction to Physiology and Gastrointestinal
+SI207-1,Nerve and Muscle
+SI208-1,Cardiovascular Physiology
+SI209-CB1,Neurophysiology
+SI210-1,Health & Safety Physiology
+SI212-1,Respiratory Physiology
+SI311-1,Neurophysiology
+SI312-1,Endocrinology
+SI317-1,Human Body Function
+SI317-2,Human Body Function
+SI326-1,Advanced Cardiovascular Physiology
+SI328-1,Exercise Physiology
+SI329-CB1,Laboratory Methods in Physiology
+SI408-1,Immunology
+SI4101-1,Case Based Physiology
+SI4102-1,Science Communication Skills
+SI422-1,Advanced Neurophysiology
+SI432-1,Pathophysiology
+SI435-1,Research Project
+SI437-1,Reproduction Development and Aging
+SI438-1,Advanced Gastrointestinal Physiology
+SI209-1,Neurophysiology
+SI320-CB1,Exercise Physiology For Engineers
+SI428-1,Research Methods in Physiology
+SI439-1,Cellular Physiology
+SI204-1,Physiology for Sports & Exercise Engineering I
+SI205-1,Physiology for Sports & Exercise Engineering II
+SI216-1,Physiology I
+SI218-1,Physiology II
+SI319-1,"Reproduction, Development and Aging"
+SI324-1,Advanced Gastrointestinal Physiology
+SI424-1,Advanced Techniques in Physiology
+SI433-1,Advanced Cardiovascular and Microcirculatory Physiology
+SI314-1,Integrative Physiology
+SI431-1,Therapeutics
+SI434-1,Advanced Gastrointestinal Physiology
+SI425-1,Scientific Writing
+SI430-1,Advanced Cardivascular Physiology
+SI316-1,Cell Physiology
+SI423-1,"Reproduction, Growth & Development"
+SI102-1,Physiology
+SI110-1,Introduction to Physiology
+SI203-1,Endocrinology
+SI412-1,Physiology Written Papers
+SI412-2,Physiology Written Papers
+SI412-3,Physiology Written Papers
+SI412-4,Physiology Written Papers
+SI413-1,Physiology Written Papers
+SI413-2,Physiology Written Papers
+SI413-3,Physiology Written Papers
+SI413-4,Physiology Written Papers
+SL122-1,Phonetics & Phonology
+SL128-1,Communication Impairments & Dysphagia 1
+SL225-1,Communication Impairments & Dysphagia 2
+SL321-1,Psychology 3
+SL327-1,Communication Impairments & Dysphagia 3
+SL123-1,Communication Impairments 1
+SL224-1,Communication Impairments 2
+SL326-1,Communication and Swallowing Impairments 3
+SL306-1,Fluency Impairments
+SL209-1,Motor Speech Disorders
+SL217-1,Aphasia
+SL316-1,Dysphagia
+SL110-1,Introduction to Linguistics
+SL111-1,Phonetics
+SL113-1,Audiology
+SL115-1,Introduction to Clinical Skills and Principles of Assessment
+SPL306-1,Child Protection & Welfare
+SPL307-1,Youth Work Principles & Practice
+SPL310-1,Project Planning & Evaluation
+SPL312-1,Issues in Contemporary Families
+SPL309-1,"Geographies of Children, Youth & Families"
+SP109-1,Public and Social Policy in Ireland
+SP157-1,Introduction to Youth & Family
+SP158-1,Introduction to Politics & Sociology
+SP159-1,Concepts and Practices of Politics & Sociology
+SP155-1,Understanding Politics & Society
+SP156-1,Trajectories of Social & Political Change
+SP128-1,Introduction to Politics & Society
+SP129-1,Social & Political Change
+SP212-1,Classical Social Thought
+SP215.II-1,Modern Political Thought
+SP216-1,European Politics
+SP216.I-1,European Politics
+SP219-1,Political Sociology
+SP220-1,Methods For Social And Political Science
+SP226-1,Comparative Themes In Society And Politics
+SP227-1,Public Administration
+SP234-1,International Relations
+SP235-1,Social Issues and Policy Responses
+SP238-1,Conflict Transformation
+SP239-1,Youth Development
+SP240-1,Family Law
+SP242-1,Communities in Focus
+SP243-1,Understanding Family and Society
+SP248-1,Quantitative Research Methods
+SP233-1,European Politics
+SP247-1,Green Political Thought and Ecological Practice
+SP293-1,Sociology And Politics Of The European Project
+SP212.II-1,Classical Social Thought
+SP215-1,Modern Political Thought
+SP213-1,European Societies
+SP245-1,Modern Political Thought
+SP220.I-1,Methods for Social & Political Science
+SP305-1,Comparative Public Policy
+SP404-1,Development And Change
+SP405-1,Contemporary Social Thought
+SP406-1,Principles Of Political Theory
+SP470-1,Politics In The Republic Of Ireland
+SP424.I-1,Introduction to Northern Ireland Politics
+SP424.II-1,Introduction to Northern Ireland Politics
+SP514-1,Policy Seminar
+SP501-1,Industrial Sociology.
+SP508-1,Theories of the Policy Process
+SP647.I-1,Northern Ireland: The Politics of a Divided Society
+SP647.II-1,Northern Ireland: The Politics of a Divided Society
+ST1100-1,Engineering Statistics
+ST112-1,Probability
+ST113-1,Statistics
+ST2101-1,Introduction to Probability and Statistics
+ST235-1,Probability
+ST236-1,Statistical Inference
+ST237-1,Introduction to Statistical Data and Probability
+ST238-1,Introduction to Statistical Inference
+ST311-1,Applied Statistics I
+ST312-1,Applied Statistics II
+ST313-1,Applied Regression Models
+ST314-1,Introduction to Biostatistics
+ST412-1,Stochastic Processes
+ST415-1,Probability Theory and Applications
+ST413-1,Statistical Modelling
+ST500-1,Advanced Engineering Statistics
+SU604-1,Surgery
+SU601.R-1,Surgery
+SU200-1,Organ Failure
+SY501-1,Psychiatry
+TI150-1,Principles of Human Geography
+TI151-1,Principles of Physical Geography
+TI216-1,Aimsir Agus Aeraid/ Weather And Climate
+TI235-1,Biogeography
+TI236-1,Environmental Planning: Principles & Processes
+TI254-1,"Space, Place and the Irish Landscape"
+TI255-1,Earth Surface Landforms and Processes
+TI258-1,Rural Environments: Sustainability & Management
+TI308-1,Quaternary Environments
+TI326-1,War & Representation: Spaces & Politics of the Media
+TI338-1,Palaeoecology - Reconstructing Past Environments
+TI369-1,Geographical Perspectives on Rural Change
+TI217-1,An Tireolaiocht Uirbeach/ Urban Geography
+TI225-1,Specialism Four (Physical Geography)
+TI229-1,"Political & Cutural Geography: Identity, Race & the Nation"
+ZO208-1,Invertebrate Biology
+ZO209-1,Vertebrate Zoology
+ZO315-1,Applied Ecology
+ZO316-1,Developmental Biology
+ZO317-1,Evolutionary Biology
+ZO318-1,Geographic Information Systems and Biostatistics
+ZO319-1,Marine Zoology
+ZO320-1,Concepts in Population & Community Ecology
+ZO413-1,Advanced Topics in Developmental Biology
+ZO414-1,Advanced Zoology Topics
+ZO417-1,Marine & Coastal Ecology
+ZO418-1,Phylogenetics & Conservation
+ZO207-1,Comparative and Adaptive Physiology
+ZO205-1,Invertebrate Zoology
+ZO206-1,Vertebrate Zoology
+ZO313-1,Evolutionary & Developmental Zoology
+ZO314-1,Principles of Animal Ecology
+ZO408-1,Terrestrial & Freshwater Ecology
+ZO409-1,"Evoluntionary, Developmental & Marine Zoology"
+ZO403-1,Environmental Zoology
+ZO410-1,Specialist Topics
+ZO421-1,Marine Zoology
+ZO301-1,Zoology
+ZO404-1,Zoology Paper I
+ZO405-1,Zoology Paper II
+ZO406-1,Zoology Paper III
+AY104-1,Introduction to Financial Accounting
+AY536-1,Advanced Financial Accounting
+AY516-1,Management Accounting And Finance
+ME322-1,Thermodynamics and Heat Transfer
+MA2102-1,Mathematics and Applied Mathematics II
+AJ103-1,Journalists at Work
+AN224-1,Structure of the Fundamental Tissues
+TI226-1,Specialism Five (Human Geography)
+AN323-1,Human Anatomy
+AN412-1,Anatomy Written Papers
+AR345-1,Gaelic & Colonial Society 1350-1650
+AN101-1,Anatomy
+TI309-1,Natural Hazards: Incidence & Management
+TI334-1,Advanced Environmental Geography
+TI222-1,Geographical Perspectives
+TI223-1,Introduction To GIS
+TI311-1,Advanced Gis
+TI316-1,Historical Geography
+TI330-1,Social Issues in Geography
+AN219-1,Cell Biology
+AN101-2,Anatomy
+AN102-1,Foundations in Medical Biology
+AN103-1,Contemporary Topics in Medicine
+AN110-1,Introduction to Anatomy/Musculoskeletal
+AN111-1,Anatomy
+AN111-2,Anatomy
+AN210-1,Histology
+AN211-1,Human Gross Anatomy
+AN212-1,Cell Biology and Histology
+AN213-1,Human Gross Anatomy
+AN214-1,Human Gross Anatomy
+AN216-1,Reproduction & Development
+AN217-1,Human Anatomy
+AN218-1,Human Anatomy
+AN220.I-1,Human Anatomy I
+AN220.II-1,Human Anatomy II
+AN221-1,Human Anatomy I
+AN222-1,Human Anatomy II
+AN223-1,Embryology & Development
+AN225-1,Human Gross Anatomy
+AN226-1,Systems Histology
+TI368-1,Fundamentals of Aeolian Geomorphology
+TI230-1,Economic Geography
+TI238-1,Global Urbanisation
+TI253-1,Spatial Planning of the Marine Environment
+TI312-1,Geographies Of Rural Development
+TI313-1,Specialism 1 (Physical Geography)
+TI332-1,Local Development: Theory and Practice
+TI343-1,Geographies of Sustainable Consumption
+TI219-1,Environment And Landforms/An Timpeallacht Agus Tirgneithiocht
+TI231-1,Geography of Health
+TI250-1,A Critical Introduction to Nature Power & Society
+TI319-1,Population Geography
+TI244-1,Developmental Geography
+TI248-1,Coastal Environments
+TI341-1,River Systems: Hydrology & Geomorphology
+TI103-1,Foundations in Human Geography
+TI106-1,Foundations in Physical Geography
+TI215-1,An Hidreolaiocht/ Hydrology
+TI247-1,Environmental Geography
+TI249-1,The Geography of Agricultural Change
+TI303-1,Coastal Dynamics
+WE113-1,Introduction to Welsh Language II
+WE101-1,Welsh Language I
+CE471-1,Project Management
+CT101-1,Computing Systems
+CT102-1,Algorithms & Information Systems
+CT1111-1,Engineering Computing II
+CT118-1,Introduction to Engineering Computing
+CT213-1,Computer Systems & Organization
+CT242-1,Technological Frameworks I
+CT249.II-1,Game Design & Programming
+EC201-1,Microeconomics
+CT422-1,Modern Information Management
+CT421-1,Artificial Intelligence
+AN412-3,Anatomy Written Papers
+WE111-1,Introduction to Welsh Language I
+ZO422-1,Zoology
+AY105-1,Introduction to Management Accounting
+AY120-1,Accounting
+AY130-1,Financial Reporting
+AY207-1,Management Accounting I
+AY208-1,Business Finance I
+AY209-1,International Financial Reporting I
+AY308-1,Taxation I
+AY314-1,Business Finance II
+AY319-1,Taxation II
+AY321-1,Management Accounting II
+AY322-1,Management Accounting III
+AY324-1,"Auditing, Assurance & Governance"
+AY325-1,International Financial Reporting II
+AY326-1,International Financial Reporting III
+AY505-1,Financial Management
+AY507-1,Financial Accounting
+AY508-1,Auditing
+AY509-1,Taxation
+AY528-1,Management Accounting
+AY529-1,Finance
+AY440.4-1,Financial Reporting
+AY523-1,Corporate Finance
+AY524-1,Management Control Systems
+AY102.R-1,Accounting
+BC555-5,Analytical Biochemistry/Chemistry V
+BC851-1,Analytical Biochemistry /Chemistry I (Intro.To Business)
+BC852-2,Analytical Biochemistry/Chemistry II (Statistics)
+BC853-3,Analytical Biochemistry / Chemistry III
+BC854-4,Analytical Biochemistry / Chemistry IV
+BES5101-1,Validation Enterprise
+BES513-1,"Materials, Science & Biomaterials"
+BES554-1,Molecular Medicine
+BES515-1,"Product Development, Validation & Regulation"
+BES558-1,Introduction to Physical Sciences & Biomedical Applications
+BES503-1,Principles of Cell & Molecular Biology
+BES504-1,Optics & Cell Biology
+BG110-1,Biotechnology I
+BG204-1,Biotechnology Skills with French/German II
+BG5104-1,Protein Technology
+BG5105-1,Diagnostic Biotechnology
+BG304-1,Biotechnology Skills for Placements
+BG305-1,Biotechnology Skills with French/German III
+BG501-1,Biotechnology I
+AT101-1,Astronomy I
+MG524-1,Management
+SH340-1,Spanish Language IV
+SI331-1,Renal Physiology
+AN230-1,Human Body Structure
+AN240-1,Human Body Structure
+AN3101-1,Musculoskeletal Anatomy Theory
+AN318-1,Advanced Anatomy Part 1
+AN319-1,Advanced Anatomy Part 2
+AN326-1,Neuroanatomy
+AN412-2,Anatomy Written Papers
+AN425-1,Molecular and Cellular Anatomy I
+AN426-1,Neuroanatomy and Imaging
+AN427-1,Molecular and Cellular Anatomy II
+AN428-1,Advanced Anatomy
+AN435-1,Advanced Anatomy I
+AN436-1,Advanced Anatomy 2
+AN437-1,Advanced Cell Biology and Development
+AN438-1,Advanced Gross Anatomy 1
+AN439-1,Advanced Gross Anatomy 2
+AN441-1,Physical Anthropology
+AN442-1,Imaging and Analysis
+AN443-CB1,Medical Imaging
+AN445-1,Scientific Writing
+AN446-1,Tissue Processing
+CT351-1,Networking
+EC507-1,Economics
+PI240-1,Bioethics
+TI317-1,Specialism 2 (Cultural Geography)
+PS403-1,Biological Psychology
+TI237-1,Geographies of Cyberspace
+TI241-1,Principles in Physical Geography II
+TI242-1,Elements in the Geography of Ireland II
+TI245-1,Rural Geography:Concepts & European Perspectives
+TI304-1,Spaces of the Urban-Rural Fringe
+TI318-1,Climate Change
+TI331-1,Geography of Tourism & Recreation
+TI333-1,Geographies of Globalisation

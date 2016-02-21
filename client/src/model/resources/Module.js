@@ -15,13 +15,18 @@ export const getModule = Module.createStatefulResourceAction(User.selectAPI,
 
 /**
  * Select a module by code.
- * @param  {String} code Module code.
+ * @param  {String}   code Module code.
  * @return {Function}      Selector.
  */
 export const selectByCode = (code) => {
     return Module.select(modules => modules.find(module => module.code === code));
 };
 
+/**
+ * Select papers for a module.
+ * @param  {String}   code The module code.
+ * @return {Function}      Selector.
+ */
 export const selectPapers = code => state => {
     return state.resources.papers.filter(paper => paper.module === code);
 };

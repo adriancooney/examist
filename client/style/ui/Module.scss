@@ -2,8 +2,8 @@
 @import "../common/Colors";
 
 .ModuleClip {
-    width: 280px;
-    height: 50px;
+    width: 340px;
+    min-height: 50px;
     margin: $spacing-margin;
     background: $color-module-clip;
     border-radius: $spacing-radius;
@@ -12,22 +12,42 @@
 
 .ModuleLink {
     @extend .ModuleClip;
-    padding: $spacing-padding;
     box-shadow: 0 1px 0 $color-module-clip-shadow;
 
     h4 {
-        margin: 0 $spacing-margin/2 0 $spacing-margin;
+        margin: 0;
         text-align: center;
-        font-size: 140%;
+        font-size: 120%;
+        line-height: 100%;
+        background: $color-module-clip-code;
+        padding: $spacing-padding $spacing-padding/1.5 $spacing-padding/1.5;
+        border-top-left-radius: $spacing-radius;
+        border-bottom-left-radius: $spacing-radius;
+
+        strong {
+            font-size: 160%;
+        }
+
+        a {
+            color: #fff;
+        }
 
         a:hover {
             text-decoration: none;
-            border-bottom: 1px solid $color-link;
         }
     }
 
-    .Avatar {
-        display: inline-block;
+    h3 {
+        margin: 0;
+        padding: $spacing-padding/2 $spacing-padding/1.5;
+        font-size: 125%;
+        line-height: 120%;
+        font-weight: 500;
+
+        a:hover {
+            text-decoration: none;
+            border-bottom: 1px solid lighten($color-link, 25%);
+        }
     }
 }
 

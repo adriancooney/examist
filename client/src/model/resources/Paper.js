@@ -11,8 +11,8 @@ const Paper = new Resource("paper", "id", {
 /*
  * Add papers return when a user get's their modules.
  */
-Paper.addProducerHandler(User.getModules, 
-    ({ modules }) => modules.reduce((papers, module) => papers.concat(module.papers), []));
+// Paper.addProducerHandler(User.getModules, 
+    // ({ modules }) => modules.reduce((papers, module) => papers.concat(module.papers), []));
 
 /*
  * Add papers when a specific module is selected
