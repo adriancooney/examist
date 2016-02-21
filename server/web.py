@@ -43,6 +43,7 @@ if config.APP_DEBUG:
     # Allow for CORS in development
     @app.after_request
     def handle_after_request(resp):
+        resp.headers["Access-Control-Allow-Methods"] = "GET, POST, HEAD, OPTIONS, PATCH, DELETE, PUT"
         resp.headers["Access-Control-Allow-Origin"] = "*"
         resp.headers["Access-Control-Allow-Headers"] = "origin, content-type, accept, auth-key"
         return resp

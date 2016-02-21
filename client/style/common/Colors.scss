@@ -10,6 +10,7 @@ $color-swans-down: #D9EDEC;
 $color-flame: #E75229;
 $color-energy-yellow: #F7DE5A;
 $color-cadet: #54676E;
+$color-kelly-green: #5ECD00;
 
 // Global styles
 $color-body: $color-light-grey;
@@ -18,6 +19,8 @@ $color-font-body: $color-dark-grey;
 
 // Theme styles
 $color-error: $color-flame;
+$color-remove: $color-flame;
+$color-add: $color-kelly-green;
 
 // Input
 $color-button-default: $color-blue;

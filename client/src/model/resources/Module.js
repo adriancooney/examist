@@ -4,14 +4,20 @@ import { compose } from "../../library/Selector"
 import * as User from "../User";
 
 const Module = new Resource("module", "id", {
-    cleaner: module => omit(module, "papers")
+    cleaner: mod => omit(mod, "papers")
 });
 
 /*
  * Get a paper by module, year and period.
  */
 export const getModule = Module.createStatefulResourceAction(User.selectAPI, 
-    (api, code) => api.getModule(code).then(({ module }) => module));
+    (api, code) => api.getModule(code).then(({ mod }) => mod));
+
+/*
+ * Search for modules.
+ */
+export const search = Module.createStatefulAction("MODULE_SEARCH", User.selectAPI, 
+    (api, query) => api.searchModules(query));
 
 /**
  * Select a module by code.
@@ -19,7 +25,16 @@ export const getModule = Module.createStatefulResourceAction(User.selectAPI,
  * @return {Function}      Selector.
  */
 export const selectByCode = (code) => {
-    return Module.select(modules => modules.find(module => module.code === code));
+    return Module.select(modules => modules.find(mod => mod.code === code));
+};
+
+/**
+ * Select a module by id.
+ * @param  {String}   id   Module id.
+ * @return {Function}      Selector.
+ */
+export const selectById = (id) => {
+    return Module.select(modules => modules.find(mod => mod.id === id));
 };
 
 /**
@@ -47,5 +62,6 @@ export const selectByCodeWithPapers = compose(selectByCode, (module) => {
  * Enure modules loaded by user get store in modules resource.
  */
 Module.addProducerHandler(User.getModules, ({ modules }) => modules);
+Module.addProducerHandler(search, ({ modules }) => modules);
 
 export default Module;

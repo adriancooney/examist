@@ -77,4 +77,15 @@ export const getModules = User.createStatefulAction("USER_MODULES", selectAPI, (
     modules: modules.map(module => module.id) // Only save the ID's, the Module resource will handle the other data
 }));
 
+/*
+ * Add a module to a user's profile.
+ */
+export const addModule = User.createStatefulAction("USER_ADD_MODULE", 
+    selectAPI,
+    (api, mod) => api.addModule(mod.id).then(() => mod)
+).handle((state, mod) => ({
+    ...state,
+    modules: state.modules ? [...state.modules, mod.id] : [mod.id]
+}));
+
 export default User;

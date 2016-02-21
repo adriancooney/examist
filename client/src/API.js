@@ -114,6 +114,24 @@ export default class API {
     }
 
     /**
+     * Search for modules.
+     * @param  {String} query The query.
+     * @return {Promise} -> {Object{modules: Array}}
+     */
+    searchModules(query) {
+        return this.request("GET", `/module/search?q=${query}`);
+    }
+
+    /**
+     * Add a module to a users profile.
+     * @param   {Number}  id Module id.
+     * @returns {Promise} -> {Response}
+     */
+    addModule(id) {
+        return this.request("PATCH", "/profile/modules", { module: id });
+    }
+
+    /**
      * Get a paper module, year, period.
      * @param  {String} module Code e.g. CT470
      * @param  {Number} year   The year e.g. 2007

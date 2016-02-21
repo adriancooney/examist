@@ -4,10 +4,12 @@ from server.exc import HttpException
 def respond(data, code = 200):
     return jsonify(**data) if data else "", code
 
+__SUCCESS__ = { "success": True }
+
 def success():
     """Return a 200 response with a success message. Useful for actions
     that do not return any data."""
-    return respond(None)
+    return respond(__SUCCESS__)
 
 __EMPTY__ = {} # Save allocating one every time no meta exists
 
