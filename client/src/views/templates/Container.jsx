@@ -8,7 +8,6 @@ import Footer from "./Footer";
 import { Box, FlexBox, Solid } from "../ui/layout";
 
 function Container(props) {
-    console.log("Rendering.");
     return (
         <Box className="Container" vertical>
             <Solid>

@@ -17,7 +17,7 @@ export default (
                 */}
                 <Route path="/module/:module/paper/:year/:period/parse" component={views.parser.Parser} />
 
-                <Route path="/" component={views.templates.Container} onEnter={() => console.log("Entering!")}>
+                <Route path="/" component={views.templates.Container}>
                     <Route path="login" component={views.pages.Login} onEnter={views.pages.Login.onEnter} />
                     <Route path="signup" component={views.pages.Signup} onEnter={views.pages.Signup.onEnter}/>
                     

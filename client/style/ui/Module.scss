@@ -1,13 +1,19 @@
 @import "../common/Spacing";
 @import "../common/Colors";
 
-.ModuleLink {
-    min-width: 145px;
-    display: inline-block;
-    padding: $spacing-padding;
+.ModuleClip {
+    width: 280px;
+    height: 50px;
+    margin: $spacing-margin;
+    background: $color-module-clip;
     border-radius: $spacing-radius;
-    background: $color-module-link;
-    box-shadow: 0 1px 0 $color-module-link-shadow;
+    display: inline-block;
+}
+
+.ModuleLink {
+    @extend .ModuleClip;
+    padding: $spacing-padding;
+    box-shadow: 0 1px 0 $color-module-clip-shadow;
 
     h4 {
         margin: 0 $spacing-margin/2 0 $spacing-margin;
@@ -25,8 +31,36 @@
     }
 }
 
+.ModulePlaceholder {
+    @extend .ModuleClip;
+    border: 2px dashed $color-module-clip-shadow;
+}
+
 .ModuleList {
     .ModuleLink {
         margin: $spacing-margin/1.8;
+    }
+}
+
+.ModulePicker {
+    .your-modules { 
+        padding-right: $spacing-padding; 
+
+        h3 {
+            text-align: center;
+            height: 22px;
+            text-transform: uppercase;
+            color: rgba(0,0,0,0.4);
+            margin: $spacing-margin * 1.7;
+        }
+    }
+
+    .search-results {
+        padding-left: $spacing-padding; 
+        border-left: 2px solid rgba(0,0,0,0.1);
+
+        .ModuleList {
+            text-align: center;
+        }
     }
 }
