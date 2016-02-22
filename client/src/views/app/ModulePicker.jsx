@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router";
 import { connect } from "react-redux";
 import { isPending } from "redux-pending";
 import * as model from "../../model";
@@ -39,7 +40,7 @@ class ModulePicker extends Component {
     }
 
     render() {
-        let userModules, searchResults;
+        let userModules, searchResults, contineToDashboard;
 
         if(this.props.isLoadingUserModules) {
             userModules = <Loading />;
@@ -75,6 +76,10 @@ class ModulePicker extends Component {
             searchResults = <p className="empty">Nothing found.</p>;
         }
 
+        if(this.props.userModules && this.props.userModules.length && this.props.location.state === "POST_SIGNUP") {
+            contineToDashboard = <p className="continue"><Link to="/">Continue to your dashboard &rarr;</Link></p>
+        }
+
         return (
             <Flex className="ModulePicker">
                 <Box className="header">
@@ -94,6 +99,7 @@ class ModulePicker extends Component {
                         { searchResults }
                     </Flex>
                 </Box>
+                { contineToDashboard }
             </Flex>
         );
     }
