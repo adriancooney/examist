@@ -1,6 +1,7 @@
 @import "../common/Spacing";
 @import "../common/Fonts";
 @import "../common/Colors";
+@import "../common/Assets";
 
 .Form {
     .form-center {
@@ -35,16 +36,45 @@
 }
 
 .Input {
-    outline: none;
-    padding: $spacing-padding/2;
+    min-width: 320px;
+    position: relative;
+    display: flex;
     margin: $spacing-margin;
-    font-size: 120%;
-    font-family: $font-display;
-    display: block;
-    border: 2px solid $color-input-border;
 
-    &.input-error {
-        border: 2px dashed $color-error;
+    input {
+        flex: 1;
+        outline: none;
+        padding: $spacing-padding/2;
+        font-size: 120%;
+        font-family: $font-display;
+        display: block;
+        border: 2px solid $color-input-border;
+
+        &.input-error {
+            border: 2px dashed $color-error;
+        }
+    }
+
+    &.icon-view {
+        input {
+            padding-right: 30px;
+        }
+    }
+
+    .action {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        width: 30px;
+        height: 30px;
+        margin-top: -15px;
+        margin-right: $spacing-margin/3;
+        cursor: pointer;
+        background-repeat: no-repeat;
+        background-position: center center;
+
+        &.clear { background-image: url($asset-icon-close); }
+        &.loading { background-image: url($asset-icon-loading); background-size: 65%; }
     }
 }
 

@@ -117,8 +117,26 @@
         }
     }
 
+    .your-modules, .search-results {
+        min-height: 480px;
+    }
+
     .your-modules { 
-        padding-right: $spacing-padding; 
+        padding-right: $spacing-padding;
+
+        .welcome {
+            width: 380px;
+            margin: 0 auto;
+            margin-top: $spacing-margin * 8;
+        
+            h1 {
+                text-align: center;
+            }
+
+            p {
+                color: $color-text-faded;
+            }
+        }
 
         h5 {
             text-align: center;
@@ -137,6 +155,13 @@
         .Input {
             margin: $spacing-margin auto;
             width: 340px;
+        }
+
+        .empty {
+            margin-top: $spacing-margin * 10;
+            font-size: 140%;
+            text-align: center;
+            color: $color-text-faded;
         }
     }
 }

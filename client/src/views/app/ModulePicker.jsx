@@ -9,22 +9,26 @@ import { Box, Flex, FlexBox } from "../ui/layout";
 import { Loading } from "../ui";
 
 const MODULE_COLUMN_HEIGHT = 6;
+const SEARCH_INTENT_TIMEOUT = 400;
 
 class ModulePicker extends Component {
     static selector = selector({
         user: model.User.selectCurrent,
         userModules: model.User.selectModules,
+        searchResults: model.views.Picker.selectResults,
 
         // Loading states of our actions.
         isLoadingUserModules: isPending(model.User.getModules.type),
-        searchResults: model.views.Picker.selectResults
+        isLoadingSearchResults: isPending(model.resources.Module.search.type),
+        location: state => state.routing.location
     });
 
     static actions = {
         getModules: model.User.getModules,
         addModule: model.User.addModule,
         removeModule: model.User.removeModule,
-        searchModules: model.resources.Module.search
+        searchModules: model.resources.Module.search,
+        clearResults: model.views.Picker.clearResults
     };
 
     componentWillMount() {
@@ -40,12 +44,23 @@ class ModulePicker extends Component {
         if(this.props.isLoadingUserModules) {
             userModules = <Loading />;
         } else {
-            userModules = (
-                <ModuleList 
-                    placeholderCount={MODULE_COLUMN_HEIGHT} 
-                    modules={this.props.userModules} 
-                    onRemove={::this.onRemoveModule} />
-            );
+            if(this.props.userModules && !this.props.userModules.length && this.props.location.state === "POST_SIGNUP") {
+                userModules = (
+                    <div className="welcome">
+                        <h1>Welcome to Examist.</h1>
+                        <p>To get started, you need to have picked some modules.
+                        Please select the modules for your course using the 
+                        search box on the right. Enter the module code or course name.</p>
+                    </div>
+                );
+            } else {
+                userModules = (
+                    <ModuleList 
+                        placeholderCount={MODULE_COLUMN_HEIGHT} 
+                        modules={this.props.userModules} 
+                        onRemove={::this.onRemoveModule} />
+                );
+            }
         }
 
         if(this.props.isSearchingModules) {
@@ -53,12 +68,11 @@ class ModulePicker extends Component {
         } else if(this.props.searchResults && this.props.searchResults.length) {
             searchResults = (
                 <ModuleList 
-                    placeholderCount={MODULE_COLUMN_HEIGHT}
                     modules={this.props.searchResults.slice(0, 6)}
                     onAdd={::this.onAddModule} />
             );
         } else {
-            searchResults = <p>Nothing found.</p>;
+            searchResults = <p className="empty">Nothing found.</p>;
         }
 
         return (
@@ -69,7 +83,14 @@ class ModulePicker extends Component {
                         { userModules }
                     </Flex>
                     <Flex vertical className="search-results">
-                        <Input placeholder="Find modules.." name="module" ref="search" onChange={::this.onSearchChange}/>
+                        <Input 
+                            placeholder="Find modules.." 
+                            name="module" 
+                            ref="search" 
+                            loading={this.props.isLoadingSearchResults}
+                            onClear={::this.onClearResults}
+                            onChange={::this.onSearchChange} />
+
                         { searchResults }
                     </Flex>
                 </Box>
@@ -79,7 +100,7 @@ class ModulePicker extends Component {
 
     onSearchChange() {
         if(this.searchTimeout) clearTimeout(this.searchTimeout);
-        this.searchTimeout = setTimeout(this.searchModule.bind(this, this.refs.search.getValue()), 1000);
+        this.searchTimeout = setTimeout(this.searchModule.bind(this, this.refs.search.getValue()), SEARCH_INTENT_TIMEOUT);
     }
 
     searchModule(query) {
@@ -92,6 +113,10 @@ class ModulePicker extends Component {
 
     onAddModule(mod) {
         this.props.addModule(mod);
+    }
+
+    onClearResults() {
+        this.props.clearResults();
     }
 }
 

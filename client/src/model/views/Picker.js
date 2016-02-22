@@ -14,6 +14,12 @@ Picker.handleAction(Module.search, (state, { modules }) => ({
     results: modules.map(mod => mod.id)
 }));
 
+/**
+ * Clear the search results.
+ * @type {Function}
+ */
+export const clearResults = Picker.createAction("PICKER_CLEAR_SEARCH_RESULTS").handle(Picker.initial);
+
 /*
  * Select the search results.
  */

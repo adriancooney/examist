@@ -42,7 +42,7 @@ class Signup extends Component {
         const user = model.User.selectCurrent();
 
         if(user)
-            replace(SIGNUP_REDIRECT);
+            replace("/");
     };
 
     /*
@@ -51,7 +51,10 @@ class Signup extends Component {
      */
     componentWillReceiveProps(props) {
         if(props.user) 
-            this.props.push(SIGNUP_REDIRECT);
+            this.props.push({
+                pathname: SIGNUP_REDIRECT,
+                state: "POST_SIGNUP"
+            });
     }
 
     render() {

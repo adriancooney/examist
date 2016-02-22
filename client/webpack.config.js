@@ -1,6 +1,9 @@
 var path = require("path"),
     webpack = require("webpack");
 
+// Plugins
+var CopyWebpackPlugin = require("copy-webpack-plugin");
+
 module.exports = {
     context: __dirname,
     entry: ["./node_modules/regenerator/runtime.js", "./src/index.jsx"],
@@ -18,9 +21,6 @@ module.exports = {
             test: /\.scss$/,
             include: [path.resolve(__dirname, "style/")],
             loaders: ["style", "css", "sass"]
-        }, {
-            test: /\.yaml$/,
-            loaders: ["json", "yaml"]
         }]
     },
 
@@ -42,6 +42,11 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             "process.env.NODE_ENV": process.env.NODE_ENV || "\"development\""
-        })
+        }),
+
+        new CopyWebpackPlugin([{
+            from: "assets",
+            to: "assets"
+        }])
     ]
 };
