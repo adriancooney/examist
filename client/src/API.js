@@ -132,6 +132,15 @@ export default class API {
     }
 
     /**
+     * Remove a module from the user's modules.
+     * @param  {Number} id Module id.
+     * @return {Promise} -> {Response}
+     */
+    removeModule(id) {
+        return this.request("DELETE", "/profile/modules", { module: id });
+    }
+
+    /**
      * Get a paper module, year, period.
      * @param  {String} module Code e.g. CT470
      * @param  {Number} year   The year e.g. 2007

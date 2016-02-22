@@ -23,6 +23,7 @@ class ModulePicker extends Component {
     static actions = {
         getModules: model.User.getModules,
         addModule: model.User.addModule,
+        removeModule: model.User.removeModule,
         searchModules: model.resources.Module.search
     };
 
@@ -86,7 +87,7 @@ class ModulePicker extends Component {
     }
 
     onRemoveModule(mod) {
-        console.log("Removing module: ", mod);
+        this.props.removeModule(mod);
     }
 
     onAddModule(mod) {

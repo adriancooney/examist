@@ -1,4 +1,5 @@
 from server.test import assert_api_error
+from server.library.util import find
 from json import loads
 
 def test_profile_modules_empty(auth_client):
@@ -33,3 +34,11 @@ def test_profile_add_module_existing(auth_client, user_with_modules, session):
     assert resp.status_code == 200
     session.refresh(user_with_modules)
     assert len(user_with_modules.modules) == 5
+
+def test_profile_add_module(auth_client, user_with_modules, session):
+    existingModule = user_with_modules.modules[0]
+    resp = auth_client.delete("/profile/modules", data={ "module": existingModule.id })
+    assert resp.status_code == 200
+    session.refresh(user_with_modules)
+    assert len(user_with_modules.modules) == 4
+    assert not find(user_with_modules.modules, lambda mod: mod.id == existingModule.id)

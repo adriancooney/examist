@@ -1,3 +1,4 @@
+import { without } from "lodash/array";
 import { Reducer } from "../library";
 import { BROWSER } from "../Config";
 import API from "../API";
@@ -86,6 +87,17 @@ export const addModule = User.createStatefulAction("USER_ADD_MODULE",
 ).handle((state, mod) => ({
     ...state,
     modules: state.modules ? [...state.modules, mod.id] : [mod.id]
+}));
+
+/*
+ * Add a module to a user's profile.
+ */
+export const removeModule = User.createStatefulAction("USER_REMOVE_MODULE", 
+    selectAPI,
+    (api, mod) => api.removeModule(mod.id).then(() => mod)
+).handle((state, mod) => ({
+    ...state,
+    modules: without(state.modules, mod.id)
 }));
 
 export default User;
