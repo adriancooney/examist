@@ -21,7 +21,8 @@ def search_module(q):
 
     # Execute the query
     results = model.Module.query.filter(
-        model.Module.name.ilike("%{}%".format(q))
+        model.Module.name.ilike("%{}%".format(q)) | \
+        model.Module.code.ilike("%{}%".format(q)) 
     ).limit(MODULE_RESULTS_LIMIT).all()
 
     moduleSchema = schema(model.Module)
