@@ -1,5 +1,6 @@
 @import "../common/Spacing";
 @import "../common/Colors";
+@import "../common/Assets";
 
 .Avatar {
     background: $color-avatar-circle;
@@ -50,4 +51,15 @@
     .Box {
         padding: $spacing-padding/3;
     }
+}
+
+.Loading {
+    min-height: 180px;
+    min-width: 180px;
+    margin: 0 auto;
+    width: 100%;
+    height: 100%;
+    background-image: url($asset-icon-loading-svg);
+    background-repeat: no-repeat;
+    background-position: center center;
 }
