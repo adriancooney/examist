@@ -8,9 +8,10 @@ from server.web import app
 from server.database import db
 from server import model
 
-ctx = app.app_context()
-ctx.push()
-db.init_app(app)
+def setup_db():
+    ctx = app.app_context()
+    ctx.push()
+    db.init_app(app)
 
 @task
 def config():
@@ -28,6 +29,7 @@ def config():
 @task
 def db_insert_modules():
     """Insert the modules into the database."""
+    setup_db()
 
     modules_csv = os.path.join(os.path.dirname(__file__), "data/modules.csv")
 
