@@ -1,6 +1,5 @@
 import re
 from json import dumps, loads
-from server.test.api.conftest import marker
 from server.test import assert_api_error
 from server.model import User
 
