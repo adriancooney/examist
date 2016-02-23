@@ -3,7 +3,6 @@ import traceback
 import random
 import os
 import json
-from faker import Faker
 from sqlalchemy_utils import database_exists, create_database, drop_database
 from server.test import APIClient
 from server.web import app as _app
@@ -14,7 +13,6 @@ from server import model
 DB_NAME = config.DB_NAME + "_test"
 
 # Data generation
-fake = Faker()
 with open(os.path.join(os.path.dirname(__file__), "../data/example.json")) as data_file:
     data = json.load(data_file)
 
