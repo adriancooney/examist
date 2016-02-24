@@ -21,24 +21,24 @@ def test_profile_courses(auth_client, user_with_courses):
     assert len(data["courses"]) == 5
 
 def test_profile_add_course(auth_client, user, courses, session):
-    newModule = courses[0]
-    resp = auth_client.patch("/profile/courses", data={ "course": newModule.id })
+    newCourse = courses[0]
+    resp = auth_client.patch("/profile/courses", data={ "course": newCourse.id })
     assert resp.status_code == 200
 
     session.refresh(user)
     assert len(user.courses) > 0
 
 def test_profile_add_course_existing(auth_client, user_with_courses, session):
-    existingModule = user_with_courses.courses[0]
-    resp = auth_client.patch("/profile/courses", data={ "course": existingModule.id })
+    existingCourse = user_with_courses.courses[0]
+    resp = auth_client.patch("/profile/courses", data={ "course": existingCourse.id })
     assert resp.status_code == 200
     session.refresh(user_with_courses)
     assert len(user_with_courses.courses) == 5
 
 def test_profile_add_course(auth_client, user_with_courses, session):
-    existingModule = user_with_courses.courses[0]
-    resp = auth_client.delete("/profile/courses", data={ "course": existingModule.id })
+    existingCourse = user_with_courses.courses[0]
+    resp = auth_client.delete("/profile/courses", data={ "course": existingCourse.id })
     assert resp.status_code == 200
     session.refresh(user_with_courses)
     assert len(user_with_courses.courses) == 4
-    assert not find(user_with_courses.courses, lambda mod: mod.id == existingModule.id)
+    assert not find(user_with_courses.courses, lambda mod: mod.id == existingCourse.id)

@@ -1,5 +1,5 @@
 {
-    "modules": [
+    "courses": [
         {
             "code": "CT437",
             "name": "Computer Security and Forensic Computing"
@@ -23,8 +23,8 @@
     ],
     "papers": [
         {
-            "module_code": "CT101-1",
-            "module_name": "Computing Systems",
+            "course_code": "CT101-1",
+            "course_name": "Computing Systems",
             "name": "Paper 1 - Written",
             "period": "Summer",
             "sitting": 1,
@@ -33,8 +33,8 @@
             "link": "https://www.mis.nuigalway.ie/papers_public/2014_2015/CT/2014_2015_CT101_1_1_2.PDF"
         },
         {
-            "module_code": "CT230-1",
-            "module_name": "Database Systems I",
+            "course_code": "CT230-1",
+            "course_name": "Database Systems I",
             "name": "Paper 1 - Written",
             "period": "Winter",
             "sitting": 1,
@@ -43,8 +43,8 @@
             "link": "https://www.mis.nuigalway.ie/papers_public/2009_2010/CT/2009_2010_CT230_1_1_5.PDF"
         },
         {
-            "module_code": "CT319-1",
-            "module_name": "Artificial Intelligence",
+            "course_code": "CT319-1",
+            "course_name": "Artificial Intelligence",
             "name": "Paper 1 - Written",
             "period": "Autumn",
             "sitting": 2,
@@ -53,8 +53,8 @@
             "link": "https://www.mis.nuigalway.ie/papers_public/2014_2015/CT/2014_2015_CT319_1_2_3.PDF"
         },
         {
-            "module_code": "CT351-1",
-            "module_name": "Networking",
+            "course_code": "CT351-1",
+            "course_name": "Networking",
             "name": "Paper 1 - Written",
             "period": "Winter",
             "sitting": 1,
@@ -63,8 +63,8 @@
             "link": "https://www.mis.nuigalway.ie/papers_public/2012_2013/CT/2012_2013_CT351_1_1_5.PDF"
         },
         {
-            "module_code": "CT404-1",
-            "module_name": "Graphics & Image Process",
+            "course_code": "CT404-1",
+            "course_name": "Graphics & Image Process",
             "name": "Paper 1 - Written",
             "period": "Winter",
             "sitting": 1,
