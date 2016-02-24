@@ -1,4 +1,3 @@
-from server.test.api.conftest import marker
 from server.test import assert_api_error
 from json import dumps, loads
 
