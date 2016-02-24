@@ -1,4 +1,4 @@
-import "../../../../style/app/modules/PaperGrid.scss";
+import "../../../../style/app/courses/PaperGrid.scss";
 import React, { Component, PropTypes } from "react";
 import { range } from "lodash/util";
 import { capitalize } from "lodash/string";
@@ -14,7 +14,7 @@ export default class PaperGrid extends Component {
     static propTypes = {
         currentPaper: PropTypes.object,
         papers: PropTypes.array.isRequired,
-        module: PropTypes.string.isRequired
+        course: PropTypes.string.isRequired
     };
 
     render() {

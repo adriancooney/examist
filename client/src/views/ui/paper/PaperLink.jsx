@@ -1,4 +1,4 @@
-import "../../../../style/app/modules/PaperLink.scss"
+import "../../../../style/app/courses/PaperLink.scss"
 import React, { PropTypes } from "react";
 import { Link } from "react-router";
 import { Enum } from "../../../Util";
@@ -19,7 +19,7 @@ export default function PaperLink(props) {
         if(paper.isIndexed) type = PAPER_TYPE.AVAILABLE;
         else type = PAPER_TYPE.UNINDEXED;
 
-        link = <Link to={`/module/${paper.module}/paper/${paper.year}/${paper.period}`}/>
+        link = <Link to={`/course/${paper.course}/paper/${paper.year}/${paper.period}`}/>
     }
 
     return (<span className={`PaperLink link-${type.toLowerCase()}`}>{ link }</span>);

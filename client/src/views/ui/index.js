@@ -1,6 +1,6 @@
 export * as input from "./input";
 export * as layout from "./layout";
-export * as module from "./module";
+export * as course from "./course";
 export * as error from "./error";
 export Institution from "./Institution";
 export Loading from "./Loading";
