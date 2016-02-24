@@ -15,7 +15,7 @@ export default (
                     Here we have an entirely different application on a URL. We hoist this URL out of the
                     "/" route because we don't want the container.
                 */}
-                <Route path="/module/:module/paper/:year/:period/parse" component={views.parser.Parser} />
+                <Route path="/course/:course/paper/:year/:period/parse" component={views.parser.Parser} />
 
                 <Route path="/" component={views.templates.Container}>
                     <Route path="login" component={views.pages.Login} onEnter={views.pages.Login.onEnter} />

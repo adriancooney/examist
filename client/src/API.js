@@ -95,61 +95,61 @@ export default class API {
     }
 
     /**
-     * Get the current logged in user's own modules.
-     * @return {Promise} -> {Object{modules: Array}}
+     * Get the current logged in user's own courses.
+     * @return {Promise} -> {Object{courses: Array}}
      */
-    getModules() {
-        return this.request("GET", "/profile/modules");
+    getCourses() {
+        return this.request("GET", "/profile/courses");
     }
 
     /**
-     * Get a module by code.
+     * Get a course by code.
      * @param  {String} code Code e.g. CT470
      * @return {Promise} -> {Object}
      */
-    getModule(code) {
-        return this.fakeRequest("GET", `/module/${code}`).then(() => ({
-            module: Generator.module(code)
+    getCourse(code) {
+        return this.fakeRequest("GET", `/course/${code}`).then(() => ({
+            course: Generator.course(code)
         }));
     }
 
     /**
-     * Search for modules.
+     * Search for courses.
      * @param  {String} query The query.
-     * @return {Promise} -> {Object{modules: Array}}
+     * @return {Promise} -> {Object{courses: Array}}
      */
-    searchModules(query) {
-        return this.request("GET", `/module/search?q=${query}`);
+    searchCourses(query) {
+        return this.request("GET", `/course/search?q=${query}`);
     }
 
     /**
-     * Add a module to a users profile.
-     * @param   {Number}  id Module id.
+     * Add a course to a users profile.
+     * @param   {Number}  id Course id.
      * @returns {Promise} -> {Response}
      */
-    addModule(id) {
-        return this.request("PATCH", "/profile/modules", { module: id });
+    addCourse(id) {
+        return this.request("PATCH", "/profile/courses", { course: id });
     }
 
     /**
-     * Remove a module from the user's modules.
-     * @param  {Number} id Module id.
+     * Remove a course from the user's courses.
+     * @param  {Number} id Course id.
      * @return {Promise} -> {Response}
      */
-    removeModule(id) {
-        return this.request("DELETE", "/profile/modules", { module: id });
+    removeCourse(id) {
+        return this.request("DELETE", "/profile/courses", { course: id });
     }
 
     /**
-     * Get a paper module, year, period.
-     * @param  {String} module Code e.g. CT470
+     * Get a paper course, year, period.
+     * @param  {String} course Code e.g. CT470
      * @param  {Number} year   The year e.g. 2007
      * @param  {String} period One of ["summer", "winter", "autumn", "spring"]
      * @return {Promise} -> {Object}
      */
-    getPaper(module, year, period) {
-        return this.fakeRequest("GET", `/module/${module}/paper/${year}/${period}`).then(() => ({
-            paper: Generator.paper(module, year, period)
+    getPaper(course, year, period) {
+        return this.fakeRequest("GET", `/course/${course}/paper/${year}/${period}`).then(() => ({
+            paper: Generator.paper(course, year, period)
         }));
     }
 
@@ -187,7 +187,7 @@ export class InvalidAuthKey extends Error {}
  * Dummy data generators
  */
 const Generator = {
-    module(code) {
+    course(code) {
         return {
             code,
             name: "Maths",
@@ -198,12 +198,12 @@ const Generator = {
         }
     },
 
-    paper(module, year, period) {
+    paper(course, year, period) {
         let id = Generator.getUID();
         return {
             id,
             questions: range(10).map(Generator.question.bind(null, id)),
-            module, year, period
+            course, year, period
         };
     },
 
