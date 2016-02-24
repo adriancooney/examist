@@ -2,7 +2,7 @@
 The following are routes within the app.
 
 ### /
-The dashboard. It shows all your modules and any recent activity within the modules such as solutions or comments.
+The dashboard. It shows all your courses and any recent activity within the courses such as solutions or comments.
 
 ### /login
 Login to the app.
@@ -18,28 +18,28 @@ View and update your information.
 * Password
 * Course
 * Year
-* Modules - The modules you have selected as yours.
+* courses - The courses you have selected as yours.
 
-### /modules
-View your modules.
+### /courses
+View your courses.
 
-### /module/:module
-View the main page for the module.
+### /course/:course
+View the main page for the course.
 
-### /module/:module/paper/:year/:period
-The paper for that module, year and period.
+### /course/:course/paper/:year/:period
+The paper for that course, year and period.
 
-### /module/:module/paper/:year/:period/question/:question
+### /course/:course/paper/:year/:period/question/:question
 Link directly to a question. The question parameter is the path to the question e.g. `1.1.5`.
 
-### /module/:module/paper/:year/:period/solution/:solution
+### /course/:course/paper/:year/:period/solution/:solution
 Link directly to a solution.
 
-### /module/:module/paper/:year/:period/comment/:comment
+### /course/:course/paper/:year/:period/comment/:comment
 Link directly to a comment.
 
-### /module/:module/paper/:year/:period/link/:link
+### /course/:course/paper/:year/:period/link/:link
 Link directly to a link.
 
-### /module/:module/paper/:year/:period/parse
+### /course/:course/paper/:year/:period/parse
 Open the parser for the paper.
