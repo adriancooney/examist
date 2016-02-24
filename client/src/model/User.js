@@ -22,12 +22,12 @@ export const selectAPI = User.select(user => {
 export const selectCurrent = User.select(user => user);
 
 /*
- * Select the users modules.
+ * Select the users courses.
  */
-export const selectModules = (state) => {
-    // Get the users modules ids from the state
-    return state.user && state.user.modules ? 
-        state.user.modules.map(id => state.resources.modules.find(module => module.id === id)) : null;
+export const selectCourses = (state) => {
+    // Get the users courses ids from the state
+    return state.user && state.user.courses ? 
+        state.user.courses.map(id => state.resources.courses.find(course => course.id === id)) : null;
 }
 
 /*
@@ -54,7 +54,7 @@ User.handleActions([login, create, restore], (state, user) => {
     
     return {
         ...user,
-        modules: null,
+        courses: null,
         api: new API(user.key)
     };
 });
@@ -71,33 +71,33 @@ export const logout = User.createAction("USER_LOGOUT").handle(() => {
 });
 
 /*
- * Get the user's modules.
+ * Get the user's courses.
  */
-export const getModules = User.createStatefulAction("USER_MODULES", selectAPI, (api) => api.getModules()).handle((state, { modules }) => ({
+export const getCourses = User.createStatefulAction("USER_COURSES", selectAPI, (api) => api.getCourses()).handle((state, { courses }) => ({
     ...state, 
-    modules: modules.map(module => module.id) // Only save the ID's, the Module resource will handle the other data
+    courses: courses.map(course => course.id) // Only save the ID's, the Course resource will handle the other data
 }));
 
 /*
- * Add a module to a user's profile.
+ * Add a course to a user's profile.
  */
-export const addModule = User.createStatefulAction("USER_ADD_MODULE", 
+export const addCourse = User.createStatefulAction("USER_ADD_COURSE", 
     selectAPI,
-    (api, mod) => api.addModule(mod.id).then(() => mod)
-).handle((state, mod) => ({
+    (api, course) => api.addCourse(course.id).then(() => course)
+).handle((state, course) => ({
     ...state,
-    modules: state.modules ? [...state.modules, mod.id] : [mod.id]
+    courses: state.courses ? [...state.courses, course.id] : [course.id]
 }));
 
 /*
- * Add a module to a user's profile.
+ * Add a course to a user's profile.
  */
-export const removeModule = User.createStatefulAction("USER_REMOVE_MODULE", 
+export const removeCourse = User.createStatefulAction("USER_REMOVE_COURSE", 
     selectAPI,
-    (api, mod) => api.removeModule(mod.id).then(() => mod)
-).handle((state, mod) => ({
+    (api, course) => api.removeCourse(course.id).then(() => course)
+).handle((state, course) => ({
     ...state,
-    modules: without(state.modules, mod.id)
+    courses: without(state.courses, course.id)
 }));
 
 export default User;
