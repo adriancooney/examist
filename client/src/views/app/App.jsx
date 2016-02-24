@@ -7,8 +7,8 @@ import { authorize } from "../../Middleware";
 import { FlexBox } from "../ui/layout";
 import { selector } from "../../library/Selector";
 import ErrorPage from "../ui/error/ErrorPage";
-import ModulePicker from "./ModulePicker";
-import Module from "./Module";
+import CoursePicker from "./CoursePicker";
+import Course from "./Course";
 import Paper from "./Paper";
 import Logout from "./Logout";
 import Dashboard from "./Dashboard";
@@ -37,8 +37,8 @@ export default (
     <Route component={App} onEnter={authorize}>
         <IndexRoute component={Dashboard} />
         <Route path="logout" component={Logout} onEnter={Logout.onEnter} />
-        <Route path="modules/pick" component={ModulePicker} />
-        <Route path="module/:module" component={Module}>
+        <Route path="courses/pick" component={CoursePicker} />
+        <Route path="course/:course" component={Course}>
             <Route path="paper/:year/:period" component={Paper} />
             {/* Render the question. If we're not linking directly to a 
                 link or solution, just render the question comments. 

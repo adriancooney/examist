@@ -17,23 +17,23 @@ class Paper extends Component {
     };
 
     componentWillMount() {
-        const { paper, params: { module, year, period } } = this.props;
+        const { paper, params: { course, year, period } } = this.props;
 
         // When we directly link to the paper
         if(!paper)
-            this.props.getPaper(module, year, period);
+            this.props.getPaper(course, year, period);
     }
 
     componentWillReceiveProps(props) {
-        const { isLoadingPaper, params: { module, year, period } } = props;
+        const { isLoadingPaper, params: { course, year, period } } = props;
 
         // Previous state
-        let prevModule = this.props.params.module;
+        let prevCourse = this.props.params.course;
         let prevYear = this.props.params.year;
         let prevPeriod = this.props.params.period;
 
-        if(!isLoadingPaper && (prevModule !== module || prevYear !== year || prevPeriod !== period))
-            this.props.getPaper(module, year, period);
+        if(!isLoadingPaper && (prevCourse !== course || prevYear !== year || prevPeriod !== period))
+            this.props.getPaper(course, year, period);
     }
 
     render() {
