@@ -19,13 +19,13 @@ def test_module_search(auth_client, modules):
 
 def test_module_get(auth_client, module_with_papers):
     module = module_with_papers
-    resp = auth_client.get("/module/" + str(module.id))
+    resp = auth_client.get("/module/" + module.code.lower())
     assert resp.status_code == 200
 
-    data = loads(resp.get_data())
+    data = loads(resp.get_data())["module"]
     assert data["id"] == module.id
     assert len(data["papers"]) == 5
 
 def test_module_get_not_found(auth_client):
-    resp = auth_client.get("/module/24097")
+    resp = auth_client.get("/module/foobar")
     assert_api_error(resp, 404)

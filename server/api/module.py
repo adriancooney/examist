@@ -31,13 +31,14 @@ def search_module(q):
         "modules": moduleSchema.dump(results, many=True).data if len(results) > 0 else []
     })
 
-@Module.route("/module/<int:module>", methods=["GET"])
+@Module.route("/module/<module>", methods=["GET"])
+@use_kwargs({ "module": fields.Str(required=True) }, locations=("view_args",))
 @authorize
 def get_module(module):
-    module = model.Module.getBy(db.session, id=module)
+    module = model.Module.getBy(db.session, code=module.upper())
     dump = module.dump()
-    
+
     # Add the papers to the schema
     dump["papers"] = schema(model.Paper).dump(module.papers, many=True).data
 
-    return respond(dump)
+    return respond({ "module": dump })
