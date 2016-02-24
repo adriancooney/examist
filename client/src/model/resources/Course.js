@@ -4,14 +4,14 @@ import { compose } from "../../library/Selector"
 import * as User from "../User";
 
 const Course = new Resource("course", "id", {
-    cleaner: mod => omit(mod, "papers")
+    cleaner: course => omit(course, "papers")
 });
 
 /*
  * Get a paper by course, year and period.
  */
 export const getCourse = Course.createStatefulResourceAction(User.selectAPI, 
-    (api, code) => api.getCourse(code).then({ course } => course);
+    (api, code) => api.getCourse(code).then(({ course }) => course));
 
 /*
  * Search for courses.
@@ -51,9 +51,9 @@ export const selectPapers = code => state => {
  * @param  {Number}   id Course id.
  * @return {Function}    Selector.
  */
-export const selectByCodeWithPapers = compose(selectByCode, mod => state => ({ 
+export const selectByCodeWithPapers = compose(selectByCode, course => state => ({ 
     ...course, 
-    papers: selectPapers(mod.code)(state)
+    papers: selectPapers(course.code)(state)
 }));
 
 /*

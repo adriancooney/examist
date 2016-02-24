@@ -19,7 +19,7 @@ with open(papers_csv, "rb") as data_file:
         course_code = row[0]
 
         # Find the course
-        course = model.Module.getBy(db.session, code=course_code)
+        course = model.Course.getBy(db.session, code=course_code)
 
         paper = model.Paper(
             name=row[2],
