@@ -1,18 +1,76 @@
 {
-    "modules": [{
-        "code": "CT437",
-        "name": "Computer Security and Forensic Computing"    
-    }, {
-        "code": "CT475",
-        "name": "Machine Learning & Data Mining"
-    }, {
-        "code": "CT475",
-        "name": "Software Engineering III"
-    }, {
-        "code": "CT414",
-        "name": "Distributed Systems & Co Operative Computing"    
-    }, {
-        "code": "CT421",
-        "name": "Artificial Intelligence"
-    }]
+    "modules": [
+        {
+            "code": "CT437",
+            "name": "Computer Security and Forensic Computing"
+        },
+        {
+            "code": "CT475",
+            "name": "Machine Learning & Data Mining"
+        },
+        {
+            "code": "CT405",
+            "name": "Software Engineering III"
+        },
+        {
+            "code": "CT414",
+            "name": "Distributed Systems & Co Operative Computing"
+        },
+        {
+            "code": "CT421",
+            "name": "Artificial Intelligence"
+        }
+    ],
+    "papers": [
+        {
+            "module_code": "CT101-1",
+            "module_name": "Computing Systems",
+            "name": "Paper 1 - Written",
+            "period": "Summer",
+            "sitting": 1,
+            "year_start": 2014,
+            "year_stop": 2015,
+            "link": "https://www.mis.nuigalway.ie/papers_public/2014_2015/CT/2014_2015_CT101_1_1_2.PDF"
+        },
+        {
+            "module_code": "CT230-1",
+            "module_name": "Database Systems I",
+            "name": "Paper 1 - Written",
+            "period": "Winter",
+            "sitting": 1,
+            "year_start": 2009,
+            "year_stop": 2010,
+            "link": "https://www.mis.nuigalway.ie/papers_public/2009_2010/CT/2009_2010_CT230_1_1_5.PDF"
+        },
+        {
+            "module_code": "CT319-1",
+            "module_name": "Artificial Intelligence",
+            "name": "Paper 1 - Written",
+            "period": "Autumn",
+            "sitting": 2,
+            "year_start": 2014,
+            "year_stop": 2015,
+            "link": "https://www.mis.nuigalway.ie/papers_public/2014_2015/CT/2014_2015_CT319_1_2_3.PDF"
+        },
+        {
+            "module_code": "CT351-1",
+            "module_name": "Networking",
+            "name": "Paper 1 - Written",
+            "period": "Winter",
+            "sitting": 1,
+            "year_start": 2012,
+            "year_stop": 2013,
+            "link": "https://www.mis.nuigalway.ie/papers_public/2012_2013/CT/2012_2013_CT351_1_1_5.PDF"
+        },
+        {
+            "module_code": "CT404-1",
+            "module_name": "Graphics & Image Process",
+            "name": "Paper 1 - Written",
+            "period": "Winter",
+            "sitting": 1,
+            "year_start": 2014,
+            "year_stop": 2015,
+            "link": "https://www.mis.nuigalway.ie/papers_public/2014_2015/CT/2014_2015_CT404_1_1_5.PDF"
+        }
+    ]
 }

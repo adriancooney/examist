@@ -116,6 +116,34 @@ def modules(session, institution):
     return modules
 
 @pytest.fixture
+def papers(session):
+    papers = []
+
+    # Add five modules
+    for paper in data["papers"]:
+        papers.append(model.Paper(
+            name=paper["name"],
+            period=paper["period"],
+            sitting=paper["sitting"],
+            year_start=paper["year_start"],
+            year_stop=paper["year_stop"],
+            link=paper["link"]
+        ))
+
+    session.add_all(papers)
+    session.flush()
+
+    return papers
+
+@pytest.fixture
+def module_with_papers(session, papers, modules):
+    module = modules[0]
+    module.papers = papers
+    session.add(module)
+    session.flush()
+    return module
+
+@pytest.fixture
 def user_with_modules(user, modules, session):
     user.modules = modules
     session.add(user)

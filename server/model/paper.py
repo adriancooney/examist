@@ -18,7 +18,7 @@ class Paper(Model, Assistant):
     # Foreign Keys
     module_id = Column(Integer, ForeignKey("module.id"))
 
-    def __init__(self, name, period, sitting, year_start, year_stop, link, module):
+    def __init__(self, name, period, sitting, year_start, year_stop, link, module=None):
         if isinstance(module, Module):
             module_id = module.id
         else:

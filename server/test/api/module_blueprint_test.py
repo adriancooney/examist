@@ -17,13 +17,14 @@ def test_module_search(auth_client, modules):
     data = loads(resp.get_data())
     assert len(data["modules"]) > 0
 
-def test_module_get(auth_client, modules):
-    module = modules[0]
+def test_module_get(auth_client, module_with_papers):
+    module = module_with_papers
     resp = auth_client.get("/module/" + str(module.id))
     assert resp.status_code == 200
 
     data = loads(resp.get_data())
     assert data["id"] == module.id
+    assert len(data["papers"]) == 5
 
 def test_module_get_not_found(auth_client):
     resp = auth_client.get("/module/24097")

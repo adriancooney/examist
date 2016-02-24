@@ -25,7 +25,7 @@ def handle_validation_error(err):
 
 @app.errorhandler(404)
 def handle_error(err):
-    return abort(NotFound())
+    return fail(404, "Page not found.")
 
 # App errors
 @app.errorhandler(HttpException)

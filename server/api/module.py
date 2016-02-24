@@ -34,4 +34,10 @@ def search_module(q):
 @Module.route("/module/<int:module>", methods=["GET"])
 @authorize
 def get_module(module):
-    return respond(model.Module.getBy(db.session, id=module).dump())
+    module = model.Module.getBy(db.session, id=module)
+    dump = module.dump()
+    
+    # Add the papers to the schema
+    dump["papers"] = schema(model.Paper).dump(module.papers, many=True).data
+
+    return respond(dump)
