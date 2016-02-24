@@ -11,47 +11,47 @@ from server.exc import NotFound, UnacceptableParameter
 
 Profile = Blueprint("Profile", __name__)
 
-moduleSchema = schema(model.Module)
+courseSchema = schema(model.Course)
 
 # Add via ID
-patchParams = { "module": fields.Int(required=True) }
+patchParams = { "course": fields.Int(required=True) }
 
-@Profile.route("/profile/modules/", methods=["GET", "PATCH", "DELETE"], strict_slashes=False)
+@Profile.route("/profile/courses/", methods=["GET", "PATCH", "DELETE"], strict_slashes=False)
 @authorize
-def get_and_update_modules():
+def get_and_update_courses():
     if request.method == "GET":
-        # Return the user's modules
+        # Return the user's courses
         return respond({ 
-            "modules": moduleSchema.dump(g.user.modules, many=True).data
+            "courses": courseSchema.dump(g.user.courses, many=True).data
         })
     else:
         args = parser.parse(patchParams, request)
-        id = args["module"]
+        id = args["course"]
 
         try:
-            module = model.Module.getBy(db.session, id=id)
+            course = model.Course.getBy(db.session, id=id)
         except NotFound:
-            return UnacceptableParameter("Module with id '%d' does not exist." % id)
+            return UnacceptableParameter("Course with id '%d' does not exist." % id)
 
-        # Find the module
-        userModule = find(g.user.modules, lambda mod: mod.id == module.id)
+        # Find the course
+        userCourse = find(g.user.courses, lambda c: c.id == course.id)
 
         if request.method == "PATCH":
             # Patch request i.e. append to the collection
-            # Ensure it's not already in the users modules
-            if userModule:
+            # Ensure it's not already in the users courses
+            if userCourse:
                 return success() # Ignorance is bliss
 
-            # Add the module
-            g.user.modules.append(module)
+            # Add the course
+            g.user.courses.append(course)
         else:
-            # Delete the module from the collection
-            # Ensure we have the module
-            if not userModule:
+            # Delete the course from the collection
+            # Ensure we have the course
+            if not userCourse:
                 return success()
             
-            # Remove the module
-            g.user.modules.remove(userModule)
+            # Remove the course
+            g.user.courses.remove(userCourse)
 
         db.session.add(g.user)
         db.session.commit()
