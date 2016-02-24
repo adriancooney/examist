@@ -60,7 +60,7 @@ def client(db, app):
 @pytest.fixture
 def session(db, monkeypatch, request):
     """Creates a new database session for a test."""
-    print marker("SESSION START (%s/%s)" % (request.course.__name__, request.function.__name__))
+    print marker("SESSION START (%s/%s)" % (request.module.__name__, request.function.__name__))
     connection = db.engine.connect()
     transaction = connection.begin()
 
@@ -71,7 +71,7 @@ def session(db, monkeypatch, request):
         transaction.rollback()
         connection.close()
         db.session.remove()
-        print marker("SESSION ROLLBACK (%s/%s)" % (request.course.__name__, request.function.__name__))
+        print marker("SESSION ROLLBACK (%s/%s)" % (request.module.__name__, request.function.__name__))
 
     request.addfinalizer(teardown)
     return db.session
