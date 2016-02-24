@@ -2,7 +2,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, ForeignKey
 from server.database import Model
 from server.library import Assistant
-from server.model.module import Module
+from server.model.course import Course
 
 class Paper(Model, Assistant):
     __tablename__ = "paper"
@@ -16,13 +16,13 @@ class Paper(Model, Assistant):
     link = Column(String)
 
     # Foreign Keys
-    module_id = Column(Integer, ForeignKey("module.id"))
+    course_id = Column(Integer, ForeignKey("course.id"))
 
-    def __init__(self, name, period, sitting, year_start, year_stop, link, module=None):
-        if isinstance(module, Module):
-            module_id = module.id
+    def __init__(self, name, period, sitting, year_start, year_stop, link, course=None):
+        if isinstance(course, Course):
+            course_id = course.id
         else:
-            module_id = module
+            course_id = course
 
         self.name = name
         self.period = period
@@ -30,4 +30,4 @@ class Paper(Model, Assistant):
         self.year_start = year_start
         self.year_stop = year_stop
         self.link = link
-        self.module_id = module_id
+        self.course_id = course_id
