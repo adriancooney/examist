@@ -1,13 +1,13 @@
 """Paper table.
 
-Revision ID: cfe0afd81a1b
+Revision ID: 3e4c70155c23
 Revises: 009921b01ab6
-Create Date: 2016-02-23 21:48:07.555304
+Create Date: 2016-02-24 01:59:47.317001
 
 """
 
 # revision identifiers, used by Alembic.
-revision = 'cfe0afd81a1b'
+revision = '3e4c70155c23'
 down_revision = '009921b01ab6'
 
 from alembic import op
@@ -23,6 +23,7 @@ def upgrade():
     sa.Column('sitting', sa.Integer(), nullable=True),
     sa.Column('year_start', sa.Integer(), nullable=True),
     sa.Column('year_stop', sa.Integer(), nullable=True),
+    sa.Column('link', sa.String(), nullable=True),
     sa.Column('module_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['module_id'], ['module.id'], ),
     sa.PrimaryKeyConstraint('id')

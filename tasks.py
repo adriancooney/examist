@@ -1,6 +1,4 @@
 import os
-import csv
-import re
 from invoke import run, task
 from jinja2 import Template
 from sqlalchemy.sql import text
