@@ -11,7 +11,7 @@ const Module = new Resource("module", "id", {
  * Get a paper by module, year and period.
  */
 export const getModule = Module.createStatefulResourceAction(User.selectAPI, 
-    (api, code) => api.getModule(code).then(({ mod }) => mod));
+    (api, code) => api.getModule(code).then((resp) => resp["module"]));
 
 /*
  * Search for modules.
@@ -25,7 +25,7 @@ export const search = Module.createStatefulAction("MODULE_SEARCH", User.selectAP
  * @return {Function}      Selector.
  */
 export const selectByCode = (code) => {
-    return Module.select(modules => modules.find(mod => mod.code === code));
+    return Module.select(modules => modules.find(mod => mod.code === code.toUpperCase()));
 };
 
 /**
@@ -51,12 +51,10 @@ export const selectPapers = code => state => {
  * @param  {Number}   id Module id.
  * @return {Function}    Selector.
  */
-export const selectByCodeWithPapers = compose(selectByCode, (module) => {
-    return state => module ? ({ 
-        ...module, 
-        papers: selectPapers(module.code)(state)
-    }) : null;
-});
+export const selectByCodeWithPapers = compose(selectByCode, mod => state => ({ 
+    ...module, 
+    papers: selectPapers(mod.code)(state)
+}));
 
 /*
  * Enure modules loaded by user get store in modules resource.
