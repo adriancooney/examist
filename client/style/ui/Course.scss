@@ -1,18 +1,18 @@
 @import "../common/Spacing";
 @import "../common/Colors";
 
-.ModuleClip {
+.CourseClip {
     width: 340px;
     min-height: 62px;
     margin: $spacing-margin;
-    background: $color-module-clip;
+    background: $color-course-clip;
     border-radius: $spacing-radius;
     display: inline-block;
 }
 
-.ModuleLink {
-    @extend .ModuleClip;
-    box-shadow: 0 1px 0 $color-module-clip-shadow;
+.CourseLink {
+    @extend .CourseClip;
+    box-shadow: 0 1px 0 $color-course-clip-shadow;
     position: relative;
     cursor: pointer;
 
@@ -22,7 +22,7 @@
         text-align: center;
         font-size: 120%;
         line-height: 100%;
-        background: $color-module-clip-code;
+        background: $color-course-clip-code;
         padding: $spacing-padding $spacing-padding/1.5 $spacing-padding/1.5;
         border-top-left-radius: $spacing-radius;
         border-bottom-left-radius: $spacing-radius;
@@ -103,25 +103,25 @@
     }
 }
 
-.ModulePlaceholder {
-    @extend .ModuleClip;
-    border: 2px dashed $color-module-clip-shadow;
+.CoursePlaceholder {
+    @extend .CourseClip;
+    border: 2px dashed $color-course-clip-shadow;
 }
 
-.ModulePicker {
-    .ModuleList {
+.CoursePicker {
+    .CourseList {
         text-align: center;
 
-        .ModuleLink {
+        .CourseLink {
             text-align: left;
         }
     }
 
-    .your-modules, .search-results {
+    .your-courses, .search-results {
         min-height: 480px;
     }
 
-    .your-modules { 
+    .your-courses { 
         padding-right: $spacing-padding;
 
         .welcome {

@@ -99,27 +99,27 @@ def user(institution, session):
     return user
 
 @pytest.fixture
-def modules(session, institution):
-    modules = []
+def courses(session, institution):
+    courses = []
 
-    # Add five modules
-    for module in data["modules"]:
-        modules.append(model.Module(
-            name=module["name"], 
-            code=module["code"],
+    # Add five courses
+    for course in data["courses"]:
+        courses.append(model.Course(
+            name=course["name"], 
+            code=course["code"],
             institution=institution
         ))
 
-    session.add_all(modules)
+    session.add_all(courses)
     session.flush()
 
-    return modules
+    return courses
 
 @pytest.fixture
 def papers(session):
     papers = []
 
-    # Add five modules
+    # Add five courses
     for paper in data["papers"]:
         papers.append(model.Paper(
             name=paper["name"],
@@ -136,16 +136,16 @@ def papers(session):
     return papers
 
 @pytest.fixture
-def module_with_papers(session, papers, modules):
-    module = modules[0]
-    module.papers = papers
-    session.add(module)
+def course_with_papers(session, papers, courses):
+    course = courses[0]
+    course.papers = papers
+    session.add(course)
     session.flush()
-    return module
+    return course
 
 @pytest.fixture
-def user_with_modules(user, modules, session):
-    user.modules = modules
+def user_with_courses(user, courses, session):
+    user.courses = courses
     session.add(user)
     session.flush()
     return user

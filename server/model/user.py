@@ -13,9 +13,9 @@ from server.model.institution import Institution
 
 ALPHABET = "abcdefghijklmnopqrstuvwxyz1234567890"
 
-user_modules = Table("user_modules", db.metadata,
+user_courses = Table("user_courses", db.metadata,
     Column("user_id", Integer, ForeignKey("user.id")),
-    Column("module_id", Integer, ForeignKey("module.id"))
+    Column("course_id", Integer, ForeignKey("course.id"))
 )
 
 class User(Model, Assistant):
@@ -33,7 +33,7 @@ class User(Model, Assistant):
 
     # Relationships
     sessions = relationship("Session", backref="user")
-    modules = relationship("Module", secondary=user_modules)
+    courses = relationship("Course", secondary=user_courses)
 
     @hybrid_property
     def active_session(self):

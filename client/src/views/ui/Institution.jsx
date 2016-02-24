@@ -5,9 +5,9 @@ import { Box, Flex } from "./layout";
 export default function Institution({ institution = {} }) {
     let shorthand = institution.shorthand || "-";
     let name = institution.name || "-";
-    let { students, modules, papers } = institution.stats || {
+    let { students, courses, papers } = institution.stats || {
         students: "-",
-        modules: "-",
+        courses: "-",
         papers: "-"
     };
 
@@ -22,8 +22,8 @@ export default function Institution({ institution = {} }) {
                         <h4>Students</h4>
                     </Flex>
                     <Flex>
-                        <h3>{ modules }</h3>
-                        <h4>Modules</h4>
+                        <h3>{ courses }</h3>
+                        <h4>Courses</h4>
                     </Flex>
                     <Flex>
                         <h3>{ papers }</h3>

@@ -10,7 +10,7 @@ import { Form, Input } from "../ui/input";
 import { content } from "../../i18n";
 
 const MATCH_EMAIL = /[^@]+@((?:[-_a-zA-Z]+\.?)+\.\w+)/; // Primitive email check.
-const SIGNUP_REDIRECT = "/modules/pick";
+const SIGNUP_REDIRECT = "/courses/pick";
 
 class Signup extends Component {
     static selector = (state) => {

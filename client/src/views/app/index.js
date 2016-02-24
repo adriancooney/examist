@@ -1,6 +1,6 @@
 export App from "./App";
 export Dashboard from "./Dashboard";
-export Module from "./Module";
+export Course from "./Course";
 export Link from "./Link";
 export LinkList from "./LinkList";
 export Solution from "./Solution";

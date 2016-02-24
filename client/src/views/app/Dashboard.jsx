@@ -6,36 +6,36 @@ import { isPending } from "redux-pending";
 import * as model from "../../model";
 import { selector } from "../../library/Selector";
 import { Loading } from "../ui/";
-import { ModuleList } from "../ui/module/";
+import { CourseList } from "../ui/course/";
 
 class Dashboard extends Component {
     static selectors = selector({
         user: model.User.selectCurrent,
-        userModules: model.User.selectModules,
+        userCourses: model.User.selectCourses,
 
         // Loading states of our actions.
-        isLoadingModules: isPending(model.User.getModules.type)
+        isLoadingCourses: isPending(model.User.getCourses.type)
     });
 
     static actions = {
-        getModules: model.User.getModules
+        getCourses: model.User.getCourses
     };
 
     componentWillMount() {
-        // If our user modules is null, it means we haven't attempted to load them
-        // yet. If it's empty, it means the user has no modules.
-        if(!this.props.user.modules)
-            this.props.getModules();
+        // If our user courses is null, it means we haven't attempted to load them
+        // yet. If it's empty, it means the user has no courses.
+        if(!this.props.user.courses)
+            this.props.getCourses();
     }
 
     render() {
-        let modules = !this.props.user.modules || this.props.isLoadingModules ? 
-            <Loading /> : <ModuleList modules={this.props.userModules} />;
+        let courses = !this.props.user.courses || this.props.isLoadingCourses ? 
+            <Loading /> : <CourseList courses={this.props.userCourses} />;
 
         return (
             <div className="Dashboard">
-                <h2>Your Modules <Link to="/modules/pick">edit</Link></h2>
-                { modules }
+                <h2>Your Courses <Link to="/courses/pick">edit</Link></h2>
+                { courses }
             </div>
         );
     }

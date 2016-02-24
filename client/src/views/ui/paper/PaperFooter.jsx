@@ -7,7 +7,7 @@ export default function PaperFooter(props) {
 
     return (
         <div className="PaperFooter">
-            <p>Something wrong with the paper? <Link to={`/module/${paper.module}/paper/${paper.year}/${paper.period}/parse`}>Fix it!</Link></p>
+            <p>Something wrong with the paper? <Link to={`/course/${paper.course}/paper/${paper.year}/${paper.period}/parse`}>Fix it!</Link></p>
         </div>
     );
 }

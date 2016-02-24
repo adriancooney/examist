@@ -1,11 +1,11 @@
-import "../../../../style/ui/Module.scss";
+import "../../../../style/ui/Course.scss";
 import React, { Component, PropTypes } from "react";
 import { Link } from "react-router";
 import { Box, FlexBox } from "../layout";
 
-export default class ModuleLink extends Component {
+export default class CourseLink extends Component {
     static propTypes = {
-        module: PropTypes.object.isRequired,
+        course: PropTypes.object.isRequired,
         onRemove: PropTypes.func,
         onAdd: PropTypes.func
     };
@@ -14,10 +14,10 @@ export default class ModuleLink extends Component {
         super(props);
 
         if(this.props.onRemove && this.props.onAdd)
-            throw new Error("A module cannot be removable and addable simultaneously.");
+            throw new Error("A course cannot be removable and addable simultaneously.");
     }
 
-    renderModuleCode(code, link) {
+    renderCourseCode(code, link) {
         let match = code.match(/([A-Z]+)(\d+)(-\d+)?/);
 
         if(match) {
@@ -46,14 +46,14 @@ export default class ModuleLink extends Component {
     }
 
     render() {
-        let { code, name } = this.props.module;
-        const link = `/module/${code.toLowerCase()}`;
+        let { code, name } = this.props.course;
+        const link = `/course/${code.toLowerCase()}`;
 
         return (
-            <div className="ModuleLink">
+            <div className="CourseLink">
                 { this.renderOverlay() }
                 <Box>
-                    { this.renderModuleCode(code, link) }
+                    { this.renderCourseCode(code, link) }
                     <h3><Link to={link}>{ name }</Link></h3>
                 </Box>
             </div>

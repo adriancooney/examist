@@ -2,38 +2,38 @@ import { omit } from "lodash/object";
 import { Resource } from "../../library";
 import { compose } from "../../library/Selector";
 import * as User from "../User";
-import Module from "./Module"
+import Course from "./Course"
 
 const Paper = new Resource("paper", "id", {
     cleaner: paper => omit(paper, "questions")
 });
 
 /*
- * Add papers return when a user get's their modules.
+ * Add papers return when a user get's their courses.
  */
-// Paper.addProducerHandler(User.getModules, 
-    // ({ modules }) => modules.reduce((papers, module) => papers.concat(module.papers), []));
+// Paper.addProducerHandler(User.getCourses, 
+    // ({ courses }) => courses.reduce((papers, course) => papers.concat(course.papers), []));
 
 /*
- * Add papers when a specific module is selected
+ * Add papers when a specific course is selected
  */
-Paper.addProducerHandler(Module.type, module => module.papers);
+Paper.addProducerHandler(Course.type, course => course.papers);
 
 /*
- * Get a paper by module, year and period.
+ * Get a paper by course, year and period.
  */
 export const getPaper = Paper.createStatefulResourceAction(User.selectAPI, 
-    (api, module, year, period) => api.getPaper(module, year, period).then(res => res.paper));
+    (api, course, year, period) => api.getPaper(course, year, period).then(res => res.paper));
 
 /**
  * Select a paper based on the following criteria:
- * @param  {String}   module The module code.
+ * @param  {String}   course The course code.
  * @param  {Number}   year   The paper year.
  * @param  {String}   period The paper period.
  * @return {Function}        Selector.
  */
-export const selectPaper = ({ module, year, period }) => {
-    return Paper.select(papers => papers.find(paper => paper.module === module && paper.year === year && paper.period === period));
+export const selectPaper = ({ course, year, period }) => {
+    return Paper.select(papers => papers.find(paper => paper.course === course && paper.year === year && paper.period === period));
 };
 
 /**
@@ -54,10 +54,10 @@ export const selectPaperWithQuestions = compose(selectPaper, paper => state => (
 }));
 
 /**
- * Select a module's papers by id.
- * @param  {Number}    id Module id.
+ * Select a course's papers by id.
+ * @param  {Number}    id Course id.
  * @return {Function}     Selector.
  */
-export const selectByModule = Paper.selectAllByProp("module");
+export const selectByCourse = Paper.selectAllByProp("course");
 
 export default Paper;

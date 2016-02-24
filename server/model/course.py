@@ -5,8 +5,8 @@ from server.database import Model
 from server.library import Assistant
 from server.model.institution import Institution
 
-class Module(Model, Assistant):
-    __tablename__ = "module"
+class Course(Model, Assistant):
+    __tablename__ = "course"
     __table_args__ = (
         UniqueConstraint("code", "institution_id"),
     )
@@ -19,7 +19,7 @@ class Module(Model, Assistant):
     institution_id = Column(Integer, ForeignKey("institution.id"))
 
     # Relationships
-    papers = relationship("Paper", backref="module")
+    papers = relationship("Paper", backref="course")
 
     def __init__(self, name, code, institution):
         self.name = name

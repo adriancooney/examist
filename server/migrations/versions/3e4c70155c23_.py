@@ -24,8 +24,8 @@ def upgrade():
     sa.Column('year_start', sa.Integer(), nullable=True),
     sa.Column('year_stop', sa.Integer(), nullable=True),
     sa.Column('link', sa.String(), nullable=True),
-    sa.Column('module_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['module_id'], ['module.id'], ),
+    sa.Column('course_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['course_id'], ['course.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     ### end Alembic commands ###
