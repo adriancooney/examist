@@ -12,7 +12,11 @@ const Paper = new Resource("paper", "id", {
  * Add papers return when a user get's their courses.
  */
 // Paper.addProducerHandler(User.getCourses, 
-    // ({ courses }) => courses.reduce((papers, course) => papers.concat(course.papers), []));
+//     (args) => {
+//         console.log(args);
+//         // courses.reduce((papers, course) => papers.concat(course.papers), [])
+//         return [];
+//     });
 
 /*
  * Add papers when a specific course is selected

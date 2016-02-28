@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import API from "../API";
+import API, { HTTPError } from "../API";
 import { BROWSER } from "../Config";
 import * as User from "../model/User";
 
@@ -30,13 +30,34 @@ class Root extends Component {
         const key = this.getUserKey();
 
         if(key) {
-            const updateState = () => this.setState({ pendingLogin: false });
+            const updateState = (error) => {
+                // This set state call is essentially the initiator for the entire
+                // app. Is "renders" the route (i.e. routes) and thus initiates the
+                // whole view so this call is *heavy*. Since this is only called 
+                // within the promise too, any errors render the app are then swallowed
+                // never to be found. This function is called for the resolving and
+                // rejection of the promise. This is due to the fact that we still 
+                // render the app if the API throws a 401 unauthorized. To ensure we
+                // don't swallow the other errors, we check to see if the error isn't
+                // an instance of the HTTPError. If it's just a normal error, we
+                // throw it and the lack of the second rejection handler will ensure
+                // the error propagates as it would outside of the promise at all.
+                if(error instanceof Error && !(error instanceof HTTPError)) {
+                    // Since the error logging in Chrome sucks for uncaught in
+                    // errors, we'll help it out a little.
+                    console.error(error.stack);
+                    
+                    throw error;
+                }
+
+                this.setState({ pendingLogin: false });
+            }
 
             this.setState({ pendingLogin: true });
             API.fromAuthKey(key)
                 .then(this.props.restore) // Restore the user
-                .then(updateState) // Render the router regardless of outcome
-                .catch(updateState);
+                .then(updateState) // Render the router regardless of outcome,
+                .catch(updateState); // we let the middleware handling things from then on.
         }
     }
 

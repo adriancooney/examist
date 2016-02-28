@@ -108,6 +108,7 @@ export default class API {
      * @return {Promise} -> {Object}
      */
     getCourse(code) {
+        console.log("Here!");
         return this.fakeRequest("GET", `/course/${code}`).then(() => ({
             course: Generator.course(code)
         }));
