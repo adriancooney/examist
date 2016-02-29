@@ -97,6 +97,9 @@ export default class Reducer {
         if(typeof actionType === "function" && actionType.type)
             actionType = actionType.type;
 
+        if(actionType.constructor.name === "Resource" && actionType.type)
+            actionType = actionType.type;
+
         if(typeof actionType !== "string") 
             throw new Error(`Action type must be a string in '${this.name}' reducer.`)
 

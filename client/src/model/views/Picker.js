@@ -1,6 +1,5 @@
 import { difference } from "lodash/array";
 import { Reducer } from "../../library";
-import * as User from "../User";
 import * as Course from "../resources/Course";
 
 const Picker = new Reducer("picker", {

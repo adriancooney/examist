@@ -26,7 +26,7 @@ export default class Resource extends Reducer {
         this.type = name.toUpperCase();
 
         // Bind the actions
-        this.handleAction(this.type, this.onLoad.bind(this));
+        this.addProducerHandler(this.type);
     }
 
     /**
@@ -59,7 +59,6 @@ export default class Resource extends Reducer {
      */
     onLoad(loadedResources, resources) {
         if(this.debug) this.debug("Handling incoming resource(s): ", resources);
-        resources = Array.isArray(resources) ? resources : [resources]
         resources = resources.map(resource => {
             if(typeof resource === "undefined")
                 throw new Error("Unable to handle undefined resource.");
@@ -89,11 +88,17 @@ export default class Resource extends Reducer {
      * the current resource.
      * @param   {String}   actionType The action type.
      * @param   {Function} extractor  A function to return the resource(s).
+     * @param   {Function} cleaner    A cleaner for the return reducer (run aswell as default cleaner).
      * @returns {Action}              The producer action.
      */
-    addProducerHandler(actionType, extractor) {
+    addProducerHandler(actionType, extractor, cleaner) {
         return this.handleAction(actionType, 
-            (resources, resource) => this.onLoad(resources, extractor ? extractor(resource) : resource));
+            (resources, resource) => {
+                resource = extractor ? extractor(resource) : resource;
+                resource = Array.isArray(resource) ? resource : [resource]
+                if(cleaner) resource = resource.map(cleaner);
+                return this.onLoad(resources, resource);
+            });
     }
 
     /**

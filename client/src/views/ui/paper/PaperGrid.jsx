@@ -14,7 +14,7 @@ export default class PaperGrid extends Component {
     static propTypes = {
         currentPaper: PropTypes.object,
         papers: PropTypes.array.isRequired,
-        course: PropTypes.string.isRequired
+        course: PropTypes.object.isRequired
     };
 
     render() {
@@ -36,7 +36,7 @@ export default class PaperGrid extends Component {
             // Create the dot for each year
             let items = years.map((year) => {
                 const paper = periods[period][year];
-                return (<PaperLink paper={paper} current={paper === this.props.currentPaper} />);
+                return (<PaperLink paper={paper} course={this.props.course} current={paper === this.props.currentPaper} />);
             });
 
             // Add in the paper period as the first column
@@ -63,7 +63,7 @@ export default class PaperGrid extends Component {
     groupByPeriod(papers) {
         return papers.reduce((groups, paper) => {
             if(!groups[paper.period]) groups[paper.period] = {};
-            groups[paper.period][paper.year] = paper;
+            groups[paper.period][paper.year_start] = paper;
             return groups;
         }, {});
     }

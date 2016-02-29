@@ -1,7 +1,7 @@
 import "../../../../style/ui/Course.scss";
 import React, { Component, PropTypes } from "react";
 import { Link } from "react-router";
-import { Box, FlexBox } from "../layout";
+import { Box } from "../layout";
 
 export default class CourseLink extends Component {
     static propTypes = {

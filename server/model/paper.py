@@ -7,6 +7,13 @@ from server.model.course import Course
 class Paper(Model, Assistant):
     __tablename__ = "paper"
 
+    PAPER_PERIODS = [
+        "spring",
+        "summer",
+        "autumn",
+        "winter"
+    ]
+
     id = Column(Integer, primary_key=True)
     name = Column(String)
     period = Column(String)

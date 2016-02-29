@@ -29,7 +29,7 @@ export default class API {
             headers: {
                 ...headers,
                 "Content-Type": "application/json"
-            }, 
+            },
             body: method !== "GET" ? JSON.stringify(data) : undefined
         }).then(response => {
             // Hold yer horser
@@ -42,7 +42,11 @@ export default class API {
             // Match invalid JSON response
             if(error instanceof SyntaxError && error.message.match(/Unexpected end of input/))
                 throw new InvalidResponse("Invalid JSON response.");
-        }).then(([body, response]) => {
+
+            console.error("Network Error: ", error.stack);
+        }).then(data => {
+            let [body, response] = data;
+
             debug("<< %s", response.status, body)
 
             // Throw any HTTP errors
@@ -108,10 +112,7 @@ export default class API {
      * @return {Promise} -> {Object}
      */
     getCourse(code) {
-        console.log("Here!");
-        return this.fakeRequest("GET", `/course/${code}`).then(() => ({
-            course: Generator.course(code)
-        }));
+        return this.request("GET", `/course/${code}`);
     }
 
     /**
@@ -149,9 +150,7 @@ export default class API {
      * @return {Promise} -> {Object}
      */
     getPaper(course, year, period) {
-        return this.fakeRequest("GET", `/course/${course}/paper/${year}/${period}`).then(() => ({
-            paper: Generator.paper(course, year, period)
-        }));
+        return this.request("GET", `/course/${course}/paper/${year}/${period}`);
     }
 
     /**

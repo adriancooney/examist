@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import API, { HTTPError } from "../API";
-import { BROWSER } from "../Config";
+import { BROWSER, DEBUG } from "../Config";
 import * as User from "../model/User";
 
 class Root extends Component {
@@ -45,8 +45,8 @@ class Root extends Component {
                 if(error instanceof Error && !(error instanceof HTTPError)) {
                     // Since the error logging in Chrome sucks for uncaught in
                     // errors, we'll help it out a little.
-                    console.error(error.stack);
-                    
+                    if(DEBUG) console.error(error.stack);
+
                     throw error;
                 }
 

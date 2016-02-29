@@ -6,7 +6,7 @@ import * as model from "../../model";
 import { selector } from "../../library/Selector";
 import { CourseList } from "../ui/course";
 import { Input } from "../ui/input";
-import { Box, Flex, FlexBox } from "../ui/layout";
+import { Box, Flex } from "../ui/layout";
 import { Loading } from "../ui";
 
 const COURSE_COLUMN_HEIGHT = 6;

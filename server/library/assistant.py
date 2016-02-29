@@ -18,15 +18,16 @@ class Assistant:
     
     @classmethod
     def getBy(model, session, **kwargs):
-
+        print "GET BY: ", kwargs
         where = None
         for attr, value in kwargs.iteritems():
             try:
+                print "Comparing attr %s with" % attr, value
                 comp = model.__dict__[attr] == value
             except Exception, e:
                 raise AttributeError("Attribute '%s' not found on model '%s'." % (attr, model.__name__))                
 
-            where = comp if not where else where & comp
+            where = comp if where is None else where & comp
 
         try:
             return session.query(model).filter(where).one()

@@ -39,11 +39,11 @@ export const selectById = (id) => {
 
 /**
  * Select papers for a course.
- * @param  {String}   code The course code.
- * @return {Function}      Selector.
+ * @param  {String}   id The course id.
+ * @return {Function}    Selector.
  */
-export const selectPapers = code => state => {
-    return state.resources.papers.filter(paper => paper.course === code);
+export const selectPapers = id => state => {
+    return state.resources.papers.filter(paper => paper.course === id);
 };
 
 /**
@@ -53,7 +53,7 @@ export const selectPapers = code => state => {
  */
 export const selectByCodeWithPapers = compose(selectByCode, course => state => ({ 
     ...course, 
-    papers: selectPapers(course.code)(state)
+    papers: selectPapers(course.id)(state)
 }));
 
 /*
