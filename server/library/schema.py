@@ -1,9 +1,10 @@
+import pprint
 from marshmallow import Schema
 from marshmallow_sqlalchemy import fields_for_model, ModelSchemaOpts
 
-def create_schema(model, meta={}):
+def create_schema(model, meta={}, include_fk=True):
     """Automatically create a schema for a SQL Alchemy model. Sweet."""
-    fields = fields_for_model(model)
+    fields = fields_for_model(model, include_fk=include_fk)
 
     meta["strict"] = True
     meta["model"] = model
