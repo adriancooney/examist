@@ -1,5 +1,5 @@
 var path = require("path"),
-    webpack = require("webpack");
+webpack = require("webpack");
 
 // Plugins
 var CopyWebpackPlugin = require("copy-webpack-plugin");
@@ -21,7 +21,12 @@ module.exports = {
             test: /\.scss$/,
             include: [path.resolve(__dirname, "style/")],
             loaders: ["style", "css", "sass"]
-        }]
+        },
+
+        {test: /font\/.+\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader?mimetype=image/svg+xml'},
+        {test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader?mimetype=application/font-woff"},
+        {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader?mimetype=application/octet-stream"},
+        {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader"}]
     },
 
     resolve: {
@@ -40,13 +45,13 @@ module.exports = {
     },
 
     plugins: [
-        new webpack.DefinePlugin({
-            "process.env.NODE_ENV": process.env.NODE_ENV || "\"development\""
-        }),
+    new webpack.DefinePlugin({
+        "process.env.NODE_ENV": process.env.NODE_ENV || "\"development\""
+    }),
 
-        new CopyWebpackPlugin([{
-            from: "assets",
-            to: "assets"
-        }])
+    new CopyWebpackPlugin([{
+        from: "assets",
+        to: "assets"
+    }])
     ]
 };

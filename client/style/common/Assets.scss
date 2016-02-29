@@ -1,7 +1,11 @@
 $asset-root: "/assets";
 $asset-icon-root: "#{$asset-root}/icon";
+$asset-img-root: "#{$asset-root}/img";
 
 // Icons
 $asset-icon-close: "#{$asset-icon-root}/close.svg";
 $asset-icon-loading: "#{$asset-icon-root}/loading.gif";
 $asset-icon-loading-svg: "#{$asset-icon-root}/loading.svg";
+
+// Backgrounds
+$assert-background-parser-paper-view: "#{$asset-img-root}/parser-tile.png"

@@ -1,0 +1,27 @@
+@import "common/Colors";
+@import "common/Spacing";
+@import "common/Assets";
+
+.Parser {
+    height: 100vh;
+
+    .Sidebar {
+        padding: $spacing-padding;
+        background-color: $color-parser-sidebar;
+
+        .back {
+            cursor: pointer;
+            color: rgba(255, 255, 255, 0.5);
+        }
+    }
+
+    .InfoPanel {
+        width: 20%;
+        background: $color-parser-info-panel;
+    }
+
+    .PaperView {
+        background: url($assert-background-parser-paper-view);
+        background-size: 30px;
+    }
+}
