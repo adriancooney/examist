@@ -6,10 +6,12 @@ from server.database import db
 from server.model import Session
 from server.exc import NotFound, Unauthorized
 
+AUTH_HEADER_NAME = "Auth-Key"
+
 @middleware
-@use_args({ "Auth-Key": fields.Str(required=True) }, locations=("headers",))
+@use_args({ AUTH_HEADER_NAME: fields.Str(required=True) }, locations=("headers",))
 def authorize(args):
-    key = args["Auth-Key"]
+    key = args[AUTH_HEADER_NAME]
 
     try:
         session = Session.getBy(db.session, key=key)

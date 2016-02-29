@@ -1,3 +1,4 @@
+from server.middleware import AUTH_HEADER_NAME
 from server.test import assert_api_error
 from json import dumps, loads
 
@@ -40,10 +41,10 @@ def test_login_invalid_password(user, client):
 
 def test_auth_check_no_key(client):
     resp = client.get("/auth")
-    assert_api_error(resp, 422, "Missing", meta={ "field": "Auth-Key" })
+    assert_api_error(resp, 422, "Missing", meta={ "field": AUTH_HEADER_NAME })
 
 def test_auth_check_invalid_key(client):
-    resp = client.get("/auth", headers=[("Auth-Key", "INVALID_LOL")])
+    resp = client.get("/auth", headers=[(AUTH_HEADER_NAME, "INVALID_LOL")])
     assert_api_error(resp, 401, "Unauthorized")
 
 def test_auth_check_expired_key(auth_client, user, session):

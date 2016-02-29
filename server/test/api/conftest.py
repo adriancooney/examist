@@ -6,6 +6,7 @@ import json
 from sqlalchemy_utils import database_exists, create_database, drop_database
 from server.test import APIClient
 from server.web import app as _app
+from server.middleware import AUTH_HEADER_NAME
 from server import config
 from server.database import db as _db
 from server import model
@@ -157,7 +158,7 @@ def auth_client(user, session, client):
     session.flush()
 
     setattr(client, "key", userSession.key)
-    client.default_environ["headers"] = [("Auth-Key", "%s" % userSession.key)]
+    client.default_environ["headers"] = [(AUTH_HEADER_NAME, "%s" % userSession.key)]
     
     return client
 
