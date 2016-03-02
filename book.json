@@ -1,15 +1,12 @@
 {
   "structure": {
-    "summary": "resarch/report/README.md"
+    "readme": "research/report/README.md",
+    "summary": "research/report/SUMMARY.md"
   },
-  "plugins": ["edit-link", "prism", "-highlight", "github"],
+  "plugins": ["prism", "-highlight", "github"],
   "pluginsConfig": {
-    "edit-link": {
-      "base": "https://github.com/rackt/redux/tree/master",
-      "label": "Edit This Page"
-    },
     "github": {
-      "url": "https://github.com/rackt/redux/"
+      "url": "https://github.com/adriancooney/examist/"
     }
   }
 }
