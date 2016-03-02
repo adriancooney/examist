@@ -3,6 +3,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey
 from server.database import Model
 from server.library import Assistant
 from server.model.course import Course
+from server.model.paper_download import PaperDownload
 
 class Paper(Model, Assistant):
     __tablename__ = "paper"
@@ -38,3 +39,7 @@ class Paper(Model, Assistant):
         self.year_stop = year_stop
         self.link = link
         self.course_id = course_id
+
+    def download(self):
+        self.contents = PaperDownload(self)
+        self.contents.download()

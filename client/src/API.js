@@ -12,14 +12,15 @@ export default class API {
     }
 
     /**
+     * Perform a request and return the raw Response object.
      * Make a request to the path supplied on API_BASE_URL.
      * @param  {String} method  GET|PUT|POST|DELETE|OPTIONS|HEAD
      * @param  {String} path    The pathname of the URL e.g. /login
      * @param  {Object} data    The data to supply in the request body (JSON encoded).
      * @param  {Object} headers The headers to send with the request.
-     * @return {Promise} -> {Response} Resolves to response data object.
+     * @return {Promise} -> {Response} Resolves to response object.
      */
-    static request(method, path, data = {}, headers = {}) {
+    static rawRequest(method, path, data = {}, headers = {}) {
         method = method.toUpperCase(); // Normalize the method
 
         debug(`>> %c${method} ${API_BASE_URL}${path}${headers["Auth-Key"] ? " (authorized)" : ""}`, "color: purple", data);
@@ -36,14 +37,27 @@ export default class API {
             if(DEBUG) {
                 return new Promise(resolve => setTimeout(() => resolve(response), 1000));
             } else return response;
-        }).then(response => {
+        });
+    }
+
+    /**
+     * Make a request to the path supplied on API_BASE_URL.
+     * @param  {String} method  GET|PUT|POST|DELETE|OPTIONS|HEAD
+     * @param  {String} path    The pathname of the URL e.g. /login
+     * @param  {Object} data    The data to supply in the request body (JSON encoded).
+     * @param  {Object} headers The headers to send with the request.
+     * @return {Promise} -> {Object} Resolves to response data object (JSON).
+     */
+    static request(method, path, data = {}, headers = {}) {
+        API.rawRequest(method, path, data, headers).then(response => {
+            // Parse the JSON
             return Promise.all([response.json(), response]);
         }).catch(error => {
             // Match invalid JSON response
             if(error instanceof SyntaxError && error.message.match(/Unexpected end of input/))
                 throw new InvalidResponse("Invalid JSON response.");
 
-            console.error("Network Error: ", error.stack);
+            if(DEBUG) console.error("Network Error: ", error.stack);
         }).then(data => {
             let [body, response] = data;
 
@@ -151,6 +165,24 @@ export default class API {
      */
     getPaper(course, year, period) {
         return this.request("GET", `/course/${course}/paper/${year}/${period}`);
+    }
+
+    /**
+     * Get the contents of a paper.
+     *
+     * WARNING: This method is not like the rest. The API will return HTML so instead
+     * of trying to parse JSON, we return the raw request object. Another gotcha of
+     * this method is that the API will return 202 and an empty body if the paper is
+     * downloading but not yet ready to be served, so repeat requests are required to
+     * check if the paper is ready yet. A 200 will signify the contents are returned.
+     * 
+     * @param  {String} course Code e.g. CT470
+     * @param  {Number} year   The year e.g. 2007
+     * @param  {String} period One of ["summer", "winter", "autumn", "spring"]
+     * @return {Promise} -> {Request}
+     */
+    getPaperContents(course, year, period) {
+        return this.rawRequest("GET", `/course/${course}/paper/${year}/${period}.html`);
     }
 
     /**
