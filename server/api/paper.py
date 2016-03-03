@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, request, send_file
 from sqlalchemy.orm.exc import NoResultFound
 from webargs import fields
 from marshmallow import validate
@@ -28,5 +28,18 @@ def get_paper(course, year, period):
         ).one()
     except NoResultFound:
         raise NotFound("Paper")
+        
+    if request.url.endswith("html"):
+        # Request paper contents
+        if not paper.contents:x
+            # If it doesn't exist, start the download
+            paper.download()
+            db.session.add(paper)
+            db.session.commit()
 
-    return respond({ "paper": paper.dump() })
+        # Respond with the file
+        return send_file(paper.contents.path, mimetype="text/html")
+
+    else:
+        # Request paper data
+        return respond({ "paper": paper.dump() })

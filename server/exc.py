@@ -33,7 +33,6 @@ class UnacceptableParameter(HttpException):
             "parameter": parameter
         })
 
-
 class LoginError(HttpException):
     """403, Bad credentials"""
     def __init__(self, username):
