@@ -1,3 +1,4 @@
+from os import path
 from flask import Blueprint, request, send_file
 from sqlalchemy.orm.exc import NoResultFound
 from webargs import fields
@@ -8,6 +9,7 @@ from server import model
 from server.database import db
 from server.response import respond, success
 from server.exc import NotFound, LoginError, AlreadyExists, InvalidEntity
+from server import config
 
 Paper = Blueprint("paper", __name__)
 
@@ -31,14 +33,14 @@ def get_paper(course, year, period):
         
     if request.url.endswith("html"):
         # Request paper contents
-        if not paper.contents:x
+        if not paper.contents:
             # If it doesn't exist, start the download
-            paper.download()
+            paper.download(config.APP_DOWNLOAD_DIR)
             db.session.add(paper)
             db.session.commit()
 
         # Respond with the file
-        return send_file(paper.contents.path, mimetype="text/html")
+        return send_file(path.join(paper.contents.path, "index.html"), mimetype="text/html")
 
     else:
         # Request paper data

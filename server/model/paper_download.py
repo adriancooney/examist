@@ -39,9 +39,9 @@ class PaperDownload(Model, Assistant):
         PaperDownload.download_file(link, pdf_file_path)
 
         # Convert the pdf
-        PaperDownload.convert_pdf_to_html(pdf_file_path, output_dir)
+        self.path = PaperDownload.convert_pdf_to_html(pdf_file_path, output_dir)
 
-        # Remove the file
+        # Remove the pdf file
         os.unlink(pdf_file_path)
 
     @staticmethod
@@ -78,3 +78,5 @@ class PaperDownload(Model, Assistant):
 
         # For some reason the tool appends "-html" to the filename, we need to remove this
         os.rename(path.join(content_dir, "index-html.html"), path.join(content_dir, "index.html"))
+
+        return content_dir

@@ -40,6 +40,6 @@ class Paper(Model, Assistant):
         self.link = link
         self.course_id = course_id
 
-    def download(self):
+    def download(self, output_dir):
         self.contents = PaperDownload(self)
-        self.contents.download()
+        self.contents.download(output_dir)
