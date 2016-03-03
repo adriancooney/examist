@@ -14,7 +14,7 @@ from server import model
 DB_NAME = config.DB_NAME + "_test"
 
 # Data generation
-with open(os.path.join(os.path.dirname(__file__), "../data/example.json")) as data_file:
+with open(os.path.join(os.path.dirname(__file__), "data/example.json")) as data_file:
     data = json.load(data_file)
 
 @pytest.fixture(scope="session")

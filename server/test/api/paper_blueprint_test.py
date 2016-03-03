@@ -34,3 +34,11 @@ def test_paper_get_invalid_paper(auth_client, course_with_papers):
     ))
 
     assert_api_error(resp, 404, message="Paper not found.")
+
+def test_paper_get_html(auth_client, papers):
+    paper = papers[0]
+    resp = auth_client.get("/course/{code}/paper/{year}/{period}.html".format(
+        code=course.code, 
+        year=2020,
+        period=paper.period.lower()
+    ))
