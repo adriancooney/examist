@@ -11,17 +11,22 @@ import { Box, Flex } from "../ui/layout";
 
 class Course extends Component {
     static selector = (state, { params }) => {
+        let papers, paper;
         const course = model.resources.Course.selectByCode(params.course)(state);
 
-        return {
-            course, 
-            papers: course && model.resources.Paper.selectByCourse(course.id)(state),
-            paper: course && params.year && params.period ? 
-                model.resources.Paper.selectPaper({ 
+        if(course) {
+            papers = model.resources.Paper.selectByCourse(course.id)(state);
+
+            if(params.year && params.period) {
+                paper = model.resources.Paper.selectPaper({ 
                     period: params.period,
                     year: parseInt(params.year), 
                     course: course.id 
-                })(state) : null,
+                })(state);
+            }
+        }
+        return {
+            course, papers, paper,
             isLoadingCourse: isPending(model.resources.Course.getCourse.type)(state)
         };
     };
@@ -40,11 +45,10 @@ class Course extends Component {
         // paper id in the course's papers and check if it's loaded.
         if(course && papers && !course.papers.every(id => some(papers, matchesProperty("id", id))))
             this.props.getCourse(this.props.params.course);
-
     }
 
     render() {
-        let course = this.props.course;
+        let { course, papers, paper } = this.props;
 
         if(this.props.isLoadingCourse) {
             return <Loading />
@@ -56,7 +60,7 @@ class Course extends Component {
                         <Flex><h3>{ course.name }</h3></Flex>
                     </Box>
                     
-                    <PaperGrid papers={course.papers} course={course} currentPaper={this.props.paper}/>
+                    <PaperGrid papers={papers} course={course} currentPaper={paper}/>
 
                     { this.props.children }
                 </Flex>
