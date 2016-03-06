@@ -49,7 +49,7 @@ export default class API {
      * @return {Promise} -> {Object} Resolves to response data object (JSON).
      */
     static request(method, path, data = {}, headers = {}) {
-        API.rawRequest(method, path, data, headers).then(response => {
+        return API.rawRequest(method, path, data, headers).then(response => {
             // Parse the JSON
             return Promise.all([response.json(), response]);
         }).catch(error => {

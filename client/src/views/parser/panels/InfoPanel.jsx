@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import Panel from "../../ui/parser/Panel";
 
 export default class InfoPanel extends Component {
     render() {
         return (
-            <div className="InfoPanel"></div>
+            <Panel className="info" title="Information">
+            </Panel>
         );
     }
 }

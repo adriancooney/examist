@@ -9,19 +9,54 @@
         padding: $spacing-padding;
         background-color: $color-parser-sidebar;
 
-        .back {
+        i {
             cursor: pointer;
             color: rgba(255, 255, 255, 0.5);
+            margin: $spacing-margin 0;
+            text-align: center;
+        }
+
+        i:hover, i.active {
+            color: white;
+        }
+
+        .fa-info-circle {
+            font-size: 1.7em;
+        }
+
+        .fa-list {
+            font-size: 1.5em;
         }
     }
 
-    .InfoPanel {
-        width: 20%;
+    .panel-container {
+        width: 46%;
         background: $color-parser-info-panel;
-    }
 
-    .PaperView {
-        background: url($assert-background-parser-paper-view);
-        background-size: 30px;
+        .header {
+            background: $color-body;
+            padding: $spacing-padding/2;
+            text-align: center;
+        }
+    }
+}
+
+.Panel {
+    h3 {
+        text-transform: uppercase;
+        margin: $spacing-margin;
+        font-size: 150%;
+        font-weight: 400;
+        color: rgba(0,0,0,0.4);
+    }
+}
+
+.PaperView {
+    background: url($assert-background-parser-paper-view);
+    background-size: 30px;
+
+    object {
+        width: 100%;
+        height: 100vh;
     }
 }

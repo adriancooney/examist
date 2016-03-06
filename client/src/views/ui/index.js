@@ -6,3 +6,4 @@ export Institution from "./Institution";
 export Loading from "./Loading";
 export Avatar from "./Avatar";
 export Empty from "./Empty";
+export Icon from "./Icon";

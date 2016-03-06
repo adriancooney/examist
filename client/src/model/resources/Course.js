@@ -61,5 +61,6 @@ export const selectByCodeWithPapers = compose(selectByCode, course => state => (
  */
 Course.addProducerHandler(User.getCourses, ({ courses }) => courses);
 Course.addProducerHandler(search, ({ courses }) => courses);
+Course.addProducerHandler("PAPER", ({ course }) => course);
 
 export default Course;

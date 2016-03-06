@@ -1,31 +1,27 @@
-import "../../../../style/app/courses/PaperLink.scss"
+import "../../../../style/ui/Paper.scss";
 import React, { PropTypes } from "react";
 import { Link } from "react-router";
-import { Enum } from "../../../Util";
-
-export const PAPER_TYPE = Enum(
-    "UNAVAILABLE", // The paper was not available on the server
-    "UNINDEXED", // The paper is available but not yet indexed
-    "AVAILABLE" // The paper is available and is indexed
-);
+import { capitalize } from "lodash/string";
+import CourseLink from "../course/CourseLink";
+import Box from "../layout/Box";
 
 export default function PaperLink(props) {
-    let type = PAPER_TYPE.UNAVAILABLE;
-    let link = null;
+    const link = `/course/${props.course.code}/paper/${props.paper.year_start}/${props.paper.period}`;
 
-    if(props.paper) {
-        let paper = props.paper;
-
-        if(paper.isIndexed) type = PAPER_TYPE.AVAILABLE;
-        else type = PAPER_TYPE.UNINDEXED;
-
-        link = <Link to={`/course/${props.course.code}/paper/${paper.year_start}/${paper.period}`}/>
-    }
-
-    return (<span className={`PaperLink link-${type.toLowerCase()}`}>{ link }</span>);
+    return (
+        <div className="PaperLink">
+            <Box>
+                <CourseLink course={props.course} />
+                <div className="paper-detail">
+                    <h4><Link to={link}>{ props.paper.year_start }</Link></h4>
+                    <h5><Link to={link}>{ capitalize(props.paper.period) }</Link></h5>
+                </div>
+            </Box>
+        </div>
+    );
 }
 
 PaperLink.propTypes = {
-    paper: PropTypes.object,
-    course: PropTypes.object
+    course: PropTypes.object.isRequired,
+    paper: PropTypes.object.isRequired
 };

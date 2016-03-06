@@ -4,6 +4,7 @@ export default function Icon(props) {
     let className = `fa fa-${props.name}`;
 
     if(props.size) className += ` fa-${props.size}x`;
+    if(props.active) className += " active";
     if(props.className) className += " " + props.className;
 
     return (

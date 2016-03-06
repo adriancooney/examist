@@ -1,9 +1,9 @@
-import "../../../../style/app/courses/PaperGrid.scss";
+import "../../../../style/ui/Paper.scss";
 import React, { Component, PropTypes } from "react";
 import { range } from "lodash/util";
 import { capitalize } from "lodash/string";
 
-import PaperLink from "./PaperLink";
+import PaperDot from "./PaperDot";
 
 // The range of years to display
 const YEAR_END = (new Date()).getFullYear();
@@ -36,7 +36,7 @@ export default class PaperGrid extends Component {
             // Create the dot for each year
             let items = years.map((year) => {
                 const paper = periods[period][year];
-                return (<PaperLink paper={paper} course={this.props.course} current={paper === this.props.currentPaper} />);
+                return (<PaperDot paper={paper} course={this.props.course} current={paper === this.props.currentPaper} />);
             });
 
             // Add in the paper period as the first column
