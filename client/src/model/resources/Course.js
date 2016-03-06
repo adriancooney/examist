@@ -4,7 +4,10 @@ import { compose } from "../../library/Selector"
 import * as User from "../User";
 
 const Course = new Resource("course", "id", {
-    cleaner: course => omit(course, "papers")
+    cleaner: course => ({
+        ...course,
+        papers: course.papers.filter(paper => typeof paper === "object" ? paper.id : paper)
+    })
 });
 
 /*
