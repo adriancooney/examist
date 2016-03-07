@@ -11,17 +11,13 @@ export default (
     <Provider store={store}>
         <Root>
             <Router history={browserHistory}>
-                {/*
-                    Here we have an entirely different application on a URL. We hoist this URL out of the
-                    "/" route because we don't want the container.
-                */}
-                <Route path="/course/:course/paper/:year/:period/parse" component={views.parser.Parser} />
+                {views.parser.routes}
 
                 <Route path="/" component={views.templates.Container}>
                     <Route path="login" component={views.pages.Login} onEnter={views.pages.Login.onEnter} />
                     <Route path="signup" component={views.pages.Signup} onEnter={views.pages.Signup.onEnter}/>
                     
-                    {views.app.App}
+                    {views.app.routes}
 
                     <Route path="*" component={views.pages.Error404} />
                 </Route>

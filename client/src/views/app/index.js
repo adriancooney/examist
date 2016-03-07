@@ -6,3 +6,5 @@ export LinkList from "./LinkList";
 export Solution from "./Solution";
 export SolutionList from "./SolutionList";
 export Paper from "./Paper";
+
+export routes from "./routes";

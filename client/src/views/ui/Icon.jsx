@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react";
+import { Link } from "react-router";
 
 export default function Icon(props) {
     let className = `fa fa-${props.name}`;
@@ -16,3 +17,7 @@ Icon.propTypes = {
     name: PropTypes.string.isRequired,
     size: PropTypes.number
 };
+
+export function IconLink(props) {
+    return (<Link to={props.to}><Icon {...props} /></Link>);
+}

@@ -2,10 +2,9 @@ import "../../../style/Parser.scss";
 import React, { Component } from "react";
 import { Link } from "react-router";
 import { connect } from "react-redux";
-import { InfoPanel, QuestionsPanel, HelpPanel } from "./panels";
 import PaperView from "./PaperView"
 import { FlexBox, Box } from "../ui/layout";
-import { Icon, Loading } from "../ui";
+import { Icon, IconLink, Loading } from "../ui";
 import { PaperLink } from "../ui/paper";
 import * as model from "../../model";
 
@@ -19,13 +18,11 @@ class Parser extends Component {
                 period: params.period,
                 year: parseInt(params.year),
                 course: course.id 
-            })(state) : null,
-            view: model.views.Parser.selectView(state)
+            })(state) : null
         }
     };
 
     static actions = {
-        switchView: model.views.Parser.switchView,
         getPaper: model.resources.Paper.getPaper,
         push: model.Routing.push
     };
@@ -38,54 +35,36 @@ class Parser extends Component {
     }
 
     render() {
-        const views = model.views.Parser.views;
-        const currentView = this.props.view;
-        if(!this.props.paper) {
+        const { paper, course, children } = this.props;
+
+        if(!paper) {
             return <Loading />;
         }
 
-        let panel, header;
-        const { paper, course } = this.props;
-
-        if(currentView === views.help) {
-            panel = <HelpPanel />;
-        } else {
-            header = (
-                <header className="header">
-                    <PaperLink course={course} paper={paper} />
-                </header>
-            );
-
-            if(currentView === views.info) {
-                panel = <InfoPanel />;
-            } else if(currentView === views.questions) {
-                panel = <QuestionsPanel />;
-            }
-        }
+        const paperLink = `/course/${course.code}/paper/${paper.year_start}/${paper.period}/`;
+        let currentPage = this.props.location.pathname.match(/\/(\w+)$/);
+        currentPage = currentPage ? currentPage[1] : "info";
 
         return (
             <FlexBox className="Parser">
                 <Box vertical className="Sidebar">
-                    <Link to={`/course/${course.code}/paper/${paper.year_start}/${paper.period}/`}>
-                        <Icon name="arrow-circle-o-left" size={2} />
-                    </Link>
-                    <Icon name="info-circle" size={2} onClick={this.switchView.bind(this, views.info)} active={currentView === views.info} />
-                    <Icon name="list" size={2} onClick={this.switchView.bind(this, views.questions)} active={currentView === views.questions} />
-                    <Icon name="question-circle" size={2} onClick={this.switchView.bind(this, views.help)} active={currentView === views.help} />
+                    <IconLink to={paperLink} name="arrow-circle-o-left" size={2} />
+                    <IconLink to={`${paperLink}parse/`} name="info-circle" size={2} active={currentPage === "info"} />
+                    <IconLink to={`${paperLink}parse/questions`} name="list" size={2} active={currentPage === "questions"} />
+                    <IconLink to={`${paperLink}parse/help`} name="question-circle" size={2} active={currentPage === "help"} />
                 </Box>
 
                 <div className="panel-container">
-                    { header }
-                    { panel }
+                    <header className="header">
+                        <PaperLink course={course} paper={paper} />
+                    </header>
+
+                    { children }
                 </div>
 
                 <PaperView link={this.props.paper.link}/>
             </FlexBox>
         );
-    }
-
-    switchView(view) {
-        this.props.switchView(view);
     }
 }
 

@@ -4,8 +4,7 @@ import Panel from "../../ui/parser/Panel";
 export default class InfoPanel extends Component {
     render() {
         return (
-            <Panel className="info" title="Information">
-            </Panel>
+            <Panel className="info" title="Information" />
         );
     }
 }
