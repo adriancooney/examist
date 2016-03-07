@@ -1,3 +1,2 @@
-export Question from "./Question";
-export QuestionList from "./QuestionList";
+export Question, { QuestionList } from "./Question";
 export Path from "./Path";
