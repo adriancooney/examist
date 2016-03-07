@@ -1,13 +1,14 @@
-import { omit } from "lodash/object";
 import { Resource } from "../../library";
 import { compose } from "../../library/Selector"
 import * as User from "../User";
 
 const Course = new Resource("course", "id", {
-    cleaner: (course) => ({
-        ...course,
-        papers: course.papers.map(paper => typeof paper === "object" ? paper.id : paper)
-    })
+    cleaner: (course) => {
+        if(course.papers)
+            course.papers.map(paper => typeof paper === "object" ? paper.id : paper)
+
+        return course;
+    }
 });
 
 /*
