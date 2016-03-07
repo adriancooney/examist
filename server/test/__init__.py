@@ -16,9 +16,18 @@ def assert_api_error(resp, code, message = None, meta = None):
 
     if meta:
         respMeta = data["meta"]
-        for key, value in meta.iteritems():
-            assert key in respMeta, "Response meta does not contain expected key '%s'" % key
-            assert value == respMeta[key], "Respone meta key value does not contain expected value '%s'" % value
+        assert_shallow_compare(respMeta, meta, "Response Meta")
+
+def assert_api_result(resp, data = None, includes = None):
+    resp_data = loads(resp.get_data())
+
+    assert resp_data["data"]
+    assert_shallow_compare(resp_data, resp_data["data"], "API result")
+
+def assert_shallow_compare(actual, expected, name="Object"):
+    for key, value in expected.iteritems():
+        assert key in actual, message.format(key=key), "%s does not contain expected key '%s'" % (name, key)
+        assert value == expected[key], "%s key ('%s') value does not contain expected value '%r' == '%r'" % (name, key, value, expected[key])
 
 class APIClient(Client):
     default_environ = dict(
