@@ -1,4 +1,5 @@
 from flask import Blueprint
+from sqlalchemy.orm import joinedload
 from webargs import fields
 from webargs.flaskparser import parser, use_kwargs
 from server import model
@@ -35,10 +36,9 @@ def search_course(q):
 @use_kwargs({ "course": fields.Str(required=True) }, locations=("view_args",))
 @authorize
 def get_course(course):
-    course = model.Course.getBy(db.session, code=course.upper())
-    dump = course.dump()
+    course = db.session.query(model.Course)\
+        .filter(model.Course.code == course.upper())\
+        .options(joinedload("papers"))\
+        .one()
 
-    # Add the papers to the schema
-    dump["papers"] = schema(model.Paper).dump(course.papers, many=True).data
-
-    return respond({ "course": dump })
+    return respond({ "course": course.dump() })
