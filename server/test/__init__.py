@@ -26,7 +26,7 @@ def assert_api_result(resp, data = None, includes = None):
 
 def assert_shallow_compare(actual, expected, name="Object"):
     for key, value in expected.iteritems():
-        assert key in actual, message.format(key=key), "%s does not contain expected key '%s'" % (name, key)
+        assert key in actual, "%s does not contain expected key '%s'" % (name, key)
         assert value == expected[key], "%s key ('%s') value does not contain expected value '%r' == '%r'" % (name, key, value, expected[key])
 
 class APIClient(Client):

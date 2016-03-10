@@ -1,8 +1,9 @@
 from flask import jsonify
+from flask.ext.jsontools import JsonResponse
 from server.exc import HttpException
 
 def respond(data=None, code = 200):
-    return jsonify(**data) if data else "", code
+    return JsonResponse(data, code) if data else ""
 
 __SUCCESS__ = { "success": True }
 
