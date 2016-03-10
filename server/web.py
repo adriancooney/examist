@@ -1,7 +1,7 @@
 from flask import Flask, Blueprint, request
 from server import api
 from server.middleware import AUTH_HEADER_NAME
-from server.response import fail, respond, abort
+from server.response import fail, respond, abort, DynamicJSONEncoder
 from server.exc import HttpException, NotFound
 from server import config
 
@@ -10,6 +10,9 @@ app = Flask(__name__)
 # Connect it to the database
 app.config["SQLALCHEMY_DATABASE_URI"] = config.DATABASE_URI.format(**config.__dict__)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+# Set our JSON encoder to call the dynamic __json__ on objects passed.
+app.json_encoder = DynamicJSONEncoder
 
 # Register all the blueprints
 for name, blueprint in api.__dict__.iteritems():

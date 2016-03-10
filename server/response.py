@@ -1,4 +1,4 @@
-from flask import jsonify
+from flask.json import JSONEncoder
 from flask.ext.jsontools import JsonResponse
 from server.exc import HttpException
 
@@ -26,3 +26,10 @@ def fail(code, message, meta = None):
         "message": message,
         "meta": meta if meta else __EMPTY__
     }, code)
+
+class DynamicJSONEncoder(JSONEncoder):
+    def default(self, o):
+        if hasattr(o, "__json__"):
+            return o.__json__()
+
+        return super(DynamicJSONEncoder, self).default(self, o)
