@@ -22,8 +22,10 @@ def test_course_get(auth_client, course_with_papers):
     resp = auth_client.get("/course/" + course.code.lower())
     assert resp.status_code == 200
 
-    data = loads(resp.get_data())["course"]
-    assert data["id"] == course.id
+    data = loads(resp.get_data())
+    course_data = data["course"]
+    assert course_data["papers"]
+    assert course_data["id"] == course.id
     assert len(data["papers"]) == 5
 
 def test_course_get_not_found(auth_client):
