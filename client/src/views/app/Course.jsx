@@ -25,6 +25,7 @@ class Course extends Component {
                 })(state);
             }
         }
+        
         return {
             course, papers, paper,
             isLoadingCourse: isPending(model.resources.Course.getCourse.type)(state)

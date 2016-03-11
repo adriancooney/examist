@@ -44,4 +44,4 @@ def get_paper(course, year, period):
 
     else:
         # Request paper data
-        return respond({ "paper": paper.dump() })
+        return respond({ "paper": paper })

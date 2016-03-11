@@ -24,9 +24,6 @@ export default class Resource extends Reducer {
 
         // The resource action type
         this.type = name.toUpperCase();
-
-        // Bind the actions
-        this.addProducerHandler(this.type);
     }
 
     /**
@@ -107,7 +104,11 @@ export default class Resource extends Reducer {
      * @param  {Function} meta    The meta creator.
      * @return {Function}         Action creator.
      */
-    createResourceAction(creator, meta) {
+    createResourceAction(creator, meta, { extractor, cleaner } = {}) {
+        // Bind the action handler for the resource type
+        this.addProducerHandler(this.type, extractor, cleaner);
+
+        // And create the action
         return this.createAction(this.type, creator, meta);
     }
 
@@ -118,7 +119,11 @@ export default class Resource extends Reducer {
      * @param  {Function} meta     The meta creator.
      * @return {Function}          Action creator.
      */
-    createStatefulResourceAction(selector, creator, meta) {
+    createStatefulResourceAction(selector, creator, meta, { extractor, cleaner } = {}) {
+        // Bind the action handler for the resource type
+        this.addProducerHandler(this.type, extractor, cleaner);
+
+        // And create the action
         return this.createStatefulAction(this.type, selector, creator, meta);
     }
 

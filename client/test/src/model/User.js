@@ -26,8 +26,10 @@ describe("UserModel", () => {
                 client()
                     .post("/login", details)
                     .reply(200, {
-                        id: 1,
-                        name: "Adrian",
+                        user: {
+                            id: 1,
+                            name: "Adrian"
+                        },
                         key: "124lkh1l24jkjfasf"
                     });
 
@@ -63,15 +65,18 @@ describe("UserModel", () => {
                 client()
                     .post("/user")
                     .reply(200, {
-                        id: 1,
-                        name: "Adrian",
+                        user: {
+                            id: 1,
+                            name: "Adrian",
+                        },
                         key: "124lkh1l24jkjfasf"
                     });
 
                 // The USER_LOGIN action (login) is the equivalent in reducing
                 // so all we need to do is check if the user store is not null
                 store.once(User.create.type, expectAsync((state, action, nextState) => {
-                    expect(nextState.user).to.not.be.null;
+                    expect(nextState.user).to.be.ok;
+                    expect(nextState.user).to.have.any.keys("id", "name")
                     done();
                 }, done));
 

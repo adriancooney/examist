@@ -1,6 +1,6 @@
 import shutil
 from os import path
-from server.test import assert_api_error
+from server.test import assert_api_error, assert_api_response
 from server.config import APP_DOWNLOAD_DIR
 from json import dumps, loads
 
@@ -12,11 +12,9 @@ def test_paper_get(auth_client, course_with_papers):
         year=paper.year_start,
         period=paper.period.lower()
     ))
-    assert resp.status_code == 200
 
-    data = loads(resp.get_data())["paper"]
-    assert data["course_id"]
-    assert data["period"]
+    with assert_api_response(resp) as data:
+        assert "paper" in data
 
 def test_paper_get_invalid_period(auth_client):
     resp = auth_client.get("/course/{code}/paper/{year}/{period}".format(
@@ -38,21 +36,21 @@ def test_paper_get_invalid_paper(auth_client, course_with_papers):
 
     assert_api_error(resp, 404, message="Paper not found.")
 
-def test_paper_get_html(auth_client, course_with_papers):
-    course = course_with_papers
-    paper = course.papers[0]
-    file_name = path.basename(paper.link).replace(".PDF", "")
+# def test_paper_get_html(auth_client, course_with_papers):
+#     course = course_with_papers
+#     paper = course.papers[0]
+#     file_name = path.basename(paper.link).replace(".PDF", "")
 
-    # Cleanup
-    download_dir = path.join(APP_DOWNLOAD_DIR, file_name)
-    if path.isdir(download_dir):
-        shutil.rmtree(download_dir)
+#     # Cleanup
+#     download_dir = path.join(APP_DOWNLOAD_DIR, file_name)
+#     if path.isdir(download_dir):
+#         shutil.rmtree(download_dir)
 
-    resp = auth_client.get("/course/{code}/paper/{year}/{period}.html".format(
-        code=paper.course.code.lower(), 
-        year=paper.year_start,
-        period=paper.period.lower()
-    ))
+#     resp = auth_client.get("/course/{code}/paper/{year}/{period}.html".format(
+#         code=paper.course.code.lower(), 
+#         year=paper.year_start,
+#         period=paper.period.lower()
+#     ))
 
-    assert "text/html" in resp.headers["Content-Type"]
-    assert resp.status_code == 200
+#     assert "text/html" in resp.headers["Content-Type"]
+#     assert resp.status_code == 200

@@ -11,8 +11,10 @@ from server.middleware import authorize
 
 Auth = Blueprint("auth", __name__)
 
+userSchema = schema(User, only=("email", "password"))
+
 @Auth.route("/login", methods=["POST"])
-@use_kwargs(schema(User, only=('email', 'password')))
+@use_kwargs(userSchema)
 def auth(email, password):
     """Log a user in.
         POST { username: String, password: String }
@@ -33,13 +35,16 @@ def auth(email, password):
     db.session.add(user)
     db.session.commit()
 
-    return respond(merge({ 
-        "key": session.key
-    }, user.dump(exclude=("password",))))
+    return respond({
+        "key": session.key,
+        "user": user
+    })
+
 
 @Auth.route("/auth", methods=["GET"])
 @authorize
 def check_auth():
-    return respond(merge({ 
-        "key": g.user.active_session.key
-    }, g.user.dump(exclude=("password",))))
+    return respond({ 
+        "key": g.user.active_session.key,
+        "user": g.user
+    })

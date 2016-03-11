@@ -3,18 +3,15 @@ import { Resource } from "../../library";
 import { compose } from "../../library/Selector"
 import * as User from "../User";
 
-const Course = new Resource("course", "id", {
-    cleaner: (course) => ({
-        ...course,
-        papers: course.papers.map(paper => typeof paper === "object" ? paper.id : paper)
-    })
-});
+const Course = new Resource("course", "id");
 
 /*
  * Get a paper by course, year and period.
  */
 export const getCourse = Course.createStatefulResourceAction(User.selectAPI, 
-    (api, code) => api.getCourse(code).then(({ course }) => course));
+    (api, code) => api.getCourse(code), null, {
+        extractor: ({ course }) => course
+    });
 
 /*
  * Search for courses.
