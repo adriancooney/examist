@@ -30,6 +30,8 @@ def test_create(session, institution, client):
         us = data["user"]
         assert "name" in us
         assert "id" in us
+        assert not "password" in us
+        assert not "salt" in us
 
 def test_create_unknown_institution(client):
     """POST /user { name, email, password }"""

@@ -11,14 +11,21 @@ def create_schema(cls, include_fk=False, required=True, force_strict=True):
 
     field_kwargs = dict(required=required)
 
+    if hasattr(cls, "Meta"):
+        meta = getattr(cls, "Meta")
+
+        if force_strict:
+            setattr(meta, "strict", True)
+
+    elif force_strict:
+        meta = type("Meta", (object,), dict(strict=True))
+
     for name, attr in dict(ins.attrs).iteritems():
         if isinstance(attr, RelationshipProperty):
             only = tuple([col.name for col in attr.mapper.primary_key])
 
             if len(only) == 1:
                 only = only[0]
-
-            # To prevent circular references, we have to 
 
             schema[name] = fields.Nested(attr.mapper.class_.__name__ + "Schema", 
                 many=attr.uselist, only=only)
@@ -41,15 +48,6 @@ def create_schema(cls, include_fk=False, required=True, force_strict=True):
 
             # Grab the marshmallow type
             schema[name] = field
-
-    if hasattr(cls, "Meta"):
-        meta = getattr(cls, "Meta")
-
-        if force_strict:
-            setattr(meta, "strict", True)
-
-    elif force_strict:
-        meta = type("Meta", (object,), dict(strict=True))
 
     schema["Meta"] = meta
 

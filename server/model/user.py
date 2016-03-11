@@ -34,6 +34,9 @@ class User(Model):
     sessions = relationship("Session", backref="user")
     courses = relationship("Course", secondary=user_courses)
 
+    class Meta:
+        load_only = ("password", "salt")
+
     @hybrid_property
     def active_session(self):
         return find(self.sessions, lambda session: session.active)
