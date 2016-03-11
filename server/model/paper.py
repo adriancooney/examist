@@ -21,6 +21,7 @@ class Paper(Model):
     year_start = Column(Integer)
     year_stop = Column(Integer)
     link = Column(String)
+    course = relationship("Course", uselist=False, lazy="immediate")
 
     # Foreign Keys
     course_id = Column(Integer, ForeignKey("course.id"))

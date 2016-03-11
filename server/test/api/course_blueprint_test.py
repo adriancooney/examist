@@ -29,6 +29,12 @@ def test_course_get(auth_client, course_with_papers):
         assert co["id"] == course.id
         assert len(co["papers"]) == 5
 
+        ps = data["papers"]
+        assert len(ps) > 0
+
+        paper = ps[0]
+        assert paper["course"] == co["id"]
+
 def test_course_get_not_found(auth_client):
     resp = auth_client.get("/course/foobar")
     assert_api_error(resp, 404)

@@ -54,7 +54,7 @@ class APIClient(Client):
         if data:
             environ["data"] = dumps(data)
             
-        print "\n[CLIENT] ----> %s %s %r" % (environ["method"], args[0] if args[0] else environ["path"], environ.get("data", None))
+        print "-> %s %s %r" % (environ["method"], args[0] if args[0] else environ["path"], environ.get("data", None))
 
         # Fix for `content_type` being overridden by Werkzerug (bug)
         # TODO: Report bug to werkzeug repo.

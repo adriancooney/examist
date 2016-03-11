@@ -19,7 +19,7 @@ class Course(Model):
     institution_id = Column(Integer, ForeignKey("institution.id"))
 
     # Relationships
-    papers = relationship("Paper", backref="course", lazy="joined")
+    papers = relationship("Paper", lazy="joined")
 
     def __init__(self, name, code, institution):
         self.name = name

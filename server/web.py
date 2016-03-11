@@ -1,5 +1,5 @@
+import logging
 from flask import Flask, Blueprint, request
-from server import api
 from server.middleware import AUTH_HEADER_NAME
 from server.response import fail, respond, abort, DynamicJSONEncoder
 from server.exc import HttpException, NotFound
@@ -14,11 +14,17 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 # Set our JSON encoder to call the dynamic __json__ on objects passed.
 app.json_encoder = DynamicJSONEncoder
 
+# Setup our logging
+if config.APP_DEBUG:
+    logging.basicConfig(format="%(message)s")
+
+# Import and setup out API
+from server import api
+
 # Register all the blueprints
 for name, blueprint in api.__dict__.iteritems():
     if isinstance(blueprint, Blueprint):
         app.register_blueprint(blueprint)
-
 
 # Parameter errors
 @app.errorhandler(422)
@@ -42,7 +48,7 @@ if config.APP_DEBUG:
 
     @app.before_request
     def handle_before_request():
-        print "[SERVER] >>>>> %s %s %r" % (request.method, request.path, request.data)
+        print ">> %s %s %r" % (request.method, request.path, request.data)
 
     # Allow for CORS in development
     @app.after_request

@@ -35,6 +35,9 @@ def search_course(q):
 def get_course(course):
     course = model.Course.getBy(db.session, code=course.upper())
 
+    print course
+    print course.papers[0].course
+
     return respond({ 
         "course": course,
         "papers": course.papers
