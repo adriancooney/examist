@@ -1,9 +1,6 @@
-from flask.ext.sqlalchemy import SQLAlchemy, Model
-from flask.ext.jsontools import JsonSerializableBase
+from flask.ext.sqlalchemy import SQLAlchemy
+from server.library.model import Model as ModelBase
 from server import config
-
-class ModelBase(Model, JsonSerializableBase):
-    pass
 
 db = SQLAlchemy(model_class=ModelBase)
 

@@ -1,5 +1,6 @@
 import warnings as _warnings
 import os as _os
+from contextlib import contextmanager
 from tempfile import mkdtemp
 from werkzeug.test import Client, EnvironBuilder
 from json import loads, dumps
@@ -18,11 +19,16 @@ def assert_api_error(resp, code, message = None, meta = None):
         respMeta = data["meta"]
         assert_shallow_compare(respMeta, meta, "Response Meta")
 
-def assert_api_result(resp, data = None, includes = None):
-    resp_data = loads(resp.get_data())
+@contextmanager
+def assert_api_response(resp):
+    assert resp.status_code == 200, "Incorrect status code."
 
-    assert resp_data["data"]
-    assert_shallow_compare(resp_data, resp_data["data"], "API result")
+    resp_raw = resp.get_data()
+    assert len(resp_raw) > 0, "No data returned."
+    
+    print resp_raw
+
+    yield loads(resp_raw)
 
 def assert_shallow_compare(actual, expected, name="Object"):
     for key, value in expected.iteritems():

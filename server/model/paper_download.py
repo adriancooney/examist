@@ -7,10 +7,9 @@ from os import path
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Enum
 from server.database import Model
-from server.library import Assistant
 from server.exc import NotFound
 
-class PaperDownload(Model, Assistant):
+class PaperDownload(Model):
     __tablename__ = "paper_download"
 
     id = Column(Integer, primary_key=True)

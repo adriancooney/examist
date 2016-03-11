@@ -1,11 +1,10 @@
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, ForeignKey
 from server.database import Model
-from server.library import Assistant
 from server.model.course import Course
 from server.model.paper_download import PaperDownload
 
-class Paper(Model, Assistant):
+class Paper(Model):
     __tablename__ = "paper"
 
     PAPER_PERIODS = [

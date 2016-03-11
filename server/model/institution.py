@@ -1,9 +1,8 @@
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String
 from server.database import Model
-from server.library import Assistant
 
-class Institution(Model, Assistant):
+class Institution(Model):
     __tablename__ = "institution"
 
     id = Column(Integer, primary_key=True)

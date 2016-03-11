@@ -24,7 +24,6 @@ simplejson==3.8.2
 six==1.10.0
 SQLAlchemy==1.0.11
 SQLAlchemy-Utils==0.31.6
-sure==1.2.24
 webargs==1.2.0
 Werkzeug==0.11.3
 xml2json==0.1

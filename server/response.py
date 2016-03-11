@@ -32,4 +32,4 @@ class DynamicJSONEncoder(JSONEncoder):
         if hasattr(o, "__json__"):
             return o.__json__()
 
-        return super(DynamicJSONEncoder, self).default(self, o)
+        return super(DynamicJSONEncoder, self).default(o)

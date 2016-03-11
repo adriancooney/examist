@@ -7,7 +7,6 @@ from sqlalchemy.ext.hybrid import hybrid_property
 from server.model.session import Session
 from server.exc import LoginError, NotFound
 from server.database import Model, db
-from server.library import Assistant
 from server.library.util import find
 from server.model.institution import Institution
 
@@ -18,7 +17,7 @@ user_courses = Table("user_courses", db.metadata,
     Column("course_id", Integer, ForeignKey("course.id"))
 )
 
-class User(Model, Assistant):
+class User(Model):
     __tablename__ = "user"
 
     # Attributes

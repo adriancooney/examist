@@ -23,8 +23,7 @@ def create(details):
         session = user.login()
         db.session.commit()
 
-        userSchema = schema(model.User, exclude=("password",))
-        return respond(merge({ "key": session.key}, user.dump(exclude=("password",))))
+        return respond({ "key": session.key, "user": user })
     except NotFound as nf:
         raise InvalidEntity("Institution", "domain", nf.meta["fields"]["domain"])
     except IntegrityError as ie:
@@ -36,7 +35,6 @@ def get_or_update_user(user):
     user = model.User.query.get(user)
 
     if request.method == "GET":
-        userSchema = schema(model.User, exclude=("password",))
-        return respond(user.dump(exclude=("password",)))
+        return respond({ "user": user })
     elif request.method == "PUT":
         pass
