@@ -48,14 +48,14 @@ export const restore = User.createAction("USER_RESTORE");
 /*
  * Handle login and signup.
  */
-User.handleActions([login, create, restore], (state, user) => {
+User.handleActions([login, create, restore], (state, { key, user }) => {
     // Save the session key to localstorage
-    if(BROWSER) window.localStorage.sessionKey = user.key;
+    if(BROWSER) window.localStorage.sessionKey = key;
     
     return {
         ...user,
         courses: null,
-        api: new API(user.key)
+        api: new API(key)
     };
 });
 

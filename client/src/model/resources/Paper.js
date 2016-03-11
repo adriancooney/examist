@@ -18,7 +18,7 @@ const Paper = new Resource("paper", "id", {
 /*
  * Add papers when a specific course is selected
  */
-Paper.addProducerHandler(Course, course => course.papers);
+Paper.addProducerHandler(Course, ({ papers }) => papers);
 
 /*
  * Get a paper by course, year and period.
