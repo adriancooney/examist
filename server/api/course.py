@@ -21,24 +21,22 @@ def search_course(q):
     q = q.replace("+", " ")
 
     # Execute the query
-    results = model.Course.query.filter(
+    courses = model.Course.query.filter(
         model.Course.name.ilike("%{}%".format(q)) | \
         model.Course.code.ilike("%{}%".format(q)) 
     ).limit(COURSE_RESULTS_LIMIT).all()
 
-    courseSchema = schema(model.Course)
-
     return respond({ 
-        "courses": courseSchema.dump(results, many=True).data if len(results) > 0 else []
+        "courses": courses
     })
 
 @Course.route("/course/<course>", methods=["GET"])
 @use_kwargs({ "course": fields.Str(required=True) }, locations=("view_args",))
 @authorize
 def get_course(course):
-    course = db.session.query(model.Course)\
-        .filter(model.Course.code == course.upper())\
-        .options(joinedload("papers"))\
-        .one()
+    course = model.Course.getBy(db.session, code=course.upper())
 
-    return respond({ "course": course.dump() })
+    return respond({ 
+        "course": course,
+        "papers": course.papers
+    })

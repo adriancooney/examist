@@ -1,23 +1,19 @@
 from server.middleware import AUTH_HEADER_NAME
-from server.test import assert_api_error
+from server.test import assert_api_error, assert_api_response
 from json import dumps, loads
 
 def test_login(user, client):
     resp = client.post("/login", data={
         "email": user.email,
         "password": "root"
-    });
+    })
 
-    assert resp.status_code == 200
-
-    # Check we have the key returned and user
-    data = loads(resp.get_data())
-
-    # Check to see if a session exists for the user
     assert user.sessions[0]
-    assert data["key"] == user.sessions[0].key
-    assert data["name"]
-    assert data["id"]
+
+    with assert_api_response(resp) as data:
+        # Check to see if a session exists for the user
+        assert data["key"] == user.sessions[0].key
+        assert "user" in data
 
 def test_login_missing_params(client):
     resp = client.post("/login", data={ "email": "d@a.ie" })
@@ -59,13 +55,9 @@ def test_auth_check_expired_key(auth_client, user, session):
 
 def test_auth_check(auth_client):
     resp = auth_client.get("/auth")
-    assert resp.status_code == 200
 
-        # Check we have the key returned and user
-    data = loads(resp.get_data())
-
-    # Check to see if a session exists for the user
-    assert data["key"] == getattr(auth_client, "key")
-    assert data["name"]
-    assert data["id"]
+    with assert_api_response(resp) as data:
+        # Check to see if a session exists for the user
+        assert data["key"] == getattr(auth_client, "key")
+        assert "user" in data
 

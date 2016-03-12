@@ -11,8 +11,6 @@ from server.exc import NotFound, UnacceptableParameter
 
 Profile = Blueprint("Profile", __name__)
 
-courseSchema = schema(model.Course)
-
 # Add via ID
 patchParams = { "course": fields.Int(required=True) }
 
@@ -22,7 +20,7 @@ def get_and_update_courses():
     if request.method == "GET":
         # Return the user's courses
         return respond({ 
-            "courses": courseSchema.dump(g.user.courses, many=True).data
+            "courses": g.user.courses
         })
     else:
         args = parser.parse(patchParams, request)

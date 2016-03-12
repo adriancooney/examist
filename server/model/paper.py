@@ -2,12 +2,11 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm.exc import NoResultFound
 from server.database import Model
-from server.library import Assistant
 from server.model.course import Course
 from server.model.paper_download import PaperDownload
 from server.exc import NotFound
 
-class Paper(Model, Assistant):
+class Paper(Model):
     __tablename__ = "paper"
 
     PAPER_PERIODS = [
@@ -24,6 +23,7 @@ class Paper(Model, Assistant):
     year_start = Column(Integer)
     year_stop = Column(Integer)
     link = Column(String)
+    course = relationship("Course", uselist=False, lazy="immediate")
 
     # Foreign Keys
     course_id = Column(Integer, ForeignKey("course.id"))

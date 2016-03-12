@@ -1,4 +1,4 @@
-from server.test import assert_api_error
+from server.test import assert_api_error, assert_api_response
 from json import dumps, loads
 
 def test_course_search_no_query(auth_client):
@@ -9,24 +9,31 @@ def test_course_search_no_login(client):
 
 def test_course_search_empty(auth_client, courses):
     resp = auth_client.get("/course/search?q=Ridiculous+query")
-    data = loads(resp.get_data())
-    assert len(data["courses"]) == 0
+
+    with assert_api_response(resp) as data:
+        assert len(data["courses"]) == 0
 
 def test_course_search(auth_client, courses):
     resp = auth_client.get("/course/search?q=computer+security")
-    data = loads(resp.get_data())
-    assert len(data["courses"]) > 0
+
+    with assert_api_response(resp) as data:
+        assert len(data["courses"]) > 0
 
 def test_course_get(auth_client, course_with_papers):
     course = course_with_papers
     resp = auth_client.get("/course/" + course.code.lower())
-    assert resp.status_code == 200
 
-    data = loads(resp.get_data())
-    course_data = data["course"]
-    assert course_data["papers"]
-    assert course_data["id"] == course.id
-    assert len(data["papers"]) == 5
+    with assert_api_response(resp) as data:
+        co = data["course"]
+        assert co
+        assert co["id"] == course.id
+        assert len(co["papers"]) == 5
+
+        ps = data["papers"]
+        assert len(ps) > 0
+
+        paper = ps[0]
+        assert paper["course"] == co["id"]
 
 def test_course_get_not_found(auth_client):
     resp = auth_client.get("/course/foobar")

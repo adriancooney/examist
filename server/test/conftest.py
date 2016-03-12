@@ -30,6 +30,7 @@ def app(request):
 
     # Config the app
     _app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URI
+    _app.config["SQLALCHEMY_ECHO"] = False # Toggle SQL Alchemy output
     _app.config["TESTING"] = True
 
     # Establish an application context before running the tests.

@@ -1,6 +1,6 @@
 import re
 from json import dumps, loads
-from server.test import assert_api_error
+from server.test import assert_api_error, assert_api_response
 from server.model import User
 
 USER_NAME = "Adrian"
@@ -15,8 +15,6 @@ def test_create(session, institution, client):
         "password": USER_PASSWORD
     })
 
-    assert resp.status_code == 200
-
     # Ensure the user is in the database
     user = session.query(User).filter(User.email == USER_EMAIL).one()
 
@@ -24,11 +22,16 @@ def test_create(session, institution, client):
     assert user.sessions[0], "User is not logged in"
     assert user.institution.id == institution.id, "Insitution is not added to user"
 
-    # Check we have the key returned and user
-    data = loads(resp.get_data())
-    assert data["key"] == user.sessions[0].key
-    assert data["name"]
-    assert data["id"]
+    with assert_api_response(resp) as data:
+
+        # Check we have the key returned and user
+        assert data["key"] == user.sessions[0].key
+
+        us = data["user"]
+        assert "name" in us
+        assert "id" in us
+        assert not "password" in us
+        assert not "salt" in us
 
 def test_create_unknown_institution(client):
     """POST /user { name, email, password }"""
@@ -61,6 +64,8 @@ def test_create_missing_param(client):
 
 def test_get_user(user, client):
     resp = client.get("/user/" + str(user.id))
-    data = loads(resp.get_data())
-    assert data["name"] == user.name
-    assert data["id"] == user.id
+
+    with assert_api_response(resp) as data:
+        us = data["user"]
+        assert us["name"] == user.name
+        assert us["id"] == user.id

@@ -2,10 +2,10 @@ from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.schema import UniqueConstraint
 from server.database import Model
-from server.library import Assistant
+from server.library.schema import create_schema
 from server.model.institution import Institution
 
-class Course(Model, Assistant):
+class Course(Model):
     __tablename__ = "course"
     __table_args__ = (
         UniqueConstraint("code", "institution_id"),
@@ -19,7 +19,7 @@ class Course(Model, Assistant):
     institution_id = Column(Integer, ForeignKey("institution.id"))
 
     # Relationships
-    papers = relationship("Paper", backref="course")
+    papers = relationship("Paper", lazy="joined")
 
     def __init__(self, name, code, institution):
         self.name = name

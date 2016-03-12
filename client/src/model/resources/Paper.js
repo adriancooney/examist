@@ -5,20 +5,13 @@ import * as User from "../User";
 import Course from "./Course"
 
 const Paper = new Resource("paper", "id", {
-    cleaner: paper => {
-        paper = omit(paper, "questions");
-
-        if(typeof paper.course === "object")
-            paper.course = paper.course.id;
-
-        return paper;
-    }
+    cleaner: paper => omit(paper, "questions")
 });
 
 /*
  * Add papers when a specific course is selected
  */
-Paper.addProducerHandler(Course, course => course.papers);
+Paper.addProducerHandler(Course, ({ papers }) => papers);
 
 /*
  * Get a paper by course, year and period.
@@ -34,7 +27,8 @@ export const getPaper = Paper.createStatefulResourceAction(User.selectAPI,
  * @return {Function}        Selector.
  */
 export const selectPaper = ({ course, year, period }) => {
-    return Paper.select(papers => papers.find(paper => paper.course === course && paper.year_start === year && paper.period === period));
+    return Paper.select(papers => 
+        papers.find(paper => paper.course === course && paper.year_start === year && paper.period === period));
 };
 
 /**

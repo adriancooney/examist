@@ -1,5 +1,6 @@
 import warnings as _warnings
 import os as _os
+from contextlib import contextmanager
 from tempfile import mkdtemp
 from werkzeug.test import Client, EnvironBuilder
 from json import loads, dumps
@@ -16,9 +17,23 @@ def assert_api_error(resp, code, message = None, meta = None):
 
     if meta:
         respMeta = data["meta"]
-        for key, value in meta.iteritems():
-            assert key in respMeta, "Response meta does not contain expected key '%s'" % key
-            assert value == respMeta[key], "Respone meta key value does not contain expected value '%s'" % value
+        assert_shallow_compare(respMeta, meta, "Response Meta")
+
+@contextmanager
+def assert_api_response(resp):
+    assert resp.status_code == 200, "Incorrect status code."
+
+    resp_raw = resp.get_data()
+    assert len(resp_raw) > 0, "No data returned."
+    
+    print resp_raw
+
+    yield loads(resp_raw)
+
+def assert_shallow_compare(actual, expected, name="Object"):
+    for key, value in expected.iteritems():
+        assert key in actual, "%s does not contain expected key '%s'" % (name, key)
+        assert value == expected[key], "%s key ('%s') value does not contain expected value '%r' == '%r'" % (name, key, value, expected[key])
 
 class APIClient(Client):
     default_environ = dict(
@@ -39,7 +54,7 @@ class APIClient(Client):
         if data:
             environ["data"] = dumps(data)
             
-        print "\n[CLIENT] ----> %s %s %r" % (environ["method"], args[0] if args[0] else environ["path"], environ.get("data", None))
+        print "-> %s %s %r" % (environ["method"], args[0] if args[0] else environ["path"], environ.get("data", None))
 
         # Fix for `content_type` being overridden by Werkzerug (bug)
         # TODO: Report bug to werkzeug repo.

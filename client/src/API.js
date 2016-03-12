@@ -2,7 +2,7 @@ import Debug from "debug";
 import fetch from "isomorphic-fetch";
 import { range } from "lodash/util";
 import { random } from "lodash/number";
-import { API_BASE_URL, DEBUG } from "./Config";
+import { API_BASE_URL, DEBUG, TEST } from "./Config";
 
 const debug = Debug("examist:api");
 
@@ -33,8 +33,8 @@ export default class API {
             },
             body: method !== "GET" ? JSON.stringify(data) : undefined
         }).then(response => {
-            // Hold yer horser
-            if(DEBUG) {
+            // Hold yer horses
+            if(DEBUG && !TEST) {
                 return new Promise(resolve => setTimeout(() => resolve(response), 1000));
             } else return response;
         });
