@@ -1,6 +1,4 @@
 from server.test import assert_api_error, assert_api_response
-from server.model.revision import Revision
-from server.model.question import Question
 
 def test_question_get(auth_client, paper_with_course_and_questions):
     paper = paper_with_course_and_questions
