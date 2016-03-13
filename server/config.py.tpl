@@ -1,6 +1,5 @@
+import tempfile
 from os.path import join, dirname
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
 
 {% macro var(name, value, default=None, str=True, required=True) -%}
     {%- if not value and not default and required -%}
@@ -27,5 +26,6 @@ from sqlalchemy.orm import sessionmaker
 {{ var("APP_HOST", APP_HOST, default="127.0.0.1") }}
 {{ var("APP_DEBUG", APP_DEBUG, default="True", str=False) }}
 {{ var("APP_LOG", APP_LOG, required=False) }}
+{{ var("APP_DOWNLOAD_DIR", APP_DOWNLOAD_DIR, default="tempfile.gettempdir()", str=False)}}
 
 DATABASE_URI = "postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}"
