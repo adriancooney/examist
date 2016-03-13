@@ -1,4 +1,6 @@
 import flask
+from functools import wraps
+from contextlib import contextmanager
 from sqlalchemy import Integer
 from sqlalchemy.orm import class_mapper, ColumnProperty
 from sqlalchemy.orm.exc import NoResultFound
@@ -56,3 +58,22 @@ class Model(flask.ext.sqlalchemy.Model):
     @classmethod
     def __declare_last__(cls):
         cls.__schema__
+
+@contextmanager
+def query(model_name):
+    """Perform a SQL Alchemy query and convert any exceptions to HTTP exceptions."""
+    try:
+        yield
+    except NoResultFound:
+        print "NO RESULT FOUND"
+        raise NotFound(model_name)
+
+def querymethod(*qargs, **kwq):
+    def decor(f):
+        @wraps(f)
+        def wrapper(*args, **kw):
+            with query(*qargs, **kwq):
+                return f(*args, **kw)
+
+        return wrapper
+    return decor
