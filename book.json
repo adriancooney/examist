@@ -1,6 +1,6 @@
 {
   "structure": {
-    "summary": "research/report/SUMMARY.md"
+    "summary": "report/SUMMARY.md"
   },
   "plugins": ["prism", "-highlight", "github"],
   "pluginsConfig": {
