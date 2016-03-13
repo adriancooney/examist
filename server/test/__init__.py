@@ -1,9 +1,12 @@
+import logging
 import warnings as _warnings
 import os as _os
 from contextlib import contextmanager
 from tempfile import mkdtemp
 from werkzeug.test import Client, EnvironBuilder
 from json import loads, dumps
+
+logger = logging.getLogger(__name__)
 
 def assert_api_error(resp, code, message = None, meta = None):
     data = loads(resp.get_data())
@@ -26,7 +29,7 @@ def assert_api_response(resp):
     resp_raw = resp.get_data()
     assert len(resp_raw) > 0, "No data returned."
     
-    print resp_raw
+    logger.info(("<< %s \n\n" % resp.status) + resp_raw)
 
     yield loads(resp_raw)
 
@@ -54,7 +57,7 @@ class APIClient(Client):
         if data:
             environ["data"] = dumps(data)
             
-        print "-> %s %s %r" % (environ["method"], args[0] if args[0] else environ["path"], environ.get("data", None))
+        logger.info("-> %s %s %r" % (environ["method"], args[0] if args[0] else environ["path"], environ.get("data", None)))
 
         # Fix for `content_type` being overridden by Werkzerug (bug)
         # TODO: Report bug to werkzeug repo.

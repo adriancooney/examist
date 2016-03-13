@@ -54,4 +54,4 @@ class classproperty(object):
         self.getter = getter
 
     def __get__(self, owner_self, owner_cls):
-        return self.getter(owner_cls) 
+        return self.getter(owner_cls)

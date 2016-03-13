@@ -1,4 +1,5 @@
 from flask import Blueprint
+from sqlalchemy.orm import joinedload
 from webargs import fields
 from webargs.flaskparser import parser, use_kwargs
 from server import model
@@ -34,9 +35,6 @@ def search_course(q):
 @authorize
 def get_course(course):
     course = model.Course.getBy(db.session, code=course.upper())
-
-    print course
-    print course.papers[0].course
 
     return respond({ 
         "course": course,

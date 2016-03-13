@@ -1,8 +1,10 @@
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy.orm.exc import NoResultFound
 from server.database import Model
 from server.model.course import Course
 from server.model.paper_download import PaperDownload
+from server.exc import NotFound
 
 class Paper(Model):
     __tablename__ = "paper"
@@ -43,3 +45,15 @@ class Paper(Model):
     def download(self, output_dir):
         self.contents = PaperDownload(self)
         self.contents.download(output_dir)
+
+    @staticmethod
+    def find(session, course, year, period):
+        try:
+            return session.query(Paper).filter(
+                (Course.code == course.upper()) & \
+                (Paper.course_id == Course.id) & \
+                (Paper.year_start == year) & \
+                (Paper.period == period)
+            ).one()
+        except NoResultFound:
+            raise NotFound("Paper")

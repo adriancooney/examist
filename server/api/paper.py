@@ -1,6 +1,5 @@
 from os import path
 from flask import Blueprint, request, send_file
-from sqlalchemy.orm.exc import NoResultFound
 from webargs import fields
 from marshmallow import validate
 from webargs import fields
@@ -21,16 +20,8 @@ Paper = Blueprint("paper", __name__)
     "period": fields.Str(required=True, validate=validate.OneOf(model.Paper.PAPER_PERIODS))
 }, locations=("view_args",))
 def get_paper(course, year, period):
-    try:
-        paper = db.session.query(model.Paper).filter(
-            (model.Course.code == course.upper()) & \
-            (model.Paper.course_id == model.Course.id) & \
-            (model.Paper.year_start == year) & \
-            (model.Paper.period == period)
-        ).one()
-    except NoResultFound:
-        raise NotFound("Paper")
-        
+    paper = model.Paper.find(db.session, course, year, period)
+
     if request.url.endswith("html"):
         # Request paper contents
         if not paper.contents:
@@ -43,5 +34,8 @@ def get_paper(course, year, period):
         return send_file(path.join(paper.contents.path, "index.html"), mimetype="text/html")
 
     else:
-        # Request paper data
-        return respond({ "paper": paper })
+        return respond({ 
+            "paper": paper,
+            "course": paper.course,
+            "questions": paper.questions
+        })

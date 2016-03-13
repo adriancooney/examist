@@ -10,11 +10,9 @@ logger.setLevel(logging.DEBUG)
 def create_schema(cls, include_fk=False, required=True, force_strict=True):
     ins = inspect(cls)
 
-    modelName = cls.__name__
-    schemaName = modelName + "Schema"
+    model_name = cls.__name__
+    schema_name = model_name + "Schema"
     schema = {}
-
-    field_kwargs = dict(required=required)
 
     if hasattr(cls, "Meta"):
         meta = getattr(cls, "Meta")
@@ -25,18 +23,25 @@ def create_schema(cls, include_fk=False, required=True, force_strict=True):
     elif force_strict:
         meta = type("Meta", (object,), dict(strict=True))
 
-    logger.debug("<Schema(name=%s)>" % modelName)
+    field_args = dict(required=required)
+
+    logger.debug("<Schema(name=%s)>" % model_name)
 
     for name, attr in dict(ins.attrs).iteritems():
+        # Get arguments for each field
+        meta_field_args = getattr(meta, name, {})
+
         if isinstance(attr, RelationshipProperty):
-            nestedModelName = attr.mapper.class_.__name__
-            only = tuple([col.name for col in attr.mapper.primary_key])
+            nested_model_name = attr.mapper.class_.__name__
+            only = meta_field_args.pop("only", tuple([col.name for col in attr.mapper.primary_key]))
 
             if len(only) == 1:
                 only = only[0]
 
-            logger.debug("<Schema(name=%s)> += <Relationship(name=%s, model=%s, many=%r, only=%r)>" % (modelName, name, nestedModelName, attr.uselist, only))
-            schema[name] = fields.Nested(nestedModelName + "Schema", 
+            logger.debug("<Schema(name={})> += <Relationship(name={}, model={}, many={}, only={})>".format(
+                model_name, name, nested_model_name, attr.uselist, only))
+
+            schema[name] = fields.Nested(nested_model_name + "Schema", 
                 many=attr.uselist, only=only)
         else:
             column = getattr(cls, name)
@@ -46,23 +51,40 @@ def create_schema(cls, include_fk=False, required=True, force_strict=True):
                 continue
 
             type_ = column.type
-            typeName = type_.__class__.__name__
+            type_name = _normalize_typename(type_.__class__.__name__)
 
-            logger.debug("<Schema(name=%s)> += <Field(name=%s, type=%s, args=%r)>" % (modelName, name, typeName, field_kwargs))
-
-            # Handle special types, otherwise we have a 1-1 mapping
-            # of types from marshmallow to SQLAlchemy
-            if typeName == "Enum":
-                field = fields.Str(validate=validate.OneOf(attr.expression.type.enums), **field_kwargs)
-            else:
-                field = getattr(fields, typeName)(**field_kwargs)
+            logger.debug("<Schema(name={})> += <Field(name={}, type={}, args={})>".format(
+                model_name, name, type_name, field_args))
 
             # Grab the marshmallow type
-            schema[name] = field
+            schema[name] = _get_field_for_type(attr, type_, type_name, field_args)
 
     schema["Meta"] = meta
 
-    return type(schemaName, (Schema,), schema)
+    return type(schema_name, (Schema,), schema)
+
+def _normalize_typename(type_name):
+    # Normalize the typenames in cascading fashion
+    if type_name in ["Text"]:
+        type_name = "String"
+
+    if type_name in ["ARRAY"]:
+        type_name = "List"
+
+    return type_name
+
+def _get_field_for_type(attr, type_, type_name, field_args):
+    # Handle special types, otherwise we have a 1-1 mapping
+    # of types from marshmallow to SQLAlchemy
+    if type_name == "Enum":
+        return fields.Str(validate=validate.OneOf(attr.expression.type.enums), **field_args)
+    elif type_name == "List":
+        # Sort out the nested type for a list
+        list_type = type_.item_type
+        list_type_name = list_type.__class__.__name__
+        return fields.List(_get_field_for_type(attr, list_type, _normalize_typename(list_type_name), field_args), **field_args)
+    else:
+        return  getattr(fields, type_name)(**field_args)
 
 def schema(model, **kwargs):
     """Return a new schema from the model."""

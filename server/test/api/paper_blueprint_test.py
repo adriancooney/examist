@@ -4,9 +4,8 @@ from server.test import assert_api_error, assert_api_response
 from server.config import APP_DOWNLOAD_DIR
 from json import dumps, loads
 
-def test_paper_get(auth_client, course_with_papers):
-    course = course_with_papers
-    paper = course.papers[0]
+def test_paper_get(auth_client, paper_with_course_and_questions):
+    paper = paper_with_course_and_questions
     resp = auth_client.get("/course/{code}/paper/{year}/{period}".format(
         code=paper.course.code.lower(), 
         year=paper.year_start,
@@ -15,6 +14,8 @@ def test_paper_get(auth_client, course_with_papers):
 
     with assert_api_response(resp) as data:
         assert "paper" in data
+        assert "questions" in data
+        assert "course" in data
 
 def test_paper_get_invalid_period(auth_client):
     resp = auth_client.get("/course/{code}/paper/{year}/{period}".format(

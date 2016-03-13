@@ -1,4 +1,3 @@
-import { omit } from "lodash/object";
 import { Resource } from "../../library";
 import { compose } from "../../library/Selector"
 import * as User from "../User";
