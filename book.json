@@ -1,6 +1,5 @@
 {
   "structure": {
-    "readme": "research/report/README.md",
     "summary": "research/report/SUMMARY.md"
   },
   "plugins": ["prism", "-highlight", "github"],
