@@ -1,6 +1,7 @@
 {
   "gitbook": "2.5.2",
   "structure": {
+    "readme": "report/README.md",
     "summary": "report/SUMMARY.md"
   },
   "plugins": ["prism", "-highlight", "github"],
