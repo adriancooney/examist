@@ -2,7 +2,6 @@ import os
 from invoke import run, task
 from jinja2 import Template
 from sqlalchemy.sql import text
-from server import model
 
 @task
 def config():
