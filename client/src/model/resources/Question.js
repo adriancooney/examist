@@ -1,12 +1,12 @@
 import { Resource } from "../../library";
-// import * as Paper from "./Paper";
+import * as Paper from "./Paper";
 
 const Question = new Resource("question", "id");
 
 /*
  * Handle when a paper loads.
  */
-// Question.addProducerHandler(Paper.getPaper, (paper) => paper.questions);
+Question.addProducerHandler(Paper.getPaper, ({ questions }) => questions);
 
 /**
  * Select questions by paper ID.

@@ -1,0 +1,19 @@
+@import "../common/Fonts";
+@import "../common/Spacing";
+
+.Question {
+    .question-content {
+        p {
+            margin: $spacing-margin 0;
+            line-height: 140%;
+            font-family: $font-reading;
+            color: #777;
+        }
+    }
+}
+
+.QuestionIndex {
+    h5 {
+        margin: $spacing-margin;
+    }
+}

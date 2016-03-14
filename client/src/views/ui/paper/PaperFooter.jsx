@@ -1,4 +1,4 @@
-import "../../../../style/app/Paper.scss";
+import "../../../../style/ui/Paper.scss";
 import React, { PropTypes } from "react";
 import { Link } from "react-router";
 

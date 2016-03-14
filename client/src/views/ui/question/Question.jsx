@@ -1,39 +1,40 @@
-import "../../../../style/app/Question.scss";
+import "../../../../style/ui/Question.scss";
 import React, { Component, PropTypes } from "react";
 import { Button } from "../input";
 import { Box, Flex } from "../layout";
-import Path from "./Path";
+import QuestionIndex from "./QuestionIndex";
 
 export default class Question extends Component {
     static propTypes = {
         question: PropTypes.object.isRequired,
-        children: PropTypes.func // Getter function that accepts the question object
+        getQuestion: PropTypes.func // Getter function that accepts the question id
     };
 
     render() {
-        let children;
         const question = this.props.question;
+        let content, hasContent = !!question.revision, children = question.children;
 
-        if(this.props.children || question.children) {
-            // If we have a children function passed as a prop, it's
-            // used as a getter function which we pass the current
-            // question object. We pass this function to all further 
-            // question components created.
-            let cs = this.props.children ? this.props.children(question) : question.children;
+        if(children && children.length) {
+            children = children.map(this.props.getQuestion)
+            children = <QuestionList questions={children} getQuestion={this.props.getQuestion} />;
+        }
 
-            if(cs.length)
-                children = <QuestionList questions={cs} children={this.props.children} />;
+        if(hasContent) {
+            content = (
+                <div className="question-content">
+                    <p>{question.revision.content}</p>
+                </div>
+            );
         }
 
         return (
-            <div className="Question">
-                <Box>
-                    <Path path={question.path} />
-                    <Flex><h5>{question.content}</h5></Flex>
-                </Box>
-
-                { children }
-            </div>
+            <Box className={`Question${ !hasContent ? " no-content" : ""}`}>
+                <QuestionIndex index={question.formatted_path[question.formatted_path.length - 1]} />
+                <div>
+                    { content }
+                    { children }
+                </div>
+            </Box>
         );
     }
 }
@@ -48,9 +49,13 @@ export function QuestionList(props) {
         actions.push(<Button key={0}>Add Question</Button>);
     }
 
+    let questions = props.questions.sort((a, b) => a.index > b.index);
+    questions = questions.map(question => 
+        <Question key={question.id} question={question} getQuestion={props.getQuestion} />)
+
     return (
         <div className="QuestionList">
-            { props.questions.map(question => <Question key={question.id} question={question} children={props.children} />) }
+            { questions }
             { actions.length ? actions : undefined }
         </div>
     );
@@ -58,6 +63,6 @@ export function QuestionList(props) {
 
 QuestionList.propTypes = {
     questions: PropTypes.array.isRequired,
-    children: PropTypes.func,
+    getQuestion: PropTypes.func,
     onAdd: PropTypes.func
 };

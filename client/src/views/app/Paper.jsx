@@ -29,20 +29,27 @@ class Paper extends Component {
         const { paper, params: { course, year, period } } = this.props;
 
         // When we directly link to the paper
-        if(!paper)
+        if(!paper || !paper.questions)
             this.props.getPaper(course, year, period);
     }
 
     componentWillReceiveProps(props) {
-        const { isLoadingPaper, params: { course, year, period } } = props;
+        const { paper, isLoadingPaper, params: { course, year, period } } = props;
 
         // Previous state
         let prevCourse = this.props.params.course;
         let prevYear = this.props.params.year;
         let prevPeriod = this.props.params.period;
 
-        if(!isLoadingPaper && (prevCourse !== course || prevYear !== year || prevPeriod !== period))
-            this.props.getPaper(course, year, period);
+        if(!isLoadingPaper) {
+            // On route navigation while the component is mounted
+            if(!paper && (prevCourse !== course || prevYear !== year || prevPeriod !== period))
+                this.props.getPaper(course, year, period);
+
+            // If we have the paper loaded in memory, but the questions are not loaded
+            if(paper && !paper.questions)
+                this.props.getPaper(course, year, period);
+        }
     }
 
     render() {
@@ -60,7 +67,9 @@ class Paper extends Component {
         const questions = paper.questions;
         
         if(questions && questions.length) {
-            content = <QuestionList questions={questions} />
+            const rootQuestions = questions.filter(q => q.path.length === 1);
+
+            content = <QuestionList questions={rootQuestions} getQuestion={::this.getQuestion} />
         } else {
             content = (
                 <p>This paper has no questions yet. Help 
@@ -74,6 +83,10 @@ class Paper extends Component {
                 { content }
             </div>
         );
+    }
+
+    getQuestion(id) {
+        return this.props.paper.questions.find(q => q.id === id);
     }
 
     getParserLink() {

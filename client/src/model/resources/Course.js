@@ -7,10 +7,8 @@ const Course = new Resource("course", "id");
 /*
  * Get a paper by course, year and period.
  */
-export const getCourse = Course.createStatefulResourceAction(User.selectAPI, 
-    (api, code) => api.getCourse(code), null, {
-        extractor: ({ course }) => course
-    });
+export const getCourse = Course.createStatefulAction("GET_COURSE", User.selectAPI, 
+    (api, code) => api.getCourse(code));
 
 /*
  * Search for courses.
@@ -58,8 +56,9 @@ export const selectByCodeWithPapers = compose(selectByCode, course => state => (
 /*
  * Ensure courses loaded by user get store in courses resource.
  */
+Course.addProducerHandler(getCourse, ({ course }) => course);
 Course.addProducerHandler(User.getCourses, ({ courses }) => courses);
 Course.addProducerHandler(search, ({ courses }) => courses);
-Course.addProducerHandler("PAPER", ({ course }) => course);
+Course.addProducerHandler("GET_PAPER", ({ course }) => course);
 
 export default Course;

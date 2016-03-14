@@ -20,8 +20,9 @@ export default class PaperGrid extends Component {
     render() {
         // Extract out the years for our table header
         let years = YEARS;
+
         // Group by period
-        let periods = this.groupByPeriod(this.props.papers);
+        let periods = this.groupByPeriod(this.props.papers)
 
         // Create our table header
         let header = (
@@ -31,12 +32,12 @@ export default class PaperGrid extends Component {
         );
 
         // Create our table body
-        let body = Object.keys(periods).map((period) => {
+        let body = Object.keys(periods).sort().map((period) => {
 
             // Create the dot for each year
             let items = years.map((year) => {
                 const paper = periods[period][year];
-                return (<PaperDot paper={paper} course={this.props.course} current={paper === this.props.currentPaper} />);
+                return (<PaperDot paper={paper} course={this.props.course} current={paper && paper === this.props.currentPaper} />);
             });
 
             // Add in the paper period as the first column

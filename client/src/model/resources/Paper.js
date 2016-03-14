@@ -2,22 +2,15 @@ import { omit } from "lodash/object";
 import { Resource } from "../../library";
 import { compose } from "../../library/Selector";
 import * as User from "../User";
-import Course from "./Course"
+import * as Course from "./Course"
 
-const Paper = new Resource("paper", "id", {
-    cleaner: paper => omit(paper, "questions")
-});
-
-/*
- * Add papers when a specific course is selected
- */
-Paper.addProducerHandler(Course, ({ papers }) => papers);
+const Paper = new Resource("paper", "id");
 
 /*
  * Get a paper by course, year and period.
  */
-export const getPaper = Paper.createStatefulResourceAction(User.selectAPI, 
-    (api, course, year, period) => api.getPaper(course, year, period).then(res => res.paper));
+export const getPaper = Paper.createStatefulAction("GET_PAPER", User.selectAPI, 
+    (api, course, year, period) => api.getPaper(course, year, period));
 
 /**
  * Select a paper based on the following criteria:
@@ -36,8 +29,8 @@ export const selectPaper = ({ course, year, period }) => {
  * @param  {Number}   paper Paper id.
  * @return {Function}       Selector.
  */
-export const selectQuestions = paper => state => {
-    return state.resources.questions.filter(question => question.paper === paper);
+export const selectQuestions = questions => state => {
+    return questions.map(id => state.resources.questions.find(q => q.id === id));
 };
 
 /*
@@ -45,7 +38,7 @@ export const selectQuestions = paper => state => {
  */
 export const selectPaperWithQuestions = compose(selectPaper, paper => state => ({
     ...paper,
-    questions: selectQuestions(paper.id)(state)
+    questions: paper.questions ? selectQuestions(paper.questions)(state) : null
 }));
 
 /**
@@ -55,4 +48,10 @@ export const selectPaperWithQuestions = compose(selectPaper, paper => state => (
  */
 export const selectByCourse = Paper.selectAllByProp("course");
 
+
+/*
+ * Add papers when a specific course is selected
+ */
+Paper.addProducerHandler(Course.getCourse, ({ papers }) => papers);
+Paper.addProducerHandler(getPaper, ({ paper }) => paper);
 export default Paper;

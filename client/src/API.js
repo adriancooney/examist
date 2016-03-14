@@ -186,6 +186,25 @@ export default class API {
     }
 
     /**
+     * Create a new question for a paper.
+     * 
+     * @param  {String} course   Course code.
+     * @param  {Number} year     The paper year.
+     * @param  {String} period   The paper's period.
+     * @param  {Object} question The question data.
+     * @param  {Object} parent   The parent question data.
+     * @return {Promise} -> {Response}
+     */
+    createQuestion(course, year, period, question, parent = {}) {
+        let url = `/course/${course}/paper/${year}/${period}/q/`;
+
+        if(parent)
+            url += parent.path.join(".")
+
+        return this.request("POST", url, question);
+    }
+
+    /**
      * Test if the auth key is valid.
      * @return {Promise} -> {Response}
      */

@@ -22,10 +22,11 @@ export default function PaperDot(props) {
         link = <Link to={`/course/${props.course.code}/paper/${paper.year_start}/${paper.period}`}/>
     }
 
-    return (<span className={`PaperDot link-${type.toLowerCase()}`}>{ link }</span>);
+    return (<span className={`PaperDot link-${type.toLowerCase()}${props.current ? " link-active" : ""}`}>{ link }</span>);
 }
 
 PaperDot.propTypes = {
     paper: PropTypes.object,
-    course: PropTypes.object
+    course: PropTypes.object,
+    current: PropTypes.bool
 };

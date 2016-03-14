@@ -43,7 +43,7 @@ class Parser extends Component {
 
         const paperLink = `/course/${course.code}/paper/${paper.year_start}/${paper.period}/`;
         let currentPage = this.props.location.pathname.match(/\/(\w+)$/);
-        currentPage = currentPage ? currentPage[1] : "info";
+        currentPage = currentPage && currentPage[1] !== "parse" ? currentPage[1] : "info";
 
         return (
             <FlexBox className="Parser">
