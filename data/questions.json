@@ -1,0 +1,69 @@
+{
+    "paper": {
+        "course": "CT422-1",
+        "year": 2014,
+        "period": "winter"
+    },
+    
+    "questions": [{
+        "index_type": "decimal",
+        "questions": [{
+            "index_type": "alpha",
+            "content": "What is meant by collaborative filtering? Illustrate, with a suitable example, how a collaborative filtering approach could be used to make a prediction for a given user for a given item.",
+            "marks": 10
+        }, {
+            "index_type": "alpha",
+            "content": "Identify the main limitations of a collaborative filtering system and suggest mechanisms to overcome these limitations.",
+            "marks": 10
+        }, {
+            "index_type": "alpha",
+            "content": "Discuss metrics to evaluate the quality of a collaborative filtering system and discuss the suitability of these metrics.",
+            "marks": 5
+        }]
+    }, {
+        "index_type": "decimal",
+        "questions": [{
+            "index_type": "alpha",
+            "content": "The performance of an Information Retrieval system is dependent on the quality of the term-weighting scheme employed. With reference to any well- known weighting scheme, discuss the main factors considered in assigning a weight to a term in a document.",
+            "marks": 9
+        }, {
+            "index_type": "alpha",
+            "content": "Explicit user feedback regarding the quality of the returned answer set is often used to modify the user’s query to improve the performance of the retrieval system. Assuming a vector space representation, show how you could modify a user’s query when the user can give feedback on returned documents with a value in the range 1 to 5, 1 indicating not relevant at all and 5 indicating very relevant.",
+            "marks": 7
+        }, {
+            "index_type": "alpha",
+            "content": "Users’ queries can be extended by identifying related terms and adding them to the query. Suggest mechanisms to identify related terms.",
+            "marks": 9
+        }]
+    }, {
+        "index_type": "decimal",
+        "questions": [{
+            "index_type": "alpha",
+            "content": "Discuss applications in information retrieval where clustering algorithms can be of benefit.",
+            "marks": 9
+        }, {
+            "index_type": "alpha",
+            "content": "Given a set of documents (represented as term-dimensional vectors), outline any algorithm of your choice to cluster the documents together. Discuss the limitations of your approach.",
+            "marks": 7
+        }, {
+            "index_type": "alpha",
+            "content": "Discuss, briefly, methods that allow the prediction of query difficulty, i.e., any approaches that allow us to identify queries that may be difficult to satisfy correctly.",
+            "marks": 9
+        }]
+    }, {
+        "index_type": "decimal",
+        "questions": [{
+            "index_type": "alpha",
+            "content": "Describe, with an appropriate example, how the Page Rank algorithm exploits the link structure of a graph to assign a rank to each individual node. Discuss any limitations of the approach.",
+            "marks": 10
+        }, {
+            "index_type": "alpha",
+            "content": "Suggest modifications to the Page Rank algorithm that may improve the performance of the approach in a web search environment for individual users with specific ongoing interests.",
+            "marks": 5
+        }, {
+            "index_type": "alpha",
+            "content": "Many different user activities may be involved in information retrieval systems; for example, these activities may include browsing, querying, viewing results etc. Discuss, with reference to existing approaches the issues involved in designing an interface to aid users with these types of activities.",
+            "marks": 10
+        }]
+    }]
+}
