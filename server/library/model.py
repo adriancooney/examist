@@ -1,13 +1,15 @@
 import flask
+from inspect import isclass
 from functools import wraps
 from contextlib import contextmanager
 from sqlalchemy import Integer
 from sqlalchemy.orm import class_mapper, ColumnProperty
 from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.inspection import inspect
 from sqlalchemy.orm.relationships import RelationshipProperty
 from marshmallow import Schema, fields
-from server.exc import NotFound
+from server.exc import NotFound, AlreadyExists
 from server.library.util import classproperty
 from server.library.schema import create_schema, schema as schemaCreator
 
@@ -60,13 +62,19 @@ class Model(flask.ext.sqlalchemy.Model):
         cls.__schema__
 
 @contextmanager
-def query(model_name):
+def query(model):
     """Perform a SQL Alchemy query and convert any exceptions to HTTP exceptions."""
+    if isclass(model):
+        model_name = model.__name__
+    else:
+        model_name = model
+
     try:
         yield
     except NoResultFound:
-        print "NO RESULT FOUND"
         raise NotFound(model_name)
+    except IntegrityError as e:
+        raise AlreadyExists(model_name, None, None)
 
 def querymethod(*qargs, **kwq):
     def decor(f):

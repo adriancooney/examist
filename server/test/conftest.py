@@ -152,10 +152,10 @@ def questions(session):
         index_type = question_data.get("index_type")
         formatted_index = model.Question.format_index(index_type, index)
 
-        path = (index,) if not parent else parent.path + (index,)
-        formatted_path = (formatted_index,) if not parent else parent.formatted_path + (formatted_index,)
+        path = [index] if not parent else parent.path + [index]
+        formatted_path = [formatted_index] if not parent else parent.formatted_path + [formatted_index]
 
-        question = model.Question(None, index, index_type, path, formatted_path, parent=parent)
+        question = model.Question(None, index, index_type, parent=parent)
 
         if content:
             question.set_content(None, content)

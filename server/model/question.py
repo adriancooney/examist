@@ -1,4 +1,5 @@
 import datetime
+from marshmallow import fields
 from sqlalchemy.schema import Table
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy import Column, Integer, String, ForeignKey, UniqueConstraint, DateTime, Enum
@@ -8,6 +9,7 @@ from server.library.model import querymethod
 from server.model.revision import Revision
 from server.model.course import Course
 from server.model.paper import Paper
+from server.exc import InvalidEntityField
 
 class Question(Model):
     __tablename__ = "question"
@@ -21,7 +23,7 @@ class Question(Model):
 
     # IMPORTANT: Question indexes start from ONE.
     index = Column(Integer) # The questions position in the list
-    index_type = Column(Enum("decimal", "alpha", "roman", name="index_type"))
+    index_type = Column(Enum("decimal", "alpha", "roman", name="index_type"), default="decimal")
 
     # We retain path information to the question for the following reasons:
     # 1. Traversing the tree is expensive.
@@ -40,15 +42,30 @@ class Question(Model):
     revisions = relationship("Revision")
 
     class Meta:
+        created_at = dict(load_only=True)
         revision = dict(only=("user", "content", "created_at"))
+        include = dict(content=fields.Str())
 
-    def __init__(self, paper, index, index_type, path, formatted_path, parent=None):
+    def __init__(self, paper, index, index_type=None, parent=None):
         self.paper = paper
         self.index = index
-        self.index_type = index_type
-        self.path = path
-        self.formatted_path = formatted_path
+        self.index_type = index_type or "decimal"
+
+        formatted_index = Question.format_index(self.index_type, self.index)
+
+        self.path = [index]
+        self.formatted_path = [formatted_index]
+        
+        if parent:
+            # Ensure this index type is the same as it's siblings
+            if len(parent.children) > 0 and not all([child.index_type == self.index_type for child in parent.children]):
+                raise InvalidEntityField("index_type")
+
+            self.path = parent.path + self.path
+            self.formatted_path = parent.formatted_path + self.formatted_path
+
         self.parent = parent
+        self.revision = None
 
     def set_content(self, user, content):
         self.revision = Revision(self, user, content)

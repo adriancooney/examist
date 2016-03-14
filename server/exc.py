@@ -15,8 +15,8 @@ class NotFound(HttpException):
 
 class InvalidRequest(HttpException):
     """400 Invalid Request."""
-    def __init__(self, message, meta):
-        HttpException.__init__(self, 401, message, meta)
+    def __init__(self, message, meta=None):
+        HttpException.__init__(self, 400, message, meta)
 
 class MissingParameter(InvalidRequest):
     """400 Invalid request, specifically missing parameters."""
@@ -48,11 +48,15 @@ class Unauthorized(HttpException):
 class AlreadyExists(HttpException):
     """409, Conflict"""
     def __init__(self, entity, key, value):
-        HttpException.__init__(self, 409, "%s already exists with %s '%s'." % (entity, key, value), {
-            "entity": entity,
-            "key": key,
-            "value": value    
-        })
+        message = "%s already exists" % (entity)
+        meta = { "entity": entity }
+
+        if key and value:
+            message += " with %s '%s'" % (key, value)
+            meta["key"] = key
+            meta["value"] = value
+
+        HttpException.__init__(self, 409, message + ".", meta)
 
 class InvalidEntity(HttpException):
     """422 Unprocessable Entity, specifically entity does not exist."""
@@ -62,3 +66,7 @@ class InvalidEntity(HttpException):
             "field": field,
             "id": id    
         })
+
+class InvalidEntityField(InvalidRequest):
+    def __init__(self, field_name):
+        InvalidRequest.__init__(self, "Invalid value for field '%s'." % field_name)

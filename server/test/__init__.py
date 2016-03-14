@@ -9,7 +9,10 @@ from json import loads, dumps
 logger = logging.getLogger(__name__)
 
 def assert_api_error(resp, code, message = None, meta = None):
-    data = loads(resp.get_data())
+    resp_raw = resp.get_data()
+    logger.info(("<< %s \n\n" % resp.status) + resp_raw)
+
+    data = loads(resp_raw)
 
     assert resp.status_code == code, "Unexpected status code %r, expected %r" % (resp.status_code, code)
     assert data["error"], "API has not errored."
@@ -24,7 +27,7 @@ def assert_api_error(resp, code, message = None, meta = None):
 
 @contextmanager
 def assert_api_response(resp):
-    assert resp.status_code == 200, "Incorrect status code."
+    assert resp.status_code == 200, "Non 200 response returned, instead: %s." % resp.status
 
     resp_raw = resp.get_data()
     assert len(resp_raw) > 0, "No data returned."
@@ -32,6 +35,10 @@ def assert_api_response(resp):
     logger.info(("<< %s \n\n" % resp.status) + resp_raw)
 
     yield loads(resp_raw)
+
+def assert_api_success(resp):
+    with assert_api_response(resp) as data:
+        assert "success" in data
 
 def assert_shallow_compare(actual, expected, name="Object"):
     for key, value in expected.iteritems():

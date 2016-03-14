@@ -12,13 +12,15 @@ from server import config
 
 Paper = Blueprint("paper", __name__)
 
-@Paper.route("/course/<course>/paper/<year>/<period>", methods=["GET"])
-@Paper.route("/course/<course>/paper/<year>/<period>.html", methods=["GET"])
-@use_kwargs({
+URL_PARAMS = {
     "course": fields.Str(required=True),
     "year": fields.Int(required=True),
     "period": fields.Str(required=True, validate=validate.OneOf(model.Paper.PAPER_PERIODS))
-}, locations=("view_args",))
+}
+
+@Paper.route("/course/<course>/paper/<year>/<period>", methods=["GET"])
+@Paper.route("/course/<course>/paper/<year>/<period>.html", methods=["GET"])
+@use_kwargs(URL_PARAMS, locations=("view_args",))
 def get_paper(course, year, period):
     paper = model.Paper.find(db.session, course, year, period)
 
