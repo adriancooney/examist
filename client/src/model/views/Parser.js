@@ -1,6 +1,5 @@
 import { Reducer } from "../../library";
 import { Enum } from "../../Util";
-import * as User from "../User";
 
 export const views = Enum("info", "questions", "help")
 

@@ -56,8 +56,8 @@ class Course extends Component {
         } else if(course) {
             return (
                 <Flex className="Course">
-                    <Box>
-                        <Flex><h1><Link to={`/course/${course.code}`}>{ course.code.toString().toUpperCase() }</Link></h1></Flex>
+                    <Box className="course-header">
+                        <h1><Link to={`/course/${course.code}`}>{ course.code.toString().toUpperCase() }</Link></h1>
                         <Flex><h3>{ course.name }</h3></Flex>
                     </Box>
                     

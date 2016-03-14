@@ -1,3 +1,4 @@
+@import "../common/Colors";
 @import "../common/Spacing";
 @import "../common/Fonts";
 
@@ -16,6 +17,7 @@
             font-weight: bold;
             font-size: 140%;
             padding-bottom: $spacing-margin/2;
+            color: $color-papergrid-header;
         }
 
         th:first-child {
@@ -32,6 +34,7 @@
         td:first-child {
             text-align: right;
             padding-right: $spacing-padding;
+            width: 100px;
         }
     }
 }
@@ -41,7 +44,7 @@
     width: 20px;
     height: 20px;
     border-radius: 20px;
-    background-color: #ccc;
+    background-color: $color-papergrid-unavailable;
 
     a {
         display: inline-block;
@@ -50,15 +53,13 @@
     }
 
     &.link-available {
-        background-color: green;
-    }
-
-    &.link-unindexed {
-        background-color: blue;
+        background-color: $color-papergrid-available;
     }
 
     &.link-active {
-        transform: scale(1.5);
+        border: 5px solid $color-papergrid-available;
+        background: lighten($color-papergrid-available, 30%);
+        transform: scale(2);
     }
 }
 
@@ -100,5 +101,13 @@
             background: rgba(0,0,0,0.2);
             border-bottom-right-radius: $spacing-radius;
         }
+    }
+}
+
+.Paper {
+    > .QuestionList {
+        background: white;
+        padding: $spacing-padding $spacing-padding*2;
+        width: 76%;
     }
 }

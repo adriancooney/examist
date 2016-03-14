@@ -1,5 +1,6 @@
 @import "../common/Spacing";
 @import "../common/Colors";
+@import "../common/Fonts";
 
 .CourseClip {
     width: 340px;
@@ -164,5 +165,28 @@
 
     .continue {
         text-align: right;
+    }
+}
+
+.Course {
+    .course-header {
+        h1 {
+            font-weight: normal;
+            font-size: 270%;
+            margin: $spacing-margin/2 0;
+        }
+
+        h3 {
+            text-align: right;
+            font-size: 280%;
+            line-height: 100%;
+            font-family: $font-reading;
+            margin: $spacing-margin/2 0;
+            font-weight: normal;
+        }
+    }
+
+    .Paper {
+        margin-top: $spacing-margin * 2;
     }
 }

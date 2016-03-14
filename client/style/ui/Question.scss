@@ -1,19 +1,41 @@
+@import "../common/Colors";
 @import "../common/Fonts";
 @import "../common/Spacing";
 
 .Question {
+    margin-bottom: $spacing-margin;
+
     .question-content {
         p {
-            margin: $spacing-margin 0;
+            font-size: 110%;
+            margin: $spacing-margin 0 $spacing-margin/2;
             line-height: 140%;
             font-family: $font-reading;
-            color: #777;
         }
+    }
+
+    .question-detail {
+        opacity: 0.5;
+        border-top: 1px solid rgba($color-blue, 0.5);
+        padding-top: $spacing-padding/2;
+        transition: opacity 0.3s;
+
+        a {
+            display: block;
+            margin: 0 $spacing-margin*1.5 0 0;
+            font-size: 90%;
+        }
+    }
+
+    &:hover {
+        > div > .question-content > .question-detail { opacity: 1; }
     }
 }
 
 .QuestionIndex {
     h5 {
-        margin: $spacing-margin;
+        margin: $spacing-margin 0;
+        margin-right: $spacing-margin * 2;
+        font-size: 120%;
     }
 }

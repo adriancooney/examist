@@ -1,7 +1,8 @@
 import "../../../../style/ui/Question.scss";
 import React, { Component, PropTypes } from "react";
+import { Link } from "react-router";
 import { Button } from "../input";
-import { Box, Flex } from "../layout";
+import { Box } from "../layout";
 import QuestionIndex from "./QuestionIndex";
 
 export default class Question extends Component {
@@ -15,14 +16,32 @@ export default class Question extends Component {
         let content, hasContent = !!question.revision, children = question.children;
 
         if(children && children.length) {
-            children = children.map(this.props.getQuestion)
+            children = children.map(this.props.getQuestion);
             children = <QuestionList questions={children} getQuestion={this.props.getQuestion} />;
         }
 
+        let detail = {
+            "Comments": 0,
+            "Solutions": 0,
+            "Links": 0
+        };
+
         if(hasContent) {
+            detail = Object.keys(detail).map(name => {
+                let value = detail[name];
+
+                if(value > 0)
+                    name += " (" + detail[name] + ")";
+
+                return (<Link to="#">{name}</Link>);
+            });
+
             content = (
                 <div className="question-content">
-                    <p>{question.revision.content}</p>
+                    <p>{question.revision.content} {question.marks ? "(" + question.marks + ")" : ""}</p>
+                    <Box className="question-detail">
+                        { detail }
+                    </Box>
                 </div>
             );
         }
@@ -50,8 +69,8 @@ export function QuestionList(props) {
     }
 
     let questions = props.questions.sort((a, b) => a.index > b.index);
-    questions = questions.map(question => 
-        <Question key={question.id} question={question} getQuestion={props.getQuestion} />)
+    questions = questions.map((question, i) => 
+        <Question key={i} question={question} getQuestion={props.getQuestion} />)
 
     return (
         <div className="QuestionList">

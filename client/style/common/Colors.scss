@@ -26,6 +26,8 @@ $color-font-body: $color-dark-grey;
 $color-error: $color-flame;
 $color-remove: $color-flame;
 $color-add: $color-kelly-green;
+$color-unavailable: $color-grey;
+$color-available: $color-kelly-green;
 
 // Input
 $color-button-default: $color-blue;
@@ -34,6 +36,11 @@ $color-input-border: $color-grey;
 // Insititution
 $color-institution: white;
 $color-institution-header: $color-dark-grey;
+
+// Paper grid
+$color-papergrid-header: $color-blue;
+$color-papergrid-unavailable: $color-unavailable;
+$color-papergrid-available: $color-available;
 
 // Avatar icon
 $color-avatar-circle: $color-storm-dust;

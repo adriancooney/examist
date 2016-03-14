@@ -1,4 +1,3 @@
-import { omit } from "lodash/object";
 import { Resource } from "../../library";
 import { compose } from "../../library/Selector";
 import * as User from "../User";
@@ -26,8 +25,8 @@ export const selectPaper = ({ course, year, period }) => {
 
 /**
  * Select questions for a paper.
- * @param  {Number}   paper Paper id.
- * @return {Function}       Selector.
+ * @param  {Number}   questions Array of question ids.
+ * @return {Function}           Selector.
  */
 export const selectQuestions = questions => state => {
     return questions.map(id => state.resources.questions.find(q => q.id === id));
@@ -47,7 +46,6 @@ export const selectPaperWithQuestions = compose(selectPaper, paper => state => (
  * @return {Function}     Selector.
  */
 export const selectByCourse = Paper.selectAllByProp("course");
-
 
 /*
  * Add papers when a specific course is selected

@@ -56,7 +56,7 @@ class Paper extends Component {
         const { isLoadingPaper, paper } = this.props;
 
         if(isLoadingPaper) {
-            return <Loading />
+            return <Loading />;
         }
 
         if(!paper) {
@@ -72,14 +72,12 @@ class Paper extends Component {
             content = <QuestionList questions={rootQuestions} getQuestion={::this.getQuestion} />
         } else {
             content = (
-                <p>This paper has no questions yet. Help 
-                your course out and <Link to={this.getParserLink()}>pick them from the paper</Link>.</p>
+                <p>This paper has no questions yet. Help your course out and <Link to={this.getParserLink()}>pick them from the paper</Link>.</p>
             );
         }
 
         return (
             <div className="Paper">
-                <h3>Questions</h3>
                 { content }
             </div>
         );

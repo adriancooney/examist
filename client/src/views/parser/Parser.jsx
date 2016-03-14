@@ -1,10 +1,9 @@
 import "../../../style/Parser.scss";
 import React, { Component } from "react";
-import { Link } from "react-router";
 import { connect } from "react-redux";
 import PaperView from "./PaperView"
 import { FlexBox, Box } from "../ui/layout";
-import { Icon, IconLink, Loading } from "../ui";
+import { IconLink, Loading } from "../ui";
 import { PaperLink } from "../ui/paper";
 import * as model from "../../model";
 
