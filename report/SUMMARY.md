@@ -30,15 +30,18 @@
     - Backend
         - Models and ORM
         - API
+            - Request data validation
         - Authentication
             - Middleware
         - Entities
+            - Schemas
         - Logging
     - Frontend
         - View Layer
             - Components
         - Routing
             - Direct Linking
+            - Back Button
         - State Management
             - Authentication
             - Logging in automatically
@@ -50,7 +53,11 @@
         - Logs
     - Tools
         - Sublime
-        - Working without an IDE
+            - Working without an IDE
+        - Terminal
+        - npm and Node
+        - virtualenv
+        - Chrome
     - Workflow
         - Client
             - npm
@@ -60,6 +67,10 @@
         - Server
             - Debug mode
             - CORS
+    - Debugging
+         - Chrome dev tools
+         - Logging
+         - Source Maps
     - Code Style
         - React
             - PropTypes
@@ -69,18 +80,22 @@
         - Production
     - Deploying
 * [Testing](testing/README.md)
-    - Continuous Integration
-        - Codeship
-        - Notifications
-    - Testability
-        - Config generation
+    - [Testability](testing/Testability.md)
         - Fixtures
         - Database
         - Logging
+    - Continuous Integration
+        - Codeship
+        - Environment
+        - Config generation 
+        - Notifications
 * Results
     - Final Product
     - Features
     - Future
+        - Browsers
+        - Mobile App
+        - Desktop App
 * Conclusions
     - Choices
     - Things Learned
