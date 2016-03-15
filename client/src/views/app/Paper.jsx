@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import { connect } from "react-redux";
 import { isPending } from "redux-pending";
 import * as model from "../../model";
-import { Loading, Empty } from "../ui";
+import { Loading, Empty, Icon } from "../ui";
 import { QuestionList } from "../ui/question";
 
 class Paper extends Component {
@@ -69,10 +69,19 @@ class Paper extends Component {
         if(questions && questions.length) {
             const rootQuestions = questions.filter(q => q.path.length === 1);
 
-            content = <QuestionList questions={rootQuestions} getQuestion={::this.getQuestion} />
+            content = (
+                <QuestionList 
+                    course={this.props.course}
+                    paper={paper}
+                    questions={rootQuestions} getQuestion={::this.getQuestion} />
+            );
         } else {
             content = (
-                <p>This paper has no questions yet. Help your course out and <Link to={this.getParserLink()}>pick them from the paper</Link>.</p>
+                <div className="paper-empty">
+                    <Icon name="exclamation-triangle" size={5}/>
+                    <h4>This paper has no questions yet.</h4> 
+                    <p>Help your course out and <Link to={this.getParserLink() + "/questions"}>pick them from the paper</Link>.</p>
+                </div>
             );
         }
 

@@ -188,5 +188,8 @@
 
     .Paper {
         margin-top: $spacing-margin * 2;
+        background: white;
+        padding: $spacing-padding $spacing-padding*2;
+        width: 70%;
     }
 }

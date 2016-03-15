@@ -105,9 +105,13 @@
 }
 
 .Paper {
-    > .QuestionList {
+    .paper-empty {
         background: white;
-        padding: $spacing-padding $spacing-padding*2;
-        width: 76%;
+        text-align: center;
+        padding: $spacing-padding;
+
+        i {
+            color: $color-warning;
+        }
     }
 }

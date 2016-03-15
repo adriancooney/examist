@@ -27,6 +27,10 @@
         }
     }
 
+    .question-marks {
+        color: rgba(0,0,0,0.4);
+    }
+
     &:hover {
         > div > .question-content > .question-detail { opacity: 1; }
     }
