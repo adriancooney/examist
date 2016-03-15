@@ -2,11 +2,10 @@
 
 * [Introduction](introduction/README.md)
     - [Motivations](/research/report/introduction/Motivations.md)
-
+    - Problem Statement
+    - Solution
 * Research
-    - Downloading Exam Papers
-        - Scraping
-        - Database creation
+    - [Downloading Exam Papers](research/Downloading-Papers.md)
     - Parsing Exam Papers
         - Plain Text
             - Py parsing
@@ -64,6 +63,7 @@
     - Code Style
         - React
             - PropTypes
+    - Migrations
     - Building
         - Development
         - Production
