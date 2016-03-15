@@ -26,9 +26,9 @@ Unfortunately for us (however understandable from a performance point of view), 
 
 The portal's limit on results forced us to decompose our query to return less that 500 results. To decompose our query, we simply added another character infront of the category code and then searched with the wildcard. For example, "MA%" would be converted to "MAA%". Once the query was decomposed enough, we would cycle through the characters alhpabetically including digits "MAA%", "MAB%", .. "MA9%", "MA0%" until we obtained results from the portal.
 
-![Scraped decomposing query]()
+![Scraped decomposing query](assets/scraper-decomposing.png)
 
-Finally results were returned from the portal but would be trapped within a poorly formatted HTML table. A HTML parser called `BeautifulSoup` for python was used to load up the HTML and perform DOM selections and data extraction. Each table row represented a paper and each cell had information about the paper. This extraction method was fragile because of the inconsistent HTML returned but the only option available. Some shaky logic were used to describe the paper such as the presence of an anchor element within a table cell told us if the paper was available online or not.
+Finally, results were returned from the portal but would be trapped within a poorly formatted HTML table. A HTML parser called `BeautifulSoup` for python was used to load up the HTML and perform DOM selections and data extraction. Each table row represented a paper and each cell had information about the paper. This extraction method was fragile because of the inconsistent HTML returned but the only option available. Some shaky logic were used to describe the paper such as the presence of an anchor element within a table cell told us if the paper was available online or not.
 
 Once all the data was extracted from each search result page for every module category, it allowed us to build a database of modules and their papers. Links to the PDF contents could be derived from the data by using the URL pattern provided:
 
