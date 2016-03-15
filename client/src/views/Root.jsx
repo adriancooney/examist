@@ -1,8 +1,11 @@
+import "../../style/Login.scss";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import API, { HTTPError } from "../API";
 import { BROWSER, DEBUG } from "../Config";
 import * as User from "../model/User";
+import { Loading } from "./ui";
+import { Box } from "./ui/layout";
 
 class Root extends Component {
     static actions = {
@@ -74,7 +77,13 @@ class Root extends Component {
 
     render() {
         if(this.state.pendingLogin) {
-            return <div>Logging you in. One second..</div>;
+            return (
+                <div className="Login">
+                    <Loading />
+                    <h3>Logging you in.</h3>
+                    <h4>One second..</h4>
+                </div>
+            );
         } else return this.props.children;
     }
 }
