@@ -4,23 +4,24 @@
     - [Motivations](/research/report/introduction/Motivations.md)
 
 * Research
-    - Exam Papers
-        - Downloading
-            - Scraping
-            - Database creation
-        - Parsing
-            - Plain Text
-            - Point and Click
-            - Transcription
-            - Other methods
-                - Machine learning
-    - 
+    - Downloading Exam Papers
+        - Scraping
+        - Database creation
+    - Parsing Exam Papers
+        - Plain Text
+            - Py parsing
+            - Context Free Grammar
+        - Point and Click
+        - Transcription
+        - Other methods
+            - Machine learning
 * [Design](design/README.md)
     - Architecture
         - Backend
         - Frontend
             - Latest technology
             - Learning Curve
+    - Entities
     - Database
 * [Visual](visual/README.md)
 * [Implementation](implementation/README.md)
@@ -60,6 +61,9 @@
         - Server
             - Debug mode
             - CORS
+    - Code Style
+        - React
+            - PropTypes
     - Building
         - Development
         - Production
@@ -73,3 +77,13 @@
         - Fixtures
         - Database
         - Logging
+* Results
+    - Final Product
+    - Features
+    - Future
+* Conclusions
+    - Choices
+    - Things Learned
+    - Do Differently
+    - Did Well
+    - Closing word
