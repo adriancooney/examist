@@ -34,6 +34,7 @@ def auth(email, password):
     session = user.login(password)
     db.session.add(user)
     db.session.commit()
+    db.session.refresh(user)
 
     return respond({
         "key": session.key,

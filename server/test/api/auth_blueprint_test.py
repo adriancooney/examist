@@ -14,6 +14,8 @@ def test_login(user, client):
         # Check to see if a session exists for the user
         assert data["key"] == user.sessions[0].key
         assert "user" in data
+        user_data = data["user"]
+        assert "id" in user_data
 
 def test_login_missing_params(client):
     resp = client.post("/login", data={ "email": "d@a.ie" })
