@@ -1,7 +1,7 @@
 {
   "gitbook": "3.0.0-pre.5",
   "root": "./report",
-  "plugins": ["prism", "-highlight", "github"],
+  "plugins": ["github"],
   "pluginsConfig": {
     "github": {
       "url": "https://github.com/adriancooney/examist/"
