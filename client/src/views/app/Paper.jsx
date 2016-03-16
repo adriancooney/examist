@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { isPending } from "redux-pending";
 import * as model from "../../model";
 import { Loading, Empty, Icon } from "../ui";
-import { QuestionList } from "../ui/question";
+import { PaperView } from "../ui/paper";
 
 class Paper extends Component {
     static selector = (state, { params }) => {
@@ -67,14 +67,7 @@ class Paper extends Component {
         const questions = paper.questions;
         
         if(questions && questions.length) {
-            const rootQuestions = questions.filter(q => q.path.length === 1);
-
-            content = (
-                <QuestionList 
-                    course={this.props.course}
-                    paper={paper}
-                    questions={rootQuestions} getQuestion={::this.getQuestion} />
-            );
+            content = <PaperView paper={paper} course={this.props.course} />;
         } else {
             content = (
                 <div className="paper-empty">
@@ -90,10 +83,6 @@ class Paper extends Component {
                 { content }
             </div>
         );
-    }
-
-    getQuestion(id) {
-        return this.props.paper.questions.find(q => q.id === id);
     }
 
     getParserLink() {

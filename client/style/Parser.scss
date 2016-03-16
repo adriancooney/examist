@@ -35,9 +35,23 @@
 
         .header {
             background: $color-body;
-            padding: $spacing-padding/2;
             text-align: center;
             border-bottom: 5px solid rgba(0,0,0,0.1);
+
+            .PaperLink {
+                margin: $spacing-margin;
+            }
+        }
+
+        .Panel {
+            overflow-y: scroll;
+            height: 0px; // Hack to fix flexbox bug: http://stackoverflow.com/a/14964944/916553
+        }
+    }
+
+    .panel-questions {
+        > .QuestionList {
+            padding: 0 $spacing-padding*2 $spacing-padding;
         }
     }
 }
@@ -52,7 +66,7 @@
     }
 }
 
-.PaperView {
+.PDFView {
     background: url($assert-background-parser-paper-view);
     background-size: 30px;
 

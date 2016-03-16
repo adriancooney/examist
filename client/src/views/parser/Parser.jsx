@@ -1,10 +1,12 @@
 import "../../../style/Parser.scss";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import PaperView from "./PaperView"
+import { isPending } from "redux-pending";
+import PDFView from "./PDFView"
 import { FlexBox, Box } from "../ui/layout";
 import { IconLink, Loading } from "../ui";
 import { PaperLink } from "../ui/paper";
+import Error404 from "../pages/Error404";
 import * as model from "../../model";
 
 class Parser extends Component {
@@ -17,7 +19,8 @@ class Parser extends Component {
                 period: params.period,
                 year: parseInt(params.year),
                 course: course.id 
-            })(state) : null
+            })(state) : null,
+            isLoadingPaper: isPending(model.resources.Paper.getPaper.type)(state)
         }
     };
 
@@ -34,10 +37,12 @@ class Parser extends Component {
     }
 
     render() {
-        const { paper, course, children } = this.props;
+        const { paper, course, children, isLoadingPaper } = this.props;
 
-        if(!paper) {
+        if(isLoadingPaper) {
             return <Loading />;
+        } else if(!paper) {
+            return <Error404 />;
         }
 
         const paperLink = `/course/${course.code}/paper/${paper.year_start}/${paper.period}/`;
@@ -53,15 +58,15 @@ class Parser extends Component {
                     <IconLink to={`${paperLink}parse/help`} name="question-circle" size={2} active={currentPage === "help"} />
                 </Box>
 
-                <div className="panel-container">
+                <Box vertical className="panel-container">
                     <header className="header">
                         <PaperLink course={course} paper={paper} />
                     </header>
 
                     { children }
-                </div>
+                </Box>
 
-                <PaperView link={this.props.paper.link}/>
+                <PDFView link={this.props.paper.link}/>
             </FlexBox>
         );
     }
