@@ -26,13 +26,15 @@ The fixtures are designed to have zero side effects. This means that any databas
 ```python
 def test_profile_delete_course(auth_client, user_with_courses, session):
     existingCourse = user_with_courses.courses[0]
-    resp = auth_client.delete("/profile/courses", data={ "course": existingCourse.id })
+    resp = auth_client.delete("/profile/courses", 
+        data={ "course": existingCourse.id })
 
     assert_api_success(resp)
 
     session.refresh(user_with_courses)
     assert len(user_with_courses.courses) == 4
-    assert not find(user_with_courses.courses, lambda mod: mod.id == existingCourse.id)
+    assert not find(user_with_courses.courses, 
+        lambda mod: mod.id == existingCourse.id)
 ```
 
 Above we have an example test `test_profile_delete_course` which sends a request to the API attempting to remove a course from a user's associated courses. From the method arguments, we can see it uses three fixtures (Py.Test automatically resolves the arguments to fixtures when it runs the test): `auth_client`, `user_with_courses` and `session` (for a full list of fixtures, see Appendix 1: Test Fixtures). 

@@ -32,6 +32,7 @@ Finally, results were returned from the portal but would be trapped within a poo
 
 Once all the data was extracted from each search result page for every module category, it allowed us to build a database of modules and their papers. Links to the PDF contents could be derived from the data by using the URL pattern provided:
 
-    https://www.mis.nuigalway.ie/papers_public/{year}/{module_category}/{year}_{module_code}_{sitting}_{period}.PDF
+    https://www.mis.nuigalway.ie/papers_public/
+        {year}/{module_category}/{year}_{module_code}_{sitting}_{period}.PDF
 
 The scraper managed to collect 19,634 papers across 2,904 courses, completely scanning the portal in less than 15 minutes. This newly collected database allowed me to stay away from the online portal and not use up unnecessary server resources or perform useless requests.
