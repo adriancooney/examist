@@ -7,3 +7,11 @@ export default function Button(props) {
     
     return (<button {...props} />);
 }
+
+export function TextButton(props) {
+    props = Object.assign({}, props, {
+        className: "TextButton " + (props.className || "")
+    });
+
+    return <button {...props} />;
+}

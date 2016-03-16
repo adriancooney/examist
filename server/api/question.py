@@ -35,13 +35,18 @@ PUT_PARAMS = model.Question.__schema__(
 def create_question(course, year, period):
     args = parser.parse(POST_PARAMS, request)
     paper = model.Paper.find(db.session, course, year, period)
-    question = model.Question(paper, index=args["index"], index_type=args["index_type"])
+    question = model.Question(paper, index=args["index"], index_type=args.get("index_type", None))
 
     if "content" in args:
         question.set_content(g.user, args["content"])
 
     db.session.add(question)
     db.session.commit()
+    db.session.refresh(question)
+
+    # Load the paper
+    getattr(question, "paper")
+
     return respond({ "question": question })
 
 @Question.route("/course/<course>/paper/<year>/<period>/q/<question>", methods=["GET", "PUT", "POST"])
@@ -79,7 +84,7 @@ def do_question(course, year, period, question):
         elif request.method == "POST":
             # Create a child question    
             paper = model.Paper.find(db.session, course, year, period)
-            new_question = model.Question(paper, index=args["index"], index_type=args["index_type"], parent=question)
+            new_question = model.Question(paper, index=args["index"], index_type=args.get("index_type", None), parent=question)
 
             if "content" in args:
                 new_question.set_content(g.user, args["content"])

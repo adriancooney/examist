@@ -1,9 +1,9 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { isPending } from "redux-pending";
-import { matchesProperty } from "lodash/util";
-import { QuestionList } from "../../ui/question";
+import { Empty, Icon } from "../../ui";
 import { PaperView } from "../../ui/paper";
+import { TextButton } from "../../ui/input/Button";
 import Panel from "../../ui/parser/Panel";
 import * as model from "../../../model";
 
@@ -22,17 +22,52 @@ class QuestionsPanel extends Component {
         };
     };
 
+    static actions = {
+        createQuestion: model.resources.Question.create
+    };
+
     render() {
+        const { paper } = this.props;
+        let content;
+
+        if(paper.questions && paper.questions.length) {
+            content = (
+                <PaperView course={this.props.course} paper={this.props.paper} editable />
+            );
+        } else {
+            content = (
+                <Empty>
+                    <Icon name="list" size={5}/>
+                    <p>This paper has no questions yet. Get started by <TextButton onClick={this.addQuestion.bind(this, null)}>adding a question</TextButton>.</p>
+                </Empty>
+            );
+        }
+
         return (
             <Panel className="panel-questions" title="Questions">
-                <PaperView course={this.props.course} paper={this.props.paper} editable />
+                { content }
             </Panel>
         );
     }
- 
-    onAdd() {
 
+    addQuestion(question) {
+        const { course, paper } = this.props;
+
+        if(!question) {
+            const rootQuestions = this.getRootQuestions();
+
+            // Add new root question
+            this.props.createQuestion(course.code, paper.year_start, paper.period, {
+                index: rootQuestions.length + 1
+            });
+        } else {
+            // Create a question with the parent
+        }
+    }
+
+    getRootQuestions() {
+        return this.props.paper.questions.filter(q => q.path.length === 1);
     }
 }
 
-export default connect(QuestionsPanel.selector)(QuestionsPanel);
+export default connect(QuestionsPanel.selector, QuestionsPanel.actions)(QuestionsPanel);

@@ -1,11 +1,11 @@
 import "../../../../style/ui/Question.scss";
 import React, { Component, PropTypes } from "react";
 import { Link } from "react-router";
-import CSSTransitionGroup from "react-addons-css-transition-group";
 import { Button } from "../input";
-import { Box } from "../layout";
-import { Icon } from "../";
+import { Box, Flex } from "../layout";
+import { Empty } from "../";
 import QuestionIndex from "./QuestionIndex";
+import QuestionActions from "./QuestionActions";
 
 export default class Question extends Component {
     static propTypes = {
@@ -18,74 +18,79 @@ export default class Question extends Component {
     render() {
         const { question, editable } = this.props;
         const hasContent = !!question.revision;
-        let content, marks, detail, children = question.children;
+        let children = question.children;
 
+        // The link to the current question
         const questionLink = this.getLink();
 
-        if(children && children.length) {
+        if(children.length) {
+            // Find the children of the paper via the getter function passsed
+            // which returns a question given an ID
             children = children.map(this.props.getQuestion);
+
+            // Create a new question list
             children = <QuestionList {...this.props} questions={children} />;
         }
 
-        if(editable) {
-            const actions = [
-                ["Edit", "edit", ::this.onEditQuestion],
-                ["Add", "plus", ::this.onAddSubQuestion],
-                ["Delete", "remove", ::this.onDeleteQuestion]
-            ];
-
-            detail = actions.map(([name, icon, handler], i) => {
-                return (
-                    <h6 key={i} onClick={handler}><Icon name={icon} size={1}/> { hasContent ? name : null}</h6>
-                );
-            });
-        } else if(hasContent) {
-            const links = {
-                "Comments": 0,
-                "Solutions": 0,
-                "Links": 0
-            };
-
-            detail = Object.keys(links).map((name, i) => {
-                let value = links[name];
-
-                if(value > 0)
-                    name += " (" + value + ")";
-
-                return (<Link to="#" key={i}>{name}</Link>);
-            });
-        }
-
-        if(editable && !hasContent) {
-            detail = <Box vertical className="side-question-detail">{ detail }</Box>
-        }
-
-        if(question.marks) {
-            marks = <span className="question-marks">{"(" + question.marks + ")"}</span>
-        }
-
+        let content;
         if(hasContent) {
+            let marks;
+            if(question.marks) {
+                marks = <span className="question-marks">{"(" + question.marks + ")"}</span>
+            }
+
             content = (
                 <div className="question-content">
                     <p>{question.revision.content} {marks}</p>
-
-                    <Box className="question-detail">
-                        { detail }
-                    </Box>
                 </div>
             );
+        } else if(editable && !question.children.length) {
+            content = (
+                <Empty>
+                    <p>No Content.</p>
+                </Empty>
+            );
+        }
+
+        // Determine the poisition 
+        let sideDetail, mainDetail;
+        if(editable) {
+            let actions = {
+                onAdd: ::this.onAddSubQuestion,
+                onEdit: ::this.onEditQuestion,
+                onDelete: ::this.onDeleteQuestion
+            };
+
+            if(!hasContent && question.children.length) {
+                // If a question doesn't have any content but has child questions, stick the editing
+                // functions underneath the index
+                sideDetail = <QuestionActions {...actions} vertical className="side-question-detail" />
+            } else {
+                // If a question has content or 
+                mainDetail = <QuestionActions {...actions} className="question-detail" />;
+            }
+        } else if(hasContent) {
+            let links = [
+                ["Solutions", "#"],
+                ["Comments", "#"],
+                ["Notes", "#"]
+            ];
+
+            links = links.map(([text, link], i) => <Link to={link} key={i}>{text}</Link>);
+            mainDetail = <Box className="question-detail">{ links }</Box>;
         }
 
         return (
             <Box className={`Question${ !hasContent ? " no-content" : ""}`}>
                 <div>
                     <QuestionIndex link={questionLink} index={question.formatted_path[question.formatted_path.length - 1]} />
-                    { editable && !hasContent ? detail : null}
+                    { sideDetail }
                 </div>
-                <div>
+                <Flex className="question-main">
                     { content }
+                    { mainDetail }
                     { children }
-                </div>
+                </Flex>
             </Box>
         );
     }

@@ -96,3 +96,20 @@
         background: lighten($color-button-default, 5%);
     }
 }
+
+.TextButton {
+    cursor: pointer;
+    color: $color-blue;
+    font-weight: normal;
+    font-size: 100%;
+    display: inline-block;
+    border: none;
+    background: none;
+    margin: 0;
+    padding: 0;
+    outline: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

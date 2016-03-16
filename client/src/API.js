@@ -195,7 +195,7 @@ export default class API {
      * @param  {Object} parent   The parent question data.
      * @return {Promise} -> {Response}
      */
-    createQuestion(course, year, period, question, parent = {}) {
+    createQuestion(course, year, period, question, parent) {
         let url = `/course/${course}/paper/${year}/${period}/q/`;
 
         if(parent)

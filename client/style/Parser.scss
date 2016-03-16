@@ -53,6 +53,16 @@
         > .QuestionList {
             padding: 0 $spacing-padding*2 $spacing-padding;
         }
+
+        > .Empty {
+            text-align: center;
+            margin-top: 40px;
+            color: $color-text-faded;
+
+            p {
+                margin-top: 40px;
+            }
+        }
     }
 }
 

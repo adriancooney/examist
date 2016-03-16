@@ -52,10 +52,10 @@ class Parser extends Component {
         return (
             <FlexBox className="Parser">
                 <Box vertical className="Sidebar">
-                    <IconLink to={paperLink} name="arrow-circle-o-left" size={2} />
-                    <IconLink to={`${paperLink}parse/`} name="info-circle" size={2} active={currentPage === "info"} />
-                    <IconLink to={`${paperLink}parse/questions`} name="list" size={2} active={currentPage === "questions"} />
-                    <IconLink to={`${paperLink}parse/help`} name="question-circle" size={2} active={currentPage === "help"} />
+                    <IconLink title="Back to paper" to={paperLink} name="arrow-circle-o-left" size={2} />
+                    <IconLink title="Paper information" to={`${paperLink}parse/`} name="info-circle" size={2} active={currentPage === "info"} />
+                    <IconLink title="Paper questions" to={`${paperLink}parse/questions`} name="list" size={2} active={currentPage === "questions"} />
+                    <IconLink title="Help" to={`${paperLink}parse/help`} name="question-circle" size={2} active={currentPage === "help"} />
                 </Box>
 
                 <Box vertical className="panel-container">

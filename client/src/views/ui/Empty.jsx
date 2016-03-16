@@ -2,11 +2,17 @@ import "../../../style/ui/index.scss";
 import React, { PropTypes } from "react";
 
 export default function Empty(props) {
-    let message = props.item ? `No ${props.item}.` : "Nothing here.";
+    let content;
 
+    if(props.item) {
+        content = <p>{ "No " + props.item + "." }</p>
+    } else if(props.children) {
+        content = props.children;
+    }
+    
     return (
         <div className="Empty">
-            <p>{ message }</p>
+            { content }
         </div>
     );
 }

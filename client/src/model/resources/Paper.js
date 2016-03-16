@@ -48,7 +48,21 @@ export const selectPaperWithQuestions = compose(selectPaper, paper => state => (
 export const selectByCourse = Paper.selectAllByProp("course");
 
 /*
- * Add papers when a specific course is selected
+ * Handle a new question.
+ */
+Paper.handleAction("CREATE_QUESTION", (papers, { question }) => {
+    return papers.map(paper => {
+        if(paper.id == question.paper) {
+            return {
+                ...paper,
+                questions: [...paper.questions, question.id]
+            };
+        } else return paper;
+    });
+});
+
+/*
+ * Add papers when a specific paper is selected
  */
 Paper.addProducerHandler(Course.getCourse, ({ papers }) => papers);
 Paper.addProducerHandler(getPaper, ({ paper }) => paper);

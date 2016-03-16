@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { isPending } from "redux-pending";
 import * as model from "../../model";
 import { Loading, Empty, Icon } from "../ui";
-import { PaperView } from "../ui/paper";
+import { Box } from "../ui/layout";
+import { PaperView, PaperInfo } from "../ui/paper";
 
 class Paper extends Component {
     static selector = (state, { params }) => {
@@ -53,7 +54,7 @@ class Paper extends Component {
     }
 
     render() {
-        const { isLoadingPaper, paper } = this.props;
+        const { isLoadingPaper, paper, course } = this.props;
 
         if(isLoadingPaper) {
             return <Loading />;
@@ -79,9 +80,10 @@ class Paper extends Component {
         }
 
         return (
-            <div className="Paper">
-                { content }
-            </div>
+            <Box>
+                <div className="Paper">{ content }</div>
+                <PaperInfo course={course} paper={paper} />
+            </Box>
         );
     }
 

@@ -69,6 +69,7 @@ def test_question_create(auth_client, session, course_with_papers):
         assert "question" in data
         question_data = data["question"]
         assert "id" in question_data
+        assert "paper" in question_data
         assert "revision" in question_data
         revision_data = question_data["revision"]
         assert revision_data["content"] == "Hello world"

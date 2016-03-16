@@ -14,26 +14,26 @@
         }
     }
 
+    .question-main > .Empty {
+        text-align: center;
+        font-style: italic;
+        color: $color-text-faded;
+
+        p {
+            margin: $spacing-margin;
+        }
+    }
+
     .question-detail {
         opacity: 0.5;
         border-top: 1px solid rgba($color-blue, 0.5);
         padding-top: $spacing-padding/2;
         transition: opacity 0.3s;
 
-        a, h6 {
+        a, .TextButton {
             display: block;
             margin: 0 $spacing-margin*1.5 0 0;
             font-size: 90%;
-        }
-
-        h6 {
-            color: $color-blue;
-            cursor: pointer;
-            font-weight: normal;
-
-            &:hover {
-                text-decoration: underline;
-            }
         }
 
         &:hover {
@@ -44,16 +44,9 @@
     .side-question-detail {
         opacity: 0.5;
 
-        h6 {
+        .TextButton {
             margin: 0 0 $spacing-margin;
             text-align: left;
-            font-size: 100%;
-            color: $color-blue;
-            cursor: pointer;
-
-            &:hover {
-                text-decoration: underline;
-            }
         }
 
         &:hover {

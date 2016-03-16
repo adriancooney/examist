@@ -5,7 +5,6 @@ import API, { HTTPError } from "../API";
 import { BROWSER, DEBUG } from "../Config";
 import * as User from "../model/User";
 import { Loading } from "./ui";
-import { Box } from "./ui/layout";
 
 class Root extends Component {
     static actions = {
