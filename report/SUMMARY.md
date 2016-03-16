@@ -22,6 +22,8 @@
             - Learning Curve
     - Entities
     - Database
+    - API
+        - Standard Response
 * [Visual](visual/README.md)
 * [Implementation](implementation/README.md)
     - Project Structure
@@ -102,3 +104,5 @@
     - Do Differently
     - Did Well
     - Closing word
+* Appendices
+    - [Appendix 1: Test Fixtures](appendices/Test-Fixtures.md)

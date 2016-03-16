@@ -25,7 +25,7 @@ with open(os.path.join(os.path.dirname(__file__), "data/example.json")) as data_
 
 @pytest.fixture(scope="session")
 def app(request):
-    """Session-wide test `Flask` application."""
+    """The Flask API (scope = Session)."""
     config.DB_NAME = DB_NAME
     DATABASE_URI = config.DATABASE_URI.format(**config.__dict__)
 
@@ -51,7 +51,7 @@ def app(request):
 
 @pytest.fixture(scope="session")
 def db(app, request):
-    """Session-wide test database."""
+    """The app database with fresh set of tables."""
 
     _db.init_app(app)
     _db.drop_all()
@@ -61,13 +61,13 @@ def db(app, request):
     
 @pytest.fixture(scope="session")
 def client(db, app):
-    """Creates a new test client."""
+    """Test API client to perform unauthorized requests."""
     app.test_client_class = APIClient
     return app.test_client()
 
 @pytest.fixture
 def session(db, monkeypatch, request):
-    """Creates a new database session for a test."""
+    """Database session that rollbacks any data after test execution."""
     connection = db.engine.connect()
     transaction = connection.begin()
 
@@ -84,6 +84,7 @@ def session(db, monkeypatch, request):
 
 @pytest.fixture
 def institution(session):
+    """A single Institution."""
     instit = model.Institution(
         name="National University of Ireland",
         code="NUIG",
@@ -97,7 +98,7 @@ def institution(session):
 
 @pytest.fixture
 def user(institution, session):
-    """Creates a default, not logged in user."""
+    """A single user with no sessions."""
     user = model.User(name="Adrian", email="a.cooney10@nuigalway.ie", password="root", institution=institution)
     session.begin(subtransactions=True)
     session.add(user)
@@ -106,6 +107,7 @@ def user(institution, session):
 
 @pytest.fixture
 def courses(session, institution):
+    """A list of courses."""
     courses = []
 
     # Add five courses
@@ -123,6 +125,7 @@ def courses(session, institution):
 
 @pytest.fixture
 def papers(session):
+    """A list of papers without courses."""
     papers = []
 
     # Add five courses
@@ -143,6 +146,7 @@ def papers(session):
 
 @pytest.fixture
 def questions(session):
+    """A list of questions without papers or author."""
     questions = []
 
     def push_question(question_data, index, parent=None):
@@ -174,6 +178,7 @@ def questions(session):
 
 @pytest.fixture
 def course_with_papers(session, papers, courses):
+    """A course with multiple papers associated."""
     course = courses[0]
     course.papers = papers
     session.add(course)
@@ -182,6 +187,7 @@ def course_with_papers(session, papers, courses):
 
 @pytest.fixture
 def paper_with_course_and_questions(session, papers, courses, questions):
+    """A paper with an associated course and questions."""
     course = courses[0]
     paper = papers[0]
 
@@ -195,6 +201,7 @@ def paper_with_course_and_questions(session, papers, courses, questions):
 
 @pytest.fixture
 def user_with_courses(user, courses, session):
+    """A user with courses associated."""
     user.courses = courses
     session.add(user)
     session.flush()
@@ -202,6 +209,7 @@ def user_with_courses(user, courses, session):
 
 @pytest.fixture
 def auth_client(user, session, client):
+    """An API client to perform authorized requests."""
     userSession = user.login("root")
     session.add(user)
     session.flush()
@@ -213,6 +221,7 @@ def auth_client(user, session, client):
 
 @pytest.yield_fixture(autouse=True)
 def output_logger(request):
+    """Fixture to mark the start and end of tests (autouse)"""
     logger.info(marker("TEST START (%s/%s)" % (request.module.__name__, request.function.__name__)))
     yield
     logger.info(marker("TEST END (%s/%s)" % (request.module.__name__, request.function.__name__)))
