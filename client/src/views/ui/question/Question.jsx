@@ -1,6 +1,7 @@
 import "../../../../style/ui/Question.scss";
 import React, { Component, PropTypes } from "react";
 import { Link } from "react-router";
+import { omit } from "lodash/object";
 import { Button } from "../input";
 import { Box, Flex } from "../layout";
 import { Empty } from "../";
@@ -55,19 +56,25 @@ export default class Question extends Component {
         // Determine the poisition 
         let sideDetail, mainDetail;
         if(editable) {
-            let actions = {
-                onAdd: ::this.onAddSubQuestion,
-                onEdit: ::this.onEditQuestion,
-                onDelete: ::this.onDeleteQuestion
-            };
+            // Extract any event handlers in the props and pass them on to the actions
+            let actions = Object.keys(this.props)
+                .filter(key => key.match(/^on[A-Z]\w+/))
+                .reduce((as, key) => {
+                    as[key] = this.props[key];
+                    return as;
+                }, {});
 
-            if(!hasContent && question.children.length) {
+            if(question.children.length) {
+                // Simple exception, you can't delete a question if it has children!
+                if(actions.onRemove)
+                    delete actions.onRemove;
+
                 // If a question doesn't have any content but has child questions, stick the editing
                 // functions underneath the index
-                sideDetail = <QuestionActions {...actions} vertical className="side-question-detail" />
+                sideDetail = <QuestionActions {...actions} question={question} vertical hideText className="side-question-detail" />
             } else {
                 // If a question has content or 
-                mainDetail = <QuestionActions {...actions} className="question-detail" />;
+                mainDetail = <QuestionActions {...actions} question={question} className="question-detail" />;
             }
         } else if(hasContent) {
             let links = [
@@ -99,38 +106,19 @@ export default class Question extends Component {
         const { question, course, paper } = this.props;
         return `/course/${course.code}/paper/${paper.year_start}/${paper.period}/q/${question.path.join(".")}`;
     }
-
-    onAddSubQuestion() {
-
-    }
-
-    onDeleteQuestion() {
-
-    }
-
-    onEditQuestion() {
-
-    }
 }
 
 // Had to move this component to this file because of circular
 // dependency. Annoying we can't split them up but cleaner in 
 // the long run.
 export function QuestionList(props) {
-    let actions = [];
-
-    if(props.onAdd) {
-        actions.push(<Button key={0}>Add Question</Button>);
-    }
-
-    let questions = props.questions.sort((a, b) => a.index > b.index);
-    questions = questions.map((question, i) => <Question {...props} key={i} question={question} />);
+    const questions = props.questions
+        .sort((a, b) => a.index > b.index)
+        .map((question, i) => <Question {...omit(props, "questions")} key={i} question={question} />);
 
     return (
         <div className="QuestionList">
             { questions }
-
-            { actions.length ? actions : undefined }
         </div>
     );
 }

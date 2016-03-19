@@ -205,6 +205,19 @@ export default class API {
     }
 
     /**
+     * Remove a question from a paper.
+     * 
+     * @param  {String} course   Course code.
+     * @param  {Number} year     The paper year.
+     * @param  {String} period   The paper's period.
+     * @param  {Object} question The question data.
+     * @return {Promise} -> {Response}
+     */
+    removeQuestion(course, year, period, question) {
+        return this.request("DELETE", `/course/${course}/paper/${year}/${period}/q/` + question.path.join("."));
+    }
+
+    /**
      * Test if the auth key is valid.
      * @return {Promise} -> {Response}
      */

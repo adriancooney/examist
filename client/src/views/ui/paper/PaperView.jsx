@@ -7,7 +7,7 @@ export default function PaperView(props) {
     const rootQuestions = questions.filter(q => q.path.length === 1);
 
     return (
-        <QuestionList questions={rootQuestions} getQuestion={getQuestion.bind(null, questions)} {...props} />
+        <QuestionList {...props} questions={rootQuestions} getQuestion={getQuestion.bind(null, questions)} />
     );
 }
 

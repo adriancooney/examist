@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { isPending } from "redux-pending";
 import { Empty, Icon } from "../../ui";
 import { PaperView } from "../../ui/paper";
+import { QuestionActions } from "../../ui/question";
 import { TextButton } from "../../ui/input/Button";
 import Panel from "../../ui/parser/Panel";
 import * as model from "../../../model";
@@ -23,7 +24,8 @@ class QuestionsPanel extends Component {
     };
 
     static actions = {
-        createQuestion: model.resources.Question.create
+        createQuestion: model.resources.Question.create,
+        removeQuestion: model.resources.Question.remove
     };
 
     render() {
@@ -31,9 +33,18 @@ class QuestionsPanel extends Component {
         let content;
 
         if(paper.questions && paper.questions.length) {
-            content = (
-                <PaperView course={this.props.course} paper={this.props.paper} editable />
-            );
+            content = ([
+                <PaperView key={0}
+                    course={this.props.course} 
+                    paper={this.props.paper} 
+                    editable
+                    onAdd={::this.addQuestion} 
+                    onRemove={::this.removeQuestion}
+                    onEdit={::this.editQuestion} />,
+
+                <QuestionActions key={1}
+                    onAdd={::this.addQuestion} />
+            ]);
         } else {
             content = (
                 <Empty>
@@ -51,18 +62,30 @@ class QuestionsPanel extends Component {
     }
 
     addQuestion(question) {
+        let index;
         const { course, paper } = this.props;
 
         if(!question) {
-            const rootQuestions = this.getRootQuestions();
-
             // Add new root question
-            this.props.createQuestion(course.code, paper.year_start, paper.period, {
-                index: rootQuestions.length + 1
-            });
+            const rootQuestions = this.getRootQuestions();
+            index = rootQuestions.length + 1
         } else {
-            // Create a question with the parent
+            // Add a new question with a parent
+            index = question.children.length + 1;
         }
+
+        this.props.createQuestion(course.code, paper.year_start, paper.period, { index }, question);
+    }
+
+    removeQuestion(question) {
+        const { course, paper } = this.props;
+
+        // Delete a question
+        this.props.removeQuestion(course.code, paper.year_start, paper.period, question);
+    }
+
+    editQuestion(question) {
+        console.log("Editing question", question)
     }
 
     getRootQuestions() {

@@ -61,7 +61,7 @@ class Paper extends Component {
         }
 
         if(!paper) {
-            return <Empty/>
+            return <Empty/>;
         }
 
         let content;

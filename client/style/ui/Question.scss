@@ -25,24 +25,12 @@
     }
 
     .question-detail {
-        opacity: 0.5;
-        border-top: 1px solid rgba($color-blue, 0.5);
         padding-top: $spacing-padding/2;
-        transition: opacity 0.3s;
-
-        a, .TextButton {
-            display: block;
-            margin: 0 $spacing-margin*1.5 0 0;
-            font-size: 90%;
-        }
-
-        &:hover {
-            opacity: 1;
-        }
     }
 
     .side-question-detail {
         opacity: 0.5;
+        border: none;
 
         .TextButton {
             margin: 0 0 $spacing-margin;
@@ -61,6 +49,22 @@
 
     &:hover {
         > div > .question-content > .question-detail { opacity: 1; }
+    }
+}
+
+.QuestionActions {
+    opacity: 0.5;
+    transition: opacity 0.3s;
+    border-top: 1px solid rgba($color-blue, 0.5);
+
+    a, .TextButton {
+        display: block;
+        margin: 0 $spacing-margin*1.5 0 0;
+        font-size: 90%;
+    }
+
+    &:hover {
+        opacity: 1;
     }
 }
 

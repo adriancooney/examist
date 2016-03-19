@@ -17,7 +17,7 @@ class Question(Model):
 
     id = Column(Integer, primary_key=True)
     paper_id = Column(Integer, ForeignKey("paper.id"))
-    parent_id = Column(Integer, ForeignKey("question.id")) # Nested list
+    parent_id = Column(Integer, ForeignKey("question.id"))
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
     marks = Column(Integer)
 
@@ -34,7 +34,8 @@ class Question(Model):
 
     # Relationships
     paper = relationship("Paper", backref="questions")
-    children = relationship("Question", backref=backref("parent", remote_side=[id]), lazy="joined", join_depth=3)
+    parent = relationship("Question", back_populates="children", lazy="immediate", remote_side=id, uselist=False)
+    children = relationship("Question", back_populates="parent", lazy="joined", join_depth=3)
     revision = relationship("Revision", secondary=Table("question_revision", db.metadata,
         Column("question_id", Integer, ForeignKey("question.id")),
         Column("revision_id", Integer, ForeignKey("revision.id"))

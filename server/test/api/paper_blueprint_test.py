@@ -17,6 +17,10 @@ def test_paper_get(auth_client, paper_with_course_and_questions):
         assert "questions" in data
         assert "course" in data
 
+        question_data = data["questions"][0]
+
+        assert "parent" in question_data
+
 def test_paper_get_invalid_period(auth_client):
     resp = auth_client.get("/course/{code}/paper/{year}/{period}".format(
         code="CT360", 

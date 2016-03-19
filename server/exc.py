@@ -26,6 +26,13 @@ class MissingParameter(InvalidRequest):
             "type": type
         })
 
+class Forbidden(HttpException):
+    """403 Forbidden."""
+    def __init__(self, reason):
+        HttpException.__init__(self, 403, "Operation is forbidden.", {
+            "reason": reason
+        })
+
 class UnacceptableParameter(HttpException):
     """403 Invalid parameter, valid parameter found but unacceptable"""
     def __init__(self, parameter, reason):

@@ -8,7 +8,7 @@ from server import model, config
 from server.middleware import authorize
 from server.database import db
 from server.response import respond, success
-from server.exc import NotFound, LoginError, AlreadyExists, InvalidEntity
+from server.exc import NotFound, LoginError, AlreadyExists, InvalidEntity, Forbidden
 from server.library.model import query
 from server.api.paper import URL_PARAMS as PAPER_URL_PARAMS
 
@@ -49,7 +49,7 @@ def create_question(course, year, period):
 
     return respond({ "question": question })
 
-@Question.route("/course/<course>/paper/<year>/<period>/q/<question>", methods=["GET", "PUT", "POST"])
+@Question.route("/course/<course>/paper/<year>/<period>/q/<question>", methods=["GET", "PUT", "POST", "DELETE"])
 @use_kwargs(URL_PARAMS, locations=("view_args",))
 @authorize
 def do_question(course, year, period, question):
@@ -94,4 +94,16 @@ def do_question(course, year, period, question):
             with query(model.Question):
                 db.session.commit()
 
+            db.session.refresh(new_question)
+            getattr(new_question, "paper")
+            getattr(new_question, "parent")
+
             return respond({ "question": new_question })
+        elif request.method == "DELETE":
+            if len(question.children):
+                raise Forbidden("Question still has children. Please remove children before removing.")
+
+            db.session.delete(question)
+            db.session.commit()
+
+            return success()
