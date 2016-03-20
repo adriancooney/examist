@@ -33,7 +33,7 @@ class Question(Model):
     formatted_path = Column(postgresql.ARRAY(String))
 
     # Relationships
-    paper = relationship("Paper", backref="questions")
+    paper = relationship("Paper", backref="questions", lazy="joined")
     parent = relationship("Question", back_populates="children", lazy="immediate", remote_side=id, uselist=False)
     children = relationship("Question", back_populates="parent", lazy="joined", join_depth=3)
     revision = relationship("Revision", secondary=Table("question_revision", db.metadata,
@@ -116,3 +116,14 @@ class Question(Model):
                 questions += child.flatten_tree(include_self=True)
 
         return questions
+
+    def update_index(self, index):
+        self.index = index
+
+        new_path = self.path[:]
+        new_formatted_path = self.formatted_path[:]
+        new_path[-1] = index
+        new_formatted_path[-1] = Question.format_index(self.index_type, index)
+
+        self.path = new_path
+        self.formatted_path = new_formatted_path

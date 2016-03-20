@@ -180,3 +180,24 @@ def test_question_delete_parent(auth_client, paper_with_course_and_questions, se
     ))
 
     assert_api_error(resp, 403) 
+
+def test_question_delete_sibling(auth_client, paper_with_course_and_questions, session):
+    paper = paper_with_course_and_questions
+    root = paper.questions[0]
+    sibling = root.children[1]
+    nextSibling = root.children[2]
+
+    resp = auth_client.delete("/course/{code}/paper/{year}/{period}/q/{question}".format(
+        code=paper.course.code.lower(), 
+        year=paper.year_start,
+        period=paper.period.lower(),
+        question=".".join(map(str, sibling.path))
+    ))
+
+    assert_api_success(resp) 
+
+    index_before = nextSibling.index
+    session.refresh(nextSibling)
+    index_after = nextSibling.index
+
+    assert index_before == index_after 

@@ -1,5 +1,5 @@
 import { Resource } from "../../library";
-import { without } from "lodash/array";
+import { without, unionBy } from "lodash/array";
 import * as Paper from "./Paper";
 import * as User from "../User";
 
@@ -24,18 +24,22 @@ Question.handleAction(create, (questions, payload) => {
 });
 
 export const remove = Question.createStatefulAction("REMOVE_QUESTION", User.selectAPI, 
-    (api, code, year, period, question) => api.removeQuestion(code, year, period, question).then(() => question));
+    (api, code, year, period, question) => api.removeQuestion(code, year, period, question).then((data) => [question, ...data.questions]));
 
-Question.handleAction(remove, (questions, removedQuestion) => {
-    // Remove the question
-    questions = questions.filter(question => question.id !== removedQuestion)
+Question.handleAction(remove, (questions, [removedQuestion, ...modified]) => {
+    // Remove the old question
+    questions = questions.filter(question => question.id !== removedQuestion.id);
 
+    // Remove it from any parents
     if(removedQuestion.parent)
         questions = questions.map(question => {
-            if(question.id == removedQuestion.parent) {
+            if(removedQuestion.parent === question.id) {
                 return { ...question, children: without(question.children, removedQuestion.id) };
             } else return question;
         });
+
+    if(modified.length)
+        questions = unionBy(modified, questions, "id");
 
     return questions;
 });

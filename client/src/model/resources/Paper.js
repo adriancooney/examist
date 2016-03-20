@@ -1,3 +1,4 @@
+import { without } from "lodash/array";
 import { Resource } from "../../library";
 import { compose } from "../../library/Selector";
 import * as User from "../User";
@@ -52,11 +53,16 @@ export const selectByCourse = Paper.selectAllByProp("course");
  */
 Paper.handleAction("CREATE_QUESTION", (papers, { question }) => {
     return papers.map(paper => {
-        if(paper.id == question.paper) {
-            return {
-                ...paper,
-                questions: [...paper.questions, question.id]
-            };
+        if(paper.id === question.paper) {
+            return { ...paper, questions: [...paper.questions, question.id] };
+        } else return paper;
+    });
+});
+
+Paper.handleAction("REMOVE_QUESTION", (papers, [removedQuestion]) => {
+    return papers.map(paper => {
+        if(paper.id === removedQuestion.paper) {
+            return { ...paper, questions: without(paper.questions, removedQuestion.id) };
         } else return paper;
     });
 });

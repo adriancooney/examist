@@ -103,7 +103,20 @@ def do_question(course, year, period, question):
             if len(question.children):
                 raise Forbidden("Question still has children. Please remove children before removing.")
 
+            modified = []
             db.session.delete(question)
-            db.session.commit()
 
-            return success()
+            # Decrement any indexes further up the list
+            if question.parent:
+                db.session.flush()
+                for sibling in question.parent.children:
+                    if sibling.index > question.index:
+                        sibling.update_index(sibling.index - 1)
+                        modified.append(sibling)
+
+                db.session.add_all(modified)
+            
+            db.session.commit()
+            map(db.session.refresh, modified)
+
+            return respond({ "questions": modified })

@@ -12,7 +12,10 @@ export default function PaperView(props) {
 }
 
 function getQuestion(questions, id) {
-    return questions.find(q => q.id === id);
+    const question = questions.find(q => q.id === id);
+    if(!question)
+        throw new Error("Can't find question.");
+    return question;
 }
 
 PaperView.propTypes = {
