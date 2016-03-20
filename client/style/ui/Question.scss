@@ -45,6 +45,8 @@
 
     .question-marks {
         color: rgba(0,0,0,0.4);
+        font-family: $font-reading;
+        float: right;
     }
 
     &:hover {

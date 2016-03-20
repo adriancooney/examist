@@ -6,4 +6,5 @@ export Institution from "./Institution";
 export Loading from "./Loading";
 export Avatar from "./Avatar";
 export Empty from "./Empty";
+export Markdown from "./Markdown";
 export Icon, { IconLink } from "./Icon";

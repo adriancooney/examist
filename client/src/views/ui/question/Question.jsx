@@ -4,7 +4,8 @@ import { Link } from "react-router";
 import { omit } from "lodash/object";
 import { Button } from "../input";
 import { Box, Flex } from "../layout";
-import { Empty } from "../";
+import { Editor } from "../editor";
+import { Empty, Markdown } from "../";
 import QuestionIndex from "./QuestionIndex";
 import QuestionActions from "./QuestionActions";
 
@@ -16,13 +17,68 @@ export default class Question extends Component {
         getQuestion: PropTypes.func // Getter function that accepts the question id
     };
 
-    render() {
-        const { question, editable } = this.props;
-        const hasContent = !!question.revision;
-        let children = question.children;
+    constructor(props) {
+        super(props);
 
-        // The link to the current question
-        const questionLink = this.getLink();
+        this.state = {
+            editing: false
+        };
+    }
+
+    render() {
+        const { question } = this.props;
+        const { sideDetail, mainDetail } = this.renderDetail();
+
+        return (
+            <Box className={`Question${ !this.hasContent() ? " no-content" : ""}`}>
+                <div>
+                    <QuestionIndex link={this.getLink()} index={question.formatted_path[question.formatted_path.length - 1]} />
+                    { sideDetail }
+                </div>
+                <Flex className="question-main">
+                    { this.renderContent() }
+                    { mainDetail }
+                    { this.renderChildren() }
+                </Flex>
+            </Box>
+        );
+    }
+
+    hasContent() {
+        return !!this.props.question.revision;
+    }
+
+    renderContent() {
+        const { question, editable } = this.props;
+        const { editing } = this.state;
+
+        if(editing) {
+            return (
+                <Editor />
+            );
+        } else if(this.hasContent()) {
+            // let marks;
+            // if(question.marks) {
+                // TODO: Insert marks somewhere!
+                // marks = <span className="question-marks">{"(" + question.marks + ")"}</span>
+            // }
+
+            return (
+                <div className="question-content">
+                    <Markdown>{question.revision.content}</Markdown>
+                </div>
+            );
+        } else if(editable && !question.children.length) {
+            return (
+                <Empty>
+                    <p>No Content.</p>
+                </Empty>
+            );
+        }
+    }
+
+    renderChildren() {
+        let children = this.props.question.children;
 
         if(children.length) {
             // Find the children of the paper via the getter function passsed
@@ -30,30 +86,13 @@ export default class Question extends Component {
             children = children.map(this.props.getQuestion);
 
             // Create a new question list
-            children = <QuestionList {...this.props} questions={children} />;
+            return <QuestionList {...this.props} questions={children} />;
         }
+    }
 
-        let content;
-        if(hasContent) {
-            let marks;
-            if(question.marks) {
-                marks = <span className="question-marks">{"(" + question.marks + ")"}</span>
-            }
+    renderDetail() {
+        const { question, editable } = this.props;
 
-            content = (
-                <div className="question-content">
-                    <p>{question.revision.content} {marks}</p>
-                </div>
-            );
-        } else if(editable && !question.children.length) {
-            content = (
-                <Empty>
-                    <p>No Content.</p>
-                </Empty>
-            );
-        }
-
-        // Determine the poisition 
         let sideDetail, mainDetail;
         if(editable) {
             // Extract any event handlers in the props and pass them on to the actions
@@ -63,6 +102,11 @@ export default class Question extends Component {
                     as[key] = this.props[key];
                     return as;
                 }, {});
+
+            if(actions.onEdit) {
+                // We "extend" the action
+                actions.onEdit = ::this.onEdit;
+            }
 
             if(question.children.length) {
                 // Simple exception, you can't delete a question if it has children!
@@ -76,7 +120,7 @@ export default class Question extends Component {
                 // If a question has content or 
                 mainDetail = <QuestionActions {...actions} question={question} className="question-detail" />;
             }
-        } else if(hasContent) {
+        } else if(this.hasContent()) {
             let links = [
                 ["Solutions", "#"],
                 ["Comments", "#"],
@@ -84,27 +128,19 @@ export default class Question extends Component {
             ];
 
             links = links.map(([text, link], i) => <Link to={link} key={i}>{text}</Link>);
-            mainDetail = <Box className="question-detail">{ links }</Box>;
+            mainDetail = <Box className="QuestionActions question-detail">{ links }</Box>;
         }
 
-        return (
-            <Box className={`Question${ !hasContent ? " no-content" : ""}`}>
-                <div>
-                    <QuestionIndex link={questionLink} index={question.formatted_path[question.formatted_path.length - 1]} />
-                    { sideDetail }
-                </div>
-                <Flex className="question-main">
-                    { content }
-                    { mainDetail }
-                    { children }
-                </Flex>
-            </Box>
-        );
+        return { sideDetail, mainDetail };
     }
 
     getLink() {
         const { question, course, paper } = this.props;
         return `/course/${course.code}/paper/${paper.year_start}/${paper.period}/q/${question.path.join(".")}`;
+    }
+
+    onEdit() {
+        this.setState({ editing: true });
     }
 }
 
@@ -112,8 +148,13 @@ export default class Question extends Component {
 // dependency. Annoying we can't split them up but cleaner in 
 // the long run.
 export function QuestionList(props) {
-    const questions = props.questions
-        .sort((a, b) => a.index > b.index)
+    let questions = props.questions;
+        
+    if(!props.editable)
+        // Filter out questions that don't have content or children (unless we're editing).
+        questions = questions.filter(question => !!question.revision || question.children.length) 
+
+    questions = questions.sort((a, b) => a.index > b.index)
         .map((question, i) => <Question {...omit(props, "questions")} key={i} question={question} />);
 
     return (
