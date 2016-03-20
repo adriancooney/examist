@@ -1,11 +1,12 @@
 import "../../../../style/ui/Question.scss";
-import React, { Component, PropTypes } from "react";
+import React, { Component, PropTypes, Children } from "react";
 import { Link } from "react-router";
 import { omit } from "lodash/object";
-import { Button } from "../input";
+import { TextButton } from "../input/Button";
 import { Box, Flex } from "../layout";
 import { Editor } from "../editor";
 import { Empty, Markdown } from "../";
+import { classify } from "../../../Util";
 import QuestionIndex from "./QuestionIndex";
 import QuestionActions from "./QuestionActions";
 
@@ -26,18 +27,21 @@ export default class Question extends Component {
     }
 
     render() {
-        const { question } = this.props;
-        const { sideDetail, mainDetail } = this.renderDetail();
-
+        const { question, editable } = this.props;
+        const { editing } = this.state;
+        const actions = this.renderActions();
+        const hasContent = this.hasContent();
+        const hasChildren = this.hasChildren();
+        
         return (
-            <Box className={`Question${ !this.hasContent() ? " no-content" : ""}`}>
+            <Box className={classify("Question", { "no-content": !hasContent, editing })}>
                 <div>
                     <QuestionIndex link={this.getLink()} index={question.formatted_path[question.formatted_path.length - 1]} />
-                    { sideDetail }
+                    { (editable && hasChildren) ? actions : void 0 }
                 </div>
                 <Flex className="question-main">
                     { this.renderContent() }
-                    { mainDetail }
+                    { ((editable && !hasChildren) || (!editable && hasContent)) ? actions : void 0 }
                     { this.renderChildren() }
                 </Flex>
             </Box>
@@ -46,6 +50,10 @@ export default class Question extends Component {
 
     hasContent() {
         return !!this.props.question.revision;
+    }
+
+    hasChildren() {
+        return this.props.question.children.length > 0;
     }
 
     renderContent() {
@@ -80,7 +88,7 @@ export default class Question extends Component {
     renderChildren() {
         let children = this.props.question.children;
 
-        if(children.length) {
+        if(children.length > 0) {
             // Find the children of the paper via the getter function passsed
             // which returns a question given an ID
             children = children.map(this.props.getQuestion);
@@ -90,48 +98,43 @@ export default class Question extends Component {
         }
     }
 
-    renderDetail() {
+    renderActions() {
+        let actions;
         const { question, editable } = this.props;
+        const { editing } = this.state;
+        const hasChildren = this.hasChildren();
 
-        let sideDetail, mainDetail;
-        if(editable) {
-            // Extract any event handlers in the props and pass them on to the actions
-            let actions = Object.keys(this.props)
-                .filter(key => key.match(/^on[A-Z]\w+/))
-                .reduce((as, key) => {
-                    as[key] = this.props[key];
-                    return as;
-                }, {});
-
-            if(actions.onEdit) {
-                // We "extend" the action
-                actions.onEdit = ::this.onEdit;
-            }
-
-            if(question.children.length) {
-                // Simple exception, you can't delete a question if it has children!
-                if(actions.onRemove)
-                    delete actions.onRemove;
-
-                // If a question doesn't have any content but has child questions, stick the editing
-                // functions underneath the index
-                sideDetail = <QuestionActions {...actions} question={question} vertical hideText className="side-question-detail" />
-            } else {
-                // If a question has content or 
-                mainDetail = <QuestionActions {...actions} question={question} className="question-detail" />;
-            }
-        } else if(this.hasContent()) {
-            let links = [
-                ["Solutions", "#"],
-                ["Comments", "#"],
-                ["Notes", "#"]
+        if(editing) {
+            actions = Children.toArray([
+                <TextButton icon="save">Save</TextButton>,
+                <TextButton icon="remove" onClick={::this.onCancelEditing}>Cancel</TextButton>,
+                <Flex />,
+                <TextButton icon="eye">Preview</TextButton>
+            ]);
+        } else if(editable) {
+            actions = [
+                <TextButton icon="plus" onClick={this.props.onAdd.bind(null, question)}>Add Sub Question</TextButton>,
+                <TextButton icon="edit" onClick={::this.onEdit}>Edit</TextButton>
             ];
 
-            links = links.map(([text, link], i) => <Link to={link} key={i}>{text}</Link>);
-            mainDetail = <Box className="QuestionActions question-detail">{ links }</Box>;
+            if(!hasChildren)
+                // You can only remove leaf questions
+                actions.push(<TextButton icon="remove" onClick={this.props.onRemove.bind(null, question)}>Delete</TextButton>);
+
+            actions = Children.toArray(actions);
+        } else if(this.hasContent()) {
+            actions = Children.toArray([
+                <Link to="#">Solutions</Link>,
+                <Link to="#">Comments</Link>,
+                <Link to="#">Notes</Link>                
+            ]);
         }
 
-        return { sideDetail, mainDetail };
+        return (
+            <QuestionActions vertical={editable && hasChildren}>
+                { actions }
+            </QuestionActions>
+        );
     }
 
     getLink() {
@@ -141,6 +144,10 @@ export default class Question extends Component {
 
     onEdit() {
         this.setState({ editing: true });
+    }
+
+    onCancelEditing() {
+        this.setState({ editing: false });
     }
 }
 
@@ -169,5 +176,8 @@ QuestionList.propTypes = {
     course: PropTypes.object.isRequired,
     paper: PropTypes.object.isRequired,
     getQuestion: PropTypes.func,
-    onAdd: PropTypes.func
+
+    onAdd: PropTypes.func,
+    onRemove: PropTypes.func,
+    onEdit: PropTypes.func
 };

@@ -28,13 +28,18 @@
         padding-top: $spacing-padding/2;
     }
 
-    .side-question-detail {
+    .side-actions {
         opacity: 0.5;
         border: none;
 
-        .TextButton {
+        .Button {
             margin: 0 0 $spacing-margin;
             text-align: left;
+            padding: 0;
+
+            span {
+                display: none;
+            }
         }
 
         &:hover {
@@ -49,8 +54,8 @@
         float: right;
     }
 
-    &:hover {
-        > div > .question-content > .question-detail { opacity: 1; }
+    &.editing {
+        .question-main > .QuestionActions { opacity: 1; }
     }
 }
 
@@ -59,10 +64,13 @@
     transition: opacity 0.3s;
     border-top: 1px solid rgba($color-blue, 0.5);
 
-    a, .TextButton {
+    a, .Button {
         display: block;
-        margin: 0 $spacing-margin*1.5 0 0;
+        margin-right: $spacing-margin;
+        margin-top: $spacing-margin/4;
         font-size: 90%;
+        padding: $spacing-padding/2;
+        padding-bottom: 0;
     }
 
     &:hover {

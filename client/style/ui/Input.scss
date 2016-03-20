@@ -90,26 +90,26 @@
     font-size: 80%;
     color: white;
     outline: none;
+    cursor: pointer;
 
     &:hover {
         text-decoration: underline;
         background: lighten($color-button-default, 5%);
     }
-}
 
-.TextButton {
-    cursor: pointer;
-    color: $color-blue;
-    font-weight: normal;
-    font-size: 100%;
-    display: inline-block;
-    border: none;
-    background: none;
-    margin: 0;
-    padding: 0;
-    outline: none;
-
-    &:hover {
-        text-decoration: underline;
+    &.textual {
+        color: $color-blue;
+        font-weight: normal;
+        font-size: 100%;
+        display: inline-block;
+        border: none;
+        background: none;
+        margin: 0;
+        padding: 0;
+        text-transform: none;
+        
+        &:hover {
+            text-decoration: underline;
+        }
     }
 }

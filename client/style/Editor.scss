@@ -1,0 +1,34 @@
+@import "common/Colors";
+@import "common/Spacing";
+@import "common/Fonts";
+
+.Editor {
+    width: 100%;
+
+    textarea {
+        width: 100%;
+        min-height: 140px;
+        border: 2px solid rgba($color-blue, 0.2);
+        border-radius: $spacing-radius;
+        margin-bottom: $spacing-margin/2;
+        outline: none;
+
+        font-family: $font-mono;
+        font-size: 85%;
+        padding: $spacing-padding/2;
+    }
+
+    .toolbar {
+        padding-top: $spacing-padding/1.8;
+
+        .Button {
+            background: none;
+            border: none;
+            padding: $spacing-padding/2;
+            margin: 0;
+            margin-right: $spacing-margin/2;
+            color: $color-blue;
+            font-size: 110%;
+        }
+    }
+}

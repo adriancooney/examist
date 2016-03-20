@@ -157,3 +157,11 @@ export const types = {
         }, "shape", true);
     })
 };
+
+export function classify(baseName, flags, customName) {
+    if(typeof flags === "string") customName = flags, flags = undefined;
+    if(customName) baseName += " " + customName;
+    if(flags) baseName += " " + Object.keys(flags).filter(flag => !!flags[flag]).join(" ");
+
+    return baseName;
+}

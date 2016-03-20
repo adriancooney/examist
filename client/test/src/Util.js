@@ -1,5 +1,11 @@
 import assert from "assert";
-import { Enum, types, validate, selector } from "../../src/Util";
+import { 
+    Enum, 
+    types, 
+    validate, 
+    selector,
+    classify
+} from "../../src/Util";
 
 describe("Util", () => {
     describe("Enum", () => {
@@ -139,12 +145,13 @@ describe("Util", () => {
             }).catch(err => done());
         });
     });
-
-    describe("selector", () => {
-        const sel = selector({ foo: (state) => state });
-        it("should return a selector", () => {
-            assert(typeof sel === "function");
-            assert(sel.length === 1);
+    
+    describe("classify", () => {
+        it("should create the correct className", () => {
+            assert.equal(classify("foo"), "foo");
+            assert.equal(classify("foo", "bar"), "foo bar");
+            assert.equal(classify("foo", { "flag-1": true, "flag-2": false }, "bar"), "foo bar flag-1");
+            assert.equal(classify("foo", { "flag-1": true, "flag-2": false }), "foo flag-1");
         });
     });
 });
