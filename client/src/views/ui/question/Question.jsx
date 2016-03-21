@@ -203,7 +203,7 @@ export function QuestionList(props) {
         
     if(!props.editable)
         // Filter out questions that don't have content or children (unless we're editing).
-        questions = questions.filter(question => !!question.revision || question.children.length) 
+        questions = questions.filter(question => !!question.revision || question.children.length)
 
     questions = questions.sort((a, b) => a.index > b.index)
         .map((question, i) => <Question {...omit(props, "questions")} key={i} question={question} />);

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Children } from "react";
 import { connect } from "react-redux";
 import { isPending } from "redux-pending";
 import { Empty, Icon } from "../../ui";
@@ -34,8 +34,8 @@ class QuestionsPanel extends Component {
         let content;
 
         if(paper.questions && paper.questions.length) {
-            content = ([
-                <PaperView key={0}
+            content = Children.toArray([
+                <PaperView
                     course={this.props.course} 
                     paper={this.props.paper} 
                     editable
@@ -43,8 +43,9 @@ class QuestionsPanel extends Component {
                     onRemove={::this.removeQuestion}
                     onEdit={::this.editQuestion} />,
 
-                <QuestionActions key={1}
-                    onAdd={::this.addQuestion} />
+                <QuestionActions>
+                    <TextButton icon="plus" onClick={this.addQuestion.bind(this, null)}>Add Question</TextButton>
+                </QuestionActions>
             ]);
         } else {
             content = (
