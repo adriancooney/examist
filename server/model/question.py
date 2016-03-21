@@ -117,6 +117,10 @@ class Question(Model):
 
         return questions
 
+    def update_index_type(self, index_type):
+        self.index_type = index_type
+        self.update_index(self.index)
+
     def update_index(self, index):
         self.index = index
 

@@ -70,6 +70,8 @@ def do_question(course, year, period, question):
         })
     else: 
         if request.method == "PUT":
+            updated = []
+
             # Update a question
             if "content" in args:
                 question.set_content(g.user, args["content"])
@@ -77,10 +79,20 @@ def do_question(course, year, period, question):
             if "marks" in args:
                 question.marks = args["marks"]
 
-            db.session.add(question)
-            db.session.commit()
+            if "index_type" in args:
+                question.update_index_type(args["index_type"])
 
-            return success()
+                # Update the indexes of all siblings
+                for sibling in question.parent.children:
+                    sibling.update_index_type(args["index_type"])
+                    updated.append(sibling)
+
+            updated.append(question)
+            db.session.add_all(updated)
+            db.session.commit()
+            map(db.session.refresh, updated)
+
+            return respond({ "questions": updated })
         elif request.method == "POST":
             # Create a child question    
             paper = model.Paper.find(db.session, course, year, period)

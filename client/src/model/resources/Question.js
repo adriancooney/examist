@@ -47,7 +47,7 @@ Question.handleAction(remove, (questions, [removedQuestion, ...modified]) => {
 export const update = Question.createStatefulAction("UPDATE_QUESTION", User.selectAPI, 
     (api, ...details) => api.updateQuestion(...details));
 
-Question.addProducerHandler(update, ({ question }) => question);
+Question.addProducerHandler(update, ({ questions }) => questions);
 
 /*
  * Handle when a paper loads.
