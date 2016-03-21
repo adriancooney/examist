@@ -56,35 +56,32 @@ class Paper extends Component {
     render() {
         const { isLoadingPaper, paper, course } = this.props;
 
-        if(isLoadingPaper) {
-            return <Loading />;
-        }
-
-        if(!paper) {
+        if(!paper) 
             return <Empty/>;
-        }
 
         let content;
         const questions = paper.questions;
         
-        if(questions && questions.length) {
-            content = <PaperView paper={paper} course={this.props.course} />;
-        } else {
-            content = (
-                <div className="paper-empty">
-                    <Icon name="exclamation-triangle" size={5}/>
-                    <h4>This paper has no questions yet.</h4> 
-                    <p>Help your course out and <Link to={this.getParserLink() + "/questions"}>pick them from the paper</Link>.</p>
-                </div>
-            );
-        }
+        if(questions) {
+            if(questions.length) {
+                content = <PaperView course={course} paper={paper} />;
+            } else {
+                content = (
+                    <div className="paper-empty">
+                        <Icon name="exclamation-triangle" size={5}/>
+                        <h4>This paper has no questions yet.</h4> 
+                        <p>Help your course out and <Link to={this.getParserLink() + "/questions"}>pick them from the paper</Link>.</p>
+                    </div>
+                );
+            }
 
-        return (
-            <Box>
-                <div className="Paper">{ content }</div>
-                <PaperInfo course={course} paper={paper} />
-            </Box>
-        );
+            return (
+                <Box>
+                    <div className="Paper">{ content }</div>
+                    {/* <PaperInfo course={course} paper={paper} /> */}
+                </Box>
+            );
+        } else return <Loading />;
     }
 
     getParserLink() {
