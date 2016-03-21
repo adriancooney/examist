@@ -24,11 +24,24 @@
         .Button {
             background: none;
             border: none;
-            padding: $spacing-padding/2;
-            margin: 0;
+            padding: $spacing-padding/4 $spacing-padding/2;
+            margin: $spacing-margin/4;
             margin-right: $spacing-margin/2;
             color: $color-blue;
             font-size: 110%;
+
+            &.textual {
+                font-size: 90%;
+            }
         }
+    }
+
+    .Preview {
+        background: white;
+        border-top: 1px solid white;
+        border-bottom: 1px solid white;
+        border-radius: $spacing-radius;
+        padding: 0 $spacing-padding;
+        margin-bottom: $spacing-margin/2;
     }
 }

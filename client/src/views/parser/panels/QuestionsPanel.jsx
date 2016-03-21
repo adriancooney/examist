@@ -25,6 +25,7 @@ class QuestionsPanel extends Component {
 
     static actions = {
         createQuestion: model.resources.Question.create,
+        updateQuestion: model.resources.Question.update,
         removeQuestion: model.resources.Question.remove
     };
 
@@ -84,8 +85,13 @@ class QuestionsPanel extends Component {
         this.props.removeQuestion(course.code, paper.year_start, paper.period, question);
     }
 
-    editQuestion(question) {
-        console.log("Editing question", question)
+    editQuestion(question, content) {
+        const { course, paper } = this.props;
+
+        this.props.updateQuestion(course.code, paper.year_start, paper.period, {
+            content,
+            path: question.path
+        });
     }
 
     getRootQuestions() {

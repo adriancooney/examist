@@ -111,5 +111,14 @@
         &:hover {
             text-decoration: underline;
         }
+
+        &.activated {
+            background: $color-blue !important;
+            color: white !important;
+        }
+    }
+
+    &[disabled] {
+        opacity: 0.4;
     }
 }

@@ -16,7 +16,10 @@ export default function Button(props) {
     return (
         <button {...props}
             children={children}
-            className={classify("Button", { "textual": props.textual }, props.className)} />
+            className={classify("Button", { 
+                textual: props.textual, 
+                activated: props.activated
+            }, props.className)} />
     );
 }
 

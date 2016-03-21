@@ -48,8 +48,23 @@ export default class Question extends Component {
         );
     }
 
+    componentWillReceiveProps(nextProps) {
+        if(this.state.__tempContent) {
+            const nextRevision = nextProps.question.revision;
+            const currentRevision = this.props.question.revision;
+
+            if(currentRevision && nextRevision && currentRevision.content != nextRevision.content)
+                this.setState({ __tempContent: null });
+        }
+    }
+
+    getContent() {
+        if(this.state.__tempContent) return this.state.__tempContent;
+        else if(this.props.question.revision) return this.props.question.revision.content;
+    }
+
     hasContent() {
-        return !!this.props.question.revision;
+        return !!this.getContent();
     }
 
     hasChildren() {
@@ -61,9 +76,7 @@ export default class Question extends Component {
         const { editing } = this.state;
 
         if(editing) {
-            return (
-                <Editor />
-            );
+            return <Editor ref="editor" defaultValue={question.revision && question.revision.content} />;
         } else if(this.hasContent()) {
             // let marks;
             // if(question.marks) {
@@ -72,9 +85,7 @@ export default class Question extends Component {
             // }
 
             return (
-                <div className="question-content">
-                    <Markdown>{question.revision.content}</Markdown>
-                </div>
+                <Markdown>{this.getContent()}</Markdown>
             );
         } else if(editable && !question.children.length) {
             return (
@@ -106,10 +117,8 @@ export default class Question extends Component {
 
         if(editing) {
             actions = Children.toArray([
-                <TextButton icon="save">Save</TextButton>,
-                <TextButton icon="remove" onClick={::this.onCancelEditing}>Cancel</TextButton>,
-                <Flex />,
-                <TextButton icon="eye">Preview</TextButton>
+                <TextButton icon="save" onClick={::this.onSaveEditing}>Save</TextButton>,
+                <TextButton icon="remove" onClick={::this.onCancelEditing}>Cancel</TextButton>
             ]);
         } else if(editable) {
             actions = [
@@ -148,6 +157,15 @@ export default class Question extends Component {
 
     onCancelEditing() {
         this.setState({ editing: false });
+    }
+
+    onSaveEditing() {
+        const content = this.refs.editor.getValue();
+        this.props.onEdit(this.props.question, content);
+        this.setState({ 
+            editing: false,
+            __tempContent: content
+        });
     }
 }
 

@@ -1,5 +1,6 @@
 import React from "react";
 import Remarkable from "remarkable";
+import { classify } from "../../Util";
 
 export const renderer = new Remarkable();
 
@@ -11,7 +12,7 @@ export default function Markdown(props) {
     });
 
     return (
-        <div className="Markdown">
+        <div className={classify("Markdown", props.className)}>
             { content }
         </div>
     );
