@@ -17,7 +17,7 @@ export default class Input extends Component {
         }
 
         const props = Object.assign({}, this.props, {
-            type: this.props.password ? "password" : "text",
+            type: this.props.password ? "password" : this.props.type || "text",
             className: this.props.error ? "input-error" : ""
         });
 

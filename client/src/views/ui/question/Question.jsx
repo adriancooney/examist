@@ -2,6 +2,7 @@ import "../../../../style/ui/Question.scss";
 import React, { Component, PropTypes, Children } from "react";
 import { Link } from "react-router";
 import { omit } from "lodash/object";
+import { Field, Select } from "../input";
 import { TextButton } from "../input/Button";
 import { Box, Flex } from "../layout";
 import { Editor } from "../editor";
@@ -76,7 +77,25 @@ export default class Question extends Component {
         const { editing } = this.state;
 
         if(editing) {
-            return <Editor ref="editor" defaultValue={question.revision && question.revision.content} />;
+            const options = {
+                alpha: "Alpha",
+                decimal: "Decimal",
+                roman: "Roman"
+            };
+
+            return (
+                <div>
+                    <Editor ref="editor" defaultValue={question.revision && question.revision.content} />
+                    <Box>
+                        <Field label="Index Type">
+                            <Select options={options} ref="indexType" defaultValue={question.index_type}/>
+                        </Field>
+                        <Field label="Marks">
+                            <input type="number" ref="marks" defaultValue={question.marks}/>
+                        </Field>
+                    </Box>
+                </div>
+            );
         } else if(this.hasContent()) {
             // let marks;
             // if(question.marks) {
@@ -161,7 +180,14 @@ export default class Question extends Component {
 
     onSaveEditing() {
         const content = this.refs.editor.getValue();
-        this.props.onEdit(this.props.question, content);
+        const marks = this.refs.marks.value;
+        const indexType = this.refs.indexType.getValue();
+
+        this.props.onEdit(this.props.question, {
+            content, indexType,
+            marks: marks ? parseInt(marks) : null
+        });
+
         this.setState({ 
             editing: false,
             __tempContent: content

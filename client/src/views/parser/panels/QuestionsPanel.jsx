@@ -85,11 +85,24 @@ class QuestionsPanel extends Component {
         this.props.removeQuestion(course.code, paper.year_start, paper.period, question);
     }
 
-    editQuestion(question, content) {
+    editQuestion(question, changes) {
         const { course, paper } = this.props;
 
+        // Filter out undefined keys
+        changes = Object.keys(changes)
+            .filter(key => !!changes[key])
+            .reduce((newChanges, key) => { 
+                let nextKey = key;
+
+                if(key === "indexType")
+                    nextKey = "index_type";
+
+                newChanges[nextKey] = changes[key]; 
+                return newChanges; 
+            }, {});
+
         this.props.updateQuestion(course.code, paper.year_start, paper.period, {
-            content,
+            ...changes,
             path: question.path
         });
     }
