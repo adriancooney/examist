@@ -78,7 +78,7 @@ class Paper extends Component {
             return (
                 <Box>
                     <div className="Paper">{ content }</div>
-                    {/* <PaperInfo course={course} paper={paper} /> */}
+                    <PaperInfo course={course} paper={paper} />
                 </Box>
             );
         } else return <Loading />;

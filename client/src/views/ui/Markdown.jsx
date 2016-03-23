@@ -1,3 +1,4 @@
+import "../../../style/ui/Markdown.scss";
 import React from "react";
 import Remarkable from "remarkable";
 import { classify } from "../../Util";

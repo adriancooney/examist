@@ -10,6 +10,7 @@ import { Empty, Markdown } from "../";
 import { classify } from "../../../Util";
 import QuestionIndex from "./QuestionIndex";
 import QuestionActions from "./QuestionActions";
+import Marks from "./Marks";
 
 export default class Question extends Component {
     static propTypes = {
@@ -91,20 +92,16 @@ export default class Question extends Component {
                             <Select options={options} ref="indexType" defaultValue={question.index_type}/>
                         </Field>
                         <Field label="Marks">
-                            <input type="number" ref="marks" defaultValue={question.marks}/>
+                            <input type="number" ref="marks" min={0} max={150} defaultValue={question.marks || 0}/>
                         </Field>
                     </Box>
                 </div>
             );
         } else if(this.hasContent()) {
-            // let marks;
-            // if(question.marks) {
-                // TODO: Insert marks somewhere!
-                // marks = <span className="question-marks">{"(" + question.marks + ")"}</span>
-            // }
-
             return (
-                <Markdown>{this.getContent()}</Markdown>
+                <div>
+                    <Markdown>{this.getContent()}</Markdown>
+                </div>
             );
         } else if(editable && !question.children.length) {
             return (
@@ -133,12 +130,13 @@ export default class Question extends Component {
         const { question, editable } = this.props;
         const { editing } = this.state;
         const hasChildren = this.hasChildren();
+        const hasContent = this.hasContent();
 
         if(editing) {
-            actions = Children.toArray([
+            actions = [
                 <TextButton icon="save" onClick={::this.onSaveEditing}>Save</TextButton>,
                 <TextButton icon="remove" onClick={::this.onCancelEditing}>Cancel</TextButton>
-            ]);
+            ];
         } else if(editable) {
             actions = [
                 <TextButton icon="plus" onClick={this.props.onAdd.bind(null, question)}>Add Sub Question</TextButton>,
@@ -148,19 +146,21 @@ export default class Question extends Component {
             if(!hasChildren)
                 // You can only remove leaf questions
                 actions.push(<TextButton icon="remove" onClick={this.props.onRemove.bind(null, question)}>Delete</TextButton>);
-
-            actions = Children.toArray(actions);
         } else if(this.hasContent()) {
-            actions = Children.toArray([
+            actions = [
                 <Link to="#">Solutions</Link>,
                 <Link to="#">Comments</Link>,
                 <Link to="#">Notes</Link>                
-            ]);
+            ]
         }
+
+        // Add in the marks
+        if(question.marks && !editing && (editable || hasContent) && !(editable && hasChildren))
+            actions = actions.concat([<Flex/>, <Marks marks={question.marks} />]);
 
         return (
             <QuestionActions vertical={editable && hasChildren}>
-                { actions }
+                { Children.toArray(actions) }
             </QuestionActions>
         );
     }

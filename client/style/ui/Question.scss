@@ -6,12 +6,10 @@
     margin-bottom: $spacing-margin;
 
     .Markdown {
-        p {
-            font-size: 110%;
-            margin: $spacing-margin 0 $spacing-margin/2;
-            line-height: 140%;
-            font-family: $font-reading;
-        }
+        line-height: 140%;
+        font-size: 110%;
+        font-family: $font-question;
+        font-weight: $font-question-weight;
     }
 
     .question-main > .Empty {
@@ -48,10 +46,10 @@
         }
     }
 
-    .question-marks {
+    .Marks {
+        padding: $spacing-padding/2;
         color: rgba(0,0,0,0.4);
         font-family: $font-reading;
-        float: right;
     }
 
     &.editing {
