@@ -108,12 +108,10 @@ def test_question_create_as_child(auth_client, session, paper_with_course_and_qu
         session.refresh(question)
         assert find(question.children, lambda q: q.id == question_data["id"])
 
-def test_question_create_as_child_error_index_type(auth_client, session, paper_with_course_and_questions):
+def test_question_create_as_child_in_list(auth_client, session, paper_with_course_and_questions):
     paper = paper_with_course_and_questions
     course = paper.course
     question = paper.questions[0]
-
-    print question.__json__()
 
     resp = auth_client.post("/course/{code}/paper/{year}/{period}/q/{question}".format(
         code=paper.course.code.lower(), 
@@ -121,12 +119,17 @@ def test_question_create_as_child_error_index_type(auth_client, session, paper_w
         period=paper.period.lower(),
         question=".".join(map(str, question.path))
     ), data={
-        "index": len(question.children) - 1,
-        "index_type": "decimal",
+        "index": 5,
         "content": "Hello world"
     })
 
-    assert_api_error(resp, 400)
+    with assert_api_response(resp) as data:
+        assert "question" in data
+        question_data = data["question"]
+        id = question_data["id"]
+
+        new_question = session.query(Question).filter(Question.id == id).one()
+        assert new_question.index_type == "alpha"
 
 def test_question_create_as_child_error_path_exists(auth_client, session, paper_with_course_and_questions):
     paper = paper_with_course_and_questions
@@ -157,7 +160,8 @@ def test_question_delete_leaf(auth_client, paper_with_course_and_questions, sess
         question=".".join(map(str, question.path))
     ))
 
-    assert_api_success(resp) 
+    with assert_api_response(resp) as data:
+        assert "questions" in data
 
     try:
         question = session.query(Question)\
@@ -194,7 +198,9 @@ def test_question_delete_sibling(auth_client, paper_with_course_and_questions, s
         question=".".join(map(str, sibling.path))
     ))
 
-    assert_api_success(resp) 
+
+    with assert_api_response(resp) as data:
+        assert "questions" in data
 
     index_before = nextSibling.index
     session.refresh(nextSibling)

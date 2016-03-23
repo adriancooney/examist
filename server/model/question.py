@@ -51,19 +51,18 @@ class Question(Model):
         self.paper = paper
         self.index = index
         self.index_type = index_type or "decimal"
-
-        formatted_index = Question.format_index(self.index_type, self.index)
-
-        self.path = [index]
-        self.formatted_path = [formatted_index]
         
         if parent:
             # Ensure this index type is the same as it's siblings
-            if len(parent.children) > 0 and not all([child.index_type == self.index_type for child in parent.children]):
-                raise InvalidEntityField("index_type")
+            if len(parent.children) > 0:
+                # Custom index types are ignored.
+                self.index_type = parent.children[0].index_type
 
-            self.path = parent.path + self.path
-            self.formatted_path = parent.formatted_path + self.formatted_path
+            self.path = parent.path + [index]
+            self.formatted_path = parent.formatted_path + [Question.format_index(self.index_type, self.index)]
+        else:
+            self.path = [index]
+            self.formatted_path = [Question.format_index(self.index_type, self.index)]
 
         self.parent = parent
         self.revision = None
@@ -124,8 +123,13 @@ class Question(Model):
     def update_index(self, index):
         self.index = index
 
-        new_path = self.path[:]
-        new_formatted_path = self.formatted_path[:]
+        if not self.path:
+            new_path = [index]
+            new_formatted_path = [index]
+        else:
+            new_path = self.path[:]
+            new_formatted_path = self.formatted_path[:]
+
         new_path[-1] = index
         new_formatted_path[-1] = Question.format_index(self.index_type, index)
 

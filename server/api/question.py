@@ -20,8 +20,8 @@ URL_PARAMS = dict(
 )
 
 POST_PARAMS = model.Question.__schema__(
-    only=("index", "index_type", "content", "marks"),
-    partial=("index_type", "content", "marks")
+    only=("index", "content", "marks"),
+    partial=("content", "marks")
 )
 
 PUT_PARAMS = model.Question.__schema__(
@@ -35,7 +35,7 @@ PUT_PARAMS = model.Question.__schema__(
 def create_question(course, year, period):
     args = parser.parse(POST_PARAMS, request)
     paper = model.Paper.find(db.session, course, year, period)
-    question = model.Question(paper, index=args["index"], index_type=args.get("index_type", None))
+    question = model.Question(paper, index=args["index"])
 
     if "content" in args:
         question.set_content(g.user, args["content"])
@@ -96,7 +96,7 @@ def do_question(course, year, period, question):
         elif request.method == "POST":
             # Create a child question    
             paper = model.Paper.find(db.session, course, year, period)
-            new_question = model.Question(paper, index=args["index"], index_type=args.get("index_type", None), parent=question)
+            new_question = model.Question(paper, index=args["index"], parent=question)
 
             if "content" in args:
                 new_question.set_content(g.user, args["content"])

@@ -9,6 +9,7 @@ from server.exc import LoginError, NotFound
 from server.database import Model, db
 from server.library.util import find
 from server.model.institution import Institution
+from server.model.comment import Comment
 
 ALPHABET = "abcdefghijklmnopqrstuvwxyz1234567890"
 
@@ -70,6 +71,10 @@ class User(Model):
         # Create session token
         return Session(self)
 
+    def comment(self, entity, text, parent=None):
+        comment = Comment(self, entity, text, parent)
+        self.comments.append(comment)
+
     @staticmethod
     def extract_domain(email):
         """Extract the insititution (domain) from an email."""
@@ -82,3 +87,4 @@ class User(Model):
     @staticmethod
     def generateSalt(length=20):
         return ''.join(random.choice(ALPHABET) for i in range(length))
+
