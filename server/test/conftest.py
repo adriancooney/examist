@@ -101,13 +101,25 @@ def institution(session):
     return instit
 
 @pytest.fixture
-def user(institution, session):
-    """A single user with no sessions."""
-    user = model.User(name="Adrian", email="a.cooney10@nuigalway.ie", password="root", institution=institution)
-    session.begin(subtransactions=True)
-    session.add(user)
+def users(institution, session):
+    # First concrete user 
+    users = [model.User(name="Adrian", email="a.cooney10@nuigalway.ie", password="root", institution=institution)]
+
+    names = ["David", "Chris", "Thomas", "Lisa", "Marie", "Skyler"]
+
+    # Generic
+    for i in range(9):
+        users.append(model.User(name=random.choice(names), email="%d@nuigalway.ie" % i, password="root", institution=institution))
+
+    session.add_all(users)
     session.flush()
-    return user
+
+    return users
+
+@pytest.fixture
+def user(users, session):
+    """A single user with no sessions."""
+    return users[0]
 
 @pytest.fixture
 def courses(session, institution):
@@ -228,6 +240,19 @@ def question_with_comments(questions, user, session):
 @pytest.fixture
 def auth_client(user, session, client):
     """An API client to perform authorized requests."""
+    userSession = user.login("root")
+    session.add(user)
+    session.flush()
+
+    setattr(client, "key", userSession.key)
+    client.default_environ["headers"] = [(AUTH_HEADER_NAME, "%s" % userSession.key)]
+    
+    return client
+
+@pytest.fixture
+def second_auth_client(users, session, client):
+    """Another logged in API client (secondary, non admin user)."""
+    user = users[1]
     userSession = user.login("root")
     session.add(user)
     session.flush()

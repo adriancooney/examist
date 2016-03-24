@@ -7,7 +7,7 @@ from server.library.util import merge
 from server.library.model import query
 from server.middleware import authorize
 from server import model
-from server.exc import InvalidRequest
+from server.exc import InvalidRequest, Unauthorized
 
 Comment = Blueprint("comment", __name__)
 
@@ -31,6 +31,10 @@ def edit_comment(entity, comment):
     with query(model.Entity):
         entity = db.session.query(model.Entity).filter(model.Entity.id == entity).one()
         comment = db.session.query(model.Comment).filter(model.Comment.id == comment).one()
+
+    # Ensure the user is the author
+    if not g.user.id == comment.user.id:
+        raise Unauthorized()
 
     if request.method == "DELETE":
         comment.content = ""

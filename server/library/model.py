@@ -22,7 +22,6 @@ class Serializable:
 
         # Create the model schema
         if not cls is Model and issubclass(cls, Model):
-            print traceback.print_stack()
             schemaClass = create_schema(cls)
             setattr(cls, "__schema_cache__", schemaClass)
             return schemaClass
