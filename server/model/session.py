@@ -3,10 +3,11 @@ import datetime
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, ForeignKey, Boolean, DateTime
 from server.database import Model
+from server.library.model import Serializable
 
 ALPHABET = "abcdefghijklmnopqrstuvwxyz1234567890"
 
-class Session(Model):
+class Session(Model, Serializable):
     __tablename__ = "session"
 
     id = Column(Integer, primary_key=True)

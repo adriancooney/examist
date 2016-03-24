@@ -1,8 +1,9 @@
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String
+from server.library.model import Serializable
 from server.database import Model
 
-class Institution(Model):
+class Institution(Model, Serializable):
     __tablename__ = "institution"
 
     id = Column(Integer, primary_key=True)

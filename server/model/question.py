@@ -4,18 +4,29 @@ from sqlalchemy.schema import Table
 from sqlalchemy.orm import relationship, backref
 from sqlalchemy import Column, Integer, String, ForeignKey, UniqueConstraint, DateTime, Enum
 from sqlalchemy.dialects import postgresql
-from server.database import db, Model
+from server.library.model import Serializable
+from server.database import db
 from server.library.model import querymethod
 from server.model.revision import Revision
 from server.model.course import Course
 from server.model.paper import Paper
+from server.model.entity import Entity
+from server.model.comment import Comment
 from server.exc import InvalidEntityField
 
-class Question(Model):
+question_revisions = Table("question_revision", db.metadata,
+    Column("question_id", Integer, ForeignKey("question.id")),
+    Column("revision_id", Integer, ForeignKey("revision.id"))
+)
+
+class Question(Entity, Serializable):
     __tablename__ = "question"
     __table_args__ = (UniqueConstraint("paper_id", "path"),)
+    __mapper_args__ = {
+        "polymorphic_identity": "question"
+    }
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, ForeignKey("entity.id"), primary_key=True)
     paper_id = Column(Integer, ForeignKey("paper.id"))
     parent_id = Column(Integer, ForeignKey("question.id"))
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
@@ -34,13 +45,11 @@ class Question(Model):
 
     # Relationships
     paper = relationship("Paper", backref="questions", lazy="joined")
-    parent = relationship("Question", back_populates="children", lazy="immediate", remote_side=id, uselist=False)
-    children = relationship("Question", back_populates="parent", lazy="joined", join_depth=3)
-    revision = relationship("Revision", secondary=Table("question_revision", db.metadata,
-        Column("question_id", Integer, ForeignKey("question.id")),
-        Column("revision_id", Integer, ForeignKey("revision.id"))
-    ), uselist=False, lazy="joined")
+    parent = relationship("Question", back_populates="children", foreign_keys=[parent_id], lazy="immediate", remote_side=id, uselist=False)
+    children = relationship("Question", back_populates="parent", foreign_keys=[parent_id], lazy="joined", join_depth=3)
+    revision = relationship("Revision", secondary=question_revisions, uselist=False, lazy="joined")
     revisions = relationship("Revision")
+    likes = relationship("Like")
 
     class Meta:
         created_at = dict(load_only=True)

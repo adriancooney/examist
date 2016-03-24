@@ -1,11 +1,11 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 from sqlalchemy.schema import UniqueConstraint
+from server.library.model import Serializable
 from server.database import Model
-from server.library.schema import create_schema
 from server.model.institution import Institution
 
-class Course(Model):
+class Course(Model, Serializable):
     __tablename__ = "course"
     __table_args__ = (
         UniqueConstraint("code", "institution_id"),

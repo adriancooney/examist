@@ -2,11 +2,12 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm.exc import NoResultFound
 from server.database import Model
+from server.library.model import Serializable
 from server.model.course import Course
 from server.model.paper_download import PaperDownload
 from server.exc import NotFound
 
-class Paper(Model):
+class Paper(Model, Serializable):
     __tablename__ = "paper"
 
     PAPER_PERIODS = [

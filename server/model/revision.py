@@ -2,8 +2,9 @@ from datetime import datetime
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, ForeignKey, DateTime, Text
 from server.database import Model
+from server.library.model import Serializable
 
-class Revision(Model):
+class Revision(Model, Serializable):
     __tablename__ = "revision"
 
     id = Column(Integer, primary_key=True)

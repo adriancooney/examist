@@ -10,6 +10,8 @@ from server.database import Model, db
 from server.library.util import find
 from server.model.institution import Institution
 from server.model.comment import Comment
+from server.model.like import Like
+from server.library.model import Serializable
 
 ALPHABET = "abcdefghijklmnopqrstuvwxyz1234567890"
 
@@ -18,7 +20,7 @@ user_courses = Table("user_courses", db.metadata,
     Column("course_id", Integer, ForeignKey("course.id"))
 )
 
-class User(Model):
+class User(Model, Serializable):
     __tablename__ = "user"
 
     # Attributes
@@ -71,9 +73,13 @@ class User(Model):
         # Create session token
         return Session(self)
 
-    def comment(self, entity, text, parent=None):
-        comment = Comment(self, entity, text, parent)
+    def comment(self, entity, content, parent=None):
+        comment = Comment(self, entity, content, parent)
         self.comments.append(comment)
+        return comment
+
+    def like(self, entity):
+        self.likes.append(Like(self, entity))
 
     @staticmethod
     def extract_domain(email):
