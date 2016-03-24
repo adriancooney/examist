@@ -55,6 +55,8 @@ class Question(Entity, Serializable):
         created_at = dict(load_only=True)
         revision = dict(only=("user", "content", "created_at"))
         include = dict(content=fields.Str())
+        exclude=("type",)
+        additional=("id",)
 
     def __init__(self, paper, index, index_type=None, parent=None):
         self.paper = paper

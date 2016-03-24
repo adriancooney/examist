@@ -18,7 +18,7 @@ from server import model
 DB_NAME = config.DB_NAME + "_test"
 
 # Show the SQL Alchemy output for fixtures
-SHOW_FIXTURE_SQLALCHEMY_OUTPUT = True
+SHOW_FIXTURE_SQLALCHEMY_OUTPUT = False
 
 setup_logging()
 logger = logging.getLogger(__name__)

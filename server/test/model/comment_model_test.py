@@ -3,7 +3,7 @@ from server.model import Solution
 
 def test_comment_with_entity(session):
     sol = Solution()
-    com = Comment(sol)
+    com = Comment(None, sol, None)
 
     session.add(com)
     session.commit()
@@ -13,8 +13,8 @@ def test_comment_with_entity(session):
     assert isinstance(com.entity, Solution)
 
 def test_comment_with_parent(session):
-    parent = Comment(None)
-    child = Comment(None, parent=parent)
+    parent = Comment(None, None, None)
+    child = Comment(None, None, None, parent=parent)
 
     session.add(child)
     session.commit()
