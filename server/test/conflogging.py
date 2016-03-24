@@ -5,9 +5,6 @@ import pytest
 from textwrap import wrap
 from termcolor import colored
 
-# Show the SQL Alchemy output for fixtures
-SHOW_FIXTURE_SQLALCHEMY_OUTPUT = False
-
 SQLA_LOGGER_NAME = "sqlalchemy.engine.base.Engine"
 TEST_LOGGER_NAME = "server.test.conftest"
 
@@ -33,8 +30,7 @@ def setup_logging():
     # sqlalchemy. We show the test output when we set the logging
     # level to INFO right before each test the reset it to CRITICAL
     # thereafter. See py.test hooks in conftest.
-    if not SHOW_FIXTURE_SQLALCHEMY_OUTPUT:
-        handler.setLevel(logging.CRITICAL) 
+    # handler.setLevel(logging.CRITICAL) 
 
     # Testing output
     test = logging.getLogger(TEST_LOGGER_NAME)

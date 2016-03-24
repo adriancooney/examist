@@ -1,6 +1,5 @@
 from server.middleware import AUTH_HEADER_NAME
 from server.test import assert_api_error, assert_api_response
-from json import dumps, loads
 
 def test_login(user, client):
     resp = client.post("/login", data={

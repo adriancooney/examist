@@ -14,7 +14,7 @@ def assert_api_error(resp, code, message = None, meta = None):
 
     data = loads(resp_raw)
 
-    assert resp.status_code == code, "Unexpected status code %r, expected %r" % (resp.status_code, code)
+    assert resp.status_code == code, "Unexpected status code %r (%s), expected %r" % (resp.status_code, data.get("message", "No message."), code)
     assert data["error"], "API has not errored."
     
     if message:

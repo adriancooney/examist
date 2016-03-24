@@ -14,7 +14,11 @@ from server import config
 from server.database import db as _db
 from server import model
 
+# Test database name
 DB_NAME = config.DB_NAME + "_test"
+
+# Show the SQL Alchemy output for fixtures
+SHOW_FIXTURE_SQLALCHEMY_OUTPUT = True
 
 setup_logging()
 logger = logging.getLogger(__name__)
@@ -168,11 +172,11 @@ def questions(session):
             for i, child_question_data in enumerate(question_data["questions"]):
                 push_question(child_question_data, i + 1, parent=question)
 
-    session.add_all(questions)
-    session.flush()
-
     for i, question in enumerate(data["questions"]):
         push_question(question, i + 1)
+
+    session.add_all(questions)
+    session.flush()
 
     return questions
 
@@ -208,6 +212,20 @@ def user_with_courses(user, courses, session):
     return user
 
 @pytest.fixture
+def question_with_comments(questions, user, session):
+    question = questions[0]
+
+    comments = []
+    for i in range(10):
+        comments.append(model.Comment(user, question, "Hello world!"))
+
+    question.comments = comments
+    session.add(question)
+    session.flush()
+
+    return question
+
+@pytest.fixture
 def auth_client(user, session, client):
     """An API client to perform authorized requests."""
     userSession = user.login("root")
@@ -229,12 +247,13 @@ def output_logger(request):
 def marker(text, spacer="-", size=40):
     return "\n\n{} {} {}\n".format(spacer*size, text, spacer*size)
 
-# Ignore SQL Alchemy output during test setup
-sqla_logger = logging.getLogger("sqlalchemy.engine.base.Engine")
-sqla_logger.setLevel(logging.CRITICAL)
+if not SHOW_FIXTURE_SQLALCHEMY_OUTPUT:
+    # Ignore SQL Alchemy output during test setup
+    sqla_handler = logging.getLogger("sqlalchemy.engine.base.Engine").handlers[0]
+    sqla_handler.setLevel(logging.CRITICAL)
 
-def pytest_runtest_call():
-    logging.getLogger("sqlalchemy.engine.base.Engine").handlers[0].setLevel(logging.INFO)
+    def pytest_runtest_call():
+        sqla_handler.setLevel(logging.INFO)
 
-def pytest_runtest_teardown():
-    logging.getLogger("sqlalchemy.engine.base.Engine").handlers[0].setLevel(logging.CRITICAL)
+    def pytest_runtest_teardown():
+        sqla_handler.setLevel(logging.CRITICAL)
