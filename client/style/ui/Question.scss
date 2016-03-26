@@ -52,7 +52,7 @@
         font-family: $font-reading;
     }
 
-    &.editing {
+    &.editing, &.full-view {
         .question-main > .QuestionActions { opacity: 1; }
     }
 }

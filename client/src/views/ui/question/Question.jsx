@@ -2,6 +2,7 @@ import "../../../../style/ui/Question.scss";
 import React, { Component, PropTypes, Children } from "react";
 import { Link } from "react-router";
 import { omit } from "lodash/object";
+import { DEBUG } from "../../../Config";
 import { Field, Select } from "../input";
 import { TextButton } from "../input/Button";
 import { Box, Flex } from "../layout";
@@ -29,16 +30,18 @@ export default class Question extends Component {
     }
 
     render() {
-        const { question, editable } = this.props;
+        const { question, editable, fullView } = this.props;
         const { editing } = this.state;
         const actions = this.renderActions();
         const hasContent = this.hasContent();
         const hasChildren = this.hasChildren();
+
+
         
         return (
-            <Box className={classify("Question", { "no-content": !hasContent, editing })}>
+            <Box className={classify("Question", { "no-content": !hasContent, editing, "full-view": fullView })}>
                 <div>
-                    <QuestionIndex link={this.getLink()} index={question.formatted_path[question.formatted_path.length - 1]} />
+                    { this.renderIndex() }
                     { (editable && hasChildren) ? actions : void 0 }
                 </div>
                 <Flex className="question-main">
@@ -147,10 +150,12 @@ export default class Question extends Component {
                 // You can only remove leaf questions
                 actions.push(<TextButton icon="remove" onClick={this.props.onRemove.bind(null, question)}>Delete</TextButton>);
         } else if(this.hasContent()) {
+            const link = this.getLink();
+
             actions = [
-                <Link to="#">Solutions</Link>,
-                <Link to="#">Comments</Link>,
-                <Link to="#">Notes</Link>                
+                <Link to={`${link}/solutions`}>Solutions</Link>,
+                <Link to={`${link}/comments`}>Comments</Link>,
+                <Link to={`${link}/notes`}>Notes</Link>                
             ]
         }
 
@@ -165,9 +170,24 @@ export default class Question extends Component {
         );
     }
 
+    renderIndex() {
+        const { question, fullView } = this.props;
+        const link = this.getLink();
+
+        if(fullView) {
+            return (
+                <Box>
+                    { Children.toArray(question.formatted_path.map(segment => <QuestionIndex link={link} index={segment} />)) }
+                </Box>
+            );
+        } else {
+            return <QuestionIndex link={link} index={question.formatted_path[question.formatted_path.length - 1]} />
+        }
+    }
+
     getLink() {
         const { question, course, paper } = this.props;
-        return `/course/${course.code}/paper/${paper.year_start}/${paper.period}/q/${question.path.join(".")}`;
+        return `/course/${course.code}/paper/${paper.year_start}/${paper.period}/q/${question.path.join(DEBUG ? "-" : ".")}`;
     }
 
     onEdit() {
