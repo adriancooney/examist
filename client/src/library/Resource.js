@@ -26,7 +26,7 @@ export default class Resource extends Reducer {
         this.type = name.toUpperCase();
 
         // Bind the initial producer handler
-        this.addProducerHandler(this.type);
+        this.addProducer(this.type);
     }
 
     /**
@@ -91,7 +91,7 @@ export default class Resource extends Reducer {
      * @param   {Function} cleaner    A cleaner for the return reducer (run aswell as default cleaner).
      * @returns {Action}              The producer action.
      */
-    addProducerHandler(actionType, extractor, cleaner) {
+    addProducer(actionType, extractor, cleaner) {
         return this.handleAction(actionType, 
             (resources, resource) => {
                 resource = extractor ? extractor(resource) : resource;

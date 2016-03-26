@@ -47,12 +47,15 @@ Question.handleAction(remove, (questions, [removedQuestion, ...modified]) => {
 export const update = Question.createStatefulAction("UPDATE_QUESTION", User.selectAPI, 
     (api, ...details) => api.updateQuestion(...details));
 
-Question.addProducerHandler(update, ({ questions }) => questions);
+export const getByPath = Question.createStatefulAction("GET_QUESTION", User.selectAPI,
+    (api, ...details) => api.getQuestion(...details));
 
 /*
  * Handle when a paper loads.
  */
-Question.addProducerHandler(Paper.getPaper, ({ questions }) => questions);
+Question.addProducer(getByPath, ({ question, children }) => [question, ...children]);
+Question.addProducer(Paper.getPaper, ({ questions }) => questions);
+Question.addProducer(update, ({ questions }) => questions);
 
 /**
  * Select questions by paper ID.
@@ -61,6 +64,10 @@ Question.addProducerHandler(Paper.getPaper, ({ questions }) => questions);
  */
 export const selectByPaper = (paper) => {
     return Question.select(questions => questions.filter(questions => questions.paper === paper));
+};
+
+export const selectByPath = path => {
+    return Question.select(questions => questions.find(question => question.path.every((i, n) => path[n] === i)));
 };
 
 export default Question;

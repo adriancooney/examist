@@ -186,6 +186,19 @@ export default class API {
     }
 
     /**
+     * Get a question by path.
+     * 
+     * @param  {String} course   Course code.
+     * @param  {Number} year     The paper year.
+     * @param  {String} period   The paper's period.
+     * @param  {Object} question The question data.
+     * @return {Promise} -> {Response}
+     */
+    getQuestion(course, year, period, path) {
+        return this.request("GET", `/course/${course}/paper/${year}/${period}/q/${path}`);
+    }
+
+    /**
      * Create a new question for a paper.
      * 
      * @param  {String} course   Course code.
@@ -228,6 +241,15 @@ export default class API {
      */
     removeQuestion(course, year, period, question) {
         return this.request("DELETE", `/course/${course}/paper/${year}/${period}/q/` + question.path.join("."));
+    }
+
+    /**
+     * Get comments for an entity.
+     * @param  {Number} id The entity id.
+     * @return {Promise} -> {Response}
+     */
+    getComments(id) {
+        return this.request("GET", `/comments/${id}`);
     }
 
     /**

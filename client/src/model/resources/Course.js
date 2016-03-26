@@ -56,9 +56,9 @@ export const selectByCodeWithPapers = compose(selectByCode, course => state => (
 /*
  * Ensure courses loaded by user get store in courses resource.
  */
-Course.addProducerHandler(getCourse, ({ course }) => course);
-Course.addProducerHandler(User.getCourses, ({ courses }) => courses);
-Course.addProducerHandler(search, ({ courses }) => courses);
-Course.addProducerHandler("GET_PAPER", ({ course }) => course);
+Course.addProducer(getCourse, ({ course }) => course);
+Course.addProducer(User.getCourses, ({ courses }) => courses);
+Course.addProducer(search, ({ courses }) => courses);
+Course.addProducer("GET_PAPER", ({ course }) => course);
 
 export default Course;

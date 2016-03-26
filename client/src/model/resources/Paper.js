@@ -70,6 +70,6 @@ Paper.handleAction("REMOVE_QUESTION", (papers, [removedQuestion]) => {
 /*
  * Add papers when a specific paper is selected
  */
-Paper.addProducerHandler(Course.getCourse, ({ papers }) => papers);
-Paper.addProducerHandler(getPaper, ({ paper }) => paper);
+Paper.addProducer(Course.getCourse, ({ papers }) => papers);
+Paper.addProducer(getPaper, ({ paper }) => paper);
 export default Paper;
