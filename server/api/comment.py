@@ -1,4 +1,5 @@
 from flask import Blueprint, request, g
+from sqlalchemy.orm import with_polymorphic
 from webargs import fields, validate
 from webargs.flaskparser import use_kwargs, parser
 from server.database import db
@@ -42,8 +43,6 @@ def edit_comment(entity, comment):
     elif request.method == "PUT":
         args = parser.parse({ "content": fields.Str(required=True) })
         comment.content = args["content"]
-    else:
-        raise InvalidRequest()
 
     db.session.add(comment)
     db.session.commit()
@@ -51,3 +50,15 @@ def edit_comment(entity, comment):
 
     return respond({ "comment": comment })
     
+@Comment.route("/comments/<int:entity>", methods=["GET"])
+def get_comments(entity):
+    with query(model.Entity):
+        entity = db.session.query(model.Entity).filter(model.Entity.id == entity).one()
+
+        comments = db.session.query(
+            with_polymorphic(model.Entity, model.Comment)
+        ).filter(model.Comment.entity_id == entity.id).all()
+
+    print comments
+
+    return respond({ "comments": comments })

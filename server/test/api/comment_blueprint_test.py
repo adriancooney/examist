@@ -56,3 +56,12 @@ def test_comment_delete(question_with_comments, auth_client):
         assert comment_data["content"] == ""
         assert comment_data["updated_at"]
         assert comment_data["deleted"]
+
+def test_comment_get_all(question_with_comments, auth_client):
+    question = question_with_comments
+
+    resp = auth_client.get("/comments/%d" % question.id)
+
+    with assert_api_response(resp) as data:
+        assert "comments" in data
+        comments_data = data["comments"]

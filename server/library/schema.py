@@ -25,7 +25,7 @@ def create_schema(cls, include_fk=False, required=True, force_strict=True):
 
     field_args = dict(required=required)
 
-    logger.debug("<Schema(name=%s)>" % model_name)
+    # logger.debug("<Schema(name=%s)>" % model_name)
 
     for name, attr in dict(ins.attrs).iteritems():
         # Get arguments for each field
@@ -38,8 +38,8 @@ def create_schema(cls, include_fk=False, required=True, force_strict=True):
             if len(only) == 1:
                 only = only[0]
 
-            logger.debug("<Schema(name={})> += <Relationship(name={}, model={}, many={}, only={})>".format(
-                model_name, name, nested_model_name, attr.uselist, only))
+            # logger.debug("<Schema(name={})> += <Relationship(name={}, model={}, many={}, only={})>".format(
+            #     model_name, name, nested_model_name, attr.uselist, only))
 
             schema[name] = fields.Nested(nested_model_name + "Schema", 
                 many=attr.uselist, only=only)
@@ -53,8 +53,8 @@ def create_schema(cls, include_fk=False, required=True, force_strict=True):
             type_ = column.type
             type_name = _normalize_typename(type_.__class__.__name__)
 
-            logger.debug("<Schema(name={})> += <Field(name={}, type={}, args={})>".format(
-                model_name, name, type_name, field_args))
+            # logger.debug("<Schema(name={})> += <Field(name={}, type={}, args={})>".format(
+            #     model_name, name, type_name, field_args))
 
             # Grab the marshmallow type
             schema[name] = _get_field_for_type(attr, type_, type_name, field_args)

@@ -162,7 +162,7 @@ def upgrade():
 def downgrade():
     op.execute("CREATE SEQUENCE question_id_seq")
     op.execute("ALTER TABLE question ALTER COLUMN id SET DEFAULT nextval('question_id_seq')")
-    # op.drop_constraint('question_id_fkey', 'question', type_='foreignkey')
+    op.drop_constraint('question_id_fkey', 'question', type_='foreignkey')
     op.drop_table('solution')
     op.drop_table('like')
     op.drop_table('comment')

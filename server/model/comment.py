@@ -20,9 +20,7 @@ class Comment(Entity, Serializable):
     deleted = Column(Boolean, default=False)
 
     # Relationships
-    entity = relationship("Entity", foreign_keys=[entity_id])
     user = relationship("User", backref="comments")
-    question = relationship("Question", backref="comments", foreign_keys=[entity_id])
 
     # Threads
     parent = relationship("Comment", back_populates="children", lazy="immediate", foreign_keys=[parent_id], remote_side=id, uselist=False)
@@ -35,6 +33,6 @@ class Comment(Entity, Serializable):
 
     def __init__(self, user, entity, content, parent=None):
         self.user = user
-        self.entity = entity
+        self.entity_id = entity.id
         self.content = content
         self.parent = parent
