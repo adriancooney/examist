@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
 import { Link } from "react-router";
 import { connect } from "react-redux";
 import { some } from "lodash/collection";
@@ -35,6 +35,18 @@ class Course extends Component {
     static actions = {
         getCourse: model.resources.Course.getCourse
     };
+
+    static childContextTypes = {
+        course: PropTypes.object,
+        paper: PropTypes.object
+    };
+
+    getChildContext() {
+        return { 
+            course: this.props.course,
+            paper: this.props.paper 
+        };
+    }
 
     componentWillMount() {
         const { course, papers } = this.props;

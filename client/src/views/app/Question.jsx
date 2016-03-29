@@ -1,5 +1,5 @@
 import "../../../style/app/Question.scss"
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router";
 import { Question } from "../ui/question"
@@ -8,20 +8,19 @@ import * as model from "../../model";
 import { DEBUG } from "../../Config";
 
 export default class QuestionView extends Component {
-    static selector = (state, { params }) => {
-        const course = model.resources.Course.selectByCode(params.course)(state);
+    static selector = (state, { params }, { course, paper }) => {
         const question = model.resources.Question.selectByPath(params.path.split(DEBUG ? "-" : ".").map(i => parseInt(i)))(state);
-        const paper = model.resources.Paper.selectPaper({ 
-            period: params.period,
-            year: parseInt(params.year),
-            course: course.id 
-        })(state);
 
         return { course, question, paper };
     };
 
     static actions = {
         getQuestionByPath: model.resources.Question.getByPath
+    };
+
+    static contextTypes = {
+        paper: PropTypes.object,
+        course: PropTypes.object
     };
 
     componentWillMount() {

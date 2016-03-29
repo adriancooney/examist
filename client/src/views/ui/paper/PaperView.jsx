@@ -2,8 +2,7 @@ import React, { PropTypes } from "react";
 import { QuestionList } from "../question";
 
 export default function PaperView(props) {
-    const { paper } = props;
-    const questions = paper.questions;
+    const { paper, questions } = props;
     const rootQuestions = questions.filter(q => q.path.length === 1);
 
     return (

@@ -1,20 +1,18 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import * as model from "../../model";
 import { DEBUG } from "../../Config";
 
 export default class Comments extends Component {
-    static selector = (state, { params }) => {
-        const course = model.resources.Course.selectByCode(params.course)(state);
-        const question = model.resources.Question.selectByPath(params.path.split(DEBUG ? "-" : ".").map(i => parseInt(i)))(state);
-        const paper = model.resources.Paper.selectPaper({ 
-            period: params.period,
-            year: parseInt(params.year),
-            course: course.id 
-        })(state);
-        const comments = model.resources.Comment.selectById(question.id)
-
+    static selector = (state, { params }, { question, course, paper  }) => {
+        const comments = model.resources.Comment.selectById(question.id);
         return { course, question, paper, comments };
+    };
+
+    static contextTypes = {
+        course: PropTypes.object,
+        paper: PropTypes.object,
+        question: PropTypes.object
     };
 
     static actions = {

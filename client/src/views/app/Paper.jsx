@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, PropTypes, Children } from "react";
 import { Link } from "react-router";
 import { connect } from "react-redux";
 import { isPending } from "redux-pending";
@@ -8,22 +8,21 @@ import { Box } from "../ui/layout";
 import { PaperView, PaperInfo } from "../ui/paper";
 
 class Paper extends Component {
-    static selector = (state, { params }) => {
-        const course = model.resources.Course.selectByCode(params.course)(state);
-
+    static selector = (state, { params }, { course, paper }) => {
         return {
-            course,
-            paper: model.resources.Paper.selectPaperWithQuestions({ 
-                period: params.period,
-                year: parseInt(params.year),
-                course: course.id 
-            })(state),
+            course, paper,
+            questions: model.resources.Question.selectByPaper(paper.id)(state),
             isLoadingPaper: isPending(model.resources.Paper.getPaper.type)(state)
         };
     };
 
     static actions = {
         getPaper: model.resources.Paper.getPaper
+    };
+
+    static contextTypes = {
+        course: PropTypes.object,
+        paper: PropTypes.object
     };
 
     componentWillMount() {
@@ -56,19 +55,20 @@ class Paper extends Component {
     render() {
         const { isLoadingPaper, paper, course } = this.props;
 
-        if(!paper) 
-            return <Empty/>;
-
         let content;
-        const questions = paper.questions;
-        
-        if(questions) {
+        const questions = this.props.questions;
+
+        if(isLoadingPaper) {
+            return <Loading key="loading" />;
+        }
+
+        if(paper.questions) {
             if(questions.length) {
-                content = <PaperView course={course} paper={paper} />;
+                content = <PaperView key="paper-view" course={course} paper={paper} questions={questions}/>;
             } else {
                 content = (
-                    <div className="paper-empty">
-                        <Icon name="exclamation-triangle" size={5}/>
+                    <div key="paper-empty" className="paper-empty">
+                        <h3><Icon name="exclamation-triangle" size={5}/></h3>
                         <h4>This paper has no questions yet.</h4> 
                         <p>Help your course out and <Link to={this.getParserLink() + "/questions"}>pick them from the paper</Link>.</p>
                     </div>
@@ -76,12 +76,12 @@ class Paper extends Component {
             }
 
             return (
-                <Box>
+                <Box key="paper">
                     <div className="Paper">{ content }</div>
                     <PaperInfo course={course} paper={paper} />
                 </Box>
             );
-        } else return <Loading />;
+        } else return <Empty />;
     }
 
     getParserLink() {
