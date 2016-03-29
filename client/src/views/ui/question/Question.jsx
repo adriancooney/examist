@@ -2,6 +2,7 @@ import "../../../../style/ui/Question.scss";
 import React, { Component, PropTypes, Children } from "react";
 import { Link } from "react-router";
 import { omit } from "lodash/object";
+import { capitalize } from "lodash/string";
 import { DEBUG } from "../../../Config";
 import { Field, Select } from "../input";
 import { TextButton } from "../input/Button";
@@ -36,8 +37,6 @@ export default class Question extends Component {
         const hasContent = this.hasContent();
         const hasChildren = this.hasChildren();
 
-
-        
         return (
             <Box className={classify("Question", { "no-content": !hasContent, editing, "full-view": fullView })}>
                 <div>
@@ -151,12 +150,11 @@ export default class Question extends Component {
                 actions.push(<TextButton icon="remove" onClick={this.props.onRemove.bind(null, question)}>Delete</TextButton>);
         } else if(this.hasContent()) {
             const link = this.getLink();
+            const activeView = this.props.activeView;
 
-            actions = [
-                <Link to={`${link}/solutions`}>Solutions</Link>,
-                <Link to={`${link}/comments`}>Comments</Link>,
-                <Link to={`${link}/notes`}>Notes</Link>                
-            ]
+            actions = ["solutions", "comments", "notes"].map(view => {
+                return <Link className={view === activeView ? "active" : ""} to={`${link}/${view}`}>{capitalize(view)}</Link>
+            });
         }
 
         // Add in the marks
@@ -168,6 +166,18 @@ export default class Question extends Component {
                 { Children.toArray(actions) }
             </QuestionActions>
         );
+    }
+
+    renderView() {
+        const activeView = this.props.activeView;
+
+        if(activeView === "comments") {
+            return <CommentList comments={this.props.comments} />;
+        } else if(activeView === "solutions") {
+            return <SolutionList solutions={this.props.solutions} />;
+        } else if(activeView === "notes") {
+            return <NotesList notes={this.props.notes} />;
+        }
     }
 
     renderIndex() {

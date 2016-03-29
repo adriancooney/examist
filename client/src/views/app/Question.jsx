@@ -1,6 +1,7 @@
 import "../../../style/app/Question.scss"
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router";
 import { Question } from "../ui/question"
 import { Loading } from "../ui";
 import * as model from "../../model";
@@ -34,14 +35,24 @@ export default class QuestionView extends Component {
     render() {
         const { question, course, paper } = this.props;
 
+        let view = this.props.location.pathname.match(/\/(comments|solutions|notes)\/?$/);
+        view = view ? view[1] : "comments";
+
         if(!question)
             return <Loading />;
 
         return (
             <div className="QuestionView">
-                <Question course={course} paper={paper} question={question} fullView />
+                <Link to={this.getPaperLink()}>&larr; Back to paper</Link>
+                <Question course={course} paper={paper} question={question} fullView activeView={view} />
+                { this.props.children }
             </div>
         );
+    }
+
+    getPaperLink() {
+        const { course, paper } = this.props;
+        return `/course/${course.code}/paper/${paper.year_start}/${paper.period}/`
     }
 }
 
