@@ -191,7 +191,7 @@ export default class API {
      * @param  {String} course   Course code.
      * @param  {Number} year     The paper year.
      * @param  {String} period   The paper's period.
-     * @param  {Object} question The question data.
+     * @param  {String} path     The question's path.
      * @return {Promise} -> {Response}
      */
     getQuestion(course, year, period, path) {
