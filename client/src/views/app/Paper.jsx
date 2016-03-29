@@ -8,9 +8,8 @@ import { Box } from "../ui/layout";
 import { PaperView, PaperInfo } from "../ui/paper";
 
 class Paper extends Component {
-    static selector = (state, { params }, { course, paper }) => {
+    static selector = (state, { params }, { paper }) => {
         return {
-            course, paper,
             questions: model.resources.Question.selectByPaper(paper.id)(state),
             isLoadingPaper: isPending(model.resources.Paper.getPaper.type)(state)
         };
@@ -26,15 +25,17 @@ class Paper extends Component {
     };
 
     componentWillMount() {
-        const { paper, params: { course, year, period } } = this.props;
+        const { params: { course, year, period } } = this.props;
+        const { paper } = this.context;
 
         // When we directly link to the paper
         if(!paper || !paper.questions)
             this.props.getPaper(course, year, period);
     }
 
-    componentWillReceiveProps(props) {
-        const { paper, isLoadingPaper, params: { course, year, period } } = props;
+    componentWillReceiveProps(props, context) {
+        const { isLoadingPaper, params: { course, year, period } } = props;
+        const { paper } = context;
 
         // Previous state
         let prevCourse = this.props.params.course;
@@ -53,7 +54,8 @@ class Paper extends Component {
     }
 
     render() {
-        const { isLoadingPaper, paper, course } = this.props;
+        const { isLoadingPaper } = this.props;
+        const { paper, course } = this.context;
 
         let content;
         const questions = this.props.questions;
@@ -85,7 +87,7 @@ class Paper extends Component {
     }
 
     getParserLink() {
-        const { course, paper } = this.props;
+        const { course, paper } = this.context;
         return `/course/${course.code}/paper/${paper.year_start}/${paper.period}/parse`;
     }
 }

@@ -8,10 +8,12 @@ import * as model from "../../model";
 import { DEBUG } from "../../Config";
 
 export default class QuestionView extends Component {
-    static selector = (state, { params }, { course, paper }) => {
-        const question = model.resources.Question.selectByPath(params.path.split(DEBUG ? "-" : ".").map(i => parseInt(i)))(state);
-
-        return { course, question, paper };
+    static selector = (state, { params }, { course }) => {
+        return { 
+            question: model.resources.Question.selectByPath(
+                params.path.split(DEBUG ? "-" : ".").map(i => parseInt(i))
+            )(state)
+        };
     };
 
     static actions = {
@@ -23,8 +25,17 @@ export default class QuestionView extends Component {
         course: PropTypes.object
     };
 
+    static childContextTypes = {
+        question: PropTypes.object
+    };
+
+    getChildContext() {
+        return { question: this.props.question };
+    }
+
     componentWillMount() {
-        const { question, course, paper } = this.props;
+        const { question } = this.props;
+        const { course, paper } = this.context;
         const path = DEBUG ? this.props.params.path.split("-").join(".") : this.props.params.path;
 
         if(!question)
@@ -32,7 +43,8 @@ export default class QuestionView extends Component {
     }
 
     render() {
-        const { question, course, paper } = this.props;
+        const { question } = this.props;
+        const { course, paper } = this.context;
 
         let view = this.props.location.pathname.match(/\/(comments|solutions|notes)\/?$/);
         view = view ? view[1] : "comments";
@@ -50,7 +62,7 @@ export default class QuestionView extends Component {
     }
 
     getPaperLink() {
-        const { course, paper } = this.props;
+        const { course, paper } = this.context;
         return `/course/${course.code}/paper/${paper.year_start}/${paper.period}/`
     }
 }

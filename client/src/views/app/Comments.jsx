@@ -4,14 +4,13 @@ import * as model from "../../model";
 import { DEBUG } from "../../Config";
 
 export default class Comments extends Component {
-    static selector = (state, { params }, { question, course, paper  }) => {
-        const comments = model.resources.Comment.selectById(question.id);
-        return { course, question, paper, comments };
+    static selector = (state, { params }, { question }) => {
+        return { 
+            comments: model.resources.Comment.selectById(question.id)(state)
+        };
     };
 
     static contextTypes = {
-        course: PropTypes.object,
-        paper: PropTypes.object,
         question: PropTypes.object
     };
 
@@ -20,16 +19,18 @@ export default class Comments extends Component {
     };
 
     componentWillMount() {
-        const { question } = this.props;
+        const { question } = this.context;
 
         if(!question.comments)
             this.props.getComments(question.id);
     }
 
     render() {
+        const question = this.context.question;
+
         return (
             <div className="Comments">
-                <h1>Question comments!</h1>
+                <h1>{`Question ${question.formatted_path.join(". ")}.`}</h1>
             </div>
         );
     }
