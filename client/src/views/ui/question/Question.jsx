@@ -154,7 +154,12 @@ export default class Question extends Component {
             const activeView = this.props.activeView;
 
             actions = ["solutions", "comments", "notes"].map(view => {
-                return <Link className={view === activeView ? "active" : ""} to={`${link}/${view}`}>{capitalize(view)}</Link>
+                let text = capitalize(view);
+
+                if(view === "comments" && question.comment_count)
+                    text = `Comments (${question.comment_count})`;
+
+                return <Link className={view === activeView ? "active" : ""} to={`${link}/${view}`}>{text}</Link>
             });
         }
 

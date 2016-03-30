@@ -32,15 +32,17 @@ class Serializable:
 
         data = {}
         ins = inspect(self)
+        schema = self.__schema__()
 
         # Don't try to access the unloaded keys or we'll trigger some
         # lazy loading.
-        attrs = set(ins.attrs.keys()) - ins.unloaded 
+        attrs = set(schema.fields.keys()) - ins.unloaded 
 
         for name in attrs:
-            data[name] = getattr(self, name)
+            if hasattr(self, name):
+                data[name] = getattr(self, name)
 
-        return self.__schema__().dump(data).data
+        return schema.dump(data).data
 
     @classmethod
     def __declare_last__(cls):

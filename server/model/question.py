@@ -1,8 +1,9 @@
 import datetime
 from marshmallow import fields
-from sqlalchemy.schema import Table
-from sqlalchemy.orm import relationship, backref
+from sqlalchemy import select, func
 from sqlalchemy import Column, Integer, String, ForeignKey, UniqueConstraint, DateTime, Enum
+from sqlalchemy.schema import Table
+from sqlalchemy.orm import relationship, backref, object_session
 from sqlalchemy.dialects import postgresql
 from server.library.model import Serializable
 from server.database import db
@@ -51,12 +52,23 @@ class Question(Entity, Serializable):
     revisions = relationship("Revision")
     likes = relationship("Like")
 
+    # Aggregates
+    @property
+    def comment_count(self):
+        return object_session(self)\
+            .scalar(
+                select([ func.count(Comment.id) ])\
+                    .where(Comment.entity_id == self.id)
+            )
+
+
     class Meta:
         created_at = dict(load_only=True)
         revision = dict(only=("user", "content", "created_at"))
         include = dict(content=fields.Str())
         exclude=("type",)
         additional=("id",)
+        custom=dict(comment_count=fields.Int())
 
     def __init__(self, paper, index, index_type=None, parent=None):
         self.paper = paper

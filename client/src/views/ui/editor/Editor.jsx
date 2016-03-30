@@ -157,8 +157,10 @@ export default class Editor extends Component {
         });
     }
 
-    getValue() {
-        return this.state.value;
+    getValue(clear) {
+        const value = this.state.value;
+        if(clear) this.clear();
+        return value;
     }
 
     clear() {

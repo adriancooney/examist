@@ -20,6 +20,7 @@ def test_question_get(auth_client, paper_with_course_and_questions):
 
         question_data = data["question"]
         assert "parent" in question_data
+        assert "comment_count" in question_data
 
 def test_question_update(auth_client, session, paper_with_course_and_questions):
     paper = paper_with_course_and_questions

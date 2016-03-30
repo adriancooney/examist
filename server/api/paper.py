@@ -36,6 +36,8 @@ def get_paper(course, year, period):
         return send_file(path.join(paper.contents.path, "index.html"), mimetype="text/html")
 
     else:
+        map(lambda question: getattr(question, "comment_count"), paper.questions)
+
         return respond({ 
             "paper": paper,
             "course": paper.course,

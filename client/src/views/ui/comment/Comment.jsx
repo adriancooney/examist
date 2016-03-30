@@ -60,7 +60,7 @@ export default class Comment extends Component {
                 }
             }
 
-            const updated = comment.updated_at ? moment(comment.updated_at).fromNow() : false;
+            const updated = comment.updated_at ? moment(comment.updated_at).subtract(1, "hour").fromNow() : false;
             actions.unshift(<span>{
                 `Posted ${timestamp.fromNow()} by ${isAuthor ? "you" : comment.user.name}` + 
                 `${updated ? " (edited " + updated + ")" : ""}.`

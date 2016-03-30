@@ -34,7 +34,7 @@ export default class Comments extends Component {
         if(props.user) {
             editor = (
                 <Editor ref="editor">
-                    <Button onClick={() => props.onReply(this.refs.editor.getValue())}>Post</Button>
+                    <Button onClick={() => props.onReply(this.refs.editor.getValue(true))}>Post</Button>
                 </Editor>
             )
         }

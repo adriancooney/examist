@@ -7,12 +7,8 @@ from marshmallow import Schema, fields, validate
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
-def create_schema(cls, include_fk=False, required=True, force_strict=True):
+def create_schema(cls, include_fk=True, required=True, force_strict=True):
     ins = inspect(cls)
-
-    model_name = cls.__name__
-    schema_name = model_name + "Schema"
-    schema = {}
 
     if hasattr(cls, "Meta"):
         meta = getattr(cls, "Meta")
@@ -22,10 +18,16 @@ def create_schema(cls, include_fk=False, required=True, force_strict=True):
 
     elif force_strict:
         meta = type("Meta", (object,), dict(strict=True))
+    else:
+        meta = {}
+
+    model_name = cls.__name__
+    schema_name = model_name + "Schema"
+    schema = getattr(meta, "custom", {})
 
     field_args = dict(required=required)
 
-    # logger.debug("<Schema(name=%s)>" % model_name)
+    print "<Schema(name=%s)>" % model_name
 
     for name, attr in dict(ins.attrs).iteritems():
         # Get arguments for each field
@@ -38,8 +40,8 @@ def create_schema(cls, include_fk=False, required=True, force_strict=True):
             if len(only) == 1:
                 only = only[0]
 
-            # logger.debug("<Schema(name={})> += <Relationship(name={}, model={}, many={}, only={})>".format(
-            #     model_name, name, nested_model_name, attr.uselist, only))
+            print "<Schema(name={})> += <Relationship(name={}, model={}, many={}, only={})>".format(
+                model_name, name, nested_model_name, attr.uselist, only)
 
             schema[name] = fields.Nested(nested_model_name + "Schema", 
                 many=attr.uselist, only=only)
@@ -53,14 +55,15 @@ def create_schema(cls, include_fk=False, required=True, force_strict=True):
             type_ = column.type
             type_name = _normalize_typename(type_.__class__.__name__)
 
-            # logger.debug("<Schema(name={})> += <Field(name={}, type={}, args={})>".format(
-            #     model_name, name, type_name, field_args))
+            print "<Schema(name={})> += <Field(name={}, type={}, args={})>".format(
+                model_name, name, type_name, field_args)
 
             # Grab the marshmallow type
             schema[name] = _get_field_for_type(attr, type_, type_name, field_args)
 
     schema["Meta"] = meta
 
+    print "<Schema(%s) fields=%r>" % (schema_name, schema.keys())
     return type(schema_name, (Schema,), schema)
 
 def _normalize_typename(type_name):

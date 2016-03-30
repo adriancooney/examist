@@ -68,7 +68,7 @@ Question.handleAction("GET_COMMENTS", (questions, { entity, comments }) => {
                     ...question,
                     comments: comments.map(comment => comment.id)
                 }
-            }
+            } else return question;
         });
     } else return questions;
 });
@@ -82,9 +82,10 @@ Question.handleAction("CREATE_COMMENT", (questions, { comment }) => {
             if(question.id === selectedQuestion.id) {
                 return {
                     ...question,
+                    comment_count: question.comment_count + 1,
                     comments: [...(question.comments || []), comment.id]
                 }
-            }
+            } else return question;
         });
     } else return questions;
 });

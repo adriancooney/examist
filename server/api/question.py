@@ -46,6 +46,7 @@ def create_question(course, year, period):
 
     # Load the paper
     getattr(question, "paper")
+    getattr(question, "comment_count")
 
     return respond({ "question": question })
 
