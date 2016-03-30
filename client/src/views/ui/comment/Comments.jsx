@@ -1,38 +1,51 @@
-import React, { PropTypes } from "react";
-import Reply from "./Reply";
+import React, { PropTypes, Component } from "react";
+import { Editor } from "../editor";
+import { Button } from "../input";
 import { CommentList } from "./Comment";
 import { Empty } from "../";
 
-export default function Comments(props) {
-    const rootComments = props.comments
-        .filter(comment => !comment.parent)
-        .map(comment => comment.id);
+export default class Comments extends Component {
+    render() {
+        const props = this.props;
 
-    let content;
-    if(rootComments.length) {
-        content = (
-            <CommentList
-                user={props.user}
-                onReply={props.onReply}
-                onEdit={props.onEdit}
-                onRemove={props.onRemove}
-                comments={rootComments} 
-                getComment={getComment.bind(null, props.comments)} />
-        );
-    } else {
-        content = (
-            <Empty>
-                <p>No Comments</p>
-            </Empty>
-        );
+        const rootComments = props.comments
+            .filter(comment => !comment.parent)
+            .map(comment => comment.id);
+
+        let content, editor;
+        if(rootComments.length) {
+            content = (
+                <CommentList
+                    user={props.user}
+                    onReply={props.onReply}
+                    onEdit={props.onEdit}
+                    onRemove={props.onRemove}
+                    comments={rootComments} 
+                    getComment={getComment.bind(null, props.comments)} />
+            );
+        } else {
+            content = (
+                <Empty>
+                    <p>No Comments</p>
+                </Empty>
+            );
+        }
+
+        if(props.user) {
+            editor = (
+                <Editor ref="editor">
+                    <Button onClick={() => props.onReply(this.refs.editor.getValue())}>Post</Button>
+                </Editor>
+            )
+        }
+
+        return (
+            <div className="Comments">
+                { content }
+                { editor }
+            </div>
+        )
     }
-
-    return (
-        <div className="Comments">
-            { content }
-            { props.user ? <Reply onReply={props.onReply} /> : null }
-        </div>
-    )
 }
 
 function getComment(comments, id) {
