@@ -63,3 +63,20 @@
     background-repeat: no-repeat;
     background-position: center center;
 }
+
+.Empty {
+    text-align: center;
+
+    p {
+        font-style: italic;
+        color: #777;
+    }
+}
+
+.Removed {
+    font-weight: normal;
+    font-style: italic;
+    color: rgba(0,0,0,0.5);
+    text-decoration: line-through;
+    font-size: 90%;
+}

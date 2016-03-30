@@ -245,11 +245,45 @@ export default class API {
 
     /**
      * Get comments for an entity.
-     * @param  {Number} id The entity id.
+     * @param  {Number} entity The entity id.
      * @return {Promise} -> {Response}
      */
-    getComments(id) {
-        return this.request("GET", `/comments/${id}`);
+    getComments(entity) {
+        return this.request("GET", `/comments/${entity}`);
+    }
+
+    /**
+     * Create a new comment.
+     * @param  {Number} entity  The entity id.
+     * @param  {String} content The comment content.
+     * @param  {Number} parent  The parent comment id.
+     * @return {Promise} -> {Response}
+     */
+    createComment(entity, content, parent) {
+        return this.request("POST", `/comment/${entity}`, { content, parent });
+    }
+
+
+    /**
+     * Update a comment.
+     * @param  {Number} entity  The entity id.
+     * @param  {Number} comment The comment id.
+     * @param  {String} content The comment content.
+     * @return {Promise} -> {Response}
+     */
+    updateComment(entity, comment, content) {
+        return this.request("PUT", `/comment/${entity}/${comment}`, { content });
+    }
+
+
+    /**
+     * Delete a comment.
+     * @param  {Number} entity  The entity id.
+     * @param  {Number} comment  The comment id.
+     * @return {Promise} -> {Response}
+     */
+    deleteComment(entity, comment) {
+        return this.request("DELETE", `/comment/${entity}/${comment}`);
     }
 
     /**

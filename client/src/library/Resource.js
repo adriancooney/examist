@@ -5,7 +5,7 @@ import { pick } from "lodash/object";
 export default class Resource extends Reducer {
     constructor(name, key, { cleaner } = {}) {
         // Create our resource under the pluralized name
-        super(name.toLowerCase() + "s", []);
+        super(name.toLowerCase(), []);
 
         if(typeof key === "undefined")
             throw new Error("Resource key parameter (string or function) is required.");

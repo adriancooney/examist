@@ -1,5 +1,5 @@
 import "../../../style/Parser.scss";
-import React, { Component } from "react";
+import React, { Component, PropTypes } from "react";
 import { connect } from "react-redux";
 import { isPending } from "redux-pending";
 import PDFView from "./PDFView"
@@ -12,22 +12,39 @@ import * as model from "../../model";
 class Parser extends Component {
     static selector = (state, { params }) => {
         const course = model.resources.Course.selectByCode(params.course)(state);
-
-        return {
+  
+        const selection = { 
             course,
-            paper: course ? model.resources.Paper.selectPaperWithQuestions({ 
+            isLoadingPaper: isPending(model.resources.Paper.getPaper.type)(state)
+        };
+
+        if(course) {
+            selection.paper = model.resources.Paper.selectPaper({ 
                 period: params.period,
                 year: parseInt(params.year),
                 course: course.id 
-            })(state) : null,
-            isLoadingPaper: isPending(model.resources.Paper.getPaper.type)(state)
-        }
+            })(state);
+        } 
+
+        return selection;
     };
 
     static actions = {
         getPaper: model.resources.Paper.getPaper,
         push: model.Routing.push
     };
+
+    static childContextTypes = {
+        course: PropTypes.object,
+        paper: PropTypes.object
+    };
+
+    getChildContext() {
+        return {
+            course: this.props.course,
+            paper: this.props.paper
+        };
+    }
 
     componentWillMount() {
         const { paper, params: { course, year, period } } = this.props;

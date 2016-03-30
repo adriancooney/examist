@@ -1,7 +1,7 @@
 import { Resource } from "../../library";
 import API from "../../API";
 
-const Institution = new Resource("institution", "id");
+const Institution = new Resource("institutions", "id");
 
 /*
  * Get domain by name.

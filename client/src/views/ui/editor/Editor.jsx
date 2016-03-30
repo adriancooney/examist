@@ -17,7 +17,7 @@ export default class Editor extends Component {
     }
 
     render() {
-        let content;
+        let content, actions;
 
         if(this.state.previewing) {
             content = <Preview>{ this.state.value }</Preview>
@@ -33,6 +33,12 @@ export default class Editor extends Component {
 
         const hasSelection = !!this.state.selection;
 
+        if(this.props.children) {
+            actions = (
+                <div className="actions">{ this.props.children }</div>
+            );
+        }
+
         return (
             <div className="Editor">
                 <Box className="toolbar">
@@ -46,6 +52,7 @@ export default class Editor extends Component {
                 </Box>
 
                 { content }
+                { actions }
             </div>
         );
     }
@@ -152,5 +159,9 @@ export default class Editor extends Component {
 
     getValue() {
         return this.state.value;
+    }
+
+    clear() {
+        this.setState({ value: "" });
     }
 }

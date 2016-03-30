@@ -1,6 +1,5 @@
-import React, { Component, Children } from "react";
+import React, { Component, Children, PropTypes } from "react";
 import { connect } from "react-redux";
-import { isPending } from "redux-pending";
 import { Empty, Icon } from "../../ui";
 import { PaperView } from "../../ui/paper";
 import { QuestionActions } from "../../ui/question";
@@ -9,18 +8,15 @@ import Panel from "../../ui/parser/Panel";
 import * as model from "../../../model";
 
 class QuestionsPanel extends Component {
-    static selector = (state, { params }) => {
-        const course = model.resources.Course.selectByCode(params.course)(state);
-
+    static selector = (state, { params }, { paper }) => {
         return {
-            course,
-            paper: model.resources.Paper.selectPaperWithQuestions({ 
-                period: params.period,
-                year: parseInt(params.year),
-                course: course.id 
-            })(state),
-            isLoadingPaper: isPending(model.resources.Paper.getPaper.type)(state)
-        };
+            questions: model.resources.Question.selectByPaper(paper.id)(state)
+        }
+    };
+
+    static contextTypes = {
+        course: PropTypes.object,
+        paper: PropTypes.object
     };
 
     static actions = {
@@ -30,14 +26,16 @@ class QuestionsPanel extends Component {
     };
 
     render() {
-        const { paper } = this.props;
+        const { course, paper } = this.context;
+        const { questions } = this.props;
         let content;
 
         if(paper.questions && paper.questions.length) {
             content = Children.toArray([
                 <PaperView
-                    course={this.props.course} 
-                    paper={this.props.paper} 
+                    course={course} 
+                    paper={paper}
+                    questions={questions}
                     editable
                     onAdd={::this.addQuestion} 
                     onRemove={::this.removeQuestion}
@@ -65,7 +63,7 @@ class QuestionsPanel extends Component {
 
     addQuestion(question) {
         let index;
-        const { course, paper } = this.props;
+        const { course, paper } = this.context;
 
         if(!question) {
             // Add new root question
@@ -80,14 +78,14 @@ class QuestionsPanel extends Component {
     }
 
     removeQuestion(question) {
-        const { course, paper } = this.props;
+        const { course, paper } = this.context;
 
         // Delete a question
         this.props.removeQuestion(course.code, paper.year_start, paper.period, question);
     }
 
     editQuestion(question, changes) {
-        const { course, paper } = this.props;
+        const { course, paper } = this.context;
 
         // Filter out undefined keys
         changes = Object.keys(changes)
@@ -109,7 +107,7 @@ class QuestionsPanel extends Component {
     }
 
     getRootQuestions() {
-        return this.props.paper.questions.filter(q => q.path.length === 1);
+        return this.props.questions.filter(q => q.path.length === 1);
     }
 }
 

@@ -31,7 +31,7 @@ export default class Question extends Component {
     }
 
     render() {
-        const { question, editable, fullView } = this.props;
+        const { editable, fullView } = this.props;
         const { editing } = this.state;
         const actions = this.renderActions();
         const hasContent = this.hasContent();
@@ -47,6 +47,7 @@ export default class Question extends Component {
                     { this.renderContent() }
                     { ((editable && !hasChildren) || (!editable && hasContent)) ? actions : void 0 }
                     { this.renderChildren() }
+                    { this.props.children }
                 </Flex>
             </Box>
         );
@@ -101,7 +102,7 @@ export default class Question extends Component {
             );
         } else if(this.hasContent()) {
             return (
-                <div>
+                <div className="question-content">
                     <Markdown>{this.getContent()}</Markdown>
                 </div>
             );
@@ -166,18 +167,6 @@ export default class Question extends Component {
                 { Children.toArray(actions) }
             </QuestionActions>
         );
-    }
-
-    renderView() {
-        const activeView = this.props.activeView;
-
-        if(activeView === "comments") {
-            return <CommentList comments={this.props.comments} />;
-        } else if(activeView === "solutions") {
-            return <SolutionList solutions={this.props.solutions} />;
-        } else if(activeView === "notes") {
-            return <NotesList notes={this.props.notes} />;
-        }
     }
 
     renderIndex() {

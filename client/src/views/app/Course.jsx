@@ -18,7 +18,6 @@ class Course extends Component {
             papers = model.resources.Paper.selectByCourse(course.id)(state);
 
             if(params.year && params.period) {
-                console.log("Reselecting paper in course.");
                 paper = model.resources.Paper.selectPaper({ 
                     period: params.period,
                     year: parseInt(params.year), 
@@ -43,7 +42,6 @@ class Course extends Component {
     };
 
     getChildContext() {
-        console.log("Updating child context.");
         return { 
             course: this.props.course,
             paper: this.props.paper 

@@ -3,7 +3,7 @@ import { without, unionBy } from "lodash/array";
 import * as Paper from "./Paper";
 import * as User from "../User";
 
-const Question = new Resource("question", "id");
+const Question = new Resource("questions", "id");
 
 export const create = Question.createStatefulAction("CREATE_QUESTION", User.selectAPI, 
     (api, ...details) => api.createQuestion(...details));
@@ -56,6 +56,38 @@ export const getByPath = Question.createStatefulAction("GET_QUESTION", User.sele
 Question.addProducer(getByPath, ({ question, children }) => [question, ...children]);
 Question.addProducer(Paper.getPaper, ({ questions }) => questions);
 Question.addProducer(update, ({ questions }) => questions);
+
+Question.handleAction("GET_COMMENTS", (questions, { entity, comments }) => {
+    // Add comments to any questions
+    const selectedQuestion = questions.find(q => q.id === entity.id);
+
+    if(selectedQuestion) {
+        return questions.map(question => {
+            if(question.id === selectedQuestion.id) {
+                return {
+                    ...question,
+                    comments: comments.map(comment => comment.id)
+                }
+            }
+        });
+    } else return questions;
+});
+
+Question.handleAction("CREATE_COMMENT", (questions, { comment }) => {
+    // Add comments to any questions
+    const selectedQuestion = questions.find(q => q.id === comment.entity_id);
+
+    if(selectedQuestion) {
+        return questions.map(question => {
+            if(question.id === selectedQuestion.id) {
+                return {
+                    ...question,
+                    comments: [...(question.comments || []), comment.id]
+                }
+            }
+        });
+    } else return questions;
+});
 
 /**
  * Select questions by paper ID.

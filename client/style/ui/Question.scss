@@ -55,6 +55,12 @@
     &.editing, &.full-view {
         .question-main > .QuestionActions { opacity: 1; }
     }
+
+    &.full-view {
+        .question-content .Markdown {
+            font-size: 125%;
+        }
+    }
 }
 
 .QuestionActions {
@@ -65,10 +71,14 @@
     a, .Button {
         display: block;
         margin-right: $spacing-margin;
-        margin-top: $spacing-margin/4;
         font-size: 90%;
-        padding: $spacing-padding/2;
+        padding: $spacing-padding/1.8;
         padding-bottom: 0;
+    }
+
+    .active {
+        background: $color-blue;
+        color: white;
     }
 
     &:hover {

@@ -79,22 +79,24 @@
 }
 
 .Button {
+    padding: $spacing-padding/1.6 $spacing-padding $spacing-padding/2.4;
     margin: $spacing-margin;
-    padding: $spacing-padding/1.4 $spacing-padding $spacing-padding/2;
+    margin-left: 0;
     border-radius: $spacing-radius;
-    border: none;
-    background: $color-button-default;
-    border: 3px solid darken($color-button-default, 15%);
+    border: 2px solid $color-button-default;
+    color: $color-button-default;
+    background: transparent;
+    font-weight: bold;
+    text-decoration: underline;
     font-family: $font-display;
     text-transform: uppercase;
     font-size: 80%;
-    color: white;
     outline: none;
     cursor: pointer;
 
     &:hover {
-        text-decoration: underline;
-        background: lighten($color-button-default, 5%);
+        background: $color-button-default;
+        color: white;
     }
 
     &.textual {
@@ -120,6 +122,16 @@
 
     &[disabled] {
         opacity: 0.4;
+    }
+
+    &.danger {
+        border-color: $color-button-danger;
+        color: $color-button-danger;
+
+        &:not(.textual):hover {
+            background: $color-button-danger;
+            color: white;
+        }
     }
 }
 

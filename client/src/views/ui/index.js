@@ -7,4 +7,6 @@ export Loading from "./Loading";
 export Avatar from "./Avatar";
 export Empty from "./Empty";
 export Markdown from "./Markdown";
+export Removed from "./Removed";
+export Back from "./Back";
 export Icon, { IconLink } from "./Icon";

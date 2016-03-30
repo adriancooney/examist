@@ -4,7 +4,7 @@ import { compose } from "../../library/Selector";
 import * as User from "../User";
 import * as Course from "./Course"
 
-const Paper = new Resource("paper", "id");
+const Paper = new Resource("papers", "id");
 
 /*
  * Get a paper by course, year and period.

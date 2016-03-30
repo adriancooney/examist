@@ -1,0 +1,25 @@
+@import "../common/Colors";
+@import "../common/Spacing";
+
+.Comment {
+    .comment-actions {
+        border-top: 1px solid rgba($color-blue, 0.5);
+        padding: $spacing-padding/2 0;
+        font-size: 80%;
+
+        span, .Button {
+            margin: 0 $spacing-margin/2;
+        }
+
+        span {
+            margin-left: 0;
+            color: rgba(0,0,0,0.7);
+        }
+    }
+
+    .CommentList {
+        border-left: 2px solid rgba($color-blue, 0.4);
+        margin: $spacing-margin 0;
+        padding-left: $spacing-padding*2;
+    }
+}
