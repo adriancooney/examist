@@ -1,12 +1,12 @@
 import datetime
 from marshmallow import fields
 from sqlalchemy import select, func
-from sqlalchemy import Column, Integer, String, ForeignKey, UniqueConstraint, DateTime, Enum
+from sqlalchemy import Column, Integer, String, ForeignKey, UniqueConstraint, DateTime, Enum, Float
 from sqlalchemy.schema import Table
 from sqlalchemy.orm import relationship, backref, object_session
 from sqlalchemy.dialects import postgresql
 from server.library.model import Serializable
-from server.database import db
+from server.database import db, Model
 from server.library.model import querymethod
 from server.model.revision import Revision
 from server.model.course import Course
@@ -19,6 +19,13 @@ question_revisions = Table("question_revision", db.metadata,
     Column("question_id", Integer, ForeignKey("question.id")),
     Column("revision_id", Integer, ForeignKey("revision.id"))
 )
+
+class Similar(Model, Serializable):
+    __tablename__ = "similar_questions"
+    question_id = Column(Integer, ForeignKey("question.id"), primary_key=True)
+    similar_question_id = Column(Integer, ForeignKey("question.id"), primary_key=True)
+    similarity = Column(Float)
+    question = relationship("Question", foreign_keys=similar_question_id)
 
 class Question(Entity, Serializable):
     __tablename__ = "question"
@@ -50,7 +57,7 @@ class Question(Entity, Serializable):
     children = relationship("Question", back_populates="parent", foreign_keys=[parent_id], lazy="joined", join_depth=3)
     revision = relationship("Revision", secondary=question_revisions, uselist=False, lazy="joined")
     revisions = relationship("Revision")
-    likes = relationship("Like")
+    similar = relationship("Similar", foreign_keys=Similar.question_id)
 
     # Aggregates
     @property

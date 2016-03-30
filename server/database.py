@@ -6,3 +6,7 @@ db = SQLAlchemy(model_class=ModelBase)
 
 # For nicer exports
 Model = db.Model
+
+def get_model(name):
+    """Get a model by name."""
+    return Model._decl_class_registry.get(name)

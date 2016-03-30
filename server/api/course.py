@@ -40,3 +40,13 @@ def get_course(course):
         "course": course,
         "papers": course.papers
     })
+
+@Course.route("/course/<course>/index", methods=["PUT"])
+@use_kwargs({ "course": fields.Str(required=True) }, locations=("view_args",))
+@authorize
+def index_course_questions(course):
+    course = model.Course.getBy(db.session, code=course.upper())
+    indexed_questions = course.index_questions()
+    db.session.add_all(indexed_questions)
+    db.session.commit()
+    return success()

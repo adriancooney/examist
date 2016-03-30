@@ -1,4 +1,4 @@
-"""empty message
+"""New entity inheritance model and migrating questions.
 
 Revision ID: cf2e840ef9ee
 Revises: f724ae8ee68a
