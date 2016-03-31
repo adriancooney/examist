@@ -88,7 +88,7 @@ class QuestionsPanel extends Component {
 
         // Filter out undefined keys
         changes = Object.keys(changes)
-            .filter(key => !!changes[key])
+            .filter(key => typeof changes[key] !== "undefined")
             .reduce((newChanges, key) => { 
                 let nextKey = key;
 

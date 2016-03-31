@@ -6,11 +6,6 @@ import { Box } from "../layout";
 
 export default function QuestionPath(props) {
     const { full, question, paper, link } = props;
-    let path = (
-        <Box>
-            { Children.toArray(question.formatted_path.map(segment => <QuestionIndex link={link} index={segment} />)) }
-        </Box>
-    );
 
     let paperDetail;
     if(full) {
@@ -24,7 +19,7 @@ export default function QuestionPath(props) {
 
     return (
         <div className="QuestionPath">
-            { path }
+            <QuestionIndex full question={question} link={link} />
             { paperDetail }
         </div>
     );

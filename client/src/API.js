@@ -1,6 +1,6 @@
 import Debug from "debug";
 import fetch from "isomorphic-fetch";
-import { API_BASE_URL, DEBUG, TEST } from "./Config";
+import { API_BASE_URL, DEBUG } from "./Config";
 
 const debug = Debug("examist:api");
 

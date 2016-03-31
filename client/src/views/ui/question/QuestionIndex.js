@@ -1,19 +1,30 @@
 import "../../../../style/ui/Question.scss";
-import React, { PropTypes } from "react";
+import React, { PropTypes, Children } from "react";
 import { Link } from "react-router";
+import { Box } from "../layout";
 
 export default function QuestionIndex(props) {
+    const { question, link } = props;
+    let indexes = props.full ? question.path : question.path.slice(-1);
+
+    indexes = indexes.map((index, i, all) => {
+        let indexContent = index;
+
+        if(i === all.length - 1 && question.is_section)
+            indexContent = `Sec ${indexContent}`;
+
+        return <h5><Link to={link}>{ indexContent + "." }</Link></h5>;
+    });
+
     return (
-        <div className="QuestionIndex">
-            <h5><Link to={props.link}>{ props.index + "." }</Link></h5>
-        </div>
+        <Box className="QuestionIndex">
+            { Children.toArray(indexes) }     
+        </Box>
     );
 }
 
 QuestionIndex.propTypes = {
-    index: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number
-    ]).isRequired,
+    question: PropTypes.object.isRequired,
+    full: PropTypes.bool,
     link: PropTypes.string.isRequired
 };

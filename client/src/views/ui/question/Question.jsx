@@ -4,7 +4,7 @@ import { Link } from "react-router";
 import { omit } from "lodash/object";
 import { capitalize } from "lodash/string";
 import { DEBUG } from "../../../Config";
-import { Field, Select } from "../input";
+import { Field, Select, BinarySelect } from "../input";
 import { TextButton } from "../input/Button";
 import { Box, Flex } from "../layout";
 import { Editor } from "../editor";
@@ -41,11 +41,11 @@ export default class Question extends Component {
             <Box className={classify("Question", { "no-content": !hasContent, editing, "single-view": singleView })}>
                 <div>
                     { this.renderIndex() }
-                    { (editable && hasChildren) ? actions : void 0 }
+                    { (!editing && editable && hasChildren) ? actions : void 0 }
                 </div>
                 <Flex className="question-main">
                     { this.renderContent() }
-                    { ((editable && !hasChildren) || (!editable && hasContent)) ? actions : void 0 }
+                    { (editing || (editable && !hasChildren) || (!editable && hasContent)) ? actions : void 0 }
                     { this.renderChildren() }
                     { this.props.children }
                 </Flex>
@@ -81,7 +81,7 @@ export default class Question extends Component {
         const { editing } = this.state;
 
         if(editing) {
-            const options = {
+            const indexTypes = {
                 alpha: "Alpha",
                 decimal: "Decimal",
                 roman: "Roman"
@@ -92,10 +92,13 @@ export default class Question extends Component {
                     <Editor ref="editor" defaultValue={question.revision && question.revision.content} />
                     <Box>
                         <Field label="Index Type">
-                            <Select options={options} ref="indexType" defaultValue={question.index_type}/>
+                            <Select options={indexTypes} ref="indexType" defaultValue={question.index_type}/>
                         </Field>
                         <Field label="Marks">
                             <input type="number" ref="marks" min={0} max={150} defaultValue={question.marks || 0}/>
+                        </Field>
+                        <Field label="Is section?">
+                            <BinarySelect defaultValue={question.is_section} ref="isSection" />
                         </Field>
                     </Box>
                 </div>
@@ -172,20 +175,21 @@ export default class Question extends Component {
             actions = actions.concat([<Flex/>, <Marks marks={question.marks} />]);
 
         return (
-            <QuestionActions vertical={editable && hasChildren}>
+            <QuestionActions vertical={!editing && editable && hasChildren}>
                 { Children.toArray(actions) }
             </QuestionActions>
         );
     }
 
     renderIndex() {
-        const { question, fullPath, singleView } = this.props;
         const link = this.getLink();
+        let { question, fullPath, singleView } = this.props;
+        fullPath = fullPath || singleView;
 
-        if(singleView || fullPath) {
-            return <QuestionPath link={link} question={question} paper={this.getPaper()} full={!singleView} />;
+        if(fullPath) {
+            return <QuestionPath link={link} question={question} paper={this.getPaper()} full={fullPath} />;
         } else {
-            return <QuestionIndex link={link} index={question.formatted_path[question.formatted_path.length - 1]} />
+            return <QuestionIndex link={link} question={question} />
         }
     }
 
@@ -208,9 +212,10 @@ export default class Question extends Component {
         const content = this.refs.editor.getValue();
         const marks = this.refs.marks.value;
         const indexType = this.refs.indexType.getValue();
+        const is_section = this.refs.isSection.getValue();
 
         this.props.onEdit(this.props.question, {
-            content, indexType,
+            content, indexType, is_section,
             marks: marks ? parseInt(marks) : null
         });
 

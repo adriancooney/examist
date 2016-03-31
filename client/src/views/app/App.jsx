@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as model from "../../model";
 import { FlexBox } from "../ui/layout";
-import { selector } from "../../library/Selector";
 import ErrorPage from "../ui/error/ErrorPage";
 
 export class App extends Component {

@@ -1,7 +1,7 @@
 import datetime
 from marshmallow import fields
 from sqlalchemy import select, func
-from sqlalchemy import Column, Integer, String, ForeignKey, UniqueConstraint, DateTime, Enum, Float
+from sqlalchemy import Column, Integer, String, ForeignKey, UniqueConstraint, DateTime, Enum, Float, Boolean
 from sqlalchemy.schema import Table
 from sqlalchemy.orm import relationship, backref, object_session
 from sqlalchemy.dialects import postgresql
@@ -44,6 +44,7 @@ class Question(Entity, Serializable):
     # IMPORTANT: Question indexes start from ONE.
     index = Column(Integer) # The questions position in the list
     index_type = Column(Enum("decimal", "alpha", "roman", name="index_type"), default="decimal")
+    is_section = Column(Boolean, default=False)
 
     # We retain path information to the question for the following reasons:
     # 1. Traversing the tree is expensive.

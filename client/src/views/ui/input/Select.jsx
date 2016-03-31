@@ -45,6 +45,6 @@ export class BinarySelect extends Component {
     }
 
     getValue() {
-        return this.refs.select.getValue();
+        return this.refs.select.getValue() === "true" ? true : false;
     }
 }

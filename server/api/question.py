@@ -5,7 +5,7 @@ from marshmallow import validate
 from webargs import fields
 from webargs.flaskparser import use_kwargs, parser
 from server import model, config
-from server.cache import cache_view
+from server.cache import cache_view, invalidate_view
 from server.middleware import authorize
 from server.database import db
 from server.response import respond, success
@@ -26,7 +26,7 @@ POST_PARAMS = model.Question.__schema__(
 )
 
 PUT_PARAMS = model.Question.__schema__(
-    only=("index_type", "content", "marks"),
+    only=("index_type", "content", "marks", "is_section"),
     partial=True
 )
 
@@ -65,6 +65,7 @@ def do_question(course, year, period, question):
     else:
         args = None
 
+    question_path = question
     question = model.Question.get_by_path(db.session, course, year, period, map(int, question.split(".")))
 
     if request.method == "GET":
@@ -72,7 +73,7 @@ def do_question(course, year, period, question):
             "question": question,
             "children": question.flatten_tree(include_self=False)
         })
-    else: 
+    else:
         if request.method == "PUT":
             updated = []
 
@@ -87,16 +88,20 @@ def do_question(course, year, period, question):
                 question.update_index_type(args["index_type"])
 
                 # Update the indexes of all siblings
-                for sibling in question.parent.children:
-                    sibling.update_index_type(args["index_type"])
-                    updated.append(sibling)
+                if question.parent:
+                    for sibling in question.parent.children:
+                        sibling.update_index_type(args["index_type"])
+                        updated.append(sibling)
+
+            if "is_section" in args:
+                question.is_section = args["is_section"]
 
             updated.append(question)
             db.session.add_all(updated)
             db.session.commit()
             map(db.session.refresh, updated)
 
-            return respond({ "questions": updated })
+            response = { "questions": updated }
         elif request.method == "POST":
             # Create a child question    
             paper = model.Paper.find(db.session, course, year, period)
@@ -114,7 +119,7 @@ def do_question(course, year, period, question):
             getattr(new_question, "paper")
             getattr(new_question, "parent")
 
-            return respond({ "question": new_question })
+            response = { "question": new_question }
         elif request.method == "DELETE":
             if len(question.children):
                 raise Forbidden("Question still has children. Please remove children before removing.")
@@ -135,7 +140,16 @@ def do_question(course, year, period, question):
             db.session.commit()
             map(db.session.refresh, modified)
 
-            return respond({ "questions": modified })
+            response = { "questions": modified }
+
+        # Invalidate the cache
+        invalidate_view("question.do_question", course=course, year=year, period=period, question=question_path)
+        invalidate_view("question.get_similar", course=course, year=year, period=period, question=question_path)
+        invalidate_view("paper.get_paper", course=course, year=year, period=period)
+        invalidate_view("course.get_popular", course=course)
+
+
+        return respond(response)
             
 @Question.route("/course/<course>/paper/<year>/<period>/q/<question>/similar", methods=["GET"])
 @use_kwargs(URL_PARAMS, locations=("view_args",))

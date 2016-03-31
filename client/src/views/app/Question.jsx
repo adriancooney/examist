@@ -127,7 +127,7 @@ export default class QuestionView extends Component {
             <div>
                 <Back to={this.getPaperLink()}>Back to paper</Back>
                 <div className="QuestionView">
-                    <Question course={course} paper={paper} question={question} singleView activeView={view}>
+                    <Question course={course} paper={paper} question={question} singleView fullPath activeView={view}>
                         { content }
                     </Question>
                 </div>
