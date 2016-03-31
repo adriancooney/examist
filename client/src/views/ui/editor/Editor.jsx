@@ -2,6 +2,7 @@ import "../../../../style/Editor.scss";
 import React, { Component } from "react";
 import { Box, Flex } from "../layout";
 import { Button } from "../input";
+import { Empty } from "../";
 import Preview from "./Preview";
 
 export default class Editor extends Component {
@@ -20,7 +21,11 @@ export default class Editor extends Component {
         let content, actions;
 
         if(this.state.previewing) {
-            content = <Preview>{ this.state.value }</Preview>
+            if(this.state.value.length) {
+                content = <Preview>{ this.state.value }</Preview>
+            } else {
+                content = <Empty><p>No preview.</p></Empty>;
+            }
         } else {
             content = (
                 <textarea 
