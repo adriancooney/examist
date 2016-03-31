@@ -5,17 +5,17 @@ import { Enum } from "../../../Util";
 
 export const PAPER_TYPE = Enum(
     "UNAVAILABLE", // The paper was not available on the server
-    "UNINDEXED", // The paper is available but not yet indexed
+    "NOPAPER", // There is not paper for that year/period
     "AVAILABLE" // The paper is available and is indexed
 );
 
 export default function PaperDot(props) {
-    let type = PAPER_TYPE.UNAVAILABLE;
+    let type = PAPER_TYPE.NOPAPER;
     let link = null;
 
     if(props.paper) {
         let paper = props.paper;
-        type = PAPER_TYPE.AVAILABLE;
+        type = paper.link ? PAPER_TYPE.AVAILABLE : PAPER_TYPE.UNAVAILABLE;
         link = <Link to={`/course/${props.course.code}/paper/${paper.year_start}/${paper.period}`}/>
     }
 

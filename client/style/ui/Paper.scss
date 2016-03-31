@@ -44,7 +44,7 @@
     width: 20px;
     height: 20px;
     border-radius: 20px;
-    background-color: $color-papergrid-unavailable;
+    background-color: $color-papergrid-nopaper;
 
     a {
         display: inline-block;
@@ -52,14 +52,28 @@
         height: 100%;
     }
 
+    &.link-active {
+        border-width: 5px;
+        border-style: solid;
+        transform: scale(2);
+    }   
+
     &.link-available {
-        background-color: $color-papergrid-available;
+        background-color: $color-papergrid-available; 
+
+        &.link-active {
+            border-color: $color-papergrid-available;
+            background: lighten($color-papergrid-available, 30%);
+        }
     }
 
-    &.link-active {
-        border: 5px solid $color-papergrid-available;
-        background: lighten($color-papergrid-available, 30%);
-        transform: scale(2);
+    &.link-unavailable {
+        background-color: $color-papergrid-unavailable; 
+
+        &.link-active {
+            border-color: $color-papergrid-unavailable;
+            background: lighten($color-papergrid-unavailable, 30%);
+        }
     }
 }
 

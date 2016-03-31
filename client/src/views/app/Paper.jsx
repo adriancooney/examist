@@ -2,9 +2,11 @@ import React, { Component, PropTypes } from "react";
 import { Link } from "react-router";
 import { connect } from "react-redux";
 import { isPending } from "redux-pending";
+import { capitalize } from "lodash/string";
 import * as model from "../../model";
 import { Loading, Empty, Icon } from "../ui";
 import { Box } from "../ui/layout";
+import { ErrorPage } from "../ui/error";
 import { PaperInfo } from "../ui/paper";
 import { Questions } from "../ui/question";
 
@@ -65,6 +67,15 @@ class Paper extends Component {
             return <Loading />;
         }
 
+        if(!paper.link) {
+            console.log("ERROR PAGE", ErrorPage);
+            return (
+                <ErrorPage title="Paper not available online.">
+                    <p>{`Unfortunately the ${paper.year_start} ${capitalize(paper.period)} for ${course.code} is not available online.`}</p> 
+                </ErrorPage>
+            );
+        }
+
         if(paper.questions) {
             if(questions.length) {
                 content = (
@@ -90,7 +101,7 @@ class Paper extends Component {
                     <PaperInfo course={course} paper={paper} />
                 </Box>
             );
-        } else return <Empty />;
+        } return <Empty />;
     }
 
     getParserLink() {

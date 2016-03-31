@@ -1,8 +1,7 @@
-import React, { Children } from "react";
+import React from "react";
 import { Link } from "react-router";
 import { capitalize } from "lodash/string";
 import QuestionIndex from "./QuestionIndex";
-import { Box } from "../layout";
 
 export default function QuestionPath(props) {
     const { full, question, paper, link } = props;
