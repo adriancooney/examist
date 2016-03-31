@@ -1,8 +1,9 @@
-from flask import Blueprint, request, g
+from flask import Blueprint, request, g, current_app
 from sqlalchemy.orm import with_polymorphic
 from webargs import fields, validate
 from webargs.flaskparser import use_kwargs, parser
 from marshmallow import missing
+from server.cache import cache_view, invalidate_view
 from server.database import db
 from server.response import respond, success
 from server.library.util import merge
@@ -30,6 +31,24 @@ def create_comment(entity, content, parent):
     db.session.commit()
     db.session.refresh(comment) # Conversion from Entity type to Comment
 
+    # Now we invalidate some cache so they pick up the new comments
+    if entity.type == "question":
+        # Empty the course popular questions
+        invalidate_view("course.get_popular")
+
+        db.session.refresh(entity)
+
+        question = entity
+        paper = entity.paper
+        course = paper.course
+
+        # Invalidate the question's paper
+        invalidate_view("paper.get_paper", course=course.code, year=paper.year_start, period=paper.period)
+        invalidate_view("question.do_question", course=course.code, year=paper.year_start, period=paper.period, question=".".join(map(str, question.path)))
+
+    # Invalidate the comment cache for specific entity
+    invalidate_view("comment.get_comments", entity=entity.id)
+
     return respond({ "comment": comment })
 
 @Comment.route("/comment/<int:entity>/<int:comment>", methods=["PUT", "DELETE"])
@@ -50,6 +69,19 @@ def edit_comment(entity, comment):
         args = parser.parse({ "content": fields.Str(required=True) })
         comment.content = args["content"]
 
+    # Fix up the cache    
+    if entity.type == "question":
+        db.session.refresh(entity)
+
+        question = entity
+        paper = entity.paper
+        course = paper.course
+
+        invalidate_view("question.do_question", course=course.code, year=paper.year_start, period=paper.period, question=".".join(map(str, question.path)))
+
+    # Invalidate the comment cache for specific entity
+    invalidate_view("comment.get_comments", entity=entity.id)
+    
     db.session.add(comment)
     db.session.commit()
     db.session.refresh(comment)
@@ -61,6 +93,8 @@ def edit_comment(entity, comment):
     })
     
 @Comment.route("/comments/<int:entity>", methods=["GET"])
+@authorize
+@cache_view
 def get_comments(entity):
     with query(model.Entity):
         entity = db.session.query(model.Entity).filter(model.Entity.id == entity).one()

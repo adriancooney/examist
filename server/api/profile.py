@@ -9,7 +9,7 @@ from server.middleware import authorize
 from server.library.schema import schema
 from server.exc import NotFound, UnacceptableParameter
 
-Profile = Blueprint("Profile", __name__)
+Profile = Blueprint("profile", __name__)
 
 # Add via ID
 patchParams = { "course": fields.Int(required=True) }

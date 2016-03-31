@@ -12,15 +12,8 @@ def test_user_comment(user, questions, session):
     session.add(user)
     session.commit()
 
-    session.refresh(question)
-    assert len(question.comments)
-    assert question.comments[0].content == content
-
 def test_user_like(user, questions, session):
     question = questions[0]
     user.like(question)
     session.add(user)
     session.commit()
-
-    session.refresh(question)
-    assert len(question.likes)

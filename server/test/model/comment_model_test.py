@@ -8,16 +8,13 @@ def test_comment_with_entity(session):
     session.add(com)
     session.commit()
 
-    session.refresh(com)
-    assert com.entity
-    assert isinstance(com.entity, Solution)
-
 def test_comment_with_parent(session):
-    parent = Comment(None, None, None)
-    child = Comment(None, None, None, parent=parent)
+    sol = Solution()
+    parent = Comment(None, sol, None)
+    child = Comment(None, sol, None, parent=parent)
 
     session.add(child)
     session.commit()
 
     session.refresh(parent)
-    print parent.children
+    assert parent.children
