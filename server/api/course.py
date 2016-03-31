@@ -47,9 +47,8 @@ def get_course(course):
 def get_popular(course):
     course = model.Course.getBy(db.session, code=course.upper())
 
-    return respond({ 
+    return respond({
         "course": course,
-        "papers": course.papers,
         "popular_questions": course.popular_questions
     })
 

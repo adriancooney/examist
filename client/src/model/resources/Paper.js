@@ -33,6 +33,8 @@ export const selectQuestions = questions => state => {
     return questions.map(id => state.resources.questions.find(q => q.id === id));
 };
 
+export const selectById = id => state => state.resources.papers.find(paper => paper.id === id);
+
 /*
  * Select a paper including questions. See `selectPaper` for params.
  */
@@ -72,4 +74,6 @@ Paper.handleAction("REMOVE_QUESTION", (papers, [removedQuestion]) => {
  */
 Paper.addProducer(Course.getCourse, ({ papers }) => papers);
 Paper.addProducer(getPaper, ({ paper }) => paper);
+Paper.addProducer("GET_SIMILAR_QUESTIONS", ({ papers }) => papers);
+
 export default Paper;

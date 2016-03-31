@@ -20,10 +20,12 @@ export default function Questions(props) {
         rootQuestions = questions.map(q => q.id);
 
     return (
-        <QuestionList {...omit(props, "papers")} 
-            questions={rootQuestions}
-            getPaper={getPaper}
-            getQuestion={getQuestion} />
+        <div className="Questions">
+            <QuestionList {...omit(props, "papers")} 
+                questions={rootQuestions}
+                getPaper={getPaper}
+                getQuestion={getQuestion} />
+        </div>
     );
 }
 

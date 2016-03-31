@@ -10,6 +10,7 @@ import { Box, Flex } from "../layout";
 import { Editor } from "../editor";
 import { Empty, Markdown } from "../";
 import { classify } from "../../../Util";
+import QuestionPath from "./QuestionPath";
 import QuestionIndex from "./QuestionIndex";
 import QuestionActions from "./QuestionActions";
 import Marks from "./Marks";
@@ -30,14 +31,14 @@ export default class Question extends Component {
     }
 
     render() {
-        const { editable, fullView } = this.props;
+        const { editable, singleView } = this.props;
         const { editing } = this.state;
         const actions = this.renderActions();
         const hasContent = this.hasContent();
         const hasChildren = this.hasChildren();
 
         return (
-            <Box className={classify("Question", { "no-content": !hasContent, editing, "full-view": fullView })}>
+            <Box className={classify("Question", { "no-content": !hasContent, editing, "single-view": singleView })}>
                 <div>
                     { this.renderIndex() }
                     { (editable && hasChildren) ? actions : void 0 }
@@ -119,7 +120,7 @@ export default class Question extends Component {
 
         if(children.length > 0) {
             // Create a new question list
-            return <QuestionList {...omit(this.props, "fullView", "className")} questions={children} />;
+            return <QuestionList {...omit(this.props, "fullView", "fullPath", "className")} questions={children} />;
         }
     }
 
@@ -178,25 +179,19 @@ export default class Question extends Component {
     }
 
     renderIndex() {
-        const { question, fullPath, fullView } = this.props;
+        const { question, fullPath, singleView } = this.props;
         const link = this.getLink();
 
-        if(fullView || fullPath) {
-            return (
-                <Box>
-                    { Children.toArray(question.formatted_path.map(segment => <QuestionIndex link={link} index={segment} />)) }
-                </Box>
-            );
+        if(singleView || fullPath) {
+            return <QuestionPath link={link} question={question} paper={this.getPaper()} full={!singleView} />;
         } else {
             return <QuestionIndex link={link} index={question.formatted_path[question.formatted_path.length - 1]} />
         }
     }
 
     getLink() {
-        let { question, course, paper, getPaper } = this.props;
-
-        if(!paper && getPaper)
-            paper = getPaper(question.paper_id);
+        const { question, course } = this.props;
+        const paper = this.getPaper();
 
         return `/course/${course.code}/paper/${paper.year_start}/${paper.period}/q/${question.path.join(DEBUG ? "-" : ".")}`;
     }
@@ -223,6 +218,10 @@ export default class Question extends Component {
             editing: false,
             __tempContent: content
         });
+    }
+
+    getPaper() {
+        return this.props.paper || this.props.getPaper(this.props.question.paper_id);
     }
 }
 

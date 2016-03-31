@@ -27,6 +27,7 @@ export default class QuestionView extends Component {
                 selection.comments.forEach(comment => comment.user = model.resources.People.selectById(comment.user_id)(state));
             } else if(view === "similar") {
                 selection.similar = model.resources.Question.selectSimilar(question.id)(state);
+                selection.papers = selection.similar.map(sim => model.resources.Paper.selectById(sim.paper_id)(state));
             }
         }
 
@@ -81,7 +82,7 @@ export default class QuestionView extends Component {
     }
 
     render() {
-        const { question, user, isLoading } = this.props;
+        const { papers, question, user, isLoading } = this.props;
         const { course, paper } = this.context;
 
         if(!question)
@@ -107,10 +108,11 @@ export default class QuestionView extends Component {
                 content = (
                     <Questions 
                         className="similar-questions"
-                        paper={paper}
+                        papers={papers}
                         course={course}
                         questions={similar}
-                        similarView fullPath />
+                        similarView
+                        fullPath />
                 );
             } else {
                 content = (
@@ -125,7 +127,7 @@ export default class QuestionView extends Component {
             <div>
                 <Back to={this.getPaperLink()}>Back to paper</Back>
                 <div className="QuestionView">
-                    <Question course={course} paper={paper} question={question} fullView activeView={view}>
+                    <Question course={course} paper={paper} question={question} singleView activeView={view}>
                         { content }
                     </Question>
                 </div>

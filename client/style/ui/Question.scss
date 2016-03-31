@@ -52,11 +52,11 @@
         font-family: $font-reading;
     }
 
-    &.editing, &.full-view {
+    &.editing, &.single-view {
         .question-main > .QuestionActions { opacity: 1; }
     }
 
-    &.full-view {
+    &.single-view {
         > .question-main > .question-content > .Markdown {
             font-size: 125%;
         }
@@ -88,8 +88,45 @@
 
 .QuestionIndex {
     h5 {
-        margin: $spacing-margin 0;
+        margin: $spacing-margin 0 $spacing-margin/3;
         margin-right: $spacing-margin * 2;
         font-size: 120%;
     }
+}
+
+.QuestionPath {
+
+    h4 {
+        font-size: normal;
+        font-size: 80%;
+    }
+
+    h3, h4 {
+        margin: 0;
+        text-align: center;
+    }
+
+    .paper-detail {
+        display: inline-block;
+        min-width: 70%;
+        padding: $spacing-padding/3;
+        margin-top: $spacing-margin/2;
+        border-top: 1px solid rgba($color-blue, 0.4);
+        background: $color-blue;
+        border-radius: $spacing-radius;
+
+        a {
+            color: white;
+        }
+
+        &:hover {
+            opacity: 1;
+            transition: opacity 300ms;
+        }
+    }
+}
+
+.Questions {
+    background: white;
+    padding: $spacing-padding $spacing-padding*2;   
 }

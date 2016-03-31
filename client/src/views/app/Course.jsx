@@ -72,14 +72,11 @@ class Course extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if(nextProps.location !== this.props.location && !nextProps.children) {
-            this.props.getPopular(this.props.params.course);
-        } else {
-            const { course } = nextProps;
+        const { course } = nextProps;
 
-            if(course && !this.props.children && !nextProps.isLoadingPopular && !course.popular_questions) 
-                this.props.getPopular(this.props.params.course);
-        }
+        // This is after the course has loaded or on navigation
+        if(course && !nextProps.children && !nextProps.isLoadingPopular && !course.popular_questions) 
+            this.props.getPopular(this.props.params.course);
     }
 
     render() {
@@ -99,7 +96,7 @@ class Course extends Component {
                                 papers={papers} 
                                 questions={this.props.popularQuestions} 
                                 course={course} 
-                                sorted fullView singleView />
+                                sorted fullPath />
                         </div>
                     );
                 } else children = <Loading />;

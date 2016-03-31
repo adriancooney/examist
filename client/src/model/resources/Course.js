@@ -74,6 +74,5 @@ Course.handleAction(getPopular, updateResources((c, { course }) => {
 
 Course.addProducer(User.getCourses, ({ courses }) => courses);
 Course.addProducer(search, ({ courses }) => courses);
-Course.addProducer("GET_PAPER", ({ course }) => course);
 
 export default Course;

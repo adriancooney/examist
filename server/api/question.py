@@ -141,7 +141,10 @@ def do_question(course, year, period, question):
 def get_similar(course, year, period, question):
     question = model.Question.get_by_path(db.session, course, year, period, map(int, question.split(".")))
     similar = map(lambda similar: similar.similar_question, question.similar)
+    papers = map(lambda similar: similar.paper, similar) + [question.paper]
+
     return respond({ 
         "similar": similar,
-        "question": question
+        "question": question,
+        "papers": papers
     })
