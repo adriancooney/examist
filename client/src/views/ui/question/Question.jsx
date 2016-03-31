@@ -229,7 +229,7 @@ export default class Question extends Component {
 // dependency. Annoying we can't split them up but cleaner in 
 // the long run.
 export function QuestionList(props) {
-    let { questions, course, getQuestion, paper, getPaper } = props;
+    let { questions, getQuestion, paper, getPaper } = props;
         
     questions = questions.map(getQuestion)
 

@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react";
+import { omit } from "lodash/object";
 import { Link } from "react-router";
 
 export default function Icon(props) {
@@ -19,5 +20,7 @@ Icon.propTypes = {
 };
 
 export function IconLink(props) {
-    return (<Link to={props.to}><Icon {...props} /></Link>);
+    let children = props.children;
+    if(typeof children === "string") children = " " + children;
+    return (<Link to={props.to}><Icon {...omit(props, "children")} />{ children }</Link>);
 }

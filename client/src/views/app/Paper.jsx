@@ -67,11 +67,13 @@ class Paper extends Component {
 
         if(paper.questions) {
             if(questions.length) {
-                content = <Questions 
-                    toplevel
-                    course={course} 
-                    paper={paper} 
-                    questions={questions}/>;
+                content = (
+                    <Questions 
+                        toplevel
+                        course={course} 
+                        paper={paper} 
+                        questions={questions}/>
+                );
             } else {
                 content = (
                     <div className="paper-empty">
