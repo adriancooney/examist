@@ -47,6 +47,7 @@ def create_question(course, year, period):
     # Load the paper
     getattr(question, "paper")
     getattr(question, "comment_count")
+    getattr(question, "similar_count")
 
     return respond({ "question": question })
 
@@ -134,3 +135,13 @@ def do_question(course, year, period, question):
 
             return respond({ "questions": modified })
             
+@Question.route("/course/<course>/paper/<year>/<period>/q/<question>/similar", methods=["GET"])
+@use_kwargs(URL_PARAMS, locations=("view_args",))
+@authorize
+def get_similar(course, year, period, question):
+    question = model.Question.get_by_path(db.session, course, year, period, map(int, question.split(".")))
+    similar = map(lambda similar: similar.similar_question, question.similar)
+    return respond({ 
+        "similar": similar,
+        "question": question
+    })

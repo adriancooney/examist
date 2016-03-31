@@ -1,7 +1,5 @@
 import Debug from "debug";
 import fetch from "isomorphic-fetch";
-import { range } from "lodash/util";
-import { random } from "lodash/number";
 import { API_BASE_URL, DEBUG, TEST } from "./Config";
 
 const debug = Debug("examist:api");
@@ -130,6 +128,15 @@ export default class API {
     }
 
     /**
+     * Get a course and popular questions.
+     * @param  {String} code Code e.g. CT470
+     * @return {Promise} -> {Object}
+     */
+    getPopular(code) {
+        return this.request("GET", `/course/${code}/popular`);
+    }
+
+    /**
      * Search for courses.
      * @param  {String} query The query.
      * @return {Promise} -> {Object{courses: Array}}
@@ -196,6 +203,19 @@ export default class API {
      */
     getQuestion(course, year, period, path) {
         return this.request("GET", `/course/${course}/paper/${year}/${period}/q/${path}`);
+    }
+
+    /**
+     * Get similar questions.
+     * 
+     * @param  {String} course   Course code.
+     * @param  {Number} year     The paper year.
+     * @param  {String} period   The paper's period.
+     * @param  {String} path     The question's path.
+     * @return {Promise} -> {Response}
+     */
+    getSimilarQuestions(course, year, period, path) {
+        return this.request("GET", `/course/${course}/paper/${year}/${period}/q/${path}/similar`);
     }
 
     /**
@@ -315,42 +335,3 @@ export class HTTPError extends Error {
 
 export class InvalidResponse extends Error {}
 export class InvalidAuthKey extends Error {}
-
-/*
- * Dummy data generators
- */
-const Generator = {
-    course(code) {
-        return {
-            code,
-            name: "Maths",
-            papers: range(5).map((v, i) => ({ 
-                ...Generator.paper(code, 2015 - i, ["autumn", "winter", "summer"][random(0, 2)]),
-                isIndexed: random(0, 1) == 0
-            }))
-        }
-    },
-
-    paper(course, year, period) {
-        let id = Generator.getUID();
-        return {
-            id,
-            questions: range(10).map(Generator.question.bind(null, id)),
-            course, year, period
-        };
-    },
-
-    question(paper) {
-        return {
-            paper,
-            id: Generator.getUID(),
-            content: "What is the highest point on planet earth?",
-            path: [1, 1]
-        }
-    },
-
-    __uid: 0,
-    getUID() {
-        return Generator.__uid++;
-    }
-};

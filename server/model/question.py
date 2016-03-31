@@ -5,6 +5,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey, UniqueConstraint, Da
 from sqlalchemy.schema import Table
 from sqlalchemy.orm import relationship, backref, object_session
 from sqlalchemy.dialects import postgresql
+from sqlalchemy.ext.hybrid import hybrid_property
 from server.library.model import Serializable
 from server.database import db, Model
 from server.library.model import querymethod
@@ -25,7 +26,7 @@ class Similar(Model, Serializable):
     question_id = Column(Integer, ForeignKey("question.id"), primary_key=True)
     similar_question_id = Column(Integer, ForeignKey("question.id"), primary_key=True)
     similarity = Column(Float)
-    question = relationship("Question", foreign_keys=similar_question_id)
+    similar_question = relationship("Question", foreign_keys=similar_question_id)
 
 class Question(Entity, Serializable):
     __tablename__ = "question"
@@ -62,20 +63,21 @@ class Question(Entity, Serializable):
     # Aggregates
     @property
     def comment_count(self):
-        return object_session(self)\
-            .scalar(
-                select([ func.count(Comment.id) ])\
-                    .where(Comment.entity_id == self.id)
-            )
+        return object_session(self).scalar(select([ func.count(Comment.id) ]).where(Comment.entity_id == self.id))
 
+    @hybrid_property
+    def similar_count(self):
+        return len(self.similar)
 
     class Meta:
         created_at = dict(load_only=True)
         revision = dict(only=("user", "content", "created_at"))
+        similar = dict(only=("similar_question_id", "similarity"))
+
         include = dict(content=fields.Str())
         exclude=("type",)
         additional=("id",)
-        custom=dict(comment_count=fields.Int())
+        custom=dict(comment_count=fields.Int(), similar_count=fields.Int())
 
     def __init__(self, paper, index, index_type=None, parent=None):
         self.paper = paper

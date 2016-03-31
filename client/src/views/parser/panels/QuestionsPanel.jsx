@@ -1,8 +1,7 @@
 import React, { Component, Children, PropTypes } from "react";
 import { connect } from "react-redux";
 import { Empty, Icon } from "../../ui";
-import { PaperView } from "../../ui/paper";
-import { QuestionActions } from "../../ui/question";
+import { QuestionActions, Questions } from "../../ui/question";
 import { TextButton } from "../../ui/input/Button";
 import Panel from "../../ui/parser/Panel";
 import * as model from "../../../model";
@@ -32,11 +31,11 @@ class QuestionsPanel extends Component {
 
         if(paper.questions && paper.questions.length) {
             content = Children.toArray([
-                <PaperView
+                <Questions
                     course={course} 
                     paper={paper}
                     questions={questions}
-                    editable
+                    editable toplevel
                     onAdd={::this.addQuestion} 
                     onRemove={::this.removeQuestion}
                     onEdit={::this.editQuestion} />,

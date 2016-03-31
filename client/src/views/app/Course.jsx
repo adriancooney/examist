@@ -6,12 +6,13 @@ import { matchesProperty } from "lodash/util";
 import { isPending } from "redux-pending";
 import * as model from "../../model";
 import { PaperGrid } from "../ui/paper";
+import { Questions } from "../ui/question";
 import { Loading } from "../ui/";
 import { Box, Flex } from "../ui/layout";
 
 class Course extends Component {
     static selector = (state, { params }) => {
-        let papers, paper;
+        let papers, paper, popularQuestions;
         const course = model.resources.Course.selectByCode(params.course)(state);
 
         if(course) {
@@ -23,17 +24,23 @@ class Course extends Component {
                     year: parseInt(params.year), 
                     course: course.id 
                 })(state);
+            } else if(course.popular_questions) {
+                popularQuestions = course.popular_questions.map(id => {
+                    return state.resources.questions.find(q => q.id === id);
+                });
             }
+
         }
         
         return {
-            course, papers, paper,
-            isLoadingCourse: isPending(model.resources.Course.getCourse.type)(state)
+            course, papers, paper, popularQuestions,
+            isLoadingCourse: isPending("GET_COURSE")(state) || isPending("GET_POPULAR")(state)
         };
     };
 
     static actions = {
-        getCourse: model.resources.Course.getCourse
+        getCourse: model.resources.Course.getCourse,
+        getPopular: model.resources.Course.getPopular
     };
 
     static childContextTypes = {
@@ -50,22 +57,42 @@ class Course extends Component {
 
     componentWillMount() {
         const { course, papers } = this.props;
+
+        let getCourse = this.props.children ? this.props.getCourse : this.props.getPopular;
+
         if(!course)
-            this.props.getCourse(this.props.params.course);
+            getCourse(this.props.params.course);
 
         // This is for the instance when we the course has been loaded
         // but not all the papers have been loaded. We loop over each
         // paper id in the course's papers and check if it's loaded.
         if(course && papers && !course.papers.every(id => some(papers, matchesProperty("id", id))))
-            this.props.getCourse(this.props.params.course);
+            getCourse(this.props.params.course);
     }
 
     render() {
-        let { course, papers, paper } = this.props;
+        let { course, papers, paper, children } = this.props;
 
         if(this.props.isLoadingCourse) {
             return <Loading />
         } else if(course) {
+            if(!children) {
+                if(this.props.popularQuestions) {
+                    this.props.popularQuestions.sort((a, b) => a.similar_count > b.similar_count ? -1 : 1)
+
+                    children = (
+                        <div className="popular-questions">
+                            <h3>{`Popular questions in ${course.code}`}</h3>
+                            <Questions 
+                                papers={papers} 
+                                questions={this.props.popularQuestions} 
+                                course={course} 
+                                sorted fullView singleView />
+                        </div>
+                    );
+                } else children = <Loading />;
+            }
+
             return (
                 <Flex className="Course">
                     <Box className="course-header">
@@ -73,9 +100,9 @@ class Course extends Component {
                         <Flex><h3>{ course.name }</h3></Flex>
                     </Box>
                     
-                    <PaperGrid papers={papers} course={course} currentPaper={paper}/>
+                    <PaperGrid papers={papers} course={course} currentPaper={paper} />
 
-                    { this.props.children }
+                    { children }
                 </Flex>
             );
         } else return (<div>Course not found.</div>);

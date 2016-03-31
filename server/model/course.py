@@ -7,8 +7,10 @@ from nltk.tokenize import RegexpTokenizer
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import func
 from sqlalchemy.orm import relationship, object_session
 from sqlalchemy.schema import UniqueConstraint
+from server.library.util import find
 from server.library.model import Serializable
 from server.database import Model, get_model
 from server.model.institution import Institution
@@ -152,13 +154,17 @@ class Course(Model, Serializable):
         # Generate the similarity objects
         return [Similar(question=q, similarity=s) for q, s in zip(self.questions, similarity)]
 
-    def get_popular_questions(self):
+    @property
+    def popular_questions(self):
         """Find the most popular questions. 
 
         This loops through all the questions, find's the similar questions
         and ranks them by sum(similarity)
         """
         session = object_session(self)
+        Similar = get_model("Similar")
+        Question = get_model("Question")
+        Paper = get_model("Paper")
 
         # SQL:
         # exam_papers=# select question_id, sum(similarity) as similarity from similar_questions 
@@ -173,8 +179,21 @@ class Course(Model, Serializable):
         questions = session.query(Question)\
             .join(popular, Question.id == popular.c.question_id)\
             .join(Paper, Paper.id == Question.paper_id)\
-            .filter(Paper.module_id == self.id)\
+            .filter(Paper.course_id == self.id)\
             .order_by(popular.c.cum_similarity.desc())\
-            .limit(25)
+            .limit(25)\
+            .all()
 
-        return questions.all()
+        # Now we pick only one of a similar group of questions
+        # A graph DB would be handy right about now
+        grouped = []
+        for question in questions:
+            inside = False
+            # Loop over each similar questions in the already selected questions
+            for grouped_question in grouped:
+                inside = bool(find(grouped_question.similar, lambda q: q.similar_question_id == question.id))
+
+            if not inside or len(grouped) == 0:
+                grouped.append(question)
+
+        return grouped

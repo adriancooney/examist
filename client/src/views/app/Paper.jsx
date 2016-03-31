@@ -5,7 +5,8 @@ import { isPending } from "redux-pending";
 import * as model from "../../model";
 import { Loading, Empty, Icon } from "../ui";
 import { Box } from "../ui/layout";
-import { PaperView, PaperInfo } from "../ui/paper";
+import { PaperInfo } from "../ui/paper";
+import { Questions } from "../ui/question";
 
 class Paper extends Component {
     static selector = (state, { params }, { paper }) => {
@@ -61,15 +62,19 @@ class Paper extends Component {
         const questions = this.props.questions;
 
         if(isLoadingPaper) {
-            return <Loading key="loading" />;
+            return <Loading />;
         }
 
         if(paper.questions) {
             if(questions.length) {
-                content = <PaperView key="paper-view" course={course} paper={paper} questions={questions}/>;
+                content = <Questions 
+                    toplevel
+                    course={course} 
+                    paper={paper} 
+                    questions={questions}/>;
             } else {
                 content = (
-                    <div key="paper-empty" className="paper-empty">
+                    <div className="paper-empty">
                         <h3><Icon name="exclamation-triangle" size={5}/></h3>
                         <h4>This paper has no questions yet.</h4> 
                         <p>Help your course out and <Link to={this.getParserLink() + "/questions"}>pick them from the paper</Link>.</p>
@@ -78,7 +83,7 @@ class Paper extends Component {
             }
 
             return (
-                <Box key="paper">
+                <Box>
                     <div className="Paper">{ content }</div>
                     <PaperInfo course={course} paper={paper} />
                 </Box>

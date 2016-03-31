@@ -11,6 +11,12 @@ export const getCourse = Course.createStatefulAction("GET_COURSE", User.selectAP
     (api, code) => api.getCourse(code));
 
 /*
+ * Get a paper by course, year and period.
+ */
+export const getPopular = Course.createStatefulAction("GET_POPULAR", User.selectAPI, 
+    (api, code) => api.getPopular(code));
+
+/*
  * Search for courses.
  */
 export const search = Course.createStatefulAction("COURSE_SEARCH", User.selectAPI, 
@@ -57,6 +63,11 @@ export const selectByCodeWithPapers = compose(selectByCode, course => state => (
  * Ensure courses loaded by user get store in courses resource.
  */
 Course.addProducer(getCourse, ({ course }) => course);
+Course.addProducer(getPopular, ({ course, popular_questions }) => {
+    course.popular_questions = popular_questions.map(q => q.id);
+    return course;
+});
+
 Course.addProducer(User.getCourses, ({ courses }) => courses);
 Course.addProducer(search, ({ courses }) => courses);
 Course.addProducer("GET_PAPER", ({ course }) => course);

@@ -71,5 +71,6 @@ Paper.handleAction("REMOVE_QUESTION", (papers, [removedQuestion]) => {
  * Add papers when a specific paper is selected
  */
 Paper.addProducer(Course.getCourse, ({ papers }) => papers);
+Paper.addProducer(Course.getPopular, ({ papers }) => papers);
 Paper.addProducer(getPaper, ({ paper }) => paper);
 export default Paper;

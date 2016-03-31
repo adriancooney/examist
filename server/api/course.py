@@ -41,6 +41,18 @@ def get_course(course):
         "papers": course.papers
     })
 
+@Course.route("/course/<course>/popular", methods=["GET"])
+@use_kwargs({ "course": fields.Str(required=True) }, locations=("view_args",))
+@authorize
+def get_popular(course):
+    course = model.Course.getBy(db.session, code=course.upper())
+
+    return respond({ 
+        "course": course,
+        "papers": course.papers,
+        "popular_questions": course.popular_questions
+    })
+
 @Course.route("/course/<course>/index", methods=["PUT"])
 @use_kwargs({ "course": fields.Str(required=True) }, locations=("view_args",))
 @authorize

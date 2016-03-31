@@ -90,6 +90,12 @@ Question.handleAction("CREATE_COMMENT", (questions, { comment }) => {
     } else return questions;
 });
 
+export const getSimilar = Question.createStatefulAction("GET_SIMILAR_QUESTIONS", User.selectAPI, 
+    (api, ...args) => api.getSimilarQuestions(...args));
+
+Question.addProducer(getSimilar, ({ similar, question }) => [...similar, question]);
+Question.addProducer("GET_POPULAR", ({ popular_questions }) => popular_questions.map(q => { delete q.similar; return q; }));
+
 /**
  * Select questions by paper ID.
  * @param  {Number} paper Paper id.
@@ -99,8 +105,19 @@ export const selectByPaper = (paper) => {
     return Question.select(questions => questions.filter(questions => questions.paper === paper));
 };
 
-export const selectByPath = path => {
-    return Question.select(questions => questions.find(question => question.path.every((i, n) => path[n] === i)));
+export const selectByPath = (path, paper) => {
+    return Question.select(questions => 
+        questions.find(question => question.paper_id === paper && question.path.every((i, n) => path[n] === i)));
 };
+
+export const selectSimilar = id => state => {
+    const question = state.resources.questions.find(q => q.id === id);
+    return question.similar ? 
+        question.similar.map(sim => {
+            const similar = state.resources.questions.find(q => q.id === sim.similar_question_id);
+            if(similar) similar.similarity = sim.similarity;
+            return similar;
+        }) : [];
+}
 
 export default Question;

@@ -23,3 +23,9 @@
         padding-left: $spacing-padding*2;
     }
 }
+
+.Comments {
+    > .CommentList {
+        margin: $spacing-margin*2 0;
+    }
+}

@@ -57,7 +57,7 @@
     }
 
     &.full-view {
-        .question-content .Markdown {
+        > .question-main > .question-content > .Markdown {
             font-size: 125%;
         }
     }

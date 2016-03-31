@@ -18,8 +18,7 @@ export default class Question extends Component {
     static propTypes = {
         question: PropTypes.object.isRequired,
         course: PropTypes.object.isRequired,
-        paper: PropTypes.object.isRequired,
-        getQuestion: PropTypes.func // Getter function that accepts the question id
+        paper: PropTypes.object.isRequired
     };
 
     constructor(props) {
@@ -119,12 +118,8 @@ export default class Question extends Component {
         let children = this.props.question.children;
 
         if(children.length > 0) {
-            // Find the children of the paper via the getter function passsed
-            // which returns a question given an ID
-            children = children.map(this.props.getQuestion);
-
             // Create a new question list
-            return <QuestionList {...this.props} questions={children} />;
+            return <QuestionList {...omit(this.props, "fullView", "className")} questions={children} />;
         }
     }
 
@@ -153,11 +148,19 @@ export default class Question extends Component {
             const link = this.getLink();
             const activeView = this.props.activeView;
 
-            actions = ["solutions", "comments", "notes"].map(view => {
+            // Default actions
+            actions = ["solutions", "comments", "notes"]
+
+            if(question.similar_count && !this.props.similarView)
+                actions.push("similar");
+
+            actions = actions.map(view => {
                 let text = capitalize(view);
 
                 if(view === "comments" && question.comment_count)
                     text = `Comments (${question.comment_count})`;
+                else if(view === "similar")
+                    text = `Similar (${question.similar_count})`;
 
                 return <Link className={view === activeView ? "active" : ""} to={`${link}/${view}`}>{text}</Link>
             });
@@ -175,10 +178,10 @@ export default class Question extends Component {
     }
 
     renderIndex() {
-        const { question, fullView } = this.props;
+        const { question, fullPath, fullView } = this.props;
         const link = this.getLink();
 
-        if(fullView) {
+        if(fullView || fullPath) {
             return (
                 <Box>
                     { Children.toArray(question.formatted_path.map(segment => <QuestionIndex link={link} index={segment} />)) }
@@ -190,7 +193,11 @@ export default class Question extends Component {
     }
 
     getLink() {
-        const { question, course, paper } = this.props;
+        let { question, course, paper, getPaper } = this.props;
+
+        if(!paper && getPaper)
+            paper = getPaper(question.paper_id);
+
         return `/course/${course.code}/paper/${paper.year_start}/${paper.period}/q/${question.path.join(DEBUG ? "-" : ".")}`;
     }
 
@@ -223,17 +230,25 @@ export default class Question extends Component {
 // dependency. Annoying we can't split them up but cleaner in 
 // the long run.
 export function QuestionList(props) {
-    let questions = props.questions;
+    let { questions, course, getQuestion, paper, getPaper } = props;
         
+    questions = questions.map(getQuestion)
+
+    if(!props.sorted)
+        questions = questions.sort((a, b) => a.index > b.index);
+
     if(!props.editable)
         // Filter out questions that don't have content or children (unless we're editing).
         questions = questions.filter(question => !!question.revision || question.children.length)
 
-    questions = questions.sort((a, b) => a.index > b.index)
-        .map((question, i) => <Question {...omit(props, "questions")} key={i} question={question} />);
+    questions = questions.map((question, i) => 
+            <Question {...omit(props, "questions", "className")}
+                question={question}
+                paper={paper || getPaper(question.paper_id)}
+                key={i} />);
 
     return (
-        <div className="QuestionList">
+        <div className={classify("QuestionList", props.className)}>
             { questions }
         </div>
     );
@@ -242,8 +257,9 @@ export function QuestionList(props) {
 QuestionList.propTypes = {
     questions: PropTypes.array.isRequired,
     course: PropTypes.object.isRequired,
-    paper: PropTypes.object.isRequired,
+
     getQuestion: PropTypes.func,
+    getPaper: PropTypes.func,
 
     onAdd: PropTypes.func,
     onRemove: PropTypes.func,
