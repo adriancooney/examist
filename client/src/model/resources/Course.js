@@ -72,6 +72,19 @@ Course.handleAction(getPopular, updateResources((c, { course }) => {
     popular_questions: popular_questions.map(q => q.id)
 })));
 
+Course.handleAction("GET_PAPER", (courses, { course }) => {
+    const existingCourse = courses.find(c => c.id === course.id);
+
+    if(existingCourse && existingCourse.popular_questions) {
+        return courses.map(ec => {
+            if(ec.id === existingCourse.id) {
+                course.popular_questions = [...existingCourse.popular_questions]
+                return course;
+            } else return ec;
+        });
+    } else return [...courses, course];
+});
+
 Course.addProducer(User.getCourses, ({ courses }) => courses);
 Course.addProducer(search, ({ courses }) => courses);
 
