@@ -5,6 +5,7 @@ import API, { HTTPError } from "../API";
 import { BROWSER, DEBUG } from "../Config";
 import * as User from "../model/User";
 import { Loading } from "./ui";
+import { ErrorPage } from "./ui/error";
 
 class Root extends Component {
     static actions = {
@@ -46,13 +47,18 @@ class Root extends Component {
                 // the error propagates as it would outside of the promise at all.
                 if(error instanceof Error && !(error instanceof HTTPError)) {
                     // Since the error logging in Chrome sucks for uncaught in
-                    // errors, we'll help it out a little.
+                    // promises, we'll help it out a little.
                     if(DEBUG) console.error(error.stack);
 
-                    throw error;
+                    this.setState({
+                        pendingLogin: false,
+                        error: true
+                    })
+                } else {
+                    this.setState({ 
+                        pendingLogin: false
+                    });
                 }
-
-                this.setState({ pendingLogin: false });
             }
 
             this.setState({ pendingLogin: true });
@@ -83,6 +89,8 @@ class Root extends Component {
                     <h4>One second..</h4>
                 </div>
             );
+        } else if(this.state.error) {
+            return <ErrorPage code={500} title="Error logging in." message="There seems to be a problem on the server. Please try again later." />;
         } else return this.props.children;
     }
 }
