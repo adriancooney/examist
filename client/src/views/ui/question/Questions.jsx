@@ -8,15 +8,16 @@ export default function Questions(props) {
     const getQuestion = id => questions.find(q => q.id === id);
 
     // Allow for passing of single rootQuestion prop
-    if(rootQuestion) rootQuestions = [rootQuestion.id];
+    if(rootQuestion) 
+        rootQuestions = [rootQuestion.id];
 
     // Only do toplevel questions (i.e. path.length === 1)
     if(!rootQuestions && props.toplevel) 
-        rootQuestions = questions.filter(q => q.path.length === 1)
-            .map(q => q.id);
+        rootQuestions = questions.filter(q => q.path.length === 1).map(q => q.id);
 
     // If not root questions, show all.
-    if(!rootQuestions) rootQuestions = questions.map(q => q.id);
+    if(!rootQuestions) 
+        rootQuestions = questions.map(q => q.id);
 
     return (
         <QuestionList {...omit(props, "papers")} 

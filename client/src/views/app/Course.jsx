@@ -34,7 +34,9 @@ class Course extends Component {
         
         return {
             course, papers, paper, popularQuestions,
-            isLoadingCourse: isPending("GET_COURSE")(state) || isPending("GET_POPULAR")(state)
+            location: state.routing.location,
+            isLoadingCourse: isPending("GET_COURSE")(state),
+            isLoadingPopular: isPending("GET_POPULAR")(state)
         };
     };
 
@@ -58,16 +60,26 @@ class Course extends Component {
     componentWillMount() {
         const { course, papers } = this.props;
 
-        let getCourse = this.props.children ? this.props.getCourse : this.props.getPopular;
-
         if(!course)
-            getCourse(this.props.params.course);
+            this.props.getCourse(this.props.params.course);
 
         // This is for the instance when we the course has been loaded
         // but not all the papers have been loaded. We loop over each
         // paper id in the course's papers and check if it's loaded.
         if(course && papers && !course.papers.every(id => some(papers, matchesProperty("id", id))))
-            getCourse(this.props.params.course);
+            this.props.getCourse(this.props.params.course);
+
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps.location !== this.props.location && !nextProps.children) {
+            this.props.getPopular(this.props.params.course);
+        } else {
+            const { course } = nextProps;
+
+            if(course && !this.props.children && !nextProps.isLoadingPopular && !course.popular_questions) 
+                this.props.getPopular(this.props.params.course);
+        }
     }
 
     render() {

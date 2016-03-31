@@ -144,3 +144,19 @@ export default class Resource extends Reducer {
         return value => this.select(resources => resources.filter(resource => resource[prop] === value));
     }
 }
+
+/**
+ * Update resources that match a predicate. This function is essentially
+ * a conditional map. If predicate, transform.
+ * @param  {Function} predicate   The predicate function.
+ * @param  {Function} transformer The transformer function.
+ * @return {Function}             Action handler (state, payload).
+ */
+export function updateResources(predicate, transformer) {
+    return (resources, ...handler) => {
+        return resources.map(resource => {
+            if(predicate(resource, ...handler)) return transformer(resource, ...handler);
+            else return resource;
+        });
+    }
+}

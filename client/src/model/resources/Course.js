@@ -1,4 +1,5 @@
 import { Resource } from "../../library";
+import { updateResources } from "../../library/Resource"; 
 import { compose } from "../../library/Selector"
 import * as User from "../User";
 
@@ -63,10 +64,13 @@ export const selectByCodeWithPapers = compose(selectByCode, course => state => (
  * Ensure courses loaded by user get store in courses resource.
  */
 Course.addProducer(getCourse, ({ course }) => course);
-Course.addProducer(getPopular, ({ course, popular_questions }) => {
-    course.popular_questions = popular_questions.map(q => q.id);
-    return course;
-});
+
+Course.handleAction(getPopular, updateResources((c, { course }) => {
+    return c.id === course.id
+}, (course, { popular_questions }) => ({
+    ...course,
+    popular_questions: popular_questions.map(q => q.id)
+})));
 
 Course.addProducer(User.getCourses, ({ courses }) => courses);
 Course.addProducer(search, ({ courses }) => courses);
