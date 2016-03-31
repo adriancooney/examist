@@ -50,6 +50,10 @@
     }
 
     .panel-questions {
+        .Questions {
+            background: none;
+        }
+
         > .QuestionList {
             padding: 0 $spacing-padding*2 $spacing-padding;
         }
