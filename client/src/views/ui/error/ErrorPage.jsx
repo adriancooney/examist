@@ -10,7 +10,8 @@ export default function ErrorPage(props) {
     else title = <h1>Error {props.code || ""}</h1>;
 
     if(props.error) message = <pre>{ props.error.stack }</pre>;
-    else message = props.message;
+    else if(props.message) message = <p>{ props.message }</p>;
+    else message = props.children;
 
     return (
         <FlexBox vertical align="center" className="ErrorPage">

@@ -6,6 +6,7 @@ import PDFView from "./PDFView"
 import { FlexBox, Box } from "../ui/layout";
 import { IconLink, Loading } from "../ui";
 import { PaperLink } from "../ui/paper";
+import { ErrorPage } from "../ui/error";
 import Error404 from "../pages/Error404";
 import * as model from "../../model";
 
@@ -15,6 +16,7 @@ class Parser extends Component {
   
         const selection = { 
             course,
+            error: state.error,
             isLoadingPaper: isPending(model.resources.Paper.getPaper.type)(state)
         };
 
@@ -54,9 +56,11 @@ class Parser extends Component {
     }
 
     render() {
-        const { paper, course, children, isLoadingPaper } = this.props;
+        const { paper, course, children, isLoadingPaper, error } = this.props;
 
-        if(isLoadingPaper) {
+        if(error) {
+            return <ErrorPage error={error} />;
+        } else if(isLoadingPaper) {
             return <Loading />;
         } else if(!paper) {
             return <Error404 />;
