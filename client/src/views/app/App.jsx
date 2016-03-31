@@ -7,14 +7,12 @@ import { selector } from "../../library/Selector";
 import ErrorPage from "../ui/error/ErrorPage";
 
 export class App extends Component {
-    static selector = selector({
-        error: model.Error.getState
+    static selector = state => ({
+        error: model.Error.getState(state)
     });
 
     render() {
-        let content = this.props.error ?
-            <ErrorPage error={this.props.error} /> :
-            this.props.children;
+        let content = this.props.error ? <ErrorPage error={this.props.error} /> : this.props.children;
 
         return (
             <FlexBox className="App">

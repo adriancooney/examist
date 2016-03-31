@@ -20,6 +20,7 @@
     }
 
     pre {
+        color: darken($color-error, 20%);
         text-align: left;
         display: inline-block;
         margin: 0 auto;
