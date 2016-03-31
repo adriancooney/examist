@@ -33,3 +33,18 @@ export default class Select extends Component {
         return this.refs.select.value;
     }
 }
+
+export class BinarySelect extends Component {
+    render() {
+        const options = {
+            "true": this.props.boolean ? "True" : "Yes",
+            "false": this.props.boolean ? "False" : "No"
+        };
+
+        return <Select {...this.props} ref="select" options={options} defaultValue={!!this.props.defaultValue + ""}/>;
+    }
+
+    getValue() {
+        return this.refs.select.getValue();
+    }
+}
