@@ -9,7 +9,7 @@ import * as model from "../../../model";
 class QuestionsPanel extends Component {
     static selector = (state, { params }, { paper }) => {
         return {
-            questions: model.resources.Question.selectByPaper(paper.id)(state)
+            questions: state.resources.questions.filter(q => q.paper_id === paper.id)
         }
     };
 
