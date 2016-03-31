@@ -30,11 +30,6 @@ export default class API {
                 "Content-Type": "application/json"
             },
             body: method !== "GET" ? JSON.stringify(data) : undefined
-        }).then(response => {
-            // Hold yer horses
-            if(DEBUG && !TEST) {
-                return new Promise(resolve => setTimeout(() => resolve(response), 1000));
-            } else return response;
         });
     }
 

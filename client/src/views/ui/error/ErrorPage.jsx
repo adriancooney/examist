@@ -1,6 +1,7 @@
 import "../../../../style/Error.scss";
 import React, { PropTypes } from "react";
 import { FlexBox } from "../layout";
+import Icon from "../Icon";
 
 export default function ErrorPage(props) {
     let title, message;
@@ -9,10 +10,11 @@ export default function ErrorPage(props) {
     else title = <h1>Error {props.code || ""}</h1>;
 
     if(props.error) message = <pre>{ props.error.stack }</pre>;
-    else message = props.message
+    else message = props.message;
 
     return (
         <FlexBox vertical align="center" className="ErrorPage">
+            <Icon name="warning" className="warning"/>
             { title }
             { message }
         </FlexBox>

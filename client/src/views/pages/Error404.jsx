@@ -1,6 +1,6 @@
 import React from "react";
-import ErrorMessage from "../ui/error/ErrorMessage";
+import ErrorPage from "../ui/error/ErrorPage";
 
 export default function Error404() {
-    return (<ErrorMessage code="404" message="Page Not Found." />);
+    return <ErrorPage code="404" message="Page Not Found." />;
 }

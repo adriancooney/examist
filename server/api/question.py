@@ -5,6 +5,7 @@ from marshmallow import validate
 from webargs import fields
 from webargs.flaskparser import use_kwargs, parser
 from server import model, config
+from server.cache import cache_view
 from server.middleware import authorize
 from server.database import db
 from server.response import respond, success
@@ -54,6 +55,7 @@ def create_question(course, year, period):
 @Question.route("/course/<course>/paper/<year>/<period>/q/<question>", methods=["GET", "PUT", "POST", "DELETE"])
 @use_kwargs(URL_PARAMS, locations=("view_args",))
 @authorize
+@cache_view(unless=lambda: request.method != "GET")
 def do_question(course, year, period, question):
     # Ensure we parse the args before we do any database access
     if request.method == "PUT":
@@ -138,6 +140,7 @@ def do_question(course, year, period, question):
 @Question.route("/course/<course>/paper/<year>/<period>/q/<question>/similar", methods=["GET"])
 @use_kwargs(URL_PARAMS, locations=("view_args",))
 @authorize
+@cache_view
 def get_similar(course, year, period, question):
     question = model.Question.get_by_path(db.session, course, year, period, map(int, question.split(".")))
     similar = map(lambda similar: similar.similar_question, question.similar)

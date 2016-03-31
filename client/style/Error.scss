@@ -2,10 +2,17 @@
 @import "common/Spacing";
 
 .ErrorPage {
+    padding-top: $spacing-padding*4;
     text-align: center;
+
+    i {
+        font-size: 200px;
+        color: $color-error;
+    }
 
     h1 {
         font-size: 300%;
+        color: $color-error;
     }
 
     h3 {
@@ -13,6 +20,7 @@
     }
 
     pre {
+        color: darken($color-error, 20%);
         text-align: left;
         display: inline-block;
         margin: 0 auto;

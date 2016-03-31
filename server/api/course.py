@@ -3,6 +3,7 @@ from sqlalchemy.orm import joinedload
 from webargs import fields
 from webargs.flaskparser import parser, use_kwargs
 from server import model
+from server.cache import cache_view
 from server.middleware import authorize
 from server.library.schema import schema
 from server.database import db
@@ -33,6 +34,7 @@ def search_course(q):
 @Course.route("/course/<course>", methods=["GET"])
 @use_kwargs({ "course": fields.Str(required=True) }, locations=("view_args",))
 @authorize
+@cache_view
 def get_course(course):
     course = model.Course.getBy(db.session, code=course.upper())
 
@@ -44,6 +46,7 @@ def get_course(course):
 @Course.route("/course/<course>/popular", methods=["GET"])
 @use_kwargs({ "course": fields.Str(required=True) }, locations=("view_args",))
 @authorize
+@cache_view
 def get_popular(course):
     course = model.Course.getBy(db.session, code=course.upper())
 

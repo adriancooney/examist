@@ -5,6 +5,7 @@ from marshmallow import validate
 from webargs import fields
 from webargs.flaskparser import use_kwargs
 from server import model
+from server.cache import cache_view
 from server.database import db
 from server.response import respond, success
 from server.exc import NotFound, LoginError, AlreadyExists, InvalidEntity
@@ -21,6 +22,7 @@ URL_PARAMS = {
 @Paper.route("/course/<course>/paper/<year>/<period>", methods=["GET"])
 @Paper.route("/course/<course>/paper/<year>/<period>.html", methods=["GET"])
 @use_kwargs(URL_PARAMS, locations=("view_args",))
+@cache_view
 def get_paper(course, year, period):
     paper = model.Paper.find(db.session, course, year, period)
 
@@ -37,8 +39,7 @@ def get_paper(course, year, period):
 
     else:
         for question in paper.questions:
-            getattr(question, "comment_count") # Load some data
-            # getattr(question, "similar_count")
+            getattr(question, "comment_count")
 
         return respond({ 
             "paper": paper,
