@@ -29,8 +29,12 @@ def handle_validation_error(err):
     return fail(422, message, { "field": name })
 
 @app.errorhandler(404)
-def handle_error(err):
+def handle_404_error(err):
     return fail(404, "Page not found.")
+
+@app.errorhandler(405)
+def handle_405_error(err):
+    return fail(405, "Method not allowed.")
 
 # App errors
 @app.errorhandler(HttpException)

@@ -1,5 +1,6 @@
 from sqlalchemy.orm.exc import NoResultFound
 from server.model.question import Question
+from server.model.note import NoteLink, NoteUpload
 from server.library.util import find
 from server.test import assert_api_error, assert_api_response, assert_api_success
 
@@ -198,7 +199,6 @@ def test_question_delete_sibling(auth_client, paper_with_course_and_questions, s
         period=paper.period.lower(),
         question=".".join(map(str, sibling.path))
     ))
-
 
     with assert_api_response(resp) as data:
         assert "questions" in data

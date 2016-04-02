@@ -1,4 +1,4 @@
-import { Resource } from "../../library";
+import Resource, { updateResources } from "../../library/Resource";
 import { without, unionBy } from "lodash/array";
 import * as Paper from "./Paper";
 import * as User from "../User";
@@ -89,6 +89,24 @@ Question.handleAction("CREATE_COMMENT", (questions, { comment }) => {
         });
     } else return questions;
 });
+
+Question.handleAction("GET_NOTES", updateResources((q, { question }) => {
+    return q.id === question.id;
+}, (question, { notes }) => {
+    return {
+        ...question,
+        notes: notes.map(note => note.id)
+    }    
+}));
+
+Question.handleAction("CREATE_NOTE", updateResources((q, { question }) => {
+    return q.id === question.id;
+}, (question, { note }) => {
+    return {
+        ...question,
+        notes: [...(question.notes || []), note.id]
+    }    
+}));
 
 export const getSimilar = Question.createStatefulAction("GET_SIMILAR_QUESTIONS", User.selectAPI, 
     (api, ...args) => api.getSimilarQuestions(...args));

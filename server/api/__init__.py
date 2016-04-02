@@ -6,3 +6,4 @@ from course import Course
 from paper import Paper
 from question import Question
 from comment import Comment
+from note import Note

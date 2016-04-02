@@ -302,6 +302,32 @@ export default class API {
     }
 
     /**
+     * Create a new note link.
+     * @param  {String} course              Course code.
+     * @param  {Number} year                Paper year.
+     * @param  {String} period              Paper period.
+     * @param  {String} question            Question path.
+     * @param  {String} options.description Link description.
+     * @param  {String} options.link        Link URL.
+     * @return {Promise} -> {Response}
+     */
+    createNoteLink(course, year, period, question, { description, link }) {
+        return this.request("POST", `/course/${course}/paper/${year}/${period}/q/${question}/note`, { description, link });
+    }
+
+    /**
+     * Get notes for a question.
+     * @param  {String} course              Course code.
+     * @param  {Number} year                Paper year.
+     * @param  {String} period              Paper period.
+     * @param  {String} question            Question path.
+     * @return {Promise} -> {Response}
+     */
+    getNotes(course, year, period, question) {
+        return this.request("GET", `/course/${course}/paper/${year}/${period}/q/${question}/notes`);
+    }
+
+    /**
      * Test if the auth key is valid.
      * @return {Promise} -> {Response}
      */

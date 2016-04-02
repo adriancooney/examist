@@ -44,11 +44,12 @@
     input {
         flex: 1;
         outline: none;
-        padding: $spacing-padding/2;
+        padding: $spacing-padding/1.5;
         font-size: 120%;
-        font-family: $font-display;
+        font-family: $font-reading;
         display: block;
-        border: 2px solid $color-input-border;
+        border: 2px solid rgba($color-blue, 0.2);
+        border-radius: $spacing-radius;
 
         &.input-error {
             border: 2px dashed $color-error;
@@ -155,4 +156,21 @@
 
 input[type=number] {
     width: 40px;
+}
+
+.Textarea {
+    display: flex;
+    margin: $spacing-margin;
+
+    textarea {
+        min-height: 140px;
+        flex: 1;
+        display: block;
+        border: 2px solid rgba($color-blue, 0.2);
+        border-radius: $spacing-radius;
+        padding: $spacing-padding/1.5;
+        line-height: 140%;
+        outline: none;
+        font-family: $font-reading;
+    }
 }

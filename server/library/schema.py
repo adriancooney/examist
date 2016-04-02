@@ -19,15 +19,17 @@ def create_schema(cls, include_fk=True, required=True, force_strict=True):
     elif force_strict:
         meta = type("Meta", (object,), dict(strict=True))
     else:
-        meta = {}
+        meta = None
 
     model_name = cls.__name__
     schema_name = model_name + "Schema"
-    schema = getattr(meta, "custom", {})
-
-    field_args = dict(required=required)
+    schema = getattr(meta, "custom", {}) if meta else {}
 
     print "<Schema(name=%s)>" % model_name
+    field_args = dict(required=required)
+
+    if meta and hasattr(meta, "extends"):
+        _extend_schema(schema, getattr(meta, "extends"))
 
     for name, attr in dict(ins.attrs).iteritems():
         # Get arguments for each field
@@ -61,10 +63,21 @@ def create_schema(cls, include_fk=True, required=True, force_strict=True):
             # Grab the marshmallow type
             schema[name] = _get_field_for_type(attr, type_, type_name, field_args)
 
-    schema["Meta"] = meta
+    if meta:
+        schema["Meta"] = meta
 
     print "<Schema(%s) fields=%r>" % (schema_name, schema.keys())
     return type(schema_name, (Schema,), schema)
+
+def _extend_schema(schema, extends):
+    name = "Anonymous"
+    if hasattr(extends, "__schema__"):
+        name = extends.__name__
+        extends = extends.__schema__()
+
+    for field_name, field in extends.fields.iteritems():
+        print "<Schema(name={})> (extending <Schema(name={})>) += <Field(name={})>".format(model_name, name, field_name)
+        schema[field_name] = field
 
 def _normalize_typename(type_name):
     # Normalize the typenames in cascading fashion

@@ -1,4 +1,5 @@
-$font-serif: sans-serif;
+$font-sans-serif: sans-serif;
+$font-serif: "Kefa";
 
 /*
  * Display font is used for large titles, headers
@@ -10,12 +11,13 @@ $font-display: "Gotham";
  * Reading font is the font used for large blocks
  * of texts.
  */
-$font-reading: "Kefa";
+
+$font-reading: "Freight Sans Pro";
 
 /*
  * The title font is the font used for the logo.
  */
-$font-title: $font-reading;
+$font-title: $font-serif;
 
 /*
  * Editing font.
@@ -23,5 +25,5 @@ $font-title: $font-reading;
 $font-mono: Monaco, monospace;
 
 // Question body
-$font-question: "Freight Sans Pro";
+$font-question: $font-reading;
 $font-question-weight: 300;

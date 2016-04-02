@@ -13,3 +13,4 @@ from revision import Revision
 from entity import Entity
 from solution import Solution
 from comment import Comment
+from note import Note, NoteLink, NoteUpload

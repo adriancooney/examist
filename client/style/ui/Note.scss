@@ -1,0 +1,110 @@
+@import "../common/Spacing";
+@import "../common/Colors";
+@import "../common/Fonts";
+
+.NoteForm {
+    .or {
+        padding: $spacing-padding;
+        font-size: 140%;
+        font-weight: bold;
+        margin-top: 120px;
+        color: rgba(0,0,0,0.3);
+    }
+
+    .link-form, .upload-form {
+        padding: 0 $spacing-padding;
+
+        h3 {
+            text-align: left;
+        }
+    }
+
+    .upload-form {
+        text-align: right;
+
+        .Box {
+            padding: $spacing-padding*3.8 0;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .upload-icon {
+            padding-left: $spacing-padding*2;
+        }
+
+        i {
+            color: $color-blue;
+        }
+
+        input {
+            margin-top: $spacing-margin*2.3;
+            width: 200px;
+        }
+    }
+
+    .link-form {
+        h3 {
+            margin-bottom: $spacing-margin/2;
+        }
+
+        .Input {
+            margin: 0;
+
+            input {
+                font-size: 100%;
+            }
+        }
+
+        .Textarea {
+            margin: 0;
+
+            textarea {
+                height: 60px;
+                min-height: 0;
+            }
+        }
+
+        label {
+            font-family: $font-display;
+        }
+    }
+
+    .error {
+        flex: 1;
+        color: $color-error;
+        text-align: right;
+    }
+}
+
+.NoteLink {
+    padding: $spacing-margin 0;
+
+    blockquote {
+        margin: $spacing-margin 0;
+        font-size: 120%;
+        line-height: 140%;
+        font-style: italic;
+        font-family: $font-reading;
+    }
+
+    .link {
+        padding-left: $spacing-padding;
+    }
+
+    .actions {
+        border-top: 1px solid rgba($color-blue, 0.5);
+        margin-top: $spacing-margin;
+
+        p, a, .Button {
+            margin: 0;
+            font-size: 90%;
+            font-family: $font-sans-serif;
+            padding: $spacing-padding/2 $spacing-padding/1.5;
+        }
+
+        p {
+            color: #777;
+            padding-left: 0;
+        }
+    }
+}

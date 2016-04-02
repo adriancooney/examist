@@ -31,7 +31,7 @@ class Course(Model, Serializable):
     # Relationships
     papers = relationship("Paper", lazy="joined")
 
-    SIMILARITY_THRESHOLD = 0.5
+    SIMILARITY_THRESHOLD = 0.15
 
     def __init__(self, name, code, institution):
         self.name = name
@@ -52,7 +52,7 @@ class Course(Model, Serializable):
             similar_questions = self.find_similar_questions(question)
 
             # Filter out similar questions unless they are above a threshold
-            question.similar = filter(lambda q: q.question_id != question.id and q.similarity > Course.SIMILARITY_THRESHOLD, 
+            question.similar = filter(lambda q: q.similar_question_id != question.id and q.similarity > Course.SIMILARITY_THRESHOLD, 
                 similar_questions)
 
             questions.append(question)
@@ -152,7 +152,7 @@ class Course(Model, Serializable):
         Similar = get_model("Similar");
 
         # Generate the similarity objects
-        return [Similar(question_id=q.id, similarity=s) for q, s in zip(self.questions, similarity)]
+        return [Similar(question_id=question.id, similar_question_id=q.id, similarity=s) for q, s in zip(self.questions, similarity)]
 
     @property
     def popular_questions(self):

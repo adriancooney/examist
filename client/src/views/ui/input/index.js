@@ -3,3 +3,4 @@ export Input from "./Input";
 export Form from "./Form";
 export Field from "./Field";
 export Select, { BinarySelect } from "./Select";
+export Textarea from "./Textarea";

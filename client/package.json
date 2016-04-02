@@ -23,7 +23,8 @@
     "redux-simple-router": "^2.0.4",
     "remarkable": "^1.6.2",
     "reselect": "^2.0.2",
-    "superagent": "^1.7.1"
+    "superagent": "^1.7.1",
+    "url": "^0.11.0"
   },
   "devDependencies": {
     "babel-core": "^6.4.0",

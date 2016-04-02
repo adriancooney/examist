@@ -6,7 +6,8 @@ export default function ErrorMessage(props) {
     let message;
 
     if(props.error) message = <p>{ props.error.message }</p>;
-    else message = props.message;
+    else if(props.message) message = props.message;
+    else message = props.children;
 
     return (
         <Flex className="ErrorMessage">

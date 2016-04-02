@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { isPending } from "redux-pending";
 import { Question, Questions } from "../ui/question"
 import { Comments } from "../ui/comment"
+import { Notes } from "../ui/notes";
 import { Loading, Back, Empty } from "../ui";
 import * as model from "../../model";
 import { DEBUG } from "../../Config";
@@ -18,7 +19,7 @@ export default class QuestionView extends Component {
         const view = params.view;
         const selection = { 
             question, user,
-            isLoading: isPending("GET_COMMENTS")(state) || isPending("GET_SIMILAR_QUESTIONS")(state)
+            isLoading: isPending("GET_COMMENTS")(state) || isPending("GET_SIMILAR_QUESTIONS")(state) || isPending("GET_NOTES")(state)
         };
 
         if(question && view) {
@@ -28,6 +29,8 @@ export default class QuestionView extends Component {
             } else if(view === "similar") {
                 selection.similar = model.resources.Question.selectSimilar(question.id)(state);
                 selection.papers = selection.similar.map(sim => model.resources.Paper.selectById(sim.paper_id)(state));
+            } else if(view === "notes") {
+                selection.notes = state.resources.notes.filter(note => note.question_id === question.id);
             }
         }
 
@@ -41,7 +44,10 @@ export default class QuestionView extends Component {
         getComments: model.resources.Comment.getComments,
         createComment: model.resources.Comment.create,
         editComment: model.resources.Comment.update,
-        removeComment: model.resources.Comment.remove
+        removeComment: model.resources.Comment.remove,
+
+        createNoteLink: model.resources.Note.createLink,
+        getNotes: model.resources.Note.getNotes
     };
 
     static contextTypes = {
@@ -78,6 +84,8 @@ export default class QuestionView extends Component {
             this.props.getComments(question.id);
         } else if(view === "similar" && !question.similar) {
             this.props.getSimilarQuestions(course.code, paper.year_start, paper.period, question.path.join("."));
+        } else if(view === "notes" && !question.notes) {
+            this.props.getNotes(course.code, paper.year_start, paper.period, question.path.join("."));
         }
     }
 
@@ -113,6 +121,13 @@ export default class QuestionView extends Component {
                         questions={similar}
                         similarView
                         fullPath />
+                );
+            } else if(view === "notes") {
+                content = (
+                    <Notes 
+                        user={user}
+                        notes={this.props.notes}
+                        onSubmitLink={::this.onSubmitLink} />
                 );
             } else {
                 content = (
@@ -160,6 +175,15 @@ export default class QuestionView extends Component {
 
     onRemove(comment) {
         this.props.removeComment(comment.entity_id, comment.id);
+    }
+
+    onSubmitLink(link, description) {
+        const { course, paper } = this.context;
+        const question = this.props.question;
+
+        this.props.createNoteLink(course.code, paper.year_start, paper.period, question.path.join("."), {
+            link, description
+        });
     }
 }
 

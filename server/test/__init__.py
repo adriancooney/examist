@@ -27,9 +27,12 @@ def assert_api_error(resp, code, message = None, meta = None):
 
 @contextmanager
 def assert_api_response(resp):
-    assert resp.status_code == 200, "Non 200 response returned, instead: %s." % resp.status
-
     resp_raw = resp.get_data()
+        
+    if resp.status_code != 200:
+        logger.info(("<< %s \n\n" % resp.status) + resp_raw)
+
+    assert resp.status_code == 200, "Non 200 response returned, instead: %s." % resp.status
     assert len(resp_raw) > 0, "No data returned."
     
     logger.info(("<< %s \n\n" % resp.status) + resp_raw)

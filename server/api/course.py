@@ -3,7 +3,7 @@ from sqlalchemy.orm import joinedload
 from webargs import fields
 from webargs.flaskparser import parser, use_kwargs
 from server import model
-from server.cache import cache_view
+from server.cache import cache_view, invalidate_view
 from server.middleware import authorize
 from server.library.schema import schema
 from server.database import db
@@ -63,4 +63,5 @@ def index_course_questions(course):
     indexed_questions = course.index_questions()
     db.session.add_all(indexed_questions)
     db.session.commit()
+    invalidate_view("course.get_popular", course=course.code)
     return success()

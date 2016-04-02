@@ -24,6 +24,7 @@
 
     .question-detail {
         padding-top: $spacing-padding/2;
+
     }
 
     .side-actions {
@@ -50,7 +51,7 @@
     .Marks {
         padding: $spacing-padding/2;
         color: rgba(0,0,0,0.4);
-        font-family: $font-reading;
+        font-family: $font-serif;
     }
 
     &.editing, &.single-view {
@@ -70,11 +71,12 @@
     border-top: 1px solid rgba($color-blue, 0.5);
 
     a, .Button {
+        font-family: $font-sans-serif;
         display: block;
         margin-right: $spacing-margin;
         font-size: 90%;
         padding: $spacing-padding/1.8;
-        padding-bottom: 0;
+        padding-bottom: $spacing-padding/1.5;
     }
 
     .active {

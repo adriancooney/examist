@@ -5,6 +5,7 @@ import Question from "./Question";
 import Institution from "./Institution";
 import Comment from "./Comment";
 import People from "./People";
+import Note from "./Note";
 import User from "../User";
 
 const resources = Reducer.combine("resources", 
@@ -13,7 +14,8 @@ const resources = Reducer.combine("resources",
     Course, 
     Question,
     Comment,
-    People
+    People,
+    Note
 );
 
 /*
@@ -30,6 +32,7 @@ export default resources;
 /*
  * Export models.
  */
+export * as Note from "./Note";
 export * as Paper from "./Paper";
 export * as Course from "./Course";
 export * as People from "./People";
