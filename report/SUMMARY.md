@@ -14,17 +14,26 @@
         - Transcription
         - Other methods
             - Machine learning
+    - React & Redux
 * [Design](design/README.md)
     - Architecture
         - Backend
+            - REST API
         - Frontend
             - Latest technology
             - Learning Curve
-    - Entities
-    - Database
+    - [Database](design/Database.md)
+        - Overview
+        - Entities
+            - Inheritance model
     - API
-        - Standard Response
-* [Visual](visual/README.md)
+        - Standard Responses
+        - Exceptions
+        - Parameter handling
+    - UI
+        - Concepts
+        - Pure
+* [User Interface](visual/README.md)
 * [Implementation](implementation/README.md)
     - Project Structure
         - Client
@@ -37,6 +46,7 @@
             - Middleware
         - Entities
             - Schemas
+        - Caching
         - Logging
     - Frontend
         - View Layer
@@ -84,7 +94,7 @@
 * [Testing](testing/README.md)
     - [Testability](testing/Testability.md)
         - Fixtures
-        - Database
+        - Assertions [TODO]
         - Logging
     - Continuous Integration
         - Codeship
@@ -98,6 +108,7 @@
         - Browsers
         - Mobile App
         - Desktop App
+    - Open Source Contributions
 * Conclusions
     - Choices
     - Things Learned
@@ -106,3 +117,4 @@
     - Closing word
 * Appendices
     - [Appendix 1: Test Fixtures](appendices/Test-Fixtures.md)
+    - [Appendix 2: Exam Paper Specification](appendices/Paper-specification.md)

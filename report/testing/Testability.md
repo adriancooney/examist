@@ -23,6 +23,8 @@ Fixtures are methods, that when called, perform some setup for the test suite. T
 
 The fixtures are designed to have zero side effects. This means that any database commits or file changes *always* rollback their changes to the initial state. Now, every time a fixture is required, the test can expect a clean slate. Fixtures can be scoped to the "session" or "function". The session scope turns the fixture into a singleton that when required first is executed and all following uses have the same value. This is useful for setting up the database connection and creating the tables which needs to be done only once per testing session. The function scope forces the fixture to be executed every time a test unit requires the fixture, this is useful for using SQL Alchemy's Session object and rollback any changes made to the database during that test.
 
+#### Sample Test
+
 ```python
 def test_profile_delete_course(auth_client, user_with_courses, session):
     existingCourse = user_with_courses.courses[0]
