@@ -1,0 +1,26 @@
+FROM python:2.7
+
+# WARNING: This docker file needs to be built from 
+#          the ROOT DIRECTORY!
+
+RUN apt-get update
+RUN apt-get -y install build-essential python-dev python-setuptools \
+        python-numpy python-scipy \
+        libatlas-dev libatlas3gf-base
+
+RUN update-alternatives --set libblas.so.3 \
+      /usr/lib/atlas-base/atlas/libblas.so.3; \
+    update-alternatives --set liblapack.so.3 \
+      /usr/lib/atlas-base/atlas/liblapack.so.3
+
+# Fix to link packaged python dependencies are accessible
+RUN bash -c 'ln -s /usr/lib/python2.7/dist-packages/{numpy,scipy}* /usr/local/lib/python2.7/site-packages/'
+
+COPY ./server /usr/src/server
+WORKDIR /usr/src/server
+
+# Install the server's dependencies and 
+RUN pip install -U -r requirements.txt
+RUN pip install .
+
+CMD ["python", "init.py"]

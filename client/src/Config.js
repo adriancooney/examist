@@ -15,9 +15,8 @@ export const DEBUG = ENV.indexOf("production") === -1;
 export const TEST = DEBUG && ENV.indexOf("test") !== -1;
 
 export const API_BASE_URL = format({
-    hostname: BROWSER ? window.location.hostname : APP_HOSTNAME,
-    port: DEBUG ? 5000 : 80,
-    protocol: DEBUG ? "http" : "https"
+    hostname: BROWSER ? "api." + window.location.hostname : APP_HOSTNAME,
+    port: DEBUG ? 5000 : undefined
 });
 
 if(DEBUG && BROWSER) {

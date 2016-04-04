@@ -1,0 +1,12 @@
+FROM nginx
+
+# WARNING: This docker file needs to be built from 
+#          the ROOT DIRECTORY!
+
+COPY ./client /usr/src/client
+COPY ./client/nginx.conf /usr/src/client/nginx.conf
+
+ENV NGINX_ENV_REPLACE '$DOMAIN'
+CMD /bin/bash -c "envsubst '$NGINX_ENV_REPLACE' < /usr/src/client/nginx.conf > /etc/nginx/conf.d/client.conf && cat /etc/nginx/conf.d/client.conf && nginx -g 'daemon off;'"
+
+EXPOSE 80

@@ -5,7 +5,6 @@ from sqlalchemy.orm.relationships import RelationshipProperty
 from marshmallow import Schema, fields, validate
 
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
 
 def create_schema(cls, include_fk=True, required=True, force_strict=True):
     ins = inspect(cls)
@@ -25,7 +24,7 @@ def create_schema(cls, include_fk=True, required=True, force_strict=True):
     schema_name = model_name + "Schema"
     schema = getattr(meta, "custom", {}) if meta else {}
 
-    print "<Schema(name=%s)>" % model_name
+    logger.debug("<Schema(name=%s)>" % model_name)
     field_args = dict(required=required)
 
     if meta and hasattr(meta, "extends"):
@@ -42,8 +41,8 @@ def create_schema(cls, include_fk=True, required=True, force_strict=True):
             if len(only) == 1:
                 only = only[0]
 
-            print "<Schema(name={})> += <Relationship(name={}, model={}, many={}, only={})>".format(
-                model_name, name, nested_model_name, attr.uselist, only)
+            logger.debug("<Schema(name={})> += <Relationship(name={}, model={}, many={}, only={})>".format(
+                model_name, name, nested_model_name, attr.uselist, only))
 
             schema[name] = fields.Nested(nested_model_name + "Schema", 
                 many=attr.uselist, only=only)
@@ -57,8 +56,8 @@ def create_schema(cls, include_fk=True, required=True, force_strict=True):
             type_ = column.type
             type_name = _normalize_typename(type_.__class__.__name__)
 
-            print "<Schema(name={})> += <Field(name={}, type={}, args={})>".format(
-                model_name, name, type_name, field_args)
+            logger.debug("<Schema(name={})> += <Field(name={}, type={}, args={})>".format(
+                model_name, name, type_name, field_args))
 
             # Grab the marshmallow type
             schema[name] = _get_field_for_type(attr, type_, type_name, field_args)
@@ -66,7 +65,7 @@ def create_schema(cls, include_fk=True, required=True, force_strict=True):
     if meta:
         schema["Meta"] = meta
 
-    print "<Schema(%s) fields=%r>" % (schema_name, schema.keys())
+    logger.debug("<Schema(%s) fields=%r>" % (schema_name, schema.keys()))
     return type(schema_name, (Schema,), schema)
 
 def _extend_schema(schema, extends):
@@ -76,7 +75,7 @@ def _extend_schema(schema, extends):
         extends = extends.__schema__()
 
     for field_name, field in extends.fields.iteritems():
-        print "<Schema(name={})> (extending <Schema(name={})>) += <Field(name={})>".format(model_name, name, field_name)
+        logger.debug("<Schema(name={})> (extending <Schema(name={})>) += <Field(name={})>".format(model_name, name, field_name))
         schema[field_name] = field
 
 def _normalize_typename(type_name):

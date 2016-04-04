@@ -1,0 +1,7 @@
+FROM postgres:9
+
+# WARNING: This docker file needs to be built from 
+#          the ROOT DIRECTORY!
+
+ARG dump
+COPY ./data/dumps/$dump /docker-entrypoint-initdb.d/
