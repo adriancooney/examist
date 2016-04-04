@@ -13,9 +13,12 @@ if __name__ == "__main__":
     cache.init_app(app)
 
     logger = logging.getLogger("server")
+    sqla_logger = logging.getLogger("sqlalchemy")
     handler = logging.StreamHandler(stream=sys.stdout)
     logger.addHandler(handler)
     logger.setLevel(logging.INFO)
+    sqla_logger.addHandler(handler)
+    sqla_logger.setLevel(logging.DEBUG)
 
     items = [(key, value) for key, value in config.__dict__.iteritems() if key.startswith("APP_") or key.startswith("DB_")]
 

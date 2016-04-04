@@ -14,10 +14,13 @@ npm-debug.log
 
 # Project
 data/dumps
-server/config.py
 build
 design/
 server/logs
+.dockerignore
 
 # Assets
 *.pdf
+
+# Gitbook
+report/_book

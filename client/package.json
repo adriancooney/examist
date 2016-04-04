@@ -59,6 +59,8 @@
   },
   "scripts": {
     "build": "webpack",
+    "build-production": "NODE_ENV=production npm run build",
+    "server": "python -m SimpleHTTPServer",
     "dev": "webpack-dev-server -d --hot --inline --history-api-fallback",
     "lint": "eslint src",
     "test": "NODE_ENV=development,test mocha --compilers scss:./test/library/null-compiler.js,js:babel-core/register,jsx:babel-core/register --require ./node_modules/regenerator/runtime.js ./test/src/*.js ./test/src/**/*.js",
