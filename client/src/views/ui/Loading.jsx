@@ -6,7 +6,7 @@ export default class Loader extends Component {
         let message;
 
         if(this.props.message) {
-            message = <p className="loading-message">{ this.props.message }</message>
+            message = <p className="loading-message">{ this.props.message }</p>
         }
 
         return (
