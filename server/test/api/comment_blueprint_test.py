@@ -1,7 +1,8 @@
 from server.test import assert_api_response, assert_api_error
 
-def test_comment_create(questions, auth_client):
-    question = questions[0]
+def test_comment_create(paper_with_course_and_questions, auth_client):
+    paper = paper_with_course_and_questions
+    question = paper.questions[0]
     content = "Hello world!"
 
     resp = auth_client.post("/comment/%d" % question.id, data={
@@ -14,10 +15,17 @@ def test_comment_create(questions, auth_client):
         assert comment_data["id"]
         assert comment_data["content"] == content
 
-def test_comment_edit(question_with_comments, auth_client):
+def test_comment_edit(question_with_comments, course_with_papers, session, auth_client):
+    course = course_with_papers
+    paper = course.papers[0]
     question = question_with_comments
     comment = question.comments[0]
     content = "New hello world!"
+
+    question.paper = paper
+    session.add(question)
+    session.flush()
+
 
     resp = auth_client.put("/comment/%d/%d" % (question.id, comment.id), data={
         "content": content
@@ -43,9 +51,15 @@ def test_comment_update_not_owner(users, second_auth_client, session, questions)
 
     assert_api_error(resp, 401)
 
-def test_comment_delete(question_with_comments, auth_client):
+def test_comment_delete(question_with_comments, course_with_papers, session, auth_client):
+    course = course_with_papers
+    paper = course.papers[0]
     question = question_with_comments
     comment = question.comments[0]
+
+    question.paper = paper
+    session.add(question)
+    session.flush()
 
     resp = auth_client.delete("/comment/%d/%d" % (question.id, comment.id))
 

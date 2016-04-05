@@ -18,6 +18,7 @@ build
 design/
 server/logs
 .dockerignore
+.env
 
 # Assets
 *.pdf

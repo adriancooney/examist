@@ -6,13 +6,13 @@ import json
 import logging
 import sys
 from sqlalchemy_utils import database_exists, create_database, drop_database
-from server.test.conflogging import setup_logging
-from server.test import APIClient
+from server import config, model
+from server.cache import cache
 from server.web import app as _app
 from server.middleware import AUTH_HEADER_NAME
-from server import config
 from server.database import db as _db
-from server import model
+from server.test.conflogging import setup_logging
+from server.test import APIClient
 
 # Test database name
 DB_NAME = config.DB_NAME + "_test"
@@ -41,11 +41,16 @@ def app(request):
     # Config the app
     _app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URI
     _app.config["SQLALCHEMY_ECHO"] = True # Toggle SQL Alchemy output
+    _app.config["DEBUG"] = True
     _app.config["TESTING"] = True
 
     # Establish an application context before running the tests.
     ctx = _app.app_context()
     ctx.push()
+
+    # Initialize a null cache
+    cache.config = {}
+    cache.init_app(_app)
 
     def teardown():
         ctx.pop()
