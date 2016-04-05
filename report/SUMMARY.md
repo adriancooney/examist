@@ -60,7 +60,7 @@
         - API communication
         - Resource caching
 * Development
-    - Version Control
+    - [Version Control](development/version-control.md)
         - Github
         - Logs
     - Tools
@@ -90,12 +90,12 @@
     - Building
         - Development
         - Production
-    - [Deploying](development/Deploying.md)
+    - [Deploying](development/deploying.md)
 * [Testing](testing/README.md)
-    - [Testability](testing/testability.md)
-        - [Fixtures](testing/testability.md#fixtures)
-        - [Assertions](testing/testability.md#assertions)
-        - [Logging](testing/testability.md#logging)
+    - [Test Design](testing/test-design.md)
+        - [Fixtures](testing/test-design.md#fixtures)
+        - [Assertions](testing/test-design.md#assertions)
+        - [Logging](testing/test-design.md#logging)
     - Continuous Integration
         - Codeship
         - Environment

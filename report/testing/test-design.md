@@ -1,5 +1,5 @@
-# Testability
-Testing for me is the foundation of software development. Without it, code is written in fear and defense which makes for an unproductive and wasteful environment. Bugs and regressions can go unnoticed and bite when it's least expected which leads to wasted time down a rabbit hole of git logs and downgrading.
+# Test Design
+Precautions were taken to ensure the tests for the project were reliable and consistent. Ensuring that *good* tests were easy to write was also a huge part of the philosophy behind testing in the project.
 
 ## Backend
 The API has a large suite of tests to ensure any changes to models or blueprints don't break anything. Whenever a change is made to any part of the codebase, the entire suite of tests must be run to check each endpoint is returning the data is supposed to. For each endpoint within the app, there is an average of 3 tests that ensure to test three things:
