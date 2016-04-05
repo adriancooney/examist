@@ -1,4 +1,7 @@
 {
   "gitbook": "3.0.0-pre.5",
-  "root": "./report"
+  "root": "./report",
+  "styles": {
+    "website": "styles/website.css"
+  }
 }

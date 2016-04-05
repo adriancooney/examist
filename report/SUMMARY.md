@@ -90,12 +90,12 @@
     - Building
         - Development
         - Production
-    - Deploying
+    - [Deploying](development/Deploying.md)
 * [Testing](testing/README.md)
-    - [Testability](testing/Testability.md)
-        - Fixtures
-        - Assertions [TODO]
-        - Logging
+    - [Testability](testing/testability.md)
+        - [Fixtures](testing/testability.md#fixtures)
+        - [Assertions](testing/testability.md#assertions)
+        - [Logging](testing/testability.md#logging)
     - Continuous Integration
         - Codeship
         - Environment
