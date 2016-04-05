@@ -99,7 +99,7 @@ class Course extends Component {
                                 sorted fullPath />
                         </div>
                     );
-                } else children = <Loading />;
+                } else children = <Loading message="Loading popular questions (may take a while)" />
             }
 
             return (
