@@ -7,13 +7,6 @@
 * Research
     - [Downloading Exam Papers](research/downloading-papers.md)
     - [Parsing Exam Papers](research/parsing-papers.md)
-        - Plain Text
-            - Py parsing
-            - Context Free Grammar
-        - Point and Click
-        - Transcription
-        - Other methods
-            - Machine learning
     - React & Redux
 * [Design](design/README.md)
     - Architecture
@@ -35,9 +28,7 @@
         - Pure
 * [User Interface](visual/README.md)
 * [Implementation](implementation/README.md)
-    - Project Structure
-        - Client
-        - Server
+    - [Project Structure](implementation/project-structure.md)
     - Backend
         - Models and ORM
         - API
@@ -62,13 +53,7 @@
 * Development
     - [Version Control](development/version-control.md)
     - [Tools](development/tools.md)
-        - Sublime
-            - Working without an IDE
-        - Terminal
-        - npm and Node
-        - virtualenv
-        - Chrome
-    - Workflow
+    - [Workflow](development/workflow.md)
         - Client
             - npm
             - Webpack
