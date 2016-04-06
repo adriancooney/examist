@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<database name="exp" schema="public" type="PostgreSQL - 9.4.2">
+   <tables>
+      <table name="alembic_version" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="version_num" nullable="false" remarks="" size="32" type="varchar"/>
+      </table>
+      <table name="comment" numRows="2" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="int4">
+            <child column="parent_id" foreignKey="comment_parent_id_fkey" implied="false" onDeleteCascade="false" table="comment"/>
+            <parent column="id" foreignKey="comment_id_fkey" implied="false" onDeleteCascade="false" table="entity"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="entity_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="comment_entity_id_fkey" implied="false" onDeleteCascade="false" table="entity"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="user_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="comment_user_id_fkey" implied="false" onDeleteCascade="false" table="user"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="parent_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="comment_parent_id_fkey" implied="false" onDeleteCascade="false" table="comment"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="4" name="content" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="6" id="5" name="created_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="6" name="updated_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="7" name="deleted" nullable="true" remarks="" size="1" type="bool"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="comment_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="course" numRows="2904" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('course_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="course_id" foreignKey="paper_course_id_fkey" implied="false" onDeleteCascade="false" table="paper"/>
+            <child column="course_id" foreignKey="user_courses_course_id_fkey" implied="false" onDeleteCascade="false" table="user_courses"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="code" nullable="true" remarks="" size="2147483647" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="name" nullable="true" remarks="" size="2147483647" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="institution_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="course_institution_id_fkey" implied="false" onDeleteCascade="false" table="institution"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="course_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="course_code_institution_id_key" unique="true">
+            <column ascending="true" name="code"/>
+            <column ascending="true" name="institution_id"/>
+         </index>
+      </table>
+      <table name="entity" numRows="257" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('entity_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="entity_id" foreignKey="comment_entity_id_fkey" implied="false" onDeleteCascade="false" table="comment"/>
+            <child column="id" foreignKey="comment_id_fkey" implied="false" onDeleteCascade="false" table="comment"/>
+            <child column="entity_id" foreignKey="like_entity_id_fkey" implied="false" onDeleteCascade="false" table="like"/>
+            <child column="id" foreignKey="note_id_fkey" implied="false" onDeleteCascade="false" table="note"/>
+            <child column="id" foreignKey="question_id_fkey" implied="false" onDeleteCascade="false" table="question"/>
+            <child column="id" foreignKey="solution_id_fkey" implied="false" onDeleteCascade="false" table="solution"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="type" nullable="true" remarks="" size="15" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="entity_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="institution" numRows="1" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('institution_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="institution_id" foreignKey="course_institution_id_fkey" implied="false" onDeleteCascade="false" table="course"/>
+            <child column="institution_id" foreignKey="user_institution_id_fkey" implied="false" onDeleteCascade="false" table="user"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="true" remarks="" size="2147483647" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="code" nullable="true" remarks="" size="2147483647" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="domain" nullable="true" remarks="" size="2147483647" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="image" nullable="true" remarks="" size="2147483647" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="color_primary" nullable="true" remarks="" size="7" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="6" name="color_secondary" nullable="true" remarks="" size="7" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="institution_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="institution_code_key" unique="true">
+            <column ascending="true" name="code"/>
+         </index>
+         <index name="institution_domain_key" unique="true">
+            <column ascending="true" name="domain"/>
+         </index>
+      </table>
+      <table name="like" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('like_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="entity_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="like_entity_id_fkey" implied="false" onDeleteCascade="false" table="entity"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="user_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="like_user_id_fkey" implied="false" onDeleteCascade="false" table="user"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="3" name="created_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="like_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="note" numRows="3" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="note_id_fkey" implied="false" onDeleteCascade="false" table="entity"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="user_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="note_user_id_fkey" implied="false" onDeleteCascade="false" table="user"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="question_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="note_question_id_fkey" implied="false" onDeleteCascade="false" table="question"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="3" name="created_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="4" name="updated_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="5" name="description" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="0" id="6" name="link" nullable="true" remarks="" size="2147483647" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="7" name="file_path" nullable="true" remarks="" size="2147483647" type="varchar"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="note_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="paper" numRows="19634" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('paper_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="paper_id" foreignKey="paper_download_paper_id_fkey" implied="false" onDeleteCascade="false" table="paper_download"/>
+            <child column="paper_id" foreignKey="question_paper_id_fkey" implied="false" onDeleteCascade="false" table="question"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="true" remarks="" size="2147483647" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="period" nullable="true" remarks="" size="2147483647" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="sitting" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="4" name="year_start" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="5" name="year_stop" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="6" name="link" nullable="true" remarks="" size="2147483647" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="7" name="course_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="paper_course_id_fkey" implied="false" onDeleteCascade="false" table="course"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="paper_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="paper_download" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('paper_download_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="path" nullable="true" remarks="" size="2147483647" type="varchar"/>
+         <column autoUpdated="false" digits="6" id="2" name="created_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="3" name="status" nullable="true" remarks="" size="2147483647" type="paper_download_status"/>
+         <column autoUpdated="false" digits="0" id="4" name="paper_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="paper_download_paper_id_fkey" implied="false" onDeleteCascade="false" table="paper"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="paper_download_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="question" numRows="209" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="int4">
+            <child column="question_id" foreignKey="note_question_id_fkey" implied="false" onDeleteCascade="false" table="note"/>
+            <child column="parent_id" foreignKey="question_parent_id_fkey" implied="false" onDeleteCascade="false" table="question"/>
+            <child column="question_id" foreignKey="question_revision_question_id_fkey" implied="false" onDeleteCascade="false" table="question_revision"/>
+            <child column="question_id" foreignKey="revision_question_id_fkey" implied="false" onDeleteCascade="false" table="revision"/>
+            <child column="question_id" foreignKey="similar_questions_question_id_fkey" implied="false" onDeleteCascade="false" table="similar_questions"/>
+            <child column="similar_question_id" foreignKey="similar_questions_similar_question_id_fkey" implied="false" onDeleteCascade="false" table="similar_questions"/>
+            <parent column="id" foreignKey="question_id_fkey" implied="false" onDeleteCascade="false" table="entity"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="paper_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="question_paper_id_fkey" implied="false" onDeleteCascade="false" table="paper"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="parent_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="question_parent_id_fkey" implied="false" onDeleteCascade="false" table="question"/>
+         </column>
+         <column autoUpdated="false" digits="6" id="3" name="created_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="4" name="marks" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="5" name="index" nullable="true" remarks="" size="10" type="int4"/>
+         <column autoUpdated="false" digits="0" id="6" name="index_type" nullable="true" remarks="" size="2147483647" type="index_type"/>
+         <column autoUpdated="false" digits="0" id="7" name="path" nullable="true" remarks="" size="10" type="_int4"/>
+         <column autoUpdated="false" digits="0" id="8" name="formatted_path" nullable="true" remarks="" size="2147483647" type="_varchar"/>
+         <column autoUpdated="false" digits="0" id="9" name="is_section" nullable="true" remarks="" size="1" type="bool"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="question_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="question_paper_id_path_key" unique="true">
+            <column ascending="true" name="paper_id"/>
+            <column ascending="true" name="path"/>
+         </index>
+      </table>
+      <table name="question_revision" numRows="178" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="question_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="question_revision_question_id_fkey" implied="false" onDeleteCascade="false" table="question"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="revision_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="question_revision_revision_id_fkey" implied="false" onDeleteCascade="false" table="revision"/>
+         </column>
+      </table>
+      <table name="revision" numRows="200" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('revision_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="revision_id" foreignKey="question_revision_revision_id_fkey" implied="false" onDeleteCascade="false" table="question_revision"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="user_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="revision_user_id_fkey" implied="false" onDeleteCascade="false" table="user"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="2" name="question_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="revision_question_id_fkey" implied="false" onDeleteCascade="false" table="question"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="3" name="content" nullable="true" remarks="" size="2147483647" type="text"/>
+         <column autoUpdated="false" digits="6" id="4" name="created_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="revision_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="session" numRows="15" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('session_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial"/>
+         <column autoUpdated="false" digits="0" id="1" name="key" nullable="true" remarks="" size="20" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="active" nullable="true" remarks="" size="1" type="bool"/>
+         <column autoUpdated="false" digits="6" id="3" name="created_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="6" id="4" name="destroyed_at" nullable="true" remarks="" size="29" type="timestamp"/>
+         <column autoUpdated="false" digits="0" id="5" name="user_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="session_user_id_fkey" implied="false" onDeleteCascade="false" table="user"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="session_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="similar_questions" numRows="488" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="question_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="similar_questions_question_id_fkey" implied="false" onDeleteCascade="false" table="question"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="similar_question_id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="similar_questions_similar_question_id_fkey" implied="false" onDeleteCascade="false" table="question"/>
+         </column>
+         <column autoUpdated="false" digits="17" id="2" name="similarity" nullable="true" remarks="" size="17" type="float8"/>
+         <primaryKey column="question_id" sequenceNumberInPK="1"/>
+         <primaryKey column="similar_question_id" sequenceNumberInPK="2"/>
+         <index name="similar_questions_pkey" unique="true">
+            <column ascending="true" name="question_id"/>
+            <column ascending="true" name="similar_question_id"/>
+         </index>
+      </table>
+      <table name="solution" numRows="0" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="solution_id_fkey" implied="false" onDeleteCascade="false" table="entity"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="user_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="solution_user_id_fkey" implied="false" onDeleteCascade="false" table="user"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="solution_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+      </table>
+      <table name="user" numRows="3" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="true" defaultValue="nextval('user_id_seq'::regclass)" digits="0" id="0" name="id" nullable="false" remarks="" size="10" type="serial">
+            <child column="user_id" foreignKey="comment_user_id_fkey" implied="false" onDeleteCascade="false" table="comment"/>
+            <child column="user_id" foreignKey="like_user_id_fkey" implied="false" onDeleteCascade="false" table="like"/>
+            <child column="user_id" foreignKey="note_user_id_fkey" implied="false" onDeleteCascade="false" table="note"/>
+            <child column="user_id" foreignKey="revision_user_id_fkey" implied="false" onDeleteCascade="false" table="revision"/>
+            <child column="user_id" foreignKey="session_user_id_fkey" implied="false" onDeleteCascade="false" table="session"/>
+            <child column="user_id" foreignKey="solution_user_id_fkey" implied="false" onDeleteCascade="false" table="solution"/>
+            <child column="user_id" foreignKey="user_courses_user_id_fkey" implied="false" onDeleteCascade="false" table="user_courses"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="name" nullable="true" remarks="" size="2147483647" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="2" name="email" nullable="true" remarks="" size="2147483647" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="3" name="password" nullable="true" remarks="" size="64" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="4" name="salt" nullable="true" remarks="" size="20" type="varchar"/>
+         <column autoUpdated="false" digits="0" id="5" name="institution_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="user_institution_id_fkey" implied="false" onDeleteCascade="false" table="institution"/>
+         </column>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="user_pkey" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="user_email_key" unique="true">
+            <column ascending="true" name="email"/>
+         </index>
+      </table>
+      <table name="user_courses" numRows="9" remarks="" schema="public" type="TABLE">
+         <column autoUpdated="false" digits="0" id="0" name="user_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="user_courses_user_id_fkey" implied="false" onDeleteCascade="false" table="user"/>
+         </column>
+         <column autoUpdated="false" digits="0" id="1" name="course_id" nullable="true" remarks="" size="10" type="int4">
+            <parent column="id" foreignKey="user_courses_course_id_fkey" implied="false" onDeleteCascade="false" table="course"/>
+         </column>
+      </table>
+   </tables>
+</database>

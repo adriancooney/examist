@@ -1,0 +1,343 @@
+Semester 1 2014 / 2015
+Exam Code(s)
+Exam(s)
+
+1st Engineering
+
+Module Code(s)
+Module(s)
+
+CH140
+Engineering Chemistry
+
+External Examiner(s)
+Internal Examiner(s)
+
+Professor Tim Gallagher
+Professor P.V. Murphy
+*Dr. P. O’Leary
+
+INSTRUCTIONS: Answer Four questions:
+Question one must be attempted (-0.5 for incorrect
+answer)
+Three other questions must be attempted
+Separate Answer Books are not required for each section.
+All questions carry 25 marks distributed as shown.
+Leave the front page of the Answer Book blank and clearly
+list on it the numbers of the questions attempted.
+
+Duration
+No. of Pages
+Department(s)
+
+2hrs
+6 (including this front page)
+Chemistry
+
+Requirements
+
+None
+
+All questions carry equal marks.
+Molar volume at STP= 22.4 dm3, Avogadro’s Number 6.02 x 1023,
+R=0.08206 dm3 atm/mol K
+
+Section A
+1.
+(i)
+
+Answer each of the following [by indicating the correct answer in
+your answer book]:
+A sample of matter that can be decomposed into three different
+elements
+a. must be a solution.
+b. must be a compound.
+c. must be a heterogeneous mixture.
+d. must be a homogeneous mixture.
+e. could be any of the preceding four answers.
+[2 Marks]
+
+(ii)
+
+Each response below lists an ion by name and by chemical symbol or
+formula. Also each ion is classified as monatomic or polyatomic and as
+a cation or anion. Which response contains an error?
+a. hydroxide OH- monatomic anion
+b. carbonate CO32- polyatomic anion
+c. ammonium NH4+ polyatomic cation
+d. magnesium Mg2+ monatomic cation
+e. sulfite SO32- polyatomic anion
+[2 Marks]
+
+(iii)
+
+What element has the electron configuration [Kr] 4d5 5s1?
+(a) W
+(b) Ru
+(c) Mo
+(d) Pm
+
+[2 Marks]
+
+(iv)
+
+A compound is known to contain only carbon, hydrogen, and oxygen. If
+the complete combustion of a 0.150 g sample of this compound
+produces 0.225 g of CO2 and 0.0614 g of H2O, what is the empirical
+formula of this compound?
+a. C3H4
+b. CH4O
+c. C3HO3
+d. C3H4O3
+e. C5H7O5
+[2 Marks]
+
+(v)
+
+Which combination of name and formula below is correct?
+(a) sodium acetate, CH3COONa
+(b) lithium oxide, LiO2
+(c) iron(II) chloride, FeCl3
+(d) potassium hydrogen sulfate, K2SO4
+
+(vi)
+
+[2 Marks]
+
+Maleic acid, which is used to manufacture artificial resins, has the
+empirical formula CHO. Its molar mass is 116.1 g/mol. What is its
+molecular formula?
+(a) CHO
+(b) C2H2O2
+(c) C3H3O3
+(d) C4H4O4
+[2 Marks]
+
+(vii)
+
+Nitrogen oxide is oxidized in air to give brown nitrogen dioxide.
+2 NO(g) + O2(g)  2 NO2(g)
+If you have 2.2 moles of NO,
+(a) you need 2.2 moles of O2 for complete reaction and produce 2.2
+moles of NO2.
+(b) you need 1.1 moles of O2 for complete reaction and produce 2.2
+moles of NO2.
+(c) you need 1.1 moles of O2 for complete reaction and produce 3.3
+moles of NO2.
+(d) you need 1.0 moles of O2 for complete reaction and produce 2.0
+moles of NO2.
+[2 Marks]
+
+(viii)
+
+Electrolysis of aqueous sodium chloride is an important industrial
+process, since the products are commercially important chlorine,
+hydrogen, and sodium hydroxide.
+2 NaCl(aq) + 2 H2O(l) Cl2(g) + H2(g) + 2 NaOH(aq)
+Assuming you begin with 293 g of NaCl how many grams of Cl2 are
+theoretically obtainable?
+(a) 71.0 g
+(b) 147 g
+(c) 178 g
+(d) 710. g
+[2 Marks]
+
+(ix)
+
+We have dissolved 2.335 g of K2Cr2O7 (molar mass = 294.18 g/mol) in
+enough water to make 500. mL of solution. What is the molarity of the
+potassium dichromate?
+(a) 1.59 x 10-5 M
+(b) 0.00794 M
+(c) 0.0318 M
+(d) 0.0159 M
+[2 Marks]
+
+(x)
+
+How many milliliters of 0.125 M HNO3 are required to react completely
+with 1.30 g of Ba(OH)2 (molar mass = 171.34 g/mol)?
+2 HNO3(aq) + Ba(OH)2(s)  Ba(NO3)2(aq) + 2 H2O(l )
+(a) 1.90 mL
+(b) 60.7 mL
+(c) 356 mL
+(d) 121 mL
+[2 Marks]
+
+(xi)
+
+Predict the products of the following acid-base reaction:
+NaOH(aq) + HF(aq)  ?
+(a) NaF(aq) + H2O(l)
+(b) NaH(aq) + HOF(aq)
+(c) OH-(aq) + NaF(aq)
+(d) no reaction takes place
+[2 Marks]
+….Question continues overleaf
+
+(xii)
+
+Given the following information, calculate Go for the reaction below at
+25 oC.
+NiO(s) + 2 HCl(g)  NiCl2(s) + H2O(g)
+Ho = -122.8 kJ and So = -125.4 J/K
+(a) -85.4 kJ
+(b) -160.2 kJ
+(c) -119.7 kJ
+(d) 126.7 kJ
+[3 Marks]
+
+2.
+
+Answer each of the following:
+(i)
+
+Neryl acetate was found to contain 73.4% C, 10.3% H the
+remainder being O. What is its empirical formula?
+[7 Marks]
+
+(ii)
+
+If its molecular mass is 196.32 amu what is its molecular formula
+[3 Marks]
+Write a chemical formula for the named chemicals (a)-(d). In each
+case also show the charge on the cation and anion. For the
+chemical formulas (e)-(h) write the name of the compound
+(a)
+Calcium chloride
+(e) AgCl2
+(b)
+Copper(I)oxide
+(f) Fe2O3
+(c)
+Potassium sulfate
+(g) K2CO3
+(d)
+Magnesium hydroxide
+(h) NaI
+[8 Marks]
+
+(iii)
+
+(iv)
+
+Balance the following equation showing the process by which you
+balanced it
+C H O + O  CO + H O
+7 14 6
+2
+2
+2
+
+3.
+
+[7 Marks]
+
+Answer each of the following:
+10g of NaOH were dissolved in 1.5 L of water. 10 mL of this solution
+was titrated with a H2SO4 solution of unknown concentration. The
+endpoint was reached when 12.5 mL of the acid was added.
+(i)
+What method could be used to detect the endpoint of the
+reaction?
+[5 Marks]
+(ii)
+What is the concentration of the NaOH solution which was made
+up?
+[6 Marks]
+(iii)
+How many moles of NaOH are present in the 10mL that were
+used in the titration?
+[4 Marks]
+(iv)
+What is the balanced equation for the reaction?
+[5 Marks]
+(v)
+From the results given calculate the concentration of the H2SO4
+solution
+[5 Marks]
+
+4.
+
+Answer each of the following:
+H2(g) + I2(g)
+
+H = -51.0 kJ
+
+(i)
+
+The synthesis of Hydrogen iodide (HI) is based of the equilibrium
+process shown here.
+Explain Le Chatelier’s principle as it applies to the synthesis of HI.
+In doing so outline the effect on the position of equilibrium of
+lowering the temperature or increasing the pressure or removing
+HI as it is formed.
+[9 Marks]
+
+(ii)
+
+What is entropy? Discuss what role it plays in determining if a
+reaction is spontaneous or not.
+[4 Marks]
+
+(ii)
+
+What is the effect on the rate of a reaction of the following? In
+each case explain why this is the case
+(a)
+(b)
+(c)
+(d)
+
+5
+
+2HI(g)
+
+decrease in pressure (gas phase reaction)
+decrease in pressure (solid phase reaction)
+moving from solid phase to gas phase reaction of same
+materials
+increase in temperature
+[4 x 3 Marks]
+
+Answer each of the following:
+(i)
+
+Draw structural formulae showing all the atoms of both of the
+following:
+2,3-diethylheptanal, 2-chloro-bromobenzene
+[5 marks]
+HO
+
+O
+OH
+(i)
+
+(ii)
+
+(iii)
+
+O
+(iv)
+
+(v)
+
+(vi)
+
+(ii)
+
+Name each molecule and indicate the functional group present in
+the molecules above (i)-(vi):
+[2 x 6 marks]
+
+(iii)
+
+A vessel containing a sample of gas is at 3.2 atm pressure, 100
+o
+C and has a volume of 4 dm3. What pressure would be present
+when the temperature is changed to 35oC and the volume to
+3.5 dm3? How many moles of the gas are present in the
+sample?
+[8 Marks]
+
+

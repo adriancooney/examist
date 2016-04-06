@@ -31,3 +31,15 @@
 # Dependencies and upgrades
 * Install `react-router-redux` instead of `redux-simple-router`.
 * Use `react`, `es2015` and `stage-0` preset with Babel.
+
+# BUGS
+## Editor bugs
+- [ ] Code blocks in preview cause overflow.
+
+## Navigational bugs
+- Moving from one course to another
+    - Repo:
+        1. Got to one course homepage
+        2. Back to homepage
+        3. To another course homepage
+        Result: No popular questions loaded

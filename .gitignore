@@ -24,3 +24,4 @@ server/logs
 
 # Gitbook
 report/_book
+report/_export

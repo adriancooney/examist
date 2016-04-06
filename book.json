@@ -1,7 +1,8 @@
 {
   "gitbook": "3.0.0-pre.5",
   "root": "./report",
-  "styles": {
-    "website": "styles/website.css"
+  "pdf": {
+    "fontFamily": "Skolar",
+    "fontSize": 10
   }
 }

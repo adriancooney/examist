@@ -1,0 +1,17 @@
+entity
+institution
+user
+course
+paper
+question
+comment
+revision
+paper_download
+session
+like
+question_revision
+similar_questions
+solution
+user_courses
+note
+alembic_version
