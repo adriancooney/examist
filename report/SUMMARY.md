@@ -5,7 +5,7 @@
     - Problem Statement
     - Solution
 * Research
-    - [Downloading Exam Papers](research/Downloading-Papers.md)
+    - [Downloading Exam Papers](research/downloading-papers.md)
     - [Parsing Exam Papers](research/parsing-papers.md)
         - Plain Text
             - Py parsing
@@ -61,9 +61,7 @@
         - Resource caching
 * Development
     - [Version Control](development/version-control.md)
-        - Github
-        - Logs
-    - Tools
+    - [Tools](development/tools.md)
         - Sublime
             - Working without an IDE
         - Terminal

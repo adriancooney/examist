@@ -1,5 +1,5 @@
 # Parsing the Exam Papers
-Probably the biggest technical feat of this project was parsing the exam papers. The exam papers from NUI Galway were all stored in PDF format, unfortunately.
+One of the biggest technical feats of this project was parsing the exam papers. The exam papers from NUI Galway were all stored in PDF format which made it a particulary hard task to approach.
 
 ### PDF Format
 The PDF format specification is *22 years old* and is entirely backwards compatible. That means any features supported in version 1.0 of the specification are still supported the current version, 1.7. This is good for users of the PDF format because even the oldest PDFs will still work however not for developers who want to use the contents of the PDF. The format is full of old concepts, quirks and dead techniques that have plagued anyone attempting to peek under the hood. Luckily for this project, the PDF format was never accessed directly but through libraries in Python. Some libraries reviewed:
