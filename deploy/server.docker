@@ -23,4 +23,7 @@ WORKDIR /usr/src/server
 RUN pip install -U -r requirements.txt
 RUN pip install .
 
+# Install the NLTK corpus
+python -m nltk.downloader stopwords
+
 CMD ["python", "init.py"]
