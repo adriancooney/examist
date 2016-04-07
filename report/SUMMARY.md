@@ -1,42 +1,34 @@
-## Table of contents
+# Final Year Project
 
-* [Introduction](introduction/README.md)
-    - [Motivations](/research/report/introduction/Motivations.md)
+* [Introduction](README.md)
+* [Motivations](introduction/Motivations.md)
     - Problem Statement
     - Solution
 * Research
     - [Downloading Exam Papers](research/downloading-papers.md)
     - [Parsing Exam Papers](research/parsing-papers.md)
     - React & Redux
-* [Design](design/README.md)
-    - Architecture
-        - Backend
-            - REST API
-        - Frontend
-            - Latest technology
-            - Learning Curve
-    - [Database](design/Database.md)
+* Design
+    - [Architecture](design/architecture.md)
+    - [Database](design/database.md)
     - Models
         - User
             - Password hashing
         - Question
         - Course
-    - API
-        - Standard Responses
-        - Exceptions
-        - Parameter handling
-    - UI
-        - Concepts
-        - Pure
+    - [API](design/api.md)
+    - [UI](design/ui.md)
 * [User Interface](visual/README.md)
 * [Implementation](implementation/README.md)
     - [Project Structure](implementation/project-structure.md)
-    - Backend
+    - [Backend](implementation/backend.md)
         - Models and ORM
             - Entity inheritance model loading
             - Adjacency list loading
         - API
             - Request data validation
+            - Exceptions
+            - Parameter handling
         - Authentication
             - User login & creation
             - Middleware
@@ -54,6 +46,7 @@
             - Authentication
             - Logging in automatically
         - API communication
+            - Resource Loading
         - Resource caching
 * Development
     - [Version Control](development/version-control.md)
@@ -79,11 +72,8 @@
         - Development
         - Production
     - [Deploying](development/deploying.md)
-* [Testing](testing/README.md)
+* Testing
     - [Test Design](testing/test-design.md)
-        - [Fixtures](testing/test-design.md#fixtures)
-        - [Assertions](testing/test-design.md#assertions)
-        - [Logging](testing/test-design.md#logging)
     - Continuous Integration
         - Codeship
         - Environment

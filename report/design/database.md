@@ -38,7 +38,7 @@ Another complex configuration, this time in both code and database terms, is the
 In this project, both the `comment` and `question` table use the adjacency list configuration with both use cases being identical: **nesting**. Each question can have many sub-questions who can also have sub-questions. This can create a deeply nested tree structure that needs to be represented in the database. To store these relationships, each question has a `parent_id` column which is a foreign key to the `id` column in the same table, `question`. The foreign key ensure the data integrity and also helps avoid breaking parent-child chains by deleting parents who still have children creating orphan questions. The loading techniques for Self-referential lists is described in the Models section in the Implementation chapter.
 
 <center>
-	<img src="diagrams/comment.1degree.png" />
+	<img src="diagrams/comment.1degree.png" style="width: 60%"/>
 	<p><i>Both the entity inheritance model and the self-referential list systems in the comment table.</i></p>
 </center>
 
@@ -58,7 +58,13 @@ Note: As of writing, the revision system has not yet migrated to the entity inhe
 The final item worth noting about the database is the similarity system. It contains information on how similar questions are with each other. Currently, the scope of a question's similarity is to any questions within the same course however that could well be expanded to the entire corpus which might yield interesting results. The `similar_questions` table stores this information by referencing the two questions, `question_id` and `similar_question_id` alongside a `similarity` float. With this configuration, some interesting queries such to retrieve the similar of questions are possible. For example, to retrieve the most popular questions in a course:
 
 ```sql
-SELECT question_id, sum(similarity) AS similarity FROM similar_questions 
-	WHERE similarity > 0.6 AND question_id != similar_question_id 
-	GROUP BY question_id ORDER BY similarity DESC;
+SELECT question_id, sum(similarity) AS similarity FROM similar_questions as sq
+    INNER JOIN question ON (sq.question_id = question.id)
+    INNER JOIN paper ON (question.paper_id = paper.id)
+    INNER JOIN course ON (paper.course_id = course.id)
+    WHERE similarity > 0.6 AND 
+        sq.question_id != sq.similar_question_id AND
+        course.code = 'CT422' 
+    GROUP BY question.id
+    ORDER BY similarity DESC;
 ```
