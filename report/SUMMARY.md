@@ -16,9 +16,11 @@
             - Latest technology
             - Learning Curve
     - [Database](design/Database.md)
-        - Overview
-        - Entities
-            - Inheritance model
+    - Models
+        - User
+            - Password hashing
+        - Question
+        - Course
     - API
         - Standard Responses
         - Exceptions
@@ -31,9 +33,12 @@
     - [Project Structure](implementation/project-structure.md)
     - Backend
         - Models and ORM
+            - Entity inheritance model loading
+            - Adjacency list loading
         - API
             - Request data validation
         - Authentication
+            - User login & creation
             - Middleware
         - Entities
             - Schemas

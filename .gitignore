@@ -16,6 +16,7 @@ npm-debug.log
 data/dumps
 build
 design/
+!report/design
 server/logs
 .dockerignore
 .env
