@@ -22,6 +22,7 @@ def create(details):
         # Log the user in
         session = user.login()
         db.session.commit()
+        db.session.refresh(user)
 
         return respond({ "key": session.key, "user": user })
     except NotFound as nf:
