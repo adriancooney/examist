@@ -6,6 +6,7 @@ from sqlalchemy.schema import Table
 from sqlalchemy.orm import relationship, backref, object_session
 from sqlalchemy.dialects import postgresql
 from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy_utils import aggregated
 from server.library.model import Serializable
 from server.database import db, Model
 from server.library.model import querymethod
@@ -60,15 +61,18 @@ class Question(Entity, Serializable):
     revision = relationship("Revision", secondary=question_revisions, uselist=False, lazy="joined")
     revisions = relationship("Revision")
     similar = relationship("Similar", foreign_keys=Similar.question_id)
+    comments = relationship("Comment", 
+        primaryjoin="Comment.entity_id == Question.id",
+        foreign_keys=id, viewonly=True, uselist=True)
 
     # Aggregates
-    @property
+    @aggregated("comments", Column(Integer, default=0))
     def comment_count(self):
-        return object_session(self).scalar(select([ func.count(Comment.id) ]).where(Comment.entity_id == self.id))
+        return func.count("id")
 
-    @hybrid_property
+    @aggregated("similar", Column(Integer, default=0))
     def similar_count(self):
-        return len(self.similar)
+        return func.count("similarity")
 
     class Meta:
         created_at = dict(load_only=True)

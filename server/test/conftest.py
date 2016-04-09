@@ -236,8 +236,7 @@ def question_with_comments(questions, user, session):
     for i in range(10):
         comments.append(model.Comment(user, question, "Hello world!"))
 
-    question.comments = comments
-    session.add(question)
+    session.add_all(comments)
     session.flush()
 
     return question

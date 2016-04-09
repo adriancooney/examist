@@ -8,7 +8,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy import func
-from sqlalchemy.orm import relationship, object_session
+from sqlalchemy.orm import relationship, object_session, noload
 from sqlalchemy.schema import UniqueConstraint
 from server.library.util import find
 from server.library.model import Serializable
@@ -177,6 +177,7 @@ class Course(Model, Serializable):
         ).group_by(Similar.question_id)).subquery()
 
         questions = session.query(Question)\
+            .options(noload(Question.children))\
             .join(popular, Question.id == popular.c.question_id)\
             .join(Paper, Paper.id == Question.paper_id)\
             .filter(Paper.course_id == self.id)\
