@@ -1,4 +1,4 @@
-# Deploying the application
+## 4.5 Deploying
 Deploying apps in an efficient, automated and contained environment is an extremely hard problem to solve. There are many points of failure and huge effort is required to ensure the process is reliable and fault tolerant. Although this project had no users as of time of writing, best practices for large scale application deployment were used to ensure a streamlined process from not just a development perspective, but also as a user of the application.
 
 

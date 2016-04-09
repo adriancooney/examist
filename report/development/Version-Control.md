@@ -1,4 +1,5 @@
-# Version Control
+# 4. Development
+## 4.1 Version Control
 Version control is a big part of the project. All of the source for the project is version controlled by git. There is no strict workflow implemented for the project since it's a one man team however there were some rules when working with the code.
 
 1. **`master` and `develop` branches.**

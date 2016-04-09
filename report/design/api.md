@@ -1,8 +1,8 @@
-# API
-The API for the application was based upon the RESTful architecture. Communication between the client and server was based upon the JSON format. 
+## 2.3 API
+The API for the application was based upon RESTful architecture. Communication between the client and server was based upon the JSON format. 
 
 ### Standard Responses
-The API followed a standard for three types of responses: error, success and data. Each endpoint responded in JSON of the following structures:
+The API follows a standard for three types of responses: error, success and data. Each endpoint responded in JSON of the following structures:
 
 ##### Error response
 The error response had three fields: `error`, `message` and `meta`. The `error` field is just a boolean denoting an error has occurred while `message` and `meta` both describe the error. The `meta` object can contain anything and is usually contains extra data to display to the user to give a more detailed error report.

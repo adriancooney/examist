@@ -1,7 +1,8 @@
-# Test Design
+# 5. Testing
+## 5.1 Test Design
 Precautions were taken to ensure the tests for the project were reliable and consistent. Ensuring that *good* tests were easy to write was also a huge part of the philosophy behind testing in the project.
 
-## Backend
+### Backend
 The API has a large suite of tests to ensure any changes to models or blueprints don't break anything. Whenever a change is made to any part of the codebase, the entire suite of tests must be run to check each endpoint is returning the data is supposed to. For each endpoint within the app, there is an average of 3 tests that ensure to test three things:
 
 1. **A request with invalid parameters fails.**
@@ -10,13 +11,13 @@ The API has a large suite of tests to ensure any changes to models or blueprints
 
 2. **A request with invalid data fails.**
 
-   Again, these are usually POST or PUT requests that send data to the server intending to be processed in some way. The endpoint has to be tested to ensure the integrity of the existing data is not compromed by incoming valid data. Examples are when trying to create new users when an email already exists for that user or trying to update an entity that voilates a constraint within the database.
+   Again, these are usually POST or PUT requests that send data to the server intending to be processed in some way. The endpoint has to be tested to ensure the integrity of the existing data is not compromised by incoming valid data. Examples are when trying to create new users when an email already exists for that user or trying to update an entity that violates a constraint within the database.
 
 3. **The response returned the correct data.**
 
    Probably the most important test of the three is that given a valid request, the API returns the expected data. This is to ensure that interfaces built for the API can trust the server to always return data in the same format and structure.
 
-### Fixtures
+#### Fixtures
 The key to testing an application is making it easy to write good tests. Tests should be simple, complete and deterministic. When writing a test takes longer than writing the implementation of the code being tested, something is wrong. To avoid that trap and make writing tests as easy as possible for the API, the test suite made heavy use of Py.Test fixtures.
 
 Fixtures are methods, that when called, perform some setup for the test suite. This includes connecting the database, creating the tables, importing sample data and generally laying down the foundations for tests so that they can act upon real data. 
@@ -41,25 +42,46 @@ def test_profile_delete_course(auth_client, user_with_courses, session):
 
 Above we have an example test `test_profile_delete_course` which sends a request to the API attempting to remove a course from a user's associated courses. From the method arguments, we can see it uses three fixtures (Py.Test automatically resolves the arguments to fixtures when it runs the test): `auth_client`, `user_with_courses` and `session` (for a full list of fixtures, see Appendix 1: Test Fixtures). 
 
-The `auth_client` provides an API client that has a logged in session and user associated with it and any requests made are authorized. This saves the hassle of having to write login code for every test (if I wanted an unauthorized client, I'd ask for the `client` fixture). The `user_with_courses` fixture returns a user with courses associated at "function" scope and committed to the database. Finally, the session object is an SQL Alchemy Session object we can use to query the database to ensure any changes made by the API exist in the database.
+The `auth_client` provides an API client that has a logged in session and user associated with it and any requests made are authorised. This saves the hassle of having to write login code for every test (if I wanted an unauthorised client, I'd ask for the `client` fixture). The `user_with_courses` fixture returns a user with courses associated at "function" scope and committed to the database. Finally, the session object is an SQL Alchemy Session object we can use to query the database to ensure any changes made by the API exist in the database.
 
 The first two lines of the test used the auth client to make a *DELETE* request to `/profiles/courses` with the ID of a course that a user has associated. We want to remove that course from the user's associated courses.
 
 Next, we `assert_api_success` which checks that the API returned a `200 OK` and the standard success response. If it doesn't, it will raise an `AssertionError` and the test will fail. Finally, we make sure the change has persisted to the database by refreshing the `User` entity and ensuring the course is not associated anymore.
 
-When the test is complete, *everything* is rolled back to the state before the test started including the user's login session created for the `auth_client` and the new user and their courses created in the `user_with_courses`. If any following tests require those fixtures, everything has to be recommited to the database from scratch again. This may seem cumbersome and slow however it is the best way to ensure that every test will not be negatively affected by unintended side effects.
+When the test is complete, *everything* is rolled back to the state before the test started including the user's login session created for the `auth_client` and the new user and their courses created in the `user_with_courses`. If any following tests require those fixtures, everything has to be recommitted to the database from scratch again. This may seem cumbersome and slow however it is the best way to ensure that every test will not be negatively affected by unintended side effects.
 
-### Assertions
-TODO
+#### Assertions
+The application implements a suite of custom assertions specifically tailored to the API. In line with the principle of making good tests easy to write, there are three methods:
 
-### Logging
+1. `assert_api_error( response, status_code [, message, meta ] )`
+
+	This method takes an API response from the client and asserts that a HTTP error response was returned that matches `status_code`. The method also allows for testing the contents of the error message and the schema of the meta object.
+	
+2. `assert_api_success( resp )`
+
+	This method takes asserts the API has returned a `200 OK` and matches the standard success API response.
+	
+3. `assert_api_response( resp )`
+
+	The `assert_api_response` method asserts we have a `200 OK` returned from the API. It also serves another purpose of parsing the JSON response and yielding the object:
+	
+	```py
+	def test_resp(client):
+		resp = client.get("/courses")
+		
+		with assert_api_response(resp) as data:
+			assert "courses" in data
+			assert len(data["courses"] > 5)
+	```
+
+#### Logging
 Since the development workflow of the backend is mostly TDD (Test Driven Development), it's important that the output and logs of the code being tested is easily accessible to ensure the code is performing as it should. For the test suite, a lot of effort was put into ensuring the log output was as readable and approachable as possible. There was a couple of steps involved in reach the current state.
 
 ![Output of a test run. Notice the highlighted SQL.](assets/test-output.png)
 
-First off, Py.test does a poor job of reporting test execution. By default it surpresses any output unless the command line flag `-s` is enabled. Even with that, only a dot is inserted after the test has completed execution. The first change to the output was to mark the beginning and end of a test run using large, guarded markers with the test name.
+First off, Py.test does a poor job of reporting test execution. By default it suppresses any output unless the command line flag `-s` is enabled. Even with that, only a period is outputted after the test has completed execution. The first change to the output was to mark the beginning and end of a test run using large, guarded markers with the test name.
 
-The next modification to the logging output was making SQL Alchemy's SQL output readable. This was no easy task because SQL Alchemy spits out *huge* chunks, line by line which leads to unparsable walls of text. SQL Alchemy uses Python's native `logging` module which allows you to plug in your own formatters and filters. The SQL Alchemy logger was modified to colorize, indent and surround whitespace with any parameters shown just below it.
+The next modification to the logging output was making SQL Alchemy's SQL output readable. This was no easy task because SQL Alchemy spits out *huge* chunks, line by line which leads to unparseable walls of text. SQL Alchemy uses Python's native `logging` module which allows you to plug in your own formatters and filters. The SQL Alchemy logger was modified to colorise, indent and pad the queries with any parameters displayed just below.
 
 ![Unformatted SQL output vs Formatted](assets/SQL-formatted.png)
 

@@ -1,5 +1,5 @@
-## Backend
-The backend of the app
+## 3.2 Backend
+The backend of the app is a Python codebase contained in the `server/` directory of the project. It powers the API the frontend communicates with to run the application.
 
 ### Models
 Overall, there are 14 models at the current time of writing. The names of each model are pretty much self explanatory. For a more in-depth look at the relationship configurations between the models, see the Database section of the Design chapter.
@@ -36,6 +36,8 @@ class Note(Entity, Serializable):
 <center><i>The Note model from the Server</i></center>
 
 Relationships can be easily created using the `relationship` function which can also created back references on the model linked. ForeignKeys and other modifiers are all made extremely simple.
+
+<div style="page-break-after: always;"></div>
 
 #### Serialisation & Deserialisation
 The entity serialisation and deserialisation was a particularly tough problem to solve. Python objects are not natively serialisable like the Javascript counter part. On top of that, the attributes on the entities weren't really attributes in the Python sense of the word but were describing attributes for the database. 
