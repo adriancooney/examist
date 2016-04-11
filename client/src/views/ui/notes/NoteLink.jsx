@@ -21,13 +21,13 @@ export default class NoteLink extends Component {
                 <blockquote>{ note.description }</blockquote>
 
                 <div className="link">
-                    <a href={note.href} target="_blank">
+                    <a href={note.link} target="_blank">
                         <Icon name="external-link" /> <strong>{parsed.host}</strong>{ path }
                     </a>
                 </div>
 
                 <Box className="actions">
-                    <p>{ `Posted by Anonymous ${timestamp.fromNow()}.` }</p>
+                    <p>{ `Posted ${timestamp.fromNow()}.` }</p>
                     <Button textual>Like</Button>
                     <Link to="#">Comments</Link>
                     <Button textual danger>Report</Button>

@@ -14,6 +14,7 @@ export default (
                 {views.parser.routes}
 
                 <Route path="/" component={views.templates.Container}>
+                    <Route path="about" component={views.pages.About} />
                     <Route path="login" component={views.pages.Login} onEnter={views.pages.Login.onEnter} />
                     <Route path="signup" component={views.pages.Signup} onEnter={views.pages.Signup.onEnter}/>
                     

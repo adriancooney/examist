@@ -5,7 +5,8 @@ import { Box } from "../layout";
 
 export default function QuestionIndex(props) {
     const { question, link } = props;
-    let indexes = props.full ? question.path : question.path.slice(-1);
+    const path = question.formatted_path;
+    let indexes = props.full ? path : path.slice(-1);
 
     indexes = indexes.map((index, i, all) => {
         let indexContent = index;
