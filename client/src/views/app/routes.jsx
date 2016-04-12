@@ -11,7 +11,7 @@ import Question from "./Question";
 
 export default (
     <Route component={App} onEnter={authorize}>
-        <IndexRoute component={Dashboard} />
+        <Route path="dashboard" component={Dashboard} />
         <Route path="logout" component={Logout} onEnter={Logout.onEnter} />
         <Route path="courses/pick" component={CoursePicker} />
         <Route path="course/:course" component={Course}>

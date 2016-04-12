@@ -19,7 +19,7 @@ export default class PaperGrid extends Component {
 
     render() {
         // Extract out the years for our table header
-        let years = YEARS;
+        let years = this.props.years || YEARS;
 
         // Group by period
         let periods = this.groupByPeriod(this.props.papers)

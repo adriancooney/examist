@@ -1,0 +1,101 @@
+{
+    "question": {
+        "toplevel": true,
+        "course": {
+            "code": "CT422-1",
+            "id": 2819,
+            "institution_id": 1,
+            "name": "Modern Information Management",
+            "papers": [
+                3671,
+                3672,
+                3673,
+                3674,
+                3675,
+                3676,
+                3677,
+                3678,
+                3679,
+                3680,
+                3681,
+                3682,
+                3683,
+                3684,
+                3685,
+                3686
+            ]
+        },
+        "paper": {
+            "course": 2819,
+            "course_id": 2819,
+            "id": 3681,
+            "link": "https://www.mis.nuigalway.ie/papers_public/2014_2015/CT/2014_2015_CT422_1_1_5.PDF",
+            "name": "Paper 1 - Written",
+            "period": "winter",
+            "questions": [
+                13,
+                5,
+                15,
+                6,
+                8,
+                11,
+                12,
+                10,
+                16,
+                14,
+                9,
+                7,
+                1,
+                2,
+                4,
+                3
+            ],
+            "sitting": 1,
+            "year_start": 2014,
+            "year_stop": 2015
+        },
+        "question": {
+            "children": [
+                7,
+                6,
+                5
+            ],
+            "comment_count": 0,
+            "created_at": "2016-03-14T15:07:10.881431+00:00",
+            "formatted_path": [
+                "1"
+            ],
+            "id": 1,
+            "index": 1,
+            "index_type": "decimal",
+            "is_section": null,
+            "marks": null,
+            "paper": 3681,
+            "paper_id": 3681,
+            "parent": null,
+            "parent_id": null,
+            "path": [
+                1
+            ],
+            "revision": null,
+            "similar_count": 0
+        }
+    },
+
+    "questions": {
+        "5": {"children":[],"comment_count":0,"created_at":"2016-03-14T15:07:10.889254+00:00","formatted_path":["1","a"],"id":5,"index":1,"index_type":"alpha","is_section":null,"marks":10,"paper":3681,"paper_id":3681,"parent":1,"parent_id":1,"path":[1,1],"revision":{"content":"What is meant by collaborative filtering? Illustrate, with a suitable example, how a collaborative filtering approach could be used to make a prediction for a given user for a given item.","created_at":"2016-03-14T15:07:10.895783+00:00","user":null},"similar_count":11},
+        "6": {"children":[],"comment_count":0,"created_at":"2016-03-14T15:07:10.889837+00:00","formatted_path":["1","b"],"id":6,"index":2,"index_type":"alpha","is_section":null,"marks":10,"paper":3681,"paper_id":3681,"parent":1,"parent_id":1,"path":[1,2],"revision":{"content":"Identify the main limitations of a collaborative filtering system and suggest mechanisms to overcome these limitations.","created_at":"2016-03-14T15:07:10.896697+00:00","user":null},"similar_count":7},
+        "7": {"children":[],"comment_count":0,"created_at":"2016-03-14T15:07:10.890322+00:00","formatted_path":["1","c"],"id":7,"index":3,"index_type":"alpha","is_section":null,"marks":5,"paper":3681,"paper_id":3681,"parent":1,"parent_id":1,"path":[1,3],"revision":{"content":"Discuss metrics to evaluate the quality of a collaborative filtering system and discuss the suitability of these metrics.","created_at":"2016-03-14T15:07:10.903599+00:00","user":null},"similar_count":12}
+    },
+
+    "courses": [
+        {"course":{"code":"CE439-1","id":297,"institution_id":1,"name":"Coastal Engineering","papers":[2111,2112,2113,2114,2115,2116,2117,2118,2119,2120,2121,2122]}},
+        {"course":{"code":"SPL310-1","id":2638,"institution_id":1,"name":"Project Planning & Evaluation","papers":[19026,19027,19028,19029,19030,19031,19032,19033]}},
+        {"course":{"code":"SP157-1","id":2642,"institution_id":1,"name":"Introduction to Youth & Family","papers":[18572,18573,18574,18575,18576,18577,18578,18579,18580,18581,18582,18583]}},
+        {"course":{"code":"CE477-1","id":288,"institution_id":1,"name":"Theoretical and Applied Geomechanics","papers":[2250,2251,2252,2253]}},
+        {"course":{"code":"NU117-1","id":2126,"institution_id":1,"name":"Nursing Management of the Physically III Adult 1","papers":[15516,15517,15518,15519,15520,15521,15522,15523,15524,15525,15526,15527,15528,15529]}},
+        {"course":{"code":"CT422-1","id":2819,"institution_id":1,"name":"Modern Information Management","papers":[3671,3672,3673,3674,3675,3676,3677,3678,3679,3680,3681,3682,3683,3684,3685,3686]}}
+    ],
+
+    "sampleCourse": {"history":{},"location":{"pathname":"/course/ct422-1","search":"","hash":"","state":null,"action":"PUSH","key":"upe9lg","query":{},"$searchBase":{"search":"","searchBase":""}},"params":{"course":"ct422-1"},"route":{"path":"course/:course","childRoutes":[{"path":"paper/:year/:period/q/:path(/:view)"},{"path":"paper/:year/:period"}]},"routeParams":{"course":"ct422-1"},"routes":[{"path":"/","indexRoute":{},"childRoutes":[{"childRoutes":[{"path":"about"},{"path":"login"},{"path":"signup"},{"childRoutes":[{"path":"dashboard"},{"path":"logout"},{"path":"courses/pick"},{"path":"course/:course","childRoutes":[{"path":"paper/:year/:period/q/:path(/:view)"},{"path":"paper/:year/:period"}]}]},{"path":"*"}]}]},{"childRoutes":[{"path":"about"},{"path":"login"},{"path":"signup"},{"childRoutes":[{"path":"dashboard"},{"path":"logout"},{"path":"courses/pick"},{"path":"course/:course","childRoutes":[{"path":"paper/:year/:period/q/:path(/:view)"},{"path":"paper/:year/:period"}]}]},{"path":"*"}]},{"childRoutes":[{"path":"dashboard"},{"path":"logout"},{"path":"courses/pick"},{"path":"course/:course","childRoutes":[{"path":"paper/:year/:period/q/:path(/:view)"},{"path":"paper/:year/:period"}]}]},{"path":"course/:course","childRoutes":[{"path":"paper/:year/:period/q/:path(/:view)"},{"path":"paper/:year/:period"}]}],"children":null,"course":{"code":"CT422-1","id":2819,"institution_id":1,"name":"Modern Information","papers":[3671,3672,3673,3674,3675,3676,3677,3678,3679,3680,3681,3682,3683,3684,3685,3686],"popular_questions":[41,76,72,37,116,52,28,33,58,45,57,19,5,46]},"papers":[{"course":2819,"course_id":2819,"id":3671,"link":"https://www.mis.nuigalway.ie/papers_public/2012_2013/CT/2012_2013_CT422_1_1_2.PDF","name":"Paper 1 - Written","period":"summer","sitting":1,"year_start":2012,"year_stop":2013},{"course":2819,"course_id":2819,"id":3672,"link":"https://www.mis.nuigalway.ie/papers_public/2009_2010/CT/2009_2010_CT422_1_2_3.PDF","name":"Paper 1 - Written","period":"autumn","sitting":2,"year_start":2009,"year_stop":2010},{"course":2819,"course_id":2819,"id":3673,"link":"https://www.mis.nuigalway.ie/papers_public/2007_2008/CT/2007_2008_CT422_1_1_2.PDF","name":"Paper 1 - Written","period":"summer","sitting":1,"year_start":2007,"year_stop":2008},{"course":2819,"course_id":2819,"id":3674,"link":"https://www.mis.nuigalway.ie/papers_public/2013_2014/CT/2013_2014_CT422_1_2_3.PDF","name":"Paper 1 - Written","period":"autumn","sitting":2,"year_start":2013,"year_stop":2014},{"course":2819,"course_id":2819,"id":3675,"link":"https://www.mis.nuigalway.ie/papers_public/2009_2010/CT/2009_2010_CT422_1_1_2.PDF","name":"Paper 1 - Written","period":"summer","sitting":1,"year_start":2009,"year_stop":2010},{"course":2819,"course_id":2819,"id":3676,"link":"","name":"Paper 1 - Written","period":"autumn","sitting":2,"year_start":2008,"year_stop":2009},{"course":2819,"course_id":2819,"id":3677,"link":"https://www.mis.nuigalway.ie/papers_public/2010_2011/CT/2010_2011_CT422_1_2_3.PDF","name":"Paper 1 - Written","period":"autumn","sitting":2,"year_start":2010,"year_stop":2011},{"course":2819,"course_id":2819,"id":3678,"link":"","name":"Paper 1 - Written","period":"autumn","sitting":2,"year_start":2007,"year_stop":2008},{"course":2819,"course_id":2819,"id":3679,"link":"","name":"Paper 1 - Written","period":"autumn","sitting":2,"year_start":2011,"year_stop":2012},{"course":2819,"course_id":2819,"id":3680,"link":"https://www.mis.nuigalway.ie/papers_public/2011_2012/CT/2011_2012_CT422_1_1_2.PDF","name":"Paper 1 - Written","period":"summer","sitting":1,"year_start":2011,"year_stop":2012},{"course":2819,"course_id":2819,"id":3681,"link":"https://www.mis.nuigalway.ie/papers_public/2014_2015/CT/2014_2015_CT422_1_1_5.PDF","name":"Paper 1 - Written","period":"winter","sitting":1,"year_start":2014,"year_stop":2015},{"course":2819,"course_id":2819,"id":3682,"link":"https://www.mis.nuigalway.ie/papers_public/2012_2013/CT/2012_2013_CT422_1_2_3.PDF","name":"Paper 1 - Written","period":"autumn","sitting":2,"year_start":2012,"year_stop":2013},{"course":2819,"course_id":2819,"id":3683,"link":"https://www.mis.nuigalway.ie/papers_public/2010_2011/CT/2010_2011_CT422_1_1_2.PDF","name":"Paper 1 - Written","period":"summer","sitting":1,"year_start":2010,"year_stop":2011},{"course":2819,"course_id":2819,"id":3684,"link":"https://www.mis.nuigalway.ie/papers_public/2013_2014/CT/2013_2014_CT422_1_1_5.PDF","name":"Paper 1 - Written","period":"winter","sitting":1,"year_start":2013,"year_stop":2014},{"course":2819,"course_id":2819,"id":3685,"link":"https://www.mis.nuigalway.ie/papers_public/2014_2015/CT/2014_2015_CT422_1_2_3.PDF","name":"Paper 1 - Written","period":"autumn","sitting":2,"year_start":2014,"year_stop":2015},{"course":2819,"course_id":2819,"id":3686,"link":"https://www.mis.nuigalway.ie/papers_public/2008_2009/CT/2008_2009_CT422_1_1_2.PDF","name":"Paper 1 - Written","period":"summer","sitting":1,"year_start":2008,"year_stop":2009}],"popularQuestions":[{"children":[],"comment_count":4,"created_at":"2016-03-14T15:07:10.889254+00:00","formatted_path":["1","a"],"id":5,"index":1,"index_type":"alpha","is_section":null,"marks":10,"paper":3681,"paper_id":3681,"parent":1,"parent_id":1,"path":[1,1],"revision":{"content":"What is meant by collaborative filtering? Illustrate, with a suitable example, how a collaborative filtering approach could be used to make a prediction for a given user for a given item.","created_at":"2016-03-14T15:07:10.895783+00:00","user":null},"similar_count":11},{"children":[],"comment_count":0,"created_at":"2016-03-21T19:23:50.072170+00:00","formatted_path":["4","a"],"id":76,"index":1,"index_type":"alpha","is_section":null,"marks":13,"paper":3671,"paper_id":3671,"parent":75,"parent_id":75,"path":[4,1],"revision":{"content":"Many modern web-based search engines attempt to take into account the web link structure in addition to the content of the pages. Describe the Page Rank algorithm that uses information embedded in the web link structure to return relevant documents to a user. Discuss any limitations associated with this approach.","created_at":"2016-03-21T19:24:17.716761+00:00","user":1},"similar_count":10},{"children":[],"comment_count":0,"created_at":"2016-03-21T19:05:09.434024+00:00","formatted_path":["4","b"],"id":45,"index":2,"index_type":"alpha","is_section":null,"marks":11,"paper":3674,"paper_id":3674,"parent":43,"parent_id":43,"path":[4,2],"revision":{"content":"Query modification is often used by systems to attempt to improve precision and recall for a given information need. Discuss an approach that uses user feedback on the returned answer to modify the query. Illustrate the approach with a suitable example. ","created_at":"2016-03-21T19:05:35.058097+00:00","user":1},"similar_count":9},{"children":[],"comment_count":0,"created_at":"2016-03-21T19:03:02.111892+00:00","formatted_path":["3","a"],"id":41,"index":1,"index_type":"alpha","is_section":null,"marks":11,"paper":3674,"paper_id":3674,"parent":40,"parent_id":40,"path":[3,1],"revision":{"content":"Empirical evaluation of information retrieval systems plays an important role in information retrieval research. Define and discuss the following metrics that can be used to measure the performance of an Information Retrieval system: precision, recall, novelty and coverage.","created_at":"2016-03-21T19:03:35.652276+00:00","user":1},"similar_count":9},{"children":[],"comment_count":1,"created_at":"2016-03-21T18:56:08.086723+00:00","formatted_path":["1","a"],"id":33,"index":1,"index_type":"alpha","is_section":null,"marks":12,"paper":3674,"paper_id":3674,"parent":32,"parent_id":32,"path":[1,1],"revision":{"content":"Describe the vector space model approach to Information Retrieval. Your answer should include a description of the query and document representations and the comparison approach used.","created_at":"2016-03-21T18:56:32.615699+00:00","user":1},"similar_count":8},{"children":[],"comment_count":0,"created_at":"2016-03-21T18:57:26.495723+00:00","formatted_path":["2","a"],"id":37,"index":1,"index_type":"alpha","is_section":null,"marks":14,"paper":3674,"paper_id":3674,"parent":36,"parent_id":36,"path":[2,1],"revision":{"content":"Many modern web-based search engines attempt to take into account the web link structure in addition to the content of the pages. Describe briefly the Page Rank algorithm that uses information embedded in the web link structure to return relevant documents to a user. Include an example to illustrate your answer. ","created_at":"2016-03-21T18:57:54.197939+00:00","user":1},"similar_count":8},{"children":[],"comment_count":0,"created_at":"2016-03-21T18:30:42.362827+00:00","formatted_path":["3","I"],"id":19,"index":1,"index_type":"roman","is_section":null,"marks":8,"paper":3685,"paper_id":3685,"parent":17,"parent_id":17,"path":[3,1],"revision":{"content":"Query modification is often used by systems to attempt to improve precision and recall for a given information need. Discuss an approach, given user feedback on the returned\nanswer, to improve the performance of the query. ","created_at":"2016-03-21T18:31:10.085412+00:00","user":1},"similar_count":7},{"children":[],"comment_count":0,"created_at":"2016-03-21T19:05:42.137460+00:00","formatted_path":["4","c"],"id":46,"index":3,"index_type":"alpha","is_section":null,"marks":11,"paper":3674,"paper_id":3674,"parent":43,"parent_id":43,"path":[4,3],"revision":{"content":"Traditionally, information retrieval systems and web search engines have presented results in a list ordered by estimated relevance. Identify any limitations with this approach and suggest an alternative presentation of results. ","created_at":"2016-03-21T19:05:57.760552+00:00","user":1},"similar_count":6},{"children":[],"comment_count":0,"created_at":"2016-03-21T19:22:32.541978+00:00","formatted_path":["3","a"],"id":72,"index":1,"index_type":"alpha","is_section":null,"marks":10,"paper":3671,"paper_id":3671,"parent":71,"parent_id":71,"path":[3,1],"revision":{"content":"Empirical evaluation of information retrieval systems plays an important role in information retrieval research. Define and discuss the following metrics that can be used to measure the performance of an Information Retrieval system: _precision, recall, novelty and coverage_.","created_at":"2016-03-21T19:22:53.589801+00:00","user":1},"similar_count":6},{"children":[],"comment_count":0,"created_at":"2016-03-21T19:12:15.354186+00:00","formatted_path":["3","b"],"id":57,"index":2,"index_type":"alpha","is_section":null,"marks":11,"paper":3684,"paper_id":3684,"parent":55,"parent_id":55,"path":[3,2],"revision":{"content":"The concepts of topical relevance and component coverage have been used to evaluate approaches to structured retrieval (e.g., retrieval of XML documents). Describe, with a suitable example, these concepts. Discuss any limitations of these metrics.","created_at":"2016-03-21T19:12:41.182643+00:00","user":1},"similar_count":6},{"children":[],"comment_count":0,"created_at":"2016-03-21T22:24:24.698477+00:00","formatted_path":["2","I"],"id":116,"index":1,"index_type":"roman","is_section":null,"marks":10,"paper":3680,"paper_id":3680,"parent":115,"parent_id":115,"path":[2,1],"revision":{"content":"Empirical evaluation of information retrieval systems plays an important role in information retrieval research. Define and discuss the following metrics that can be used to measure the performance of an IR system: _precision, recall, novelty and coverage_.","created_at":"2016-03-21T22:24:50.293330+00:00","user":1},"similar_count":6},{"children":[],"comment_count":0,"created_at":"2016-03-21T17:58:28.898133+00:00","formatted_path":["2","I"],"id":28,"index":1,"index_type":"roman","is_section":null,"marks":10,"paper":3685,"paper_id":3685,"parent":27,"parent_id":27,"path":[2,1],"revision":{"content":"Empirical evaluation of information retrieval systems plays an important role in information retrieval research. Define and discuss the following metrics that can be used to measure the performance of an Information Retrieval system: _precision, recall, novelty_ and _coverage_.","created_at":"2016-03-21T17:59:25.326242+00:00","user":1},"similar_count":6},{"children":[],"comment_count":0,"created_at":"2016-03-21T19:09:15.341470+00:00","formatted_path":["2","a"],"id":52,"index":1,"index_type":"alpha","is_section":null,"marks":12,"paper":3684,"paper_id":3684,"parent":51,"parent_id":51,"path":[2,1],"revision":{"content":"Many modern web-based search engines attempt to take into account the web link structure in addition to the content of the pages. Describe briefly the Page Rank algorithm that uses information embedded in the web link structure to return relevant documents to a user.","created_at":"2016-03-21T19:09:30.770757+00:00","user":1},"similar_count":6},{"children":[],"comment_count":0,"created_at":"2016-03-21T19:12:43.620054+00:00","formatted_path":["3","c"],"id":58,"index":3,"index_type":"alpha","is_section":null,"marks":11,"paper":3684,"paper_id":3684,"parent":55,"parent_id":55,"path":[3,3],"revision":{"content":"With reference to a clustering algorithm of your choice, describe suitable approaches to measuring the quality of the clustering algorithm. Your answer should distinguish between internal and external criteria.","created_at":"2016-03-21T19:13:05.441416+00:00","user":1},"similar_count":4}],"isLoadingCourse":false,"isLoadingPopular":false}
+}

@@ -10,7 +10,7 @@ import { Questions } from "../ui/question";
 import { Loading } from "../ui/";
 import { Box, Flex } from "../ui/layout";
 
-class Course extends Component {
+export class Course extends Component {
     static selector = (state, { params }) => {
         let papers, paper, popularQuestions;
         const course = model.resources.Course.selectByCode(params.course)(state);
@@ -109,7 +109,7 @@ class Course extends Component {
                         <Flex><h3>{ course.name }</h3></Flex>
                     </Box>
                     
-                    <PaperGrid papers={papers} course={course} currentPaper={paper} />
+                    <PaperGrid papers={papers} course={course} currentPaper={paper} years={this.props.years} />
 
                     { children }
                 </Flex>

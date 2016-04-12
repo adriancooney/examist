@@ -7,15 +7,21 @@ import Panel from "../../ui/parser/Panel";
 import * as model from "../../../model";
 
 class QuestionsPanel extends Component {
-    static selector = (state, { params }, { paper }) => {
+    static selector = (state, { params }, { course }) => {
+        const paper = model.resources.Paper.selectPaper({ 
+            period: params.period,
+            year: parseInt(params.year),
+            course: course.id 
+        })(state);
+
         return {
-            questions: state.resources.questions.filter(q => q.paper_id === paper.id)
+            paper,
+            questions: state.resources.questions.filter(q => q.paper_id === paper.id)    
         }
     };
 
     static contextTypes = {
-        course: PropTypes.object,
-        paper: PropTypes.object
+        course: PropTypes.object
     };
 
     static actions = {
@@ -25,8 +31,8 @@ class QuestionsPanel extends Component {
     };
 
     render() {
-        const { course, paper } = this.context;
-        const { questions } = this.props;
+        const { course } = this.context;
+        const { questions, paper } = this.props;
         let content;
 
         if(paper.questions && paper.questions.length) {
@@ -62,7 +68,8 @@ class QuestionsPanel extends Component {
 
     addQuestion(question) {
         let index;
-        const { course, paper } = this.context;
+        const { course } = this.context;
+        const { paper } = this.props;
 
         if(!question) {
             // Add new root question
@@ -77,14 +84,16 @@ class QuestionsPanel extends Component {
     }
 
     removeQuestion(question) {
-        const { course, paper } = this.context;
+        const { course } = this.context;
+        const { paper } = this.props;
 
         // Delete a question
         this.props.removeQuestion(course.code, paper.year_start, paper.period, question);
     }
 
     editQuestion(question, changes) {
-        const { course, paper } = this.context;
+        const { course } = this.context;
+        const { paper } = this.props;
 
         // Filter out undefined keys
         changes = Object.keys(changes)

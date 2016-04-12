@@ -10,6 +10,10 @@
         font-size: 110%;
         font-family: $font-question;
         font-weight: $font-question-weight;
+
+        img {
+            max-width: 100%;
+        }
     }
 
     .question-main > .Empty {
@@ -24,7 +28,6 @@
 
     .question-detail {
         padding-top: $spacing-padding/2;
-
     }
 
     .side-actions {

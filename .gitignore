@@ -17,6 +17,7 @@ data/dumps
 build
 design/
 !report/design
+client/assets/figure/
 server/logs
 .dockerignore
 .env

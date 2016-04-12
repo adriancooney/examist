@@ -1,7 +1,31 @@
 @import "../common/Spacing";
+@import "../common/Fonts";
 
 .Signup {
+    margin-top: 40px;
+
     > .Flex {
-        padding: $spacing-padding;
+        padding-left: $spacing-padding;
+    }
+
+    .signup-info {
+        padding-left: 0;
+        padding-top: $spacing-padding * 2;
+        text-align: center;
+
+        img {
+            height: 100px;
+        }
+
+        p {
+            text-align: left;
+            font-family: $font-reading;
+            font-size: 130%;
+            margin: $spacing-margin*2 0;
+        }
+    }
+
+    .institution-view {
+        margin-top: $spacing-margin*4;
     }
 }

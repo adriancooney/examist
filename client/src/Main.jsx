@@ -1,6 +1,6 @@
 import "../style/Global.scss";
 import React from "react";
-import { Router, Route, browserHistory } from "react-router";
+import { Router, Route, IndexRoute, browserHistory } from "react-router";
 import { Provider } from "react-redux";
 import store from "./Store";
 import * as views from "./views";
@@ -13,14 +13,17 @@ export default (
             <Router history={browserHistory}>
                 {views.parser.routes}
 
-                <Route path="/" component={views.templates.Container}>
-                    <Route path="about" component={views.pages.About} />
-                    <Route path="login" component={views.pages.Login} onEnter={views.pages.Login.onEnter} />
-                    <Route path="signup" component={views.pages.Signup} onEnter={views.pages.Signup.onEnter}/>
-                    
-                    {views.app.routes}
+                <Route path="/">
+                    <IndexRoute component={views.pages.Home} />
+                    <Route component={views.templates.Container}>
+                        <Route path="about" component={views.pages.About} />
+                        <Route path="login" component={views.pages.Login} onEnter={views.pages.Login.onEnter} />
+                        <Route path="signup" component={views.pages.Signup} onEnter={views.pages.Signup.onEnter}/>
+                        
+                        {views.app.routes}
 
-                    <Route path="*" component={views.pages.Error404} />
+                        <Route path="*" component={views.pages.Error404} />
+                    </Route>
                 </Route>
             </Router>
         </Root>

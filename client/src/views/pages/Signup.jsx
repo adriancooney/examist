@@ -62,16 +62,16 @@ class Signup extends Component {
 
         return (
             <Box className="Signup">
-                <Flex>
-                    <p>{ content("signup_institution_address") }</p>
-                    <p>{ content("signup_young") }</p>
+                <Flex className="signup-info">
+                    <img src="assets/icon/key.svg" />
+                    <p>To create a new account, you need a valid university email address.</p>
                 </Flex>
                 <Flex grow={2.5}>
                     { error }
                     <Form onSubmit={::this.onSubmit} onChange={::this.onChange}>
                         <Input name="name" label="Name" placeholder="e.g. John Smith" />
                         <Input name="email" label="Institution Email" placeholder="e.g. john.smith@nuigalway.ie" />
-                        <Input name="password" label="Password" password />
+                        <Input name="password" label="Password" password placeholder="e.g. 1234" />
                     </Form>
                 </Flex>
                 <Flex className="institution-view">
@@ -87,6 +87,9 @@ class Signup extends Component {
      * @param  {Object} details Form values.
      */
     onSubmit(details) {
+        if(!details.email.match(MATCH_EMAIL))
+            return this.setState({ error: "Please enter a valid email." });
+
         this.props.createUser(details);
     }
 
