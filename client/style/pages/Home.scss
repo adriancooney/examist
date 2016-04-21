@@ -1,0 +1,137 @@
+@import "../common/Spacing";
+@import "../common/Fonts";
+
+.Home {
+    .Header {
+        text-align: left;
+
+        .Logo {
+            color: #fff;
+        }
+
+        nav li {
+            color: #fff;
+
+            a {
+                color: inherit;
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .container {
+        width: 960px;
+        margin: 0 auto;
+    }
+
+    .home-header {
+        height: 450px;
+        background-image: url(../../assets/img/trian.svg), url(../../assets/img/study.jpg);
+        background-position: center bottom, center center;
+        background-size: 100% auto, 100% auto;
+        background-repeat: no-repeat, no-repeat;
+        margin-bottom: 30px;
+
+        h3 {
+            text-align: center;
+            font-size: 180%;
+            color: white;
+            margin-top: 120px;
+        }
+    }
+
+    .trio {
+        text-align: center;
+        margin-bottom: 70px;
+
+        img {
+            width: 100px;
+        }
+
+        p {
+            text-align: left;
+            hyphens: auto;
+            font-family: $font-reading;
+            font-size: 130%;
+            margin: $spacing-margin*2 auto;
+            width: 250px;
+        }
+    }
+
+    .home-content {
+        p {
+            font-family: $font-reading;
+        }
+    }
+
+    .copy {
+        padding: $spacing-padding $spacing-padding*2;
+        font-size: 140%;
+        text-align: center;
+
+        p {
+            text-align: left;
+        }
+
+        img {
+            width: 60%;
+            height: 120px;
+        }
+    }
+
+    .sample-question {
+        margin-bottom: 70px;
+
+        > .Question {
+            width: 100%;
+            background: white;
+            padding: $spacing-padding $spacing-padding*2;
+        }
+
+        .copy {
+            margin-top: 30px;
+            width: 40%;
+        }
+    }
+
+    .sample-course {
+        margin-bottom: 70px;
+
+        .copy {
+            width: 30%;
+
+            img {
+                height: 80px;
+            }
+        }
+
+        .Course {
+            width: 70%;
+        }
+    }
+
+    .sample-courses {
+        margin-bottom: 70px;
+
+        .copy {
+            width: 100%;
+            padding: $spacing-padding;
+            font-size: 128%;
+        }
+    }
+
+    .signup-action {
+        text-align: center;
+        font-size: 180%;
+        margin-bottom: 70px;
+
+        p {
+            margin: 70px;
+            font-weight: bold;
+        }
+
+        .Button { 
+            font-size: 60%; 
+        }
+    }
+}

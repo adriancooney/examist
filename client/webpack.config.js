@@ -23,10 +23,12 @@ module.exports = {
             loaders: ["style", "css", "sass"]
         },
 
-        {test: /font\/.+\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader?mimetype=image/svg+xml'},
-        {test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader?mimetype=application/font-woff"},
-        {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader?mimetype=application/octet-stream"},
-        {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file-loader"}]
+        {test: /\.json$/, loader: "json" },
+        {test: /\.(png|jpe?g|gif|svg)$/, loader: "file" },
+        {test: /font\/.+\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "file?mimetype=image/svg+xml"},
+        {test: /\.woff2?(\?v=\d+\.\d+\.\d+)?$/, loader: "file?mimetype=application/font-woff"},
+        {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "file?mimetype=application/octet-stream"},
+        {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file"}]
     },
 
     resolve: {

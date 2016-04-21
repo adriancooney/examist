@@ -1,4 +1,4 @@
-# Parsing the Exam Papers
+## 1.2 Parsing the Exam Papers
 One of the biggest technical feats of this project was parsing the exam papers. The exam papers from NUI Galway were all stored in PDF format which made it a particulary hard task to approach.
 
 ### PDF Format

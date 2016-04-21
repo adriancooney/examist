@@ -12,7 +12,7 @@ export default class Input extends Component {
     render() {
         let label, icon;
 
-        if(label) {
+        if(this.props.label) {
             label = <label htmlFor={this.props.name}>{this.props.label}</label>
         }
 

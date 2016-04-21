@@ -1,4 +1,4 @@
-# Migrations
+## 4.4 Migrations
 As with the development of any project, requirements change. This is especially true with databases. New features often require storing new data of unknown format and the database must adapt to the new requirements. This is where we introduce database migrations. This is a practice seen in large scale application deployment where an existing database needs to be upgraded to a different schema.
 
 This project uses the migration tool **Alembic**. Its based on the SQL Alchemy library and authored by the same person. Alembic is essentially version control for you database. Each time a model is updated in the server, Alembic will detect the differences from the existing database and auto-generate the SQL to migrate the schema to the newly defined schema. These migrations are stored in the [`server/migrations/versions`](https://github.com/adriancooney/examist/tree/master/server/migrations/versions) folder as python files.

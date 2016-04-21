@@ -28,10 +28,14 @@
 
     label {
         font-family: $font-display;
-        font-weight: bold;
+        margin-bottom: $spacing-margin/2;
         text-transform: uppercase;
-        margin: 0 $spacing-margin;
         display: block;
+        color: #777;
+    }
+
+    .Input {
+        margin-bottom: 0;
     }
 }
 

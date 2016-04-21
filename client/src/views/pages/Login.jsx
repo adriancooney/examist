@@ -12,7 +12,7 @@ import { Loading } from "../ui";
  * The path to login on successful redirect.
  * @type {String}
  */
-const LOGIN_REDIRECT = "/";
+const LOGIN_REDIRECT = "/dashboard";
 
 /*
  * Login Flow

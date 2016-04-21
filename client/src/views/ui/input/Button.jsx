@@ -1,10 +1,16 @@
 import React, { PropTypes, Children } from "react";
+import { Link } from "react-router";
 import { omit } from "lodash/object";
 import { classify } from "../../../Util";
 import Icon from "../Icon";
 
 export default function Button(props) { 
     let children = props.children;
+    const className = classify("Button", { 
+        textual: props.textual, 
+        activated: props.activated,
+        danger: props.danger
+    }, props.className);
 
     if(props.icon) {
         children = Children.toArray([
@@ -14,15 +20,14 @@ export default function Button(props) {
         ]);
     }
 
-    return (
-        <button {...omit(props, Object.keys(Button.propTypes))}
-            children={children}
-            className={classify("Button", { 
-                textual: props.textual, 
-                activated: props.activated,
-                danger: props.danger
-            }, props.className)} />
-    );
+    const nextProps = {
+        ...omit(props, Object.keys(Button.propTypes)),
+        children, className
+    }
+
+    if(props.to) {
+        return <Link {...nextProps} to={props.to} />;
+    } else return <button {...nextProps} />;
 }
 
 Button.propTypes = {

@@ -22,6 +22,8 @@ export const API_BASE_URL = format({
 if(DEBUG && BROWSER) {
     // Enable all debug messages if were debugging
     localStorage.debug = "examist:*";
+} else {
+    localStorage.debug = "";
 }
 
 debug(`Booting app with the following config: 

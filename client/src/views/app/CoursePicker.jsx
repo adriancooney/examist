@@ -77,7 +77,7 @@ class CoursePicker extends Component {
         }
 
         if(this.props.userCourses && this.props.userCourses.length && this.props.location.state === "POST_SIGNUP") {
-            contineToDashboard = <p className="continue"><Link to="/">Continue to your dashboard &rarr;</Link></p>
+            contineToDashboard = <p className="continue"><Link to="/dashboard">Continue to your dashboard &rarr;</Link></p>
         }
 
         return (

@@ -2,6 +2,10 @@
 @import "../common/Spacing";
 
 .Dashboard {
+    .course-list {
+        width: 42%;
+    }
+
     h2 {
         text-transform: uppercase;
         font-size: 140%;

@@ -7,7 +7,7 @@ import { Empty } from "../";
 
 export default function PaperInfo(props) {
     const { course, paper } = props;
-    const parserLink = `/course/${course.code}/paper/${paper.year_start}/${paper.period}/parse/`;
+    const parserLink = `/course/${course.code}/paper/${paper.year_start}/${paper.period}/parse/questions`;
 
     return (
         <Flex className="PaperInfo">

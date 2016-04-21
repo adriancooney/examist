@@ -5,7 +5,8 @@ import { Link } from "react-router";
 import { isPending } from "redux-pending";
 import * as model from "../../model";
 import { selector } from "../../library/Selector";
-import { Loading } from "../ui/";
+import { Loading, Empty } from "../ui/";
+import { Flex, Box } from "../ui/layout"
 import { CourseList } from "../ui/course/";
 
 class Dashboard extends Component {
@@ -33,10 +34,18 @@ class Dashboard extends Component {
             <Loading /> : <CourseList courses={this.props.userCourses} />;
 
         return (
-            <div className="Dashboard">
-                <h2>Your Courses <Link to="/courses/pick">edit</Link></h2>
-                { courses }
-            </div>
+            <Box className="Dashboard">
+                <div className="course-list">
+                    <h2>Your Courses <Link to="/courses/pick">edit</Link></h2>
+                    { courses }
+                </div>
+                <Flex>
+                    <h2>Recent Activity</h2>
+                    <Empty>
+                        <p>No recent activity.</p>
+                    </Empty>
+                </Flex>
+            </Box>
         );
     }
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, IndexRoute } from "react-router";
+import { Route } from "react-router";
 import { authorize } from "../../Middleware";
 import App from "./App";
 import CoursePicker from "./CoursePicker";
@@ -11,7 +11,7 @@ import Question from "./Question";
 
 export default (
     <Route component={App} onEnter={authorize}>
-        <IndexRoute component={Dashboard} />
+        <Route path="dashboard" component={Dashboard} />
         <Route path="logout" component={Logout} onEnter={Logout.onEnter} />
         <Route path="courses/pick" component={CoursePicker} />
         <Route path="course/:course" component={Course}>
