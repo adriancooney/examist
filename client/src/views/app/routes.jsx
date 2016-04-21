@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, IndexRoute } from "react-router";
+import { Route } from "react-router";
 import { authorize } from "../../Middleware";
 import App from "./App";
 import CoursePicker from "./CoursePicker";

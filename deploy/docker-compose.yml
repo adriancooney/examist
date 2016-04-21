@@ -32,6 +32,6 @@ services:
       context: ../
       dockerfile: ./deploy/db.docker
       args:
-        dump: exp-03042016-1803.sql
+        dump: exp-12042016-0217.sql
     expose:
       - 5432

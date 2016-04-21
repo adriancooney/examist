@@ -2,7 +2,6 @@ import "../../../style/Template.scss";
 import React, { Children } from "react";
 import { connect } from "react-redux";
 import * as model from "../../model";
-import { selector } from "../../library/Selector";
 import { Link } from "react-router";
 import * as Config from "../../Config";
 import { Box, Flex } from "../ui/layout";

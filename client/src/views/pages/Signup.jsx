@@ -7,7 +7,6 @@ import { Institution } from "../ui";
 import { ErrorMessage } from "../ui/error";
 import { Flex, Box } from "../ui/layout";
 import { Form, Input } from "../ui/input";
-import { content } from "../../i18n";
 
 const MATCH_EMAIL = /[^@]+@((?:[-_a-zA-Z]+\.?)+\.\w+)/; // Primitive email check.
 const SIGNUP_REDIRECT = "/courses/pick";
@@ -87,8 +86,10 @@ class Signup extends Component {
      * @param  {Object} details Form values.
      */
     onSubmit(details) {
-        if(!details.email.match(MATCH_EMAIL))
-            return this.setState({ error: "Please enter a valid email." });
+        if(!details.email.match(MATCH_EMAIL)) {
+            this.setState({ error: "Please enter a valid email." });
+            return;
+        }
 
         this.props.createUser(details);
     }

@@ -1,7 +1,7 @@
 import React from "react";
 import { Markdown } from "../ui";
 
-export default function About(props) {
+export default function About() {
     return (
         <div className="About">
             <Markdown>{`

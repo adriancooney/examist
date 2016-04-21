@@ -5,13 +5,12 @@ import Header from "../templates/Header";
 import Footer from "../templates/Footer";
 import { Flex, Box } from "../ui/layout";
 import { Button } from "../ui/input";
-import { Markdown, Icon } from "../ui";
 import { Question } from "../ui/question";
 import { CourseLink } from "../ui/course";
 import { Course } from "../app/Course";
 import data from "./HomeData.json";
 
-export default function Home(props) {
+export default function Home() {
     return (
         <div className="Home">
             <div className="home-header">
