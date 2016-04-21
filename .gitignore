@@ -24,6 +24,7 @@ server/logs
 
 # Assets
 *.pdf
+*.PDF
 
 # Gitbook
 report/_book
