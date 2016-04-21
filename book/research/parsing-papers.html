@@ -1,0 +1,927 @@
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>Parsing Exam Papers · Final Year Project</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="One of the biggest technical feats of this project was parsing the exam papers. The exam papers from NUI Galway were all stored in PDF format which made it">
+        <meta name="generator" content="GitBook 3.0.0-pre.5">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="downloading-papers.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book"
+    data-level="1.2"
+    data-chapter-title="Parsing Exam Papers"
+    data-filepath="research/parsing-papers.md"
+    data-basepath=".."
+    data-revision="Thu Apr 21 2016 19:18:09 GMT+0100 (IST)"
+    data-innerlanguage="">
+    
+
+<div class="book-summary">
+    
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+
+            
+
+
+            
+            
+    
+        <li class="chapter " data-level="0" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1" >
+            
+                <span>
+            
+                    
+                        <b>1.</b>
+                    
+                    Research
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="downloading-papers.html">
+            
+                <a href="downloading-papers.html">
+            
+                    
+                        <b>1.1.</b>
+                    
+                    Downloading Exam Papers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.2" data-path="parsing-papers.html">
+            
+                <a href="parsing-papers.html">
+            
+                    
+                        <b>1.2.</b>
+                    
+                    Parsing Exam Papers
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" >
+            
+                <span>
+            
+                    
+                        <b>2.</b>
+                    
+                    Design
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="../design/architecture.html">
+            
+                <a href="../design/architecture.html">
+            
+                    
+                        <b>2.1.</b>
+                    
+                    Architecture
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../design/database.html">
+            
+                <a href="../design/database.html">
+            
+                    
+                        <b>2.2.</b>
+                    
+                    Database
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../design/api.html">
+            
+                <a href="../design/api.html">
+            
+                    
+                        <b>2.3.</b>
+                    
+                    API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../design/ui.html">
+            
+                <a href="../design/ui.html">
+            
+                    
+                        <b>2.4.</b>
+                    
+                    UI
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" >
+            
+                <span>
+            
+                    
+                        <b>3.</b>
+                    
+                    Implementation
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="../implementation/project-structure.html">
+            
+                <a href="../implementation/project-structure.html">
+            
+                    
+                        <b>3.1.</b>
+                    
+                    Project Structure
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../implementation/backend.html">
+            
+                <a href="../implementation/backend.html">
+            
+                    
+                        <b>3.2.</b>
+                    
+                    Backend
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../implementation/frontend.html">
+            
+                <a href="../implementation/frontend.html">
+            
+                    
+                        <b>3.3.</b>
+                    
+                    Frontend
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" >
+            
+                <span>
+            
+                    
+                        <b>4.</b>
+                    
+                    Development
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="../development/version-control.html">
+            
+                <a href="../development/version-control.html">
+            
+                    
+                        <b>4.1.</b>
+                    
+                    Version Control
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../development/tools.html">
+            
+                <a href="../development/tools.html">
+            
+                    
+                        <b>4.2.</b>
+                    
+                    Tools
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../development/workflow.html">
+            
+                <a href="../development/workflow.html">
+            
+                    
+                        <b>4.3.</b>
+                    
+                    Workflow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="../development/migrations.html">
+            
+                <a href="../development/migrations.html">
+            
+                    
+                        <b>4.4.</b>
+                    
+                    Migrations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="../development/deploying.html">
+            
+                <a href="../development/deploying.html">
+            
+                    
+                        <b>4.5.</b>
+                    
+                    Deploying
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" >
+            
+                <span>
+            
+                    
+                        <b>5.</b>
+                    
+                    Testing
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="../testing/test-design.html">
+            
+                <a href="../testing/test-design.html">
+            
+                    
+                        <b>5.1.</b>
+                    
+                    Test Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../testing/continuous-integration.html">
+            
+                <a href="../testing/continuous-integration.html">
+            
+                    
+                        <b>5.2.</b>
+                    
+                    Continuous Integration
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="../results.html">
+            
+                <a href="../results.html">
+            
+                    
+                        <b>6.</b>
+                    
+                    Results
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="../conclusions.html">
+            
+                <a href="../conclusions.html">
+            
+                    
+                        <b>7.</b>
+                    
+                    Conclusions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="../references.html">
+            
+                <a href="../references.html">
+            
+                    
+                        <b>8.</b>
+                    
+                    References
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9" >
+            
+                <span>
+            
+                    
+                        <b>9.</b>
+                    
+                    Appendices
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="../appendices/Test-Fixtures.html">
+            
+                <a href="../appendices/Test-Fixtures.html">
+            
+                    
+                        <b>9.1.</b>
+                    
+                    Appendix 1: Test Fixtures
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="../appendices/Paper-specification.html">
+            
+                <a href="../appendices/Paper-specification.html">
+            
+                    
+                        <b>9.2.</b>
+                    
+                    Appendix 2: Exam Paper Specification
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            <li class="divider"></li>
+            
+
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+        </ul>
+    </nav>
+    
+</div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Parsing Exam Papers</a>
+    </h1>
+</div>
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            <section class="normal markdown-section">
+                            
+                            <h2 id="12-parsing-the-exam-papers">1.2 Parsing the Exam Papers</h2>
+<p>One of the biggest technical feats of this project was parsing the exam papers. The exam papers from NUI Galway were all stored in PDF format which made it a particulary hard task to approach.</p>
+<h3 id="pdf-format">PDF Format</h3>
+<p>The PDF format specification is <em>22 years old</em> and is entirely backwards compatible. That means any features supported in version 1.0 of the specification are still supported the current version, 1.7. This is good for users of the PDF format because even the oldest PDFs will still work however not for developers who want to use the contents of the PDF. The format is full of old concepts, quirks and dead techniques that have plagued anyone attempting to peek under the hood. Luckily for this project, the PDF format was never accessed directly but through libraries in Python. Some libraries reviewed:</p>
+<ul>
+<li><strong>PDFMiner</strong> - A full suite of amazing tools for parsing <em>everything</em> about a PDF however documentation is next to nil which makes it&apos;s a non-viable candidate.</li>
+<li><strong>Slate</strong> - A very simple library that will load the PDF and extract the text (based on PDFMiner).</li>
+</ul>
+<p>Some external tools were also tested:</p>
+<ul>
+<li><strong>pdftotext</strong> - Command line tool to extract the text contents of a PDF by the Poppler project.</li>
+<li><strong>pdftohtml</strong> - Another command line tool that converts a PDF to HTML (or XML).</li>
+<li><strong>Tesseract</strong> - An Optical Character Recognition (OCR) library to extract the contents of the PDF.</li>
+</ul>
+<p>However easy it was to access the data, one fact remains: <strong>PDF is only about presentation, not structure.</strong> The outputted data was not easy to parse. Content extracted via the libraries and tools was unstructured and unformatted. Tables, math formula, question indexes, titles and event text decoration would all corrupt the output.</p>
+<p><img src="assets/pdftotext.png" alt=""></p>
+<center><i>Example of the output produced by `pdftotext` with Math formulas.</i></center>
+
+<h2 id="parsing-the-pdf-contents">Parsing the PDF contents</h2>
+<h3 id="structure-of-the-exam-paper">Structure of the exam paper</h3>
+<p>Before starting to extract the data from the PDF, the structure of the underlying data must be understood. From tests across multiple papers, no consistent structure was observed over the exam papers. Below are some observations of consistencies and inconsistencies between papers.</p>
+<h4 id="consistencies-between-exam-papers">Consistencies between exam papers</h4>
+<ol>
+<li>The first page in an exam paper described the exam paper itself. It contained metadata on the years, examiners, lecturers and classes.</li>
+<li>Each page in an exam paper had a page number in the footer.</li>
+</ol>
+<h4 id="inconsistencies-between-exam-papers">Inconsistencies between exam papers</h4>
+<ol>
+<li>Exam paper metadata did not have any discernable structure and the labels could appear in any order or not at all.</li>
+<li>Exam questions could appear indexed numerical, alphabetical and using roman numerals. e.g. <code>a, b, c</code> or <code>i, ii, iii</code>.</li>
+<li>Exam question indices did following any formatting style. Indices could be any of the following form: <code>(a)</code>, <code>(a.)</code>, <code>(1).</code>, <code>[i]</code>, <code>iii.</code>, <code>B.</code>, <code>1.</code>, <code>Q1.</code>, <code>Question 2</code>, or just the index itself, <code>c</code>.</li>
+<li>Some exam papers used sections while others did not e.g. <code>Section A</code>.</li>
+<li>Some exam papers displayed marks after each question while others did not.</li>
+<li>Exam papers displayed marks using square brackets <code>[10]</code> or parenthesis <code>(10)</code>. Some also included the label <code>marks</code>.</li>
+<li>Sub-questions and multiple-choice answers would be indexed in the same format and style. e.g. <code>1. 1.</code> instead of <code>1. a.</code>.</li>
+<li>Sub-questions and multiple-choice answers wouldn&apos;t be indexed at all.</li>
+<li>Some exam questions were indexed improperly or ordered wrong. e.g. <code>1., 2., 4., 5., 6.</code>.</li>
+<li>Exam papers could be written by two or more people who each chose they own style of formatting. These exam papers had multiple, inconsistent styles between <em>questions</em>.</li>
+</ol>
+<h3 id="extract-indices-with-a-context-free-grammar">Extract indices with a Context Free Grammar</h3>
+<p>The main attempt at parsing the contents of the PDF to extract the exam paper&apos;s structure and all it&apos;s questions was via a Context Free Grammar (CFG). The grammar was used to extract the indices of each question and therefore build a usuable representation of the paper structure from the indices. The CFG was created using the Pyparsing library that allowed for constructing complex grammars using simple syntax.</p>
+<p>The grammar was constructed to extract all the indices from the paper. It was designed to be as loose as possible to include all the types of indices (alphabetical, numerical, roman) and all their formats (square brackets, parenthesis). Whitespace and sections were also accounted for within the grammar.</p>
+<pre><code class="lang-py"><span class="hljs-keyword">import</span> pyparsing <span class="hljs-keyword">as</span> pp
+
+<span class="hljs-comment"># The exam paper CFG</span>
+_ = (pp.White(exact=<span class="hljs-number">1</span>) | pp.LineEnd() | pp.LineStart()).suppress()
+__ = pp.White().suppress()
+___ = pp.Optional(__)
+____ = pp.Optional(_)
+
+<span class="hljs-comment"># Define tokens for numerical, alpha and roman indices</span>
+<span class="hljs-comment"># Max two digits for numerical indices because lecturers aren&apos;t psychopaths</span>
+index_digit = pp.Word(pp.nums, max=<span class="hljs-number">2</span>)\
+    .setParseAction(<span class="hljs-keyword">lambda</span> s, l, t: [Index(<span class="hljs-string">&quot;decimal&quot;</span>, int(t[<span class="hljs-number">0</span>]))])(<span class="hljs-string">&quot;[0-9]&quot;</span>) 
+
+index_alpha = pp.Word(pp.alphas, exact=<span class="hljs-number">1</span>)\
+    .setParseAction(<span class="hljs-keyword">lambda</span> s, l, t: [Index(<span class="hljs-string">&quot;alpha&quot;</span>, t[<span class="hljs-number">0</span>])])(<span class="hljs-string">&quot;[a-z]&quot;</span>)
+
+index_roman = pp.Word(<span class="hljs-string">&quot;ivx&quot;</span>)\ <span class="hljs-comment"># We only support 1-100 roman numerals</span>
+    .setParseAction(<span class="hljs-keyword">lambda</span> s, l, t: [Index(<span class="hljs-string">&quot;roman&quot;</span>, t[<span class="hljs-number">0</span>])])(<span class="hljs-string">&quot;[ivx]&quot;</span>) 
+
+index_type = (index_digit | index_roman | index_alpha)(<span class="hljs-string">&quot;index&quot;</span>)
+
+<span class="hljs-comment"># Define token for (&quot;Question&quot; / &quot;Q&quot;) + &quot;.&quot;</span>
+question = (pp.CaselessLiteral(<span class="hljs-string">&quot;Question&quot;</span>) + pp.Optional(<span class="hljs-string">&quot;.&quot;</span>))(<span class="hljs-string">&quot;question&quot;</span>)
+
+<span class="hljs-comment"># Define tokens for formatted indices e.g [a], (1), ii. etc.</span>
+index_dotted = (
+    index_type + pp.Literal(<span class="hljs-string">&quot;.&quot;</span>).suppress()
+).setParseAction(<span class="hljs-keyword">lambda</span> s, l, t: t[<span class="hljs-number">0</span>].setNotation(<span class="hljs-string">&quot;dotted&quot;</span>))
+
+index_round_brackets = (
+    pp.Optional(pp.Literal(<span class="hljs-string">&quot;(&quot;</span>)).suppress() + index_type + \
+    pp.Literal(<span class="hljs-string">&quot;)&quot;</span>).suppress()
+).setParseAction(<span class="hljs-keyword">lambda</span> s, l, t: t[<span class="hljs-number">0</span>].setNotation(<span class="hljs-string">&quot;round&quot;</span>))
+
+index_square_brackets = (
+    pp.Literal(<span class="hljs-string">&quot;[&quot;</span>).suppress() + index_type + \
+    pp.Literal(<span class="hljs-string">&quot;]&quot;</span>).suppress()
+).setParseAction(<span class="hljs-keyword">lambda</span> s, l, t: t[<span class="hljs-number">0</span>].setNotation(<span class="hljs-string">&quot;square&quot;</span>))
+
+index_question = (
+    pp.Word(<span class="hljs-string">&quot;qQ&quot;</span>, exact=<span class="hljs-number">1</span>).suppress() + \
+    pp.Optional(<span class="hljs-string">&quot;.&quot;</span>).suppress() + index_type + \
+    pp.Optional(<span class="hljs-string">&quot;.&quot;</span>).suppress()
+).setParseAction(<span class="hljs-keyword">lambda</span> s, l, t: t[<span class="hljs-number">0</span>].setNotation(<span class="hljs-string">&quot;question&quot;</span>))
+
+<span class="hljs-comment"># Define final index token with optional </span>
+<span class="hljs-comment"># question_index token before formatted index</span>
+qindex = (
+    <span class="hljs-comment"># Whitespace is required before each index </span>
+    <span class="hljs-comment"># (e.g. &quot;hello world.&quot; the d. would be take for an index)</span>
+    _ + \
+    <span class="hljs-comment"># Optional &quot;Question.&quot; before</span>
+    pp.Optional(question + ___).suppress() + \
+    <span class="hljs-comment"># The index</span>
+    (index_question | index_dotted | \
+        index_round_brackets | index_square_brackets) + \
+    <span class="hljs-comment"># Required whitespace *after* index</span>
+    _
+)
+
+<span class="hljs-comment"># Define a section header</span>
+section = (
+    pp.CaselessKeyword(<span class="hljs-string">&quot;Section&quot;</span>).suppress() + \
+    __ + index_type + _
+).setParseAction(
+    <span class="hljs-keyword">lambda</span> s, l, t: [t[<span class="hljs-number">0</span>].section()]
+)(<span class="hljs-string">&quot;section&quot;</span>)
+
+<span class="hljs-comment"># Entry point for the parser</span>
+entry = section ^ qindex
+</code></pre>
+<p>The grammar was made up of a set of tokens. Each token is made up of literals (strings) or other tokens. The gramar had three tokens to define an index itself: <code>index_digit</code>, <code>index_alpha</code> and <code>index_roman</code> and a final <code>index_type</code> that combined the three to match all. It then defined three more tokens for the index formatting style in that wrapped the <code>index_type</code>, one for parenthesis (<code>( index_type )</code>), square brackets (<code>[ index_type ]</code>) and the dotted form (<code>index_type .</code>). Those style forms were then combined to create <code>qindex</code> token which also accounted for an optional prefix of <code>Q</code> or <code>Question</code> in the index. For something to be an <code>qindex</code>, it had to have whitespace before and after the matched token. This was to prevent matching numbers or symbols mid-question. The second last token then was a <code>section</code> which combined the literal &quot;Section&quot; and <code>index_type</code>. Finally, the entry point for the grammar was to match either a <code>section</code> or <code>qindex</code>.</p>
+<p>When the grammar was run on the input text from the PDF, it iterated over each character in the text and checked if that character matched the entry token, it ran the <em>parser action</em> for each token. These parser actions are defined using the method <code>setParseAction</code> on the rule and passing a <code>lambda</code> function with parameters containing information about the matching rules. Any return value from those actions replace the <em>match</em> from that rule. Also notice in the grammar above, some rules output could be surpressed by calling the <code>surpress</code> method which dropped that rule from the <em>match</em>.</p>
+<p>The parser actions for the above tokens created <code>Index</code> objects for <code>index_type</code> which attributes were modified as they matched other rules. Eventually, the results returned an array of <code>Index</code>s with contained the index type (<code>alpha</code>, <code>decimal</code>, <code>roman</code>), the formatting style (<code>dotted</code>, <code>round</code>, <code>square</code>) and whether is was a section or prefixed with a <code>Question</code>.</p>
+<p>There were some major caveats to the parser:</p>
+<ol>
+<li>Sentences ending with a digit and period are picked up as indices.</li>
+<li>General formatting or referencing another question within a question are picked up as indices.</li>
+<li>Some formatted math are picked up as indices e.g. <code>x * (y)</code>.</li>
+<li>Some mark forms at the end of questions are picked up as indicies.</li>
+<li>The PDF format usually botched the whitespace from the text leaving some indices without enclosing whitespace and therefore not included as an indice.</li>
+</ol>
+<p><img src="assets/parsed-paper.png" alt=""></p>
+<center><i>Example output: The matching indices on a real exam paper.</i></center>
+
+<h3 id="creating-the-question-tree">Creating the question tree</h3>
+<p>The grammar was useful for extracting the indices however the data returned from the grammar unprocessed is useless. It&apos;s the content between the indices, the questions, is what the project is after.</p>
+<p>The exam papers are based on a heirarchy, with usually three to six top level questions and many sub-questions. The best data structure for this type is obviously a tree. Once the parsing is completed and we have a list of our index tokens, we need to put them into this tree.</p>
+<pre><code class="lang-py">index = token[<span class="hljs-number">0</span>] <span class="hljs-comment"># The incoming index</span>
+
+logging.info(<span class="hljs-string">&quot;0. Handling index %r&quot;</span> % index)
+
+<span class="hljs-comment"># If the container is the paper, just push the question</span>
+<span class="hljs-keyword">if</span> len(index_stack) == <span class="hljs-number">0</span>:
+    logging.info(<span class="hljs-string">&quot;1. Pushing top level index %r.&quot;</span> % index)
+    question = push()
+    <span class="hljs-keyword">continue</span>
+
+last_index = index_stack[<span class="hljs-number">-1</span>] <span class="hljs-comment"># The last index is the last item in the stack</span>
+
+<span class="hljs-keyword">if</span> index.isSimilar(last_index): <span class="hljs-comment"># Comparse index types e.g. &quot;alpha&quot; == &quot;alpha&quot;</span>
+    logging.info(<span class="hljs-string">&quot;1.1 Similiar indexes %s and previous %s.&quot;</span> % \
+        (index.index_type, last_index.index_type))
+
+    <span class="hljs-keyword">if</span> last_index.isNext(index): <span class="hljs-comment"># Determine whether is the next index</span>
+        logging.info(<span class="hljs-string">&quot;1.1.1 Pushing index with same type&quot;</span> + \
+            <span class="hljs-string">&quot; as last index and in sequence.&quot;</span>)
+        pop()
+        question = push()
+    <span class="hljs-keyword">else</span>:
+        logging.info(<span class="hljs-string">&quot;1.1.2 Question with similar indexes &quot;</span> + \
+            <span class="hljs-string">&quot;but not in sequence, ignoring.&quot;</span>)
+        <span class="hljs-keyword">continue</span>
+<span class="hljs-keyword">else</span>:
+    logging.info(<span class="hljs-string">&quot;1.2 Dissimilar indexes %s and previous %s.&quot;</span> % \
+        (index.index_type, last_index.index_type))
+
+    parent_index, n = <span class="hljs-keyword">None</span>, <span class="hljs-number">0</span>
+
+    <span class="hljs-comment"># Go through the stack (traverse the tree level) and find the similar index</span>
+    <span class="hljs-keyword">for</span> i, idx <span class="hljs-keyword">in</span> reversed(list(enumerate(index_stack))):
+        <span class="hljs-keyword">if</span> idx.isSimilar(index):
+            parent_index, n = idx, i
+            <span class="hljs-keyword">break</span>
+
+     <span class="hljs-comment"># No similar sibling found, We need to look up</span>
+     <span class="hljs-comment"># the stack (traverse up the tree) and see if </span>
+     <span class="hljs-comment"># we can find a similar index</span>
+    <span class="hljs-keyword">if</span> parent_index:
+        logging.info(<span class="hljs-string">&quot;1.2.1 Index similar to parent index %d up the stack [%r]&quot;</span>\
+             % (n, parent_index))
+
+        <span class="hljs-comment"># If we have found a similar index and they&apos;re in sequence, </span>
+        <span class="hljs-comment"># it means we have found the current indexes sibling. Add the</span>
+        <span class="hljs-comment"># question after the found container.</span>
+        <span class="hljs-keyword">if</span> parent_index.isNext(index):
+            logging.info(<span class="hljs-string">&quot;1.2.1.1 Index in sequence, pushing into stack.&quot;</span>)
+            index_stack = index_stack[:n]
+            question_stack = question_stack[:n]
+            question = push()
+        <span class="hljs-keyword">else</span>:
+            logging.info(<span class="hljs-string">&quot;1.2.1.2 Index not in sequence, ignoring&quot;</span>)
+            <span class="hljs-keyword">continue</span>
+
+    <span class="hljs-comment"># If we encounter a new type of index and </span>
+    <span class="hljs-comment"># it&apos;s not the start of a new list, we can just discard </span>
+    <span class="hljs-comment"># it (it&apos;s probably marks). However if the previous index is </span>
+    <span class="hljs-comment"># a section, we can just continue. </span>
+    <span class="hljs-keyword">elif</span> index.i == <span class="hljs-number">1</span> <span class="hljs-keyword">or</span> last_index.is_section: 
+        logging.info(<span class="hljs-string">&quot;1.2.2 Pushing new question %r.&quot;</span> % index)
+        question = push()
+    <span class="hljs-keyword">else</span>:
+        logging.info(<span class="hljs-string">&quot;1.2.3 New index value not first in sequence, ignoring.&quot;</span>)
+        <span class="hljs-keyword">continue</span>
+
+<span class="hljs-comment"># Save the text between the previous indice and the current</span>
+<span class="hljs-keyword">if</span> last_question != <span class="hljs-keyword">None</span>:
+    last_question.set_content(<span class="hljs-keyword">None</span>, pages[marker:start])
+    last_question = <span class="hljs-keyword">None</span>
+    marker = end
+<span class="hljs-keyword">elif</span> marker == <span class="hljs-number">0</span>:
+    marker = end
+
+last_question = question
+</code></pre>
+<center><i>The implementation of the tree construction algorithm.</i></center>
+
+<p>This algorithm would approach the tree creation using a stack. The stack contains all the questions in the heirarchy <em>for the current index</em> i.e. the tail of the stack is the parent of the current index (if appropriate). The above is the content of the loop and performs the following checks for each token.</p>
+<p><strong>For each <em>index</em>:</strong></p>
+<ol>
+<li>If the stack is empty, this must be a top level index. Push to stack with contents.</li>
+<li>If the tail question&apos;s (in the stack) index if of a different type to <em>index</em>, push to stack. Assume sub-question.</li>
+<li>If the tail question&apos;s index if of the same type as <em>index</em> push the current question and contents to the <em>tail question&apos;s parent</em> as sibling of the tail question.</li>
+</ol>
+<p>Other checks are in place for pushing to root level parents (i.e. non-existant) and indexes that are out of sequence to their siblings. The tree builder would also save the contents of each questions to it&apos;s index.</p>
+<pre style="float:right; margin: 0; margin-left: 18px;"><code>Section A
+-- 1
+---- i
+------ a
+------ b
+------ c
+------ d
+------ e
+---- ii
+...
+-- 2
+---- i
+---- ii
+---- iii
+------ a
+------ b
+------ c
+------ d
+---- iv
+-- 3
+---- i
+---- ii
+---- iii
+---- iv
+---- v
+-- 4
+---- i
+---- ii
+------ a
+------ b
+------ c
+------ d
+---- iii
+</code></pre>
+
+
+<pre><code>0. Handling index Index[type=alpha, value=d, i=4, section=False, notation=round]
+1.1 Similiar indexes alpha and previous alpha.
+1.1.1 Pushing question with same index type and in sequence.
+0. Handling index Index[type=roman, value=iv, i=4, section=False, notation=round]
+1.2 Dissimilar indexes roman and previous alpha.
+1.2.1 Index similar to parent container index -2 up the stack [Index[type=roman, value=iii, i=3, section=False, notation=round]]
+1.2.1.1 Index in sequence, pushing into parent container&apos;s container.
+0. Handling index Index[type=alpha, value=a, i=1, section=False, notation=dotted]
+1.2 Dissimilar indexes alpha and previous roman.
+1.2.2 Pushing new question into container Question[Index[type=roman, value=iv, i=4, section=False, notation=round], questions=0].
+0. Handling index Index[type=alpha, value=b, i=2, section=False, notation=dotted]
+1.1 Similiar indexes alpha and previous alpha.
+1.1.1 Pushing question with same index type and in sequence.
+0. Handling index Index[type=alpha, value=d, i=4, section=False, notation=round]
+1.1 Similiar indexes alpha and previous alpha.
+1.1.1 Pushing question with same index type and in sequence.
+
+...
+
+0. Handling index Index[type=alpha, value=c, i=3, section=False, notation=round]
+1.1 Similiar indexes alpha and previous alpha.
+1.1.1 Pushing question with same index type and in sequence.
+0. Handling index Index[type=roman, value=i, i=1, section=False, notation=round]
+1.2 Dissimilar indexes roman and previous alpha.
+1.2.1 Index similar to parent container index -2 up the stack [Index[type=roman, value=ii, i=2, section=False, notation=round]]
+1.2.1.2 Index not in sequence, ignoring
+0. Handling index Index[type=roman, value=ii, i=2, section=False, notation=round]
+1.2 Dissimilar indexes roman and previous alpha.
+1.2.1 Index similar to parent container index -2 up the stack [Index[type=roman, value=ii, i=2, section=False, notation=round]]
+1.2.1.2 Index not in sequence, ignoring
+</code></pre><center><i>Above: Example output when running the algorithm on real exam paper. <br>Right: The outputted tree without the question content. </i></center>
+
+<div style="page-break-after: always;"></div>
+
+<h3 id="results">Results</h3>
+<p>The algorithm was tested on a wide vareity of papers to best encapsulate the variations in formatting. Courses related to Math, Chemistry and Engineering were among those tested to ensure the greatest diversity. The output was compared manually and a measure of performance was estimated.</p>
+<p>The results were poor. The exam papers were just too inconsistent in their formatting and output for it to perform reliably. Many indices were missing the structure of the paper was almost always wrong. This was a disappointing result given the amount of effort put into the algorithm however it forced innovation in other areas to ensure the correct data was collected. Since the CFG method proved fruitless, a smarter system would be required to automatically parse the exam papers accurately. This is where some experimentation with Machine Learning entered the picture. </p>
+<h2 id="data-collection-for-machine-learning">Data collection for Machine Learning</h2>
+<p>It was clear something smarter was required and going down the route with machine learning, especially since it&apos;s used in other parts of the project, seemed like a great option. However, to being learning models and algorithms, <strong>the project needed data</strong>. It would be impossible to train (never mind <em>test the algorithm</em>) without large amounts of data. Currently, there was no way of collecting the data aside from grinding away at a spreadsheet.</p>
+<p>In the end, the decision was made to create a user interface to help parse the exam papers. This served two purposes:</p>
+<ol>
+<li>A quick method of parsing the exam papers while the automated system is being constructed.</li>
+<li>A method of training data collection from the exam papers.</li>
+</ol>
+<h3 id="benefits-of-the-user-interface">Benefits of the user interface</h3>
+<ol>
+<li>The user interface (UI) is useful to help collect data in a <em>consistent</em> manner by forcing a schema on the collected data.</li>
+<li>Allows for crowd-sourcing the contents of the papers. </li>
+<li><em>Lot</em> faster than manually opening the exam paper&apos;s PDF file and collecting data in a spreadsheet.</li>
+</ol>
+<p>The UI does have it&apos;s drawbacks however. The process is not automated being the greatest. This makes it slow and tedious in comparasion. Fortunately for the project however, once the data has been collected from the exam paper, that&apos;s it complete. There is a finite set data and it&apos;s just a matter of which method is going to win the race.</p>
+
+                            
+                            </section>
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="downloading-papers.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Downloading Exam Papers">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+            
+        
+    </div>
+</div>
+
+        
+    <script src="../gitbook/app.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/buttons.js"></script>
+        
+    
+    <script>
+    require(["gitbook"], function(gitbook) {
+        gitbook.start({"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}});
+    });
+    </script>
+
+    </body>
+</html>

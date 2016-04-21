@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Migrations · Final Year Project</title>
+        <title>Downloading Exam Papers · Final Year Project</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="As with the development of any project, requirements change. This is especially true with databases. New features often require storing new data of unknown">
+        <meta name="description" content="Before work on the exam papers could begin, data on the paper was required. One of the core problems this application was built to fix is the extremely poo">
         <meta name="generator" content="GitBook 3.0.0-pre.5">
         
         
@@ -56,19 +56,17 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="deploying.html" />
+    <link rel="next" href="parsing-papers.html" />
     
-    
-    <link rel="prev" href="workflow.html" />
     
 
     </head>
     <body>
         
 <div class="book"
-    data-level="4.4"
-    data-chapter-title="Migrations"
-    data-filepath="development/migrations.md"
+    data-level="1.1"
+    data-chapter-title="Downloading Exam Papers"
+    data-filepath="research/downloading-papers.md"
     data-basepath=".."
     data-revision="Thu Apr 21 2016 19:18:09 GMT+0100 (IST)"
     data-innerlanguage="">
@@ -116,9 +114,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.1" data-path="../research/downloading-papers.html">
+        <li class="chapter active" data-level="1.1" data-path="downloading-papers.html">
             
-                <a href="../research/downloading-papers.html">
+                <a href="downloading-papers.html">
             
                     
                         <b>1.1.</b>
@@ -131,9 +129,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="../research/parsing-papers.html">
+        <li class="chapter " data-level="1.2" data-path="parsing-papers.html">
             
-                <a href="../research/parsing-papers.html">
+                <a href="parsing-papers.html">
             
                     
                         <b>1.2.</b>
@@ -314,9 +312,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.1" data-path="version-control.html">
+        <li class="chapter " data-level="4.1" data-path="../development/version-control.html">
             
-                <a href="version-control.html">
+                <a href="../development/version-control.html">
             
                     
                         <b>4.1.</b>
@@ -329,9 +327,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2" data-path="tools.html">
+        <li class="chapter " data-level="4.2" data-path="../development/tools.html">
             
-                <a href="tools.html">
+                <a href="../development/tools.html">
             
                     
                         <b>4.2.</b>
@@ -344,9 +342,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3" data-path="workflow.html">
+        <li class="chapter " data-level="4.3" data-path="../development/workflow.html">
             
-                <a href="workflow.html">
+                <a href="../development/workflow.html">
             
                     
                         <b>4.3.</b>
@@ -359,9 +357,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="4.4" data-path="migrations.html">
+        <li class="chapter " data-level="4.4" data-path="../development/migrations.html">
             
-                <a href="migrations.html">
+                <a href="../development/migrations.html">
             
                     
                         <b>4.4.</b>
@@ -374,9 +372,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.5" data-path="deploying.html">
+        <li class="chapter " data-level="4.5" data-path="../development/deploying.html">
             
-                <a href="deploying.html">
+                <a href="../development/deploying.html">
             
                     
                         <b>4.5.</b>
@@ -566,7 +564,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Migrations</a>
+        <a href=".." >Downloading Exam Papers</a>
     </h1>
 </div>
 
@@ -576,39 +574,34 @@
                         <div class="page-inner">
                             <section class="normal markdown-section">
                             
-                            <h2 id="44-migrations">4.4 Migrations</h2>
-<p>As with the development of any project, requirements change. This is especially true with databases. New features often require storing new data of unknown format and the database must adapt to the new requirements. This is where we introduce database migrations. This is a practice seen in large scale application deployment where an existing database needs to be upgraded to a different schema.</p>
-<p>This project uses the migration tool <strong>Alembic</strong>. Its based on the SQL Alchemy library and authored by the same person. Alembic is essentially version control for you database. Each time a model is updated in the server, Alembic will detect the differences from the existing database and auto-generate the SQL to migrate the schema to the newly defined schema. These migrations are stored in the <a href="https://github.com/adriancooney/examist/tree/master/server/migrations/versions" target="_blank"><code>server/migrations/versions</code></a> folder as python files.</p>
-<pre><code class="lang-sh">$ <span class="hljs-built_in">cd</span> server/migrations/
-$ alembic <span class="hljs-built_in">history</span>
-27d9b0a51afe -&gt; ad04219e530a (head), Notes table.
-eadd37a9a581 -&gt; 27d9b0a51afe, Adding is_section flag to question model.
-cf2e840ef9ee -&gt; eadd37a9a581, Question similarity.
-f724ae8ee68a -&gt; cf2e840ef9ee, New entity inheritance model and migrating questions.
-4c21720db4f0 -&gt; f724ae8ee68a, Questions and revisions.
-6598bfa4b4e8 -&gt; 4c21720db4f0, Adding PDF paper downloads and conversion to HTML.
-3e4c70155c23 -&gt; 6598bfa4b4e8, Adding unique constraint to table.
-009921b01ab6 -&gt; 3e4c70155c23, Paper table.
-9633df0d8a5e -&gt; 009921b01ab6, Adding courses.
-&lt;base&gt; -&gt; 9633df0d8a5e, Users, sessions and institutions.
-</code></pre>
-<center><i>The version history of the database with Alembic.</i></center>
+                            <h1 id="1-research">1. Research</h1>
+<h2 id="11-downloading-papers">1.1 Downloading Papers</h2>
+<p>Before work on the exam papers could begin, data on the paper was required. One of the core problems this application was built to fix is the extremely poor accessibility of exam papers online via the student portal. The interface is outdated, clunky and slow. It goes down entirely for a 30 minute period of time daily for &quot;maintenance&quot; which is very frustrating for students especially during exam time. With this in consideration, manual downloading of exam papers was not an option.</p>
+<p><img src="assets/portal-ui.png" alt="Portal UI"></p>
+<h2 id="courses">Courses</h2>
+<p>To build our database of all courses and papers available, a starting point was needed to serve as the foundations for the extraction. This starting point was the list of course category codes (the prefix before any course code e.g. &quot;MA&quot; in MA207) provided in the contents of the dropdown menu within the search from on the online portal. It provided data which looked like:</p>
+<pre><code>name,code
+&quot;Accountancy&quot;,AY
+&quot;Anaesthetics&quot;,AE
+&quot;Anatomy&quot;,AN
+&quot;Anatomy / Physiology&quot;,AP
+&quot;Ancient Classics&quot;,AC
+&quot;Applied Computing &amp; Information Technology&quot;,CI
+</code></pre><p>The project now had a list of all possible course categories from the online portal, now it needed to obtain a list of individual courses and their papers. To complete this task, the handy (but not particularly useful) feature of the search function on the online portal was exploited:</p>
+<blockquote>
+<p>Module/Subject Code - A module code (e.g., MA100), <strong>part of a code (e.g., FR2% for all second year French modules)</strong>, or an entire subject area as defined by the first part of each module code (e.g., PI for Philosophy).</p>
+</blockquote>
+<p>The search term could contain a wildcard &quot;%&quot; which would expand our query to find related modules within a category, similar to the SQL <code>LIKE</code> function. This meant the scraper could input &quot;MA%&quot; into the search and return all papers for  courses with the prefix &quot;MA&quot; in order, for example &quot;MA100&quot; and &quot;MA101&quot;. Queries like these would match all courses with the prefix thus all papers for those courses which result in huge collections of papers (&quot;MA%&quot; return 1,456 papers). </p>
+<p>Unfortunately (however understandable from a performance point of view), the system had a limit of returned results from any query. A maximum of 500 papers would be returned from each query. This forced things to be more complicated on the scraping end.</p>
+<p><img src="assets/portal-limit.png" alt="Portal result limit"></p>
+<p>The portal&apos;s limit on results forced the scaper to decompose it&apos;s query into the search box to return less that 500 results. To decompose the query, it simply added another character in front of the category code to reduce the search scope and then repeated the search with the wildcard. For example, &quot;MA%&quot; would be converted to &quot;MAA%&quot;. Once the query was decomposed enough, it would cycle through the characters alphabetically including digits &quot;MAA%&quot;, &quot;MAB%&quot;, .. &quot;MA9%&quot;, &quot;MA0%&quot; until results were obtained from the portal.</p>
+<p><img src="assets/scraper-decomposing.png" alt="Scraped decomposing query"></p>
+<p>Finally, results were returned from the portal but would be trapped within a poorly formatted HTML table. A HTML parser called <code>BeautifulSoup</code> for python was used to load up the HTML and perform DOM selections and data extraction. Each table row represented a paper and each cell had information about the paper. This extraction method was fragile because of the inconsistent HTML returned but the only option available. Some shaky logic were used to describe the paper such as the presence of an anchor element within a table cell told the scraper if the paper was available online or not.</p>
+<p>Once all the data was extracted from each search result page for every module category, it allowed the project to build a database of modules and their papers. Links to the PDF contents could be derived from the data by using the URL pattern provided:</p>
+<pre><code>https://www.mis.nuigalway.ie/papers_public/
+    {year}/{module_category}/{year}_{module_code}_{sitting}_{period}.PDF
+</code></pre><p>The scraper managed to collect <strong>19,634</strong> papers across <strong>2,904</strong> courses, completely scanning the portal in less than <em>15 minutes</em>. This newly collected database allowed the project to stay away from the online portal and not use up unnecessary server resources or perform useless requests.</p>
 
-<p>The models in the project changed often and migrations tool was great for providing some     piece of mind with the data. It ensured data integrity and the database was reliably migrated. Most of the time, each modification to the database could be done by running:</p>
-<p>However, there were times when the new schema clashed with the existing data. Alembic was especially useful when migrating existing questions to the entity inheritance model.</p>
-<h3 id="migrating-to-the-entity-inheritance-model">Migrating to the Entity Inheritance Model</h3>
-<p>A pivotal point in the evolution of the database design was when the Entity inheritance model was introduced. The new design changes were especially severe on the <code>question</code> table which, at the time, stored each question individually with their own <code>id</code>.</p>
-<p><img src="assets/question-table-before.png"></p>
-<center><i>The question table design before the entity inheritance model.</i></center>
-
-<p>With the new entity inheritance model, things that needed the comment and like functionality needed to become an <em>entity</em>. </p>
-<p><img src="assets/question-table-after.png"></p>
-<center><i>The question table design after the entity inheritance model was implemented.</i></center>
-
-<p>To convert the existing questions in the question table, each question now had to create an ID within the <code>entity</code> table to satisfy the foreign key. This by itself would have made it a simple upgrade because it&apos;s just a one-to-one mapping however the question table also a self-referential column <code>parent_id</code> to allow for nesting. This made the upgrade a little tricky. It required traversing up the question tree to finding the root questions, migrating those to the entity table and then moving each child individually while also keeping track of their parents. The full migration implementation is in <a href="https://github.com/adriancooney/examist/blob/master/server/migrations/versions/cf2e840ef9ee_.py" target="_blank">server/migrations/versions/cf2e840ef9ee_.py</a>.</p>
-<aside>
-    <p>Alembic was used to time-travel back to the database state before the entity inheritance model was implemented to generate the ER Diagram seen above.</p>
-</aside>
                             
                             </section>
                         </div>
@@ -618,12 +611,8 @@ f724ae8ee68a -&gt; cf2e840ef9ee, New entity inheritance model and migrating ques
 
             
                 
-                <a href="workflow.html" class="navigation navigation-prev " aria-label="Previous page: Workflow">
-                    <i class="fa fa-angle-left"></i>
-                </a>
                 
-                
-                <a href="deploying.html" class="navigation navigation-next " aria-label="Next page: Deploying">
+                <a href="parsing-papers.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Parsing Exam Papers">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
