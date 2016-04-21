@@ -21,7 +21,7 @@
     - [Deploying](development/deploying.md)
 * Testing
     - [Test Design](testing/test-design.md)
-    - [Continuous Integration](testing/continuous-intergration.md)
+    - [Continuous Integration](testing/continuous-integation.md)
 * [Results](results.md)
 * [Conclusions](conclusions.md)
 * [References](references.md)

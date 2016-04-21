@@ -1,4 +1,5 @@
-# Downloading Exam Papers
+# 1. Research
+## 1.1 Downloading Papers
 Before work on the exam papers could begin, data on the paper was required. One of the core problems this application was built to fix is the extremely poor accessibility of exam papers online via the student portal. The interface is outdated, clunky and slow. It goes down entirely for a 30 minute period of time daily for "maintenance" which is very frustrating for students especially during exam time. With this in consideration, manual downloading of exam papers was not an option.
 
 ![Portal UI](assets/portal-ui.png)
