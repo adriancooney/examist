@@ -1,6 +1,6 @@
-# Project Structure
+# 3. Implementation
+## 3.1 Project Structure
 
-<style>ul { margin-top: 3px; margin-bottom: 3px;} ul li { list-style-type: disc !important;}</style>
  * `client` - The entire frontend code.
    * `assets` - The project's assets (fonts, Icons and images).
    * `build` - The directory of the compiled frontend code.

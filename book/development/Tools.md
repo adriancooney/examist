@@ -1,4 +1,4 @@
-# Tools
+## 4.2 Tools
 Tooling was another extremely important part of the project. The philosophy was to use tools that increase development speed without too much abstraction. The reasons for the lack of abstraction is for a better understand of the inner workings of the app and to learn as much about the project as possible. This section gives a short overview of the tools used to create the project.
 
 ### Sublime Text and an IDE-less environment
@@ -17,7 +17,7 @@ At the risk of sounding highly pretentious, I enjoy the pureness of using a simp
 | `$ psql exp`                  | Open an SQL query interface to the database. |
 | `$ git commit -m "..."`        | Commit code into the version control. |
 
-### Documentation
+### Dash & Documentation
 
 <img src="assets/dash.png" style="width: 50%; float: right; margin-left: 18px" />
 
@@ -34,6 +34,30 @@ Another critical piece of tooling for the project was Chrome and it's Dev Tools.
 
 ![](assets/devtools.png)
 <center><i>Example of debugging a web request within the projects source code with Chrome Dev Tools.</i></center>
+
+### Babel
+Babel is a tool that *transpiles* the next generation language features in the new EMCAScript 2016 specifications down to code that is understood by all the browsers. The EMCA is the Javascript standards body who maintains the specifications for the language. Some examples of the new features that Babel enables the client to use (and are seen throughout the codebase):
+
+|Feature|Example|
+|---|---|
+| Arrow functions | `(a, b) => a + b`|
+| Object destructuring | `const { a, b } = this.props` |
+| Classes | `class MyComp extends Component {}` |
+| Import system | `import React, { PropTypes } from "react"` |
+| Function bind | `::this.onClick` |
+
+Babel is *imperative* to the project and will not function without it.
+
+### SASS
+SASS is another transpiler that converts the SASS language, a superset of CSS, to normal CSS. It's a language extension that makes writing it much simpler. SASS implements some very useful, time saving features. All of the CSS in the project is written this way.
+
+| Feature | Example |
+|---|---|
+| Static import system| `@import "reset.css"`|
+| Variables | `$theme-danger-color: #ff0000` |
+| Color functions | `color: lighten(purple, 20%)` |
+| Math | `height: 400px * 0.3` |
+| Nesting rules| `.MyComponents { a { color: blue; } }`
 
 ### Notable Mentions
 Other tools which proved extremely useful:
