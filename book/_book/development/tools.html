@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Test Design · Final Year Project</title>
+        <title>Tools · Final Year Project</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="Precautions were taken to ensure the tests for the project were reliable and consistent. Ensuring that good tests were easy to write was also a huge part o">
+        <meta name="description" content="Tooling was another extremely important part of the project. The philosophy was to use tools that increase development speed without too much abstraction. ">
         <meta name="generator" content="GitBook 3.0.0-pre.5">
         
         
@@ -56,17 +56,19 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="continuous-integration.html" />
+    <link rel="next" href="workflow.html" />
     
+    
+    <link rel="prev" href="version-control.html" />
     
 
     </head>
     <body>
         
 <div class="book"
-    data-level="5.1"
-    data-chapter-title="Test Design"
-    data-filepath="testing/test-design.md"
+    data-level="4.2"
+    data-chapter-title="Tools"
+    data-filepath="development/tools.md"
     data-basepath=".."
     data-revision="Tue Apr 26 2016 03:08:18 GMT+0100 (IST)"
     data-innerlanguage="">
@@ -312,9 +314,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.1" data-path="../development/version-control.html">
+        <li class="chapter " data-level="4.1" data-path="version-control.html">
             
-                <a href="../development/version-control.html">
+                <a href="version-control.html">
             
                     
                         <b>4.1.</b>
@@ -327,9 +329,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2" data-path="../development/tools.html">
+        <li class="chapter active" data-level="4.2" data-path="tools.html">
             
-                <a href="../development/tools.html">
+                <a href="tools.html">
             
                     
                         <b>4.2.</b>
@@ -342,9 +344,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3" data-path="../development/workflow.html">
+        <li class="chapter " data-level="4.3" data-path="workflow.html">
             
-                <a href="../development/workflow.html">
+                <a href="workflow.html">
             
                     
                         <b>4.3.</b>
@@ -357,9 +359,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.4" data-path="../development/migrations.html">
+        <li class="chapter " data-level="4.4" data-path="migrations.html">
             
-                <a href="../development/migrations.html">
+                <a href="migrations.html">
             
                     
                         <b>4.4.</b>
@@ -372,9 +374,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.5" data-path="../development/deploying.html">
+        <li class="chapter " data-level="4.5" data-path="deploying.html">
             
-                <a href="../development/deploying.html">
+                <a href="deploying.html">
             
                     
                         <b>4.5.</b>
@@ -408,9 +410,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="5.1" data-path="test-design.html">
+        <li class="chapter " data-level="5.1" data-path="../testing/test-design.html">
             
-                <a href="test-design.html">
+                <a href="../testing/test-design.html">
             
                     
                         <b>5.1.</b>
@@ -423,9 +425,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.2" data-path="continuous-integration.html">
+        <li class="chapter " data-level="5.2" data-path="../testing/continuous-integration.html">
             
-                <a href="continuous-integration.html">
+                <a href="../testing/continuous-integration.html">
             
                     
                         <b>5.2.</b>
@@ -564,7 +566,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Test Design</a>
+        <a href=".." >Tools</a>
     </h1>
 </div>
 
@@ -574,71 +576,134 @@
                         <div class="page-inner">
                             <section class="normal markdown-section">
                             
-                            <h1 id="5-testing">5. Testing</h1>
-<h2 id="51-test-design">5.1 Test Design</h2>
-<p>Precautions were taken to ensure the tests for the project were reliable and consistent. Ensuring that <em>good</em> tests were easy to write was also a huge part of the philosophy behind testing in the project.</p>
-<h3 id="backend">Backend</h3>
-<p>The API has a large suite of tests to ensure any changes to models or blueprints don&apos;t break anything. Whenever a change is made to any part of the codebase, the entire suite of tests must be run to check each endpoint is returning the data is supposed to. For each endpoint within the app, there is an average of 3 tests that ensure to test three things:</p>
-<ol>
-<li><p><strong>A request with invalid parameters fails.</strong></p>
-<p>These are usually POST or PUT requests that send data to the server. The body of these requests must follow a strict schema and each field must have the correct data type. This includes parameters within the endpoint&apos;s URL itself. These tests are designed for security purposes to prevent SQL injection and meddling with parameters that are not publicly accessible. </p>
-</li>
-<li><p><strong>A request with invalid data fails.</strong></p>
-<p>Again, these are usually POST or PUT requests that send data to the server intending to be processed in some way. The endpoint has to be tested to ensure the integrity of the existing data is not compromised by incoming valid data. Examples are when trying to create new users when an email already exists for that user or trying to update an entity that violates a constraint within the database.</p>
-</li>
-<li><p><strong>The response returned the correct data.</strong></p>
-<p>Probably the most important test of the three is that given a valid request, the API returns the expected data. This is to ensure that interfaces built for the API can trust the server to always return data in the same format and structure.</p>
-</li>
-</ol>
-<h4 id="fixtures">Fixtures</h4>
-<p>The key to testing an application is making it easy to write good tests. Tests should be simple, complete and deterministic. When writing a test takes longer than writing the implementation of the code being tested, something is wrong. To avoid that trap and make writing tests as easy as possible for the API, the test suite made heavy use of Py.Test fixtures.</p>
-<p>Fixtures are methods, that when called, perform some setup for the test suite. This includes connecting the database, creating the tables, importing sample data and generally laying down the foundations for tests so that they can act upon real data. </p>
-<p>The fixtures are designed to have zero side effects. This means that any database commits or file changes <em>always</em> rollback their changes to the initial state. Now, every time a fixture is required, the test can expect a clean slate. Fixtures can be scoped to the &quot;session&quot; or &quot;function&quot;. The session scope turns the fixture into a singleton that when required first is executed and all following uses have the same value. This is useful for setting up the database connection and creating the tables which needs to be done only once per testing session. The function scope forces the fixture to be executed every time a test unit requires the fixture, this is useful for using SQL Alchemy&apos;s Session object and rollback any changes made to the database during that test.</p>
-<h4 id="sample-test">Sample Test</h4>
-<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_profile_delete_course</span><span class="hljs-params">(auth_client, user_with_courses, session)</span>:</span>
-    existingCourse = user_with_courses.courses[<span class="hljs-number">0</span>]
-    resp = auth_client.delete(<span class="hljs-string">&quot;/profile/courses&quot;</span>, 
-        data={ <span class="hljs-string">&quot;course&quot;</span>: existingCourse.id })
+                            <h2 id="42-tools">4.2 Tools</h2>
+<p>Tooling was another extremely important part of the project. The philosophy was to use tools that increase development speed without too much abstraction. The reasons for the lack of abstraction is for a better understand of the inner workings of the app and to learn as much about the project as possible. This section gives a short overview of the tools used to create the project.</p>
+<h3 id="sublime-text-and-an-ideless-environment">Sublime Text and an IDE-less environment</h3>
+<p>At the risk of sounding highly pretentious, I enjoy the pureness of using a simple, plain-text editor (with syntax highlighting). The lighting quick Sublime Text works beautifully and stays out of the way allowing the code to take the forefront instead of the plethora of tools, popups and windows that clutter an IDE. All of the code for the project was written in </p>
+<h3 id="iterm2-command-line">iTerm2 Command Line</h3>
+<p><em>Everything</em> about this project can be built and run solely from the command line. As the developer of this project, this was an absolutely necessity for streamlining development, distribution and deployment. A good interface usd for the command line was <a href="http://iterm2.com/" target="_blank">iTerm2</a>, an open source terminal environment. Some of the more useful commands for the project:</p>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$ docker-compose up</code></td>
+<td>Deploy the application.</td>
+</tr>
+<tr>
+<td><code>$ npm run dev</code></td>
+<td>Start the development server with live reloading.</td>
+</tr>
+<tr>
+<td><code>$ python init.py</code></td>
+<td>Start the python server.</td>
+</tr>
+<tr>
+<td><code>$ py.test</code></td>
+<td>Run all API tests for the server.</td>
+</tr>
+<tr>
+<td><code>$ http localhost:5000/login</code></td>
+<td>Perform complex HTTP queries against the server.</td>
+</tr>
+<tr>
+<td><code>$ psql exp</code></td>
+<td>Open an SQL query interface to the database.</td>
+</tr>
+<tr>
+<td><code>$ git commit -m &quot;...&quot;</code></td>
+<td>Commit code into the version control.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="dash--documentation">Dash &amp; Documentation</h3>
+<p><img src="assets/dash.png" style="width: 50%; float: right; margin-left: 18px"></p>
+<div style="text-align:justify">To access documentation in the fastest manner possible, a fantastic application called <a href="https://kapeli.com/dash" target="_blank">Dash</a> was used in excess. A simple keyboard shortcut <code>&#x2318;+&#x21E7;+Space</code> would bring up an interface to access all the docsets for the libraries and frameworks used in the project. It saved, with a confident estimation, about 40% of the would-be time spent looking through documentation for the project. This tool was <i>necessary</i>.</div>
 
-    assert_api_success(resp)
+<h3 id="nodejs-and-npm">Node.js and npm</h3>
+<p>The server-side logic for the project was written in Python however Node.js and it&apos;s package manager were a major part of the project&apos;s toolchain. Most, if not all, of the code transforming, linting and development tools are all written in Javascript for use with Node.js. It is critical to the build step of the client side code. It&apos;s sister, npm, is the package manager that installs these tools and runs them via it&apos;s <code>npm run-scripts</code> interface.</p>
+<h3 id="virtualenv-and-managing-pythons-dependencies">Virtualenv and managing Python&apos;s dependencies</h3>
+<p>Python has a problem with dependencies and its package management system, <code>pip</code>. Unlike how npm works, each dependency is installed in a global location for every Python project. As a consequence, it makes for a painful experience trying to install different versions of the same dependency. For this exact reason, Virtualenv was created. Virtualenv allows you to install dependencies on a project basis where they no longer clash with versions.</p>
+<h3 id="chrome-and-dev-tools">Chrome and Dev Tools</h3>
+<p>Another critical piece of tooling for the project was Chrome and it&apos;s Dev Tools. They are unmatched in their feature set, performance and usability. The time saved in debugging using their Source tab is immeasurable and without it, Javascript would be back in the Stone Age (figuratively speaking).</p>
+<p><img src="assets/devtools.png" alt=""></p>
+<center><i>Example of debugging a web request within the projects source code with Chrome Dev Tools.</i></center>
 
-    session.refresh(user_with_courses)
-    <span class="hljs-keyword">assert</span> len(user_with_courses.courses) == <span class="hljs-number">4</span>
-    <span class="hljs-keyword">assert</span> <span class="hljs-keyword">not</span> find(user_with_courses.courses, 
-        <span class="hljs-keyword">lambda</span> mod: mod.id == existingCourse.id)
-</code></pre>
-<p>Above we have an example test <code>test_profile_delete_course</code> which sends a request to the API attempting to remove a course from a user&apos;s associated courses. From the method arguments, we can see it uses three fixtures (Py.Test automatically resolves the arguments to fixtures when it runs the test): <code>auth_client</code>, <code>user_with_courses</code> and <code>session</code> (for a full list of fixtures, see Appendix 1: Test Fixtures). </p>
-<p>The <code>auth_client</code> provides an API client that has a logged in session and user associated with it and any requests made are authorised. This saves the hassle of having to write login code for every test (if I wanted an unauthorised client, I&apos;d ask for the <code>client</code> fixture). The <code>user_with_courses</code> fixture returns a user with courses associated at &quot;function&quot; scope and committed to the database. Finally, the session object is an SQL Alchemy Session object we can use to query the database to ensure any changes made by the API exist in the database.</p>
-<p>The first two lines of the test used the auth client to make a <em>DELETE</em> request to <code>/profiles/courses</code> with the ID of a course that a user has associated. We want to remove that course from the user&apos;s associated courses.</p>
-<p>Next, we <code>assert_api_success</code> which checks that the API returned a <code>200 OK</code> and the standard success response. If it doesn&apos;t, it will raise an <code>AssertionError</code> and the test will fail. Finally, we make sure the change has persisted to the database by refreshing the <code>User</code> entity and ensuring the course is not associated anymore.</p>
-<p>When the test is complete, <em>everything</em> is rolled back to the state before the test started including the user&apos;s login session created for the <code>auth_client</code> and the new user and their courses created in the <code>user_with_courses</code>. If any following tests require those fixtures, everything has to be recommitted to the database from scratch again. This may seem cumbersome and slow however it is the best way to ensure that every test will not be negatively affected by unintended side effects.</p>
-<h4 id="assertions">Assertions</h4>
-<p>The application implements a suite of custom assertions specifically tailored to the API. In line with the principle of making good tests easy to write, there are three methods:</p>
-<ol>
-<li><p><code>assert_api_error( response, status_code [, message, meta ] )</code></p>
-<p> This method takes an API response from the client and asserts that a HTTP error response was returned that matches <code>status_code</code>. The method also allows for testing the contents of the error message and the schema of the meta object.</p>
-</li>
-<li><p><code>assert_api_success( resp )</code></p>
-<p> This method takes asserts the API has returned a <code>200 OK</code> and matches the standard success API response.</p>
-</li>
-<li><p><code>assert_api_response( resp )</code></p>
-<p> The <code>assert_api_response</code> method asserts we have a <code>200 OK</code> returned from the API. It also serves another purpose of parsing the JSON response and yielding the object:</p>
-<pre><code class="lang-py"> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_resp</span><span class="hljs-params">(client)</span>:</span>
-     resp = client.get(<span class="hljs-string">&quot;/courses&quot;</span>)
-
-     <span class="hljs-keyword">with</span> assert_api_response(resp) <span class="hljs-keyword">as</span> data:
-         <span class="hljs-keyword">assert</span> <span class="hljs-string">&quot;courses&quot;</span> <span class="hljs-keyword">in</span> data
-         <span class="hljs-keyword">assert</span> len(data[<span class="hljs-string">&quot;courses&quot;</span>] &gt; <span class="hljs-number">5</span>)
-</code></pre>
-</li>
-</ol>
-<h4 id="logging">Logging</h4>
-<p>Since the development workflow of the backend is mostly TDD (Test Driven Development), it&apos;s important that the output and logs of the code being tested is easily accessible to ensure the code is performing as it should. For the test suite, a lot of effort was put into ensuring the log output was as readable and approachable as possible. There was a couple of steps involved in reach the current state.</p>
-<p><img src="assets/test-output.png" alt="Output of a test run. Notice the highlighted SQL."></p>
-<p>First off, Py.test does a poor job of reporting test execution. By default it suppresses any output unless the command line flag <code>-s</code> is enabled. Even with that, only a period is outputted after the test has completed execution. The first change to the output was to mark the beginning and end of a test run using large, guarded markers with the test name.</p>
-<p>The next modification to the logging output was making SQL Alchemy&apos;s SQL output readable. This was no easy task because SQL Alchemy spits out <em>huge</em> chunks, line by line which leads to unparseable walls of text. SQL Alchemy uses Python&apos;s native <code>logging</code> module which allows you to plug in your own formatters and filters. The SQL Alchemy logger was modified to colorise, indent and pad the queries with any parameters displayed just below.</p>
-<p><img src="assets/SQL-formatted.png" alt="Unformatted SQL output vs Formatted"></p>
-<p>Finally, the last modification was only logging data that was relevant to the test. The fixtures produce <em>a lot</em> of output such as SQL queries and any other function call and created <em>large</em> chunks of text before the test even started running. Py.Test unfortunately did not have the facility to turn off output from fixtures so a custom solution has to be built. From deep within the Py.Test docs, I found two &quot;hooks&quot; which would call a method before and after each test run called (<code>pytest_runtest_call</code>, <code>pytest_runtest_teardown</code>). From there, it was simply a matter of turning on and off the output from any loggers and isolate only the test output.</p>
+<h3 id="babel">Babel</h3>
+<p>Babel is a tool that <em>transpiles</em> the next generation language features in the new EMCAScript 2016 specifications down to code that is understood by all the browsers. The EMCA is the Javascript standards body who maintains the specifications for the language. Some examples of the new features that Babel enables the client to use (and are seen throughout the codebase):</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arrow functions</td>
+<td><code>(a, b) =&gt; a + b</code></td>
+</tr>
+<tr>
+<td>Object destructuring</td>
+<td><code>const { a, b } = this.props</code></td>
+</tr>
+<tr>
+<td>Classes</td>
+<td><code>class MyComp extends Component {}</code></td>
+</tr>
+<tr>
+<td>Import system</td>
+<td><code>import React, { PropTypes } from &quot;react&quot;</code></td>
+</tr>
+<tr>
+<td>Function bind</td>
+<td><code>::this.onClick</code></td>
+</tr>
+</tbody>
+</table>
+<p>Babel is <em>imperative</em> to the project and will not function without it.</p>
+<h3 id="sass">SASS</h3>
+<p>SASS is another transpiler that converts the SASS language, a superset of CSS, to normal CSS. It&apos;s a language extension that makes writing it much simpler. SASS implements some very useful, time saving features. All of the CSS in the project is written this way.</p>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Static import system</td>
+<td><code>@import &quot;reset.css&quot;</code></td>
+</tr>
+<tr>
+<td>Variables</td>
+<td><code>$theme-danger-color: #ff0000</code></td>
+</tr>
+<tr>
+<td>Color functions</td>
+<td><code>color: lighten(purple, 20%)</code></td>
+</tr>
+<tr>
+<td>Math</td>
+<td><code>height: 400px * 0.3</code></td>
+</tr>
+<tr>
+<td>Nesting rules</td>
+<td><code>.MyComponents { a { color: blue; } }</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="notable-mentions">Notable Mentions</h3>
+<p>Other tools which proved extremely useful:</p>
+<ul>
+<li><code>psql</code> - PostgreSQL&apos;s SQL query interface.</li>
+<li><code>py.test</code> - Py.Test test runner tool. See Testing chapter.</li>
+</ul>
 
                             
                             </section>
@@ -649,8 +714,12 @@
 
             
                 
+                <a href="version-control.html" class="navigation navigation-prev " aria-label="Previous page: Version Control">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="continuous-integration.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Continuous Integration">
+                
+                <a href="workflow.html" class="navigation navigation-next " aria-label="Next page: Workflow">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 

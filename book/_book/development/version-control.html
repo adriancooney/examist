@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="" >
     <head>
-        <title>Test Design · Final Year Project</title>
+        <title>Version Control · Final Year Project</title>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="Precautions were taken to ensure the tests for the project were reliable and consistent. Ensuring that good tests were easy to write was also a huge part o">
+        <meta name="description" content="Version control is a big part of the project. All of the source for the project is version controlled by git. There is no strict workflow implemented for t">
         <meta name="generator" content="GitBook 3.0.0-pre.5">
         
         
@@ -56,7 +56,7 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="continuous-integration.html" />
+    <link rel="next" href="tools.html" />
     
     
 
@@ -64,9 +64,9 @@
     <body>
         
 <div class="book"
-    data-level="5.1"
-    data-chapter-title="Test Design"
-    data-filepath="testing/test-design.md"
+    data-level="4.1"
+    data-chapter-title="Version Control"
+    data-filepath="development/version-control.md"
     data-basepath=".."
     data-revision="Tue Apr 26 2016 03:08:18 GMT+0100 (IST)"
     data-innerlanguage="">
@@ -312,9 +312,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="4.1" data-path="../development/version-control.html">
+        <li class="chapter active" data-level="4.1" data-path="version-control.html">
             
-                <a href="../development/version-control.html">
+                <a href="version-control.html">
             
                     
                         <b>4.1.</b>
@@ -327,9 +327,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.2" data-path="../development/tools.html">
+        <li class="chapter " data-level="4.2" data-path="tools.html">
             
-                <a href="../development/tools.html">
+                <a href="tools.html">
             
                     
                         <b>4.2.</b>
@@ -342,9 +342,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.3" data-path="../development/workflow.html">
+        <li class="chapter " data-level="4.3" data-path="workflow.html">
             
-                <a href="../development/workflow.html">
+                <a href="workflow.html">
             
                     
                         <b>4.3.</b>
@@ -357,9 +357,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.4" data-path="../development/migrations.html">
+        <li class="chapter " data-level="4.4" data-path="migrations.html">
             
-                <a href="../development/migrations.html">
+                <a href="migrations.html">
             
                     
                         <b>4.4.</b>
@@ -372,9 +372,9 @@
             
         </li>
     
-        <li class="chapter " data-level="4.5" data-path="../development/deploying.html">
+        <li class="chapter " data-level="4.5" data-path="deploying.html">
             
-                <a href="../development/deploying.html">
+                <a href="deploying.html">
             
                     
                         <b>4.5.</b>
@@ -408,9 +408,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="5.1" data-path="test-design.html">
+        <li class="chapter " data-level="5.1" data-path="../testing/test-design.html">
             
-                <a href="test-design.html">
+                <a href="../testing/test-design.html">
             
                     
                         <b>5.1.</b>
@@ -423,9 +423,9 @@
             
         </li>
     
-        <li class="chapter " data-level="5.2" data-path="continuous-integration.html">
+        <li class="chapter " data-level="5.2" data-path="../testing/continuous-integration.html">
             
-                <a href="continuous-integration.html">
+                <a href="../testing/continuous-integration.html">
             
                     
                         <b>5.2.</b>
@@ -564,7 +564,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Test Design</a>
+        <a href=".." >Version Control</a>
     </h1>
 </div>
 
@@ -574,72 +574,112 @@
                         <div class="page-inner">
                             <section class="normal markdown-section">
                             
-                            <h1 id="5-testing">5. Testing</h1>
-<h2 id="51-test-design">5.1 Test Design</h2>
-<p>Precautions were taken to ensure the tests for the project were reliable and consistent. Ensuring that <em>good</em> tests were easy to write was also a huge part of the philosophy behind testing in the project.</p>
-<h3 id="backend">Backend</h3>
-<p>The API has a large suite of tests to ensure any changes to models or blueprints don&apos;t break anything. Whenever a change is made to any part of the codebase, the entire suite of tests must be run to check each endpoint is returning the data is supposed to. For each endpoint within the app, there is an average of 3 tests that ensure to test three things:</p>
+                            <h1 id="4-development">4. Development</h1>
+<h2 id="41-version-control">4.1 Version Control</h2>
+<p>Version control is a big part of the project. All of the source for the project is version controlled by git. There is no strict workflow implemented for the project since it&apos;s a one man team however there were some rules when working with the code.</p>
 <ol>
-<li><p><strong>A request with invalid parameters fails.</strong></p>
-<p>These are usually POST or PUT requests that send data to the server. The body of these requests must follow a strict schema and each field must have the correct data type. This includes parameters within the endpoint&apos;s URL itself. These tests are designed for security purposes to prevent SQL injection and meddling with parameters that are not publicly accessible. </p>
+<li><p><strong><code>master</code> and <code>develop</code> branches.</strong></p>
+<p> The <code>master</code> branch always represented a stable, functioning application at any point in time (merge commits only). The <code>develop</code> branch represents the application at any state during development. You can expect to find a buggy app where somethings may be broken and other unfinished.</p>
 </li>
-<li><p><strong>A request with invalid data fails.</strong></p>
-<p>Again, these are usually POST or PUT requests that send data to the server intending to be processed in some way. The endpoint has to be tested to ensure the integrity of the existing data is not compromised by incoming valid data. Examples are when trying to create new users when an email already exists for that user or trying to update an entity that violates a constraint within the database.</p>
+<li><p><strong>Branching for new features or refactors.</strong></p>
+<p> For each new feature, a new branch is created under the feature name. All code for that feature is contained within that branch. Sometimes some features cannot be developed in isolation, if that is the case a new branch is to be created from <code>develop</code> and merged into <code>develop</code> on completed, then merged into the blocked feature branch. It is often hard to describe the scope of a feature so this is entirely left up to the developer.</p>
 </li>
-<li><p><strong>The response returned the correct data.</strong></p>
-<p>Probably the most important test of the three is that given a valid request, the API returns the expected data. This is to ensure that interfaces built for the API can trust the server to always return data in the same format and structure.</p>
+<li><p><strong>Detail the commit logs.</strong></p>
+<p> The commit messages should contain enough detail for anyone browsing the history to understand what was updated or added in the changes. This sometimes became tedious and when it did, it breaking the commit up into smaller chunks and committing more often.</p>
 </li>
 </ol>
-<h4 id="fixtures">Fixtures</h4>
-<p>The key to testing an application is making it easy to write good tests. Tests should be simple, complete and deterministic. When writing a test takes longer than writing the implementation of the code being tested, something is wrong. To avoid that trap and make writing tests as easy as possible for the API, the test suite made heavy use of Py.Test fixtures.</p>
-<p>Fixtures are methods, that when called, perform some setup for the test suite. This includes connecting the database, creating the tables, importing sample data and generally laying down the foundations for tests so that they can act upon real data. </p>
-<p>The fixtures are designed to have zero side effects. This means that any database commits or file changes <em>always</em> rollback their changes to the initial state. Now, every time a fixture is required, the test can expect a clean slate. Fixtures can be scoped to the &quot;session&quot; or &quot;function&quot;. The session scope turns the fixture into a singleton that when required first is executed and all following uses have the same value. This is useful for setting up the database connection and creating the tables which needs to be done only once per testing session. The function scope forces the fixture to be executed every time a test unit requires the fixture, this is useful for using SQL Alchemy&apos;s Session object and rollback any changes made to the database during that test.</p>
-<h4 id="sample-test">Sample Test</h4>
-<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_profile_delete_course</span><span class="hljs-params">(auth_client, user_with_courses, session)</span>:</span>
-    existingCourse = user_with_courses.courses[<span class="hljs-number">0</span>]
-    resp = auth_client.delete(<span class="hljs-string">&quot;/profile/courses&quot;</span>, 
-        data={ <span class="hljs-string">&quot;course&quot;</span>: existingCourse.id })
+<h3 id="github">Github</h3>
+<p>The entire codebase is hosted on Github. This served as a backup for the repository and facility for third party services to interact with the project. Gitbook, the software that built this book takes the <code>report/</code> directory from Github, compiles the book and puts it online for anyone to read. Codeship, the continuous integration service, uses the Github API to listen for commits and run the projects tests automatically. This is detailed further in the Continous Integration section of the Testing chapter.</p>
+<h3 id="statistics">Statistics</h3>
+<p>These are some statistics on the repository pulled from Github.</p>
+<p><img src="assets/language-stats.png" alt=""></p>
+<center><i>Some commit and language statistics.</i></center>
 
-    assert_api_success(resp)
+<div>
 
-    session.refresh(user_with_courses)
-    <span class="hljs-keyword">assert</span> len(user_with_courses.courses) == <span class="hljs-number">4</span>
-    <span class="hljs-keyword">assert</span> <span class="hljs-keyword">not</span> find(user_with_courses.courses, 
-        <span class="hljs-keyword">lambda</span> mod: mod.id == existingCourse.id)
-</code></pre>
-<p>Above we have an example test <code>test_profile_delete_course</code> which sends a request to the API attempting to remove a course from a user&apos;s associated courses. From the method arguments, we can see it uses three fixtures (Py.Test automatically resolves the arguments to fixtures when it runs the test): <code>auth_client</code>, <code>user_with_courses</code> and <code>session</code> (for a full list of fixtures, see Appendix 1: Test Fixtures). </p>
-<p>The <code>auth_client</code> provides an API client that has a logged in session and user associated with it and any requests made are authorised. This saves the hassle of having to write login code for every test (if I wanted an unauthorised client, I&apos;d ask for the <code>client</code> fixture). The <code>user_with_courses</code> fixture returns a user with courses associated at &quot;function&quot; scope and committed to the database. Finally, the session object is an SQL Alchemy Session object we can use to query the database to ensure any changes made by the API exist in the database.</p>
-<p>The first two lines of the test used the auth client to make a <em>DELETE</em> request to <code>/profiles/courses</code> with the ID of a course that a user has associated. We want to remove that course from the user&apos;s associated courses.</p>
-<p>Next, we <code>assert_api_success</code> which checks that the API returned a <code>200 OK</code> and the standard success response. If it doesn&apos;t, it will raise an <code>AssertionError</code> and the test will fail. Finally, we make sure the change has persisted to the database by refreshing the <code>User</code> entity and ensuring the course is not associated anymore.</p>
-<p>When the test is complete, <em>everything</em> is rolled back to the state before the test started including the user&apos;s login session created for the <code>auth_client</code> and the new user and their courses created in the <code>user_with_courses</code>. If any following tests require those fixtures, everything has to be recommitted to the database from scratch again. This may seem cumbersome and slow however it is the best way to ensure that every test will not be negatively affected by unintended side effects.</p>
-<h4 id="assertions">Assertions</h4>
-<p>The application implements a suite of custom assertions specifically tailored to the API. In line with the principle of making good tests easy to write, there are three methods:</p>
-<ol>
-<li><p><code>assert_api_error( response, status_code [, message, meta ] )</code></p>
-<p> This method takes an API response from the client and asserts that a HTTP error response was returned that matches <code>status_code</code>. The method also allows for testing the contents of the error message and the schema of the meta object.</p>
-</li>
-<li><p><code>assert_api_success( resp )</code></p>
-<p> This method takes asserts the API has returned a <code>200 OK</code> and matches the standard success API response.</p>
-</li>
-<li><p><code>assert_api_response( resp )</code></p>
-<p> The <code>assert_api_response</code> method asserts we have a <code>200 OK</code> returned from the API. It also serves another purpose of parsing the JSON response and yielding the object:</p>
-<pre><code class="lang-py"> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_resp</span><span class="hljs-params">(client)</span>:</span>
-     resp = client.get(<span class="hljs-string">&quot;/courses&quot;</span>)
+<div style="width:40%; float: right;"><img style="margin-top:25px" src="assets/commits.png">
+<center><i>Commit frequency.</i></center></div>
+<div style="width:60%;"><img src="assets/code-frequency.png">
+<center><i>Code frequency.</i></center></div>
+</div>
 
-     <span class="hljs-keyword">with</span> assert_api_response(resp) <span class="hljs-keyword">as</span> data:
-         <span class="hljs-keyword">assert</span> <span class="hljs-string">&quot;courses&quot;</span> <span class="hljs-keyword">in</span> data
-         <span class="hljs-keyword">assert</span> len(data[<span class="hljs-string">&quot;courses&quot;</span>] &gt; <span class="hljs-number">5</span>)
-</code></pre>
-</li>
-</ol>
-<h4 id="logging">Logging</h4>
-<p>Since the development workflow of the backend is mostly TDD (Test Driven Development), it&apos;s important that the output and logs of the code being tested is easily accessible to ensure the code is performing as it should. For the test suite, a lot of effort was put into ensuring the log output was as readable and approachable as possible. There was a couple of steps involved in reach the current state.</p>
-<p><img src="assets/test-output.png" alt="Output of a test run. Notice the highlighted SQL."></p>
-<p>First off, Py.test does a poor job of reporting test execution. By default it suppresses any output unless the command line flag <code>-s</code> is enabled. Even with that, only a period is outputted after the test has completed execution. The first change to the output was to mark the beginning and end of a test run using large, guarded markers with the test name.</p>
-<p>The next modification to the logging output was making SQL Alchemy&apos;s SQL output readable. This was no easy task because SQL Alchemy spits out <em>huge</em> chunks, line by line which leads to unparseable walls of text. SQL Alchemy uses Python&apos;s native <code>logging</code> module which allows you to plug in your own formatters and filters. The SQL Alchemy logger was modified to colorise, indent and pad the queries with any parameters displayed just below.</p>
-<p><img src="assets/SQL-formatted.png" alt="Unformatted SQL output vs Formatted"></p>
-<p>Finally, the last modification was only logging data that was relevant to the test. The fixtures produce <em>a lot</em> of output such as SQL queries and any other function call and created <em>large</em> chunks of text before the test even started running. Py.Test unfortunately did not have the facility to turn off output from fixtures so a custom solution has to be built. From deep within the Py.Test docs, I found two &quot;hooks&quot; which would call a method before and after each test run called (<code>pytest_runtest_call</code>, <code>pytest_runtest_teardown</code>). From there, it was simply a matter of turning on and off the output from any loggers and isolate only the test output.</p>
+<p><img src="assets/punchcard.png" alt=""></p>
+<center><i>Repository punchcard. Not a morning person.</i></center>
 
+<h3 id="notable-commit-logs">Notable Commit Logs</h3>
+<p>Throughout the history of the project, there were some milestones achieved that really helped motivate the development.</p>
+<pre><code>commit 89e0700cede400fe2570943a27567810c13987bf
+Author: Adrian Cooney &lt;cooney.adrian@gmail.com&gt;
+Date:   Fri Mar 25 17:42:36 2016 +0000
+
+    Migration with new inheritance based model.
+
+    This converts all existing questions in the database to the new entity
+    model. It does the following things:
+
+    1. Drop all foreign keys reference the questions table (including circular keys).
+    2. For each question, create an entity.
+    3. If the question has a parent, find the parent entity id and set it.
+    4. Recreate all foreign keys.
+</code></pre><center><i>Implementing the inheritance based model with SQL Alchemy (<a href="https://github.com/adriancooney/examist/commit/89e0700cede400fe2570943a27567810c13987bf" target="_blank">link</a>)</i></center>
+
+<pre><code>commit 414747241536ff3db0746a877a45b43c9e1ae244
+Merge: 54ebcc4 6fdb0df
+Author: Adrian Cooney &lt;cooney.adrian@gmail.com&gt;
+Date:   Thu Jan 28 14:51:05 2016 +0000
+
+    Merge branch &apos;redux&apos;.
+
+    Finally confident enough with Redux to use it as the library behind
+    the app for managing data. Although it requires a lot of boilerplate
+    and some, at times, frustrating logic it&apos;s extremely robust and to the
+    very core, simplistic.
+</code></pre><center><i>Finished testing with Redux and satisfied it will suit the project. (<a href="https://github.com/adriancooney/examist/commit/414747241536ff3db0746a877a45b43c9e1ae244" target="_blank">link</a>)</i></center>
+
+<pre><code>commit 50bad3b898fae55aa354720dd2b227e55de8947b
+Author: Adrian Cooney &lt;cooney.adrian@gmail.com&gt;
+Date:   Thu Jan 21 17:50:38 2016 +0000
+
+    Better styling system with SASS and new global, colors, fonts SCSS.
+
+    Introduced a new styling system where (if preferred), components
+    can be styled by creating a SCSS file under the package name. e.g.
+    If we had the components:
+
+        src/error/ErrorMessage.jsx
+        src/error/Error404.jsx
+
+    Each still have their own class `.ErrorMessage` and `.Error404` (if a
+    component in their own right) but we create a single file called
+    `Error.scss`, which is the name of the folder. This file is then placed
+    in the corresponding style directory where the `error` folder would
+    appear. In this case, it would be `style/Error.scss` since the `error`
+    directory is at the root of the source.
+
+    I also created the following files:
+
+    * `Global.scss` - For style tags, wildcards etc.
+    * `common/Colors.scss` - For holding the colors of items.
+    * `common/Fonts.scss` - Describe the fonts for items.
+    * `common/Spacing.scss` - (Experimental) Global spacing style.
+</code></pre><center><i>Introducing SASS and styling system for components. (<a href="https://github.com/adriancooney/examist/commit/50bad3b898fae55aa354720dd2b227e55de8947b" target="_blank">link</a>)</i></center>
+
+<pre><code>commit a0db2d317210ca1b0020aef725ab43f527222d03
+Merge: 927d098 b78d44c
+Author: Adrian Cooney &lt;cooney.adrian@gmail.com&gt;
+Date:   Wed Feb 24 21:05:01 2016 +0000
+
+    Merge branch &apos;the-big-refactor&apos; into develop.
+
+    This was a HUGE refactor that took the guts of an hour combing through
+    EVERY FILE in the project. All because of one silly global in
+    JS called `module` that clashed with our version of a &quot;module&quot; e.g. CT475.
+
+    This merge removes all instances of the `module` and it&apos;s variants and
+    replaces it with **Course**. Since the database was altered, it was
+    easier to recreate all the data from scratch the run migrations in
+    alembic.
+</code></pre><center><i>The name &quot;module&quot; caused havoc in JS code since it was a reserved word. <br> This refactor renamed &quot;module&quot; to &quot;course&quot; throughout the entire app. (<a href="https://github.com/adriancooney/examist/commit/a0db2d317210ca1b0020aef725ab43f527222d03" target="_blank">link</a>)</i></center>
                             
                             </section>
                         </div>
@@ -650,7 +690,7 @@
             
                 
                 
-                <a href="continuous-integration.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Continuous Integration">
+                <a href="tools.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Tools">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 

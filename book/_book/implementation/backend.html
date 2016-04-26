@@ -1,0 +1,956 @@
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>Backend · Final Year Project</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="The backend of the app is a Python codebase contained in the server/ directory of the project. It powers the API the frontend communicates with to run the ">
+        <meta name="generator" content="GitBook 3.0.0-pre.5">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="frontend.html" />
+    
+    
+    <link rel="prev" href="project-structure.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book"
+    data-level="3.2"
+    data-chapter-title="Backend"
+    data-filepath="implementation/backend.md"
+    data-basepath=".."
+    data-revision="Tue Apr 26 2016 03:08:18 GMT+0100 (IST)"
+    data-innerlanguage="">
+    
+
+<div class="book-summary">
+    
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+
+            
+
+
+            
+            
+    
+        <li class="chapter " data-level="0" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1" >
+            
+                <span>
+            
+                    
+                        <b>1.</b>
+                    
+                    Research
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="../research/downloading-papers.html">
+            
+                <a href="../research/downloading-papers.html">
+            
+                    
+                        <b>1.1.</b>
+                    
+                    Downloading Exam Papers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../research/parsing-papers.html">
+            
+                <a href="../research/parsing-papers.html">
+            
+                    
+                        <b>1.2.</b>
+                    
+                    Parsing Exam Papers
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" >
+            
+                <span>
+            
+                    
+                        <b>2.</b>
+                    
+                    Design
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="../design/architecture.html">
+            
+                <a href="../design/architecture.html">
+            
+                    
+                        <b>2.1.</b>
+                    
+                    Architecture
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../design/database.html">
+            
+                <a href="../design/database.html">
+            
+                    
+                        <b>2.2.</b>
+                    
+                    Database
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../design/api.html">
+            
+                <a href="../design/api.html">
+            
+                    
+                        <b>2.3.</b>
+                    
+                    API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="../design/ui.html">
+            
+                <a href="../design/ui.html">
+            
+                    
+                        <b>2.4.</b>
+                    
+                    UI
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" >
+            
+                <span>
+            
+                    
+                        <b>3.</b>
+                    
+                    Implementation
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="project-structure.html">
+            
+                <a href="project-structure.html">
+            
+                    
+                        <b>3.1.</b>
+                    
+                    Project Structure
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="3.2" data-path="backend.html">
+            
+                <a href="backend.html">
+            
+                    
+                        <b>3.2.</b>
+                    
+                    Backend
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="frontend.html">
+            
+                <a href="frontend.html">
+            
+                    
+                        <b>3.3.</b>
+                    
+                    Frontend
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" >
+            
+                <span>
+            
+                    
+                        <b>4.</b>
+                    
+                    Development
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="../development/version-control.html">
+            
+                <a href="../development/version-control.html">
+            
+                    
+                        <b>4.1.</b>
+                    
+                    Version Control
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../development/tools.html">
+            
+                <a href="../development/tools.html">
+            
+                    
+                        <b>4.2.</b>
+                    
+                    Tools
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../development/workflow.html">
+            
+                <a href="../development/workflow.html">
+            
+                    
+                        <b>4.3.</b>
+                    
+                    Workflow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="../development/migrations.html">
+            
+                <a href="../development/migrations.html">
+            
+                    
+                        <b>4.4.</b>
+                    
+                    Migrations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="../development/deploying.html">
+            
+                <a href="../development/deploying.html">
+            
+                    
+                        <b>4.5.</b>
+                    
+                    Deploying
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" >
+            
+                <span>
+            
+                    
+                        <b>5.</b>
+                    
+                    Testing
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="../testing/test-design.html">
+            
+                <a href="../testing/test-design.html">
+            
+                    
+                        <b>5.1.</b>
+                    
+                    Test Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../testing/continuous-integration.html">
+            
+                <a href="../testing/continuous-integration.html">
+            
+                    
+                        <b>5.2.</b>
+                    
+                    Continuous Integration
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="../results.html">
+            
+                <a href="../results.html">
+            
+                    
+                        <b>6.</b>
+                    
+                    Results
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="../conclusions.html">
+            
+                <a href="../conclusions.html">
+            
+                    
+                        <b>7.</b>
+                    
+                    Conclusions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="../references.html">
+            
+                <a href="../references.html">
+            
+                    
+                        <b>8.</b>
+                    
+                    References
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9" >
+            
+                <span>
+            
+                    
+                        <b>9.</b>
+                    
+                    Appendices
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="../appendices/test-fixtures.html">
+            
+                <a href="../appendices/test-fixtures.html">
+            
+                    
+                        <b>9.1.</b>
+                    
+                    Appendix 1: Test Fixtures
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="../appendices/paper-specification.html">
+            
+                <a href="../appendices/paper-specification.html">
+            
+                    
+                        <b>9.2.</b>
+                    
+                    Appendix 2: Exam Paper Specification
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            <li class="divider"></li>
+            
+
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+        </ul>
+    </nav>
+    
+</div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Backend</a>
+    </h1>
+</div>
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            <section class="normal markdown-section">
+                            
+                            <h2 id="32-backend">3.2 Backend</h2>
+<p>The backend of the app is a Python codebase contained in the <code>server/</code> directory of the project. It powers the API the frontend communicates with to run the application.</p>
+<h3 id="models">Models</h3>
+<p>Overall, there are 14 models at the current time of writing. The names of each model are pretty much self explanatory. For a more in-depth look at the relationship configurations between the models, see the Database section of the Design chapter.</p>
+<ul>
+<li><code>comment.py</code></li>
+<li><code>course.py</code></li>
+<li><code>entity.py</code></li>
+<li><code>institution.py</code></li>
+<li><code>like.py</code></li>
+<li><code>note.py</code></li>
+<li><code>paper.py</code></li>
+<li><code>paper_download.py</code></li>
+<li><code>question.py</code></li>
+<li><code>revision.py</code></li>
+<li><code>session.py</code></li>
+<li><code>solution.py</code></li>
+<li><code>user.py</code></li>
+</ul>
+<p>A model inherits from the SQL Alchemy <em>declarative base</em>. This is the base that communicates with the ORM to create the tables and essentially notify it that the model exists. A model also has a <code>__tablename__</code> which describes the table where the model will be stored. To construct a model, attributes are added mapping the column names in the database to the attributes in the class. </p>
+<pre><code class="lang-py"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Note</span><span class="hljs-params">(Entity, Serializable)</span>:</span>
+    __tablename__ = <span class="hljs-string">&quot;note&quot;</span>
+    id = Column(Integer, ForeignKey(<span class="hljs-string">&quot;entity.id&quot;</span>), primary_key=<span class="hljs-keyword">True</span>)
+    user_id = Column(Integer, ForeignKey(<span class="hljs-string">&quot;user.id&quot;</span>))
+    question_id = Column(Integer, ForeignKey(<span class="hljs-string">&quot;question.id&quot;</span>))
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, onupdate=current_timestamp())
+    description = Column(Text)
+
+    question = relationship(<span class="hljs-string">&quot;Question&quot;</span>, foreign_keys=question_id)
+    user = relationship(<span class="hljs-string">&quot;User&quot;</span>, backref=<span class="hljs-string">&quot;notes&quot;</span>)
+</code></pre>
+<center><i>The Note model from the Server</i></center>
+
+<p>Relationships can be easily created using the <code>relationship</code> function which can also created back references on the model linked. ForeignKeys and other modifiers are all made extremely simple.</p>
+<div style="page-break-after: always;"></div>
+
+<h4 id="serialisation--deserialisation">Serialisation &amp; Deserialisation</h4>
+<p>The entity serialisation and deserialisation was a particularly tough problem to solve. Python objects are not natively serialisable like the Javascript counter part. On top of that, the attributes on the entities weren&apos;t really attributes in the Python sense of the word but were describing attributes for the database. </p>
+<p>After some searching for some serialisation library, Marshmallow turned up looking the most reliable. Large community with an active repository and good documentation were good signs the project is still alive and well. It also has a nice API for the serialisation and deserialisation (or &quot;dumping&quot; and &quot;loading&quot; in Marshmallow terminology). To serialise an object, a schema must be defined:</p>
+<pre><code class="lang-py">modelSchema = marshmallow.Schema({
+    <span class="hljs-string">&quot;name&quot;</span>: fields.Str(),
+    <span class="hljs-string">&quot;age&quot;</span>: fields.Int()
+})
+</code></pre>
+<p>This became tedious because a schema had to be created for every model in the application and be update anytime they were changed. This wouldn&apos;t do when the schemas were already defined in SQL Alchemy. A schema builder was built that would take the SQL Alchemy model and produce the Marshmallow schema equivalent. The generated schema was then stored in a <code>__schema__</code> magic attribute on each SQL Alchemy model. This functionality was added to a model whenever it subclassed <code>server.library.model.Serializable</code> (as seen above in the <code>Note</code> model).</p>
+<p>To complete the new serialisation system, a <code>DynamicJSONEncoder</code> was introduced that subclassed Python&apos;s native <code>JSONEncoder</code>. When the <code>DynamicJSONEncoder</code> encountered any SQL Alchemy object that was serialisable, it would return the serialised result instead of letting Python handle it natively. The new encoder was then handed of to Flask as the default JSON encoder. The dynamic encoder allowed for simply returning SQL Alchemy models in the API and the result would be converted to JSON. Even collections were automatically handled and some sensitive fields such as <code>password</code> could be marked hidden.</p>
+<pre><code class="lang-py"><span class="hljs-meta">@app.route(&quot;/paper/&lt;code&gt;&quot;)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_papers</span><span class="hljs-params">(code)</span>:</span>
+    papers = db.session.query(Paper).filter(Course.code == code).all()
+
+    <span class="hljs-keyword">return</span> respond({ <span class="hljs-string">&quot;papers&quot;</span>: papers })
+</code></pre>
+<h4 id="entity-inheritance-model-loading">Entity inheritance Model Loading</h4>
+<p>One of the would-be complicated aspects of the server was greatly simplified by SQL Alchemy, the Entity Inheritance Model. This model is explained fully in the Database section of the Design chapter however it did not explain the loading techniques.</p>
+<p>Using the above <code>Note</code> as the example, we&apos;ll take it&apos;s sister models <code>NoteLink</code> and <code>NoteUpload</code>. The note link is simply a link on the internet that is good learning material for a question which a note upload is an uploaded piece of learning material. Both are extremely similar and only differ in two attributes, the <code>link</code> for the <code>NoteLink</code> and <code>file_path</code> for the <code>NoteUpload</code>. Here is the implementation for the classes:</p>
+<pre><code class="lang-py"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NoteLink</span><span class="hljs-params">(Note, Serializable)</span>:</span>
+    __mapper_args__ = {
+        <span class="hljs-string">&quot;polymorphic_identity&quot;</span>: <span class="hljs-string">&quot;note_link&quot;</span>
+    }
+
+    link = Column(String)
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NoteUpload</span><span class="hljs-params">(Note, Serializable)</span>:</span>
+    __mapper_args__ = {
+        <span class="hljs-string">&quot;polymorphic_identity&quot;</span>: <span class="hljs-string">&quot;note_upload&quot;</span>
+    }
+
+    file_path = Column(String)
+</code></pre>
+<center><i>Implementation of the <code>NoteLink</code> and the <code>NoteUpload</code>. Right below, the Note database table.</i></center>
+
+<p><img src="assets/note-table.png" style="float:right; width: 30%; margin-left: 18px;margin-top: 35px;"></p>
+<p>See how both the model&apos;s <em>subclass</em> the <code>Note</code> class and both add an extra attribute. SQL alchemy understands this configuration and stores the both attributes in the parent <code>Note</code> table at the cost of normalisation. </p>
+<p>SQL Alchemy will load the <em>correct</em> classes for each <code>Note</code> object returned from the database. If a row is a note link in the database, SQL Alchemy will return a <code>NoteLink</code> object. The reason it is able to do this is because it picks the class based on it&apos;s <code>polymorphic_identity</code>. The note example was picked for a reason because it is <em>doubly</em> inherited. The <code>Note</code> class also inherits from the <code>Entity</code> class which contains a <code>type</code> column that contains stores the <code>polymorphic_identity</code> of the entity. SQL Alchemy will <em>still</em> load the correct class even through two levels of inheritance, at no cost to the programmer. I personally think that is amazing given how little code is required to implement it.</p>
+<h4 id="adjacency-list-loading">Adjacency List Loading</h4>
+<p>Adjacency list loading was another would-be tricky technique that the ORM handled with ease. SQL Alchemy essentially performs a graph database traversal (in what capacity an RDBMS can allow it) when it loads nested comment threads. The nested relationship allows you to specify <code>join_depth</code> for loading the nested lists and it will issue a query that <code>JOIN</code>s the same table <code>join_depth</code> over. For example, the <code>question</code> table, which uses the adjacency list configuration gets joined <em>four</em> times over for monster queries to load the relationships. These joins get even larger when other question relationships are loaded. These queries are <em>highly</em> in-efficient but with the good caching system, it&apos;s irrelevant.</p>
+<p><pre style="font-size:50%; line-height: 106%; margin: 0 auto;">SELECT question.id AS question_id, entity.id AS entity_id, entity.type AS entity_type,
+    question.paper_id AS question_paper_id, question.parent_id AS question_parent_id,
+    question.created_at AS question_created_at, question.marks AS question_marks, question.index AS
+    question_index, question.index_type AS question_index_type, question.is_section AS
+    question_is_section, question.path AS question_path, question.formatted_path AS
+    question_formatted_path, paper_1.id AS paper_1_id, paper_1.name AS paper_1_name, paper_1.period AS
+    paper_1_period, paper_1.sitting AS paper_1_sitting, paper_1.year_start AS paper_1_year_start,
+    paper_1.year_stop AS paper_1_year_stop, paper_1.link AS paper_1_link, paper_1.course_id AS
+    paper_1_course_id, paper_2.id AS paper_2_id, paper_2.name AS paper_2_name, paper_2.period AS
+    paper_2_period, paper_2.sitting AS paper_2_sitting, paper_2.year_start AS paper_2_year_start,
+    paper_2.year_stop AS paper_2_year_stop, paper_2.link AS paper_2_link, paper_2.course_id AS
+    paper_2_course_id, paper_3.id AS paper_3_id, paper_3.name AS paper_3_name, paper_3.period AS
+    paper_3_period, paper_3.sitting AS paper_3_sitting, paper_3.year_start AS paper_3_year_start,
+    paper_3.year_stop AS paper_3_year_stop, paper_3.link AS paper_3_link, paper_3.course_id AS
+    paper_3_course_id, paper_4.id AS paper_4_id, paper_4.name AS paper_4_name, paper_4.period AS
+    paper_4_period, paper_4.sitting AS paper_4_sitting, paper_4.year_start AS paper_4_year_start,
+    paper_4.year_stop AS paper_4_year_stop, paper_4.link AS paper_4_link, paper_4.course_id AS
+    paper_4_course_id, revision_1.id AS revision_1_id, revision_1.user_id AS revision_1_user_id,
+    revision_1.question_id AS revision_1_question_id, revision_1.content AS revision_1_content,
+    revision_1.created_at AS revision_1_created_at, question_1.id AS question_1_id, entity_1.id AS
+    entity_1_id, entity_1.type AS entity_1_type, question_1.paper_id AS question_1_paper_id,
+    question_1.parent_id AS question_1_parent_id, question_1.created_at AS question_1_created_at,
+    question_1.marks AS question_1_marks, question_1.index AS question_1_index, question_1.index_type AS
+    question_1_index_type, question_1.is_section AS question_1_is_section, question_1.path AS
+    question_1_path, question_1.formatted_path AS question_1_formatted_path, revision_2.id AS
+    revision_2_id, revision_2.user_id AS revision_2_user_id, revision_2.question_id AS
+    revision_2_question_id, revision_2.content AS revision_2_content, revision_2.created_at AS
+    revision_2_created_at, question_2.id AS question_2_id, entity_2.id AS entity_2_id, entity_2.type AS
+    entity_2_type, question_2.paper_id AS question_2_paper_id, question_2.parent_id AS
+    question_2_parent_id, question_2.created_at AS question_2_created_at, question_2.marks AS
+    question_2_marks, question_2.index AS question_2_index, question_2.index_type AS
+    question_2_index_type, question_2.is_section AS question_2_is_section, question_2.path AS
+    question_2_path, question_2.formatted_path AS question_2_formatted_path, revision_3.id AS
+    revision_3_id, revision_3.user_id AS revision_3_user_id, revision_3.question_id AS
+    revision_3_question_id, revision_3.content AS revision_3_content, revision_3.created_at AS
+    revision_3_created_at, question_3.id AS question_3_id, entity_3.id AS entity_3_id, entity_3.type AS
+    entity_3_type, question_3.paper_id AS question_3_paper_id, question_3.parent_id AS
+    question_3_parent_id, question_3.created_at AS question_3_created_at, question_3.marks AS
+    question_3_marks, question_3.index AS question_3_index, question_3.index_type AS
+    question_3_index_type, question_3.is_section AS question_3_is_section, question_3.path AS
+    question_3_path, question_3.formatted_path AS question_3_formatted_path, revision_4.id AS
+    revision_4_id, revision_4.user_id AS revision_4_user_id, revision_4.question_id AS
+    revision_4_question_id, revision_4.content AS revision_4_content, revision_4.created_at AS
+    revision_4_created_at  FROM course, paper, entity JOIN question ON entity.id = question.id LEFT
+    OUTER JOIN paper AS paper_1 ON paper_1.id = question.paper_id LEFT OUTER JOIN (entity AS entity_3
+    JOIN question AS question_3 ON entity_3.id = question_3.id) ON question.id = question_3.parent_id
+    AND question.id = question_3.parent_id LEFT OUTER JOIN paper AS paper_2 ON paper_2.id =
+    question_3.paper_id LEFT OUTER JOIN (entity AS entity_2 JOIN question AS question_2 ON entity_2.id =
+    question_2.id) ON question_3.id = question_2.parent_id AND question_3.id = question_2.parent_id LEFT
+    OUTER JOIN paper AS paper_3 ON paper_3.id = question_2.paper_id LEFT OUTER JOIN (entity AS entity_1
+    JOIN question AS question_1 ON entity_1.id = question_1.id) ON question_2.id = question_1.parent_id
+    AND question_2.id = question_1.parent_id LEFT OUTER JOIN paper AS paper_4 ON paper_4.id =
+    question_1.paper_id LEFT OUTER JOIN (question_revision AS question_revision_1 JOIN revision AS
+    revision_1 ON revision_1.id = question_revision_1.revision_id) ON question_1.id =
+    question_revision_1.question_id LEFT OUTER JOIN (question_revision AS question_revision_2 JOIN
+    revision AS revision_2 ON revision_2.id = question_revision_2.revision_id) ON question_2.id =
+    question_revision_2.question_id LEFT OUTER JOIN (question_revision AS question_revision_3 JOIN
+    revision AS revision_3 ON revision_3.id = question_revision_3.revision_id) ON question_3.id =
+    question_revision_3.question_id LEFT OUTER JOIN (question_revision AS question_revision_4 JOIN
+    revision AS revision_4 ON revision_4.id = question_revision_4.revision_id) ON question.id =
+    question_revision_4.question_id  WHERE course.code = %(code_1)s AND paper.course_id = course.id AND
+    paper.year_start = %(year_start_1)s AND paper.period = %(period_1)s AND question.paper_id = paper.id
+    AND question.path = %(path_1)s<code></code></pre></p>
+<center><i>The giant query issued by SQL Alchemy when <code>join_depth = 4</code>.</i></center>
+
+<div style="page-break-after: always;"></div>
+
+<h3 id="api">API</h3>
+<p>The API had many endpoints for the application to interface with and get the correct data it required.</p>
+<pre><code>     GET /auth
+    POST /comment/&lt;int:entity&gt;
+     PUT /comment/&lt;int:entity&gt;/&lt;int:comment&gt;
+  DELETE /comment/&lt;int:entity&gt;/&lt;int:comment&gt;
+     GET /comments/&lt;int:entity&gt;
+     GET /course/&lt;course&gt;
+     PUT /course/&lt;course&gt;/index
+     GET /course/&lt;course&gt;/paper/&lt;year&gt;/&lt;period&gt;
+     GET /course/&lt;course&gt;/paper/&lt;year&gt;/&lt;period&gt;.html
+    POST /course/&lt;course&gt;/paper/&lt;year&gt;/&lt;period&gt;/q/
+     GET /course/&lt;course&gt;/paper/&lt;year&gt;/&lt;period&gt;/q/&lt;question&gt;
+     PUT /course/&lt;course&gt;/paper/&lt;year&gt;/&lt;period&gt;/q/&lt;question&gt;
+    POST /course/&lt;course&gt;/paper/&lt;year&gt;/&lt;period&gt;/q/&lt;question&gt;
+  DELETE /course/&lt;course&gt;/paper/&lt;year&gt;/&lt;period&gt;/q/&lt;question&gt;
+    POST /course/&lt;course&gt;/paper/&lt;year&gt;/&lt;period&gt;/q/&lt;question&gt;/note
+     GET /course/&lt;course&gt;/paper/&lt;year&gt;/&lt;period&gt;/q/&lt;question&gt;/notes
+    POST /course/&lt;course&gt;/paper/&lt;year&gt;/&lt;period&gt;/q/&lt;question&gt;/solution
+     GET /course/&lt;course&gt;/paper/&lt;year&gt;/&lt;period&gt;/q/&lt;question&gt;/solutions
+     GET /course/&lt;course&gt;/paper/&lt;year&gt;/&lt;period&gt;/q/&lt;question&gt;/similar
+     GET /course/&lt;course&gt;/popular
+     GET /course/search?q=&lt;query&gt;
+     GET /institution/&lt;int:instit&gt;
+     GET /institution/search?domain=&lt;domain&gt;
+    POST /login
+  DELETE /profile/courses/
+     GET /profile/courses/
+   PATCH /profile/courses/
+     GET /static/&lt;path:filename&gt;
+    POST /user
+     PUT /user/&lt;int:user&gt;
+     GET /user/&lt;int:user&gt;
+</code></pre><p>Some notable endpoints:</p>
+<ul>
+<li><p><code>GET /course/&lt;course&gt;/paper/&lt;year&gt;/&lt;period&gt;.html</code></p>
+<p>  This endpoint would return the contents of an exam paper <em>converted to HTML</em> on the fly. It was for a old exam paper parser prototype that could let you select the contents of the PDF for extraction. This method worked well until after some testing found the HTML representation of the Exam paper was inaccurate and data was lost.</p>
+</li>
+<li><p><code>GET /course/search?q=&lt;query&gt;</code></p>
+<p>  The above endpoint would allow the user to search for courses by course code or name.</p>
+</li>
+<li><p><code>GET /course/&lt;course&gt;/paper/&lt;year&gt;/&lt;period&gt;/q/&lt;question&gt;/similar</code></p>
+<p>  The similar endpoint returned all the questions that were deemed alike to the question specified in the URL.</p>
+</li>
+</ul>
+<h4 id="blueprints">Blueprints</h4>
+<p>Each section of the API is stored in a Blueprint. A Blueprint, in Flask terms, is essentially a container for endpoints that can be dropped into any app. There  is a blueprint for each piece of functionality within the app.</p>
+<h4 id="request-data-validation">Request data validation</h4>
+<p>As every developer knows, user input is dangerous and must be sanitised before processing. For each endpoint that received data, there was a validation check on the fields in the data and the type of the data sent. The Marshmallow models were reused and were especially useful for <code>PUT</code> requests which allowed for updating of a model. If the data failed validation, a <code>422 UNPROCESSABLE ENTITY</code> was returned.</p>
+<pre><code class="lang-py"><span class="hljs-meta">@app.route(&quot;/user/&lt;int:id&gt;&quot;, methods=[&quot;PUT&quot;])</span>
+<span class="hljs-meta">@use_args(schema(User, partial=True))</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">update_user</span><span class="hljs-params">(id, user)</span>:</span>
+    <span class="hljs-comment"># Update the user</span>
+</code></pre>
+<h4 id="exceptions">Exceptions</h4>
+<p>Handling exceptions can become particularly repetitive as the endpoint count goes up because the endpoints are all handling the same types of exceptions (usually from the ORM when a record doesn&apos;t exist etc). To break this pattern, the API was taught to understand the exceptions and handle them itself. This was achieved by converting all of the SQL Alchemy exceptions to the project&apos;s custom <code>server.exc.HttpException</code>. The <code>HttpException</code> has three properties that the fill out the standard error response (discussed in the API section of the design chapter): <code>code</code>, <code>message</code> and <code>meta</code>. The API will then catch any exceptions raised and respond appropriately.</p>
+<pre><code class="lang-py"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HttpException</span><span class="hljs-params">(Exception)</span>:</span>
+    <span class="hljs-string">&quot;&quot;&quot;General purpose HTTP Exception.&quot;&quot;&quot;</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">__init__</span><span class="hljs-params">(self, code, message, meta=None)</span>:</span>
+        self.code = code
+        self.message = message
+        self.meta = meta
+</code></pre>
+<center><i>The base class for all HttpExceptions.</i></center>
+
+<p>The exceptions can then become as specific as possible to allow for clear code when raising manually. For example, the <code>getBy</code> method raises a <code>server.exc.NotFound</code> when the query to the database doesn&apos;t return any results. A request to the following endpoint will fail with a <code>404 NOT FOUND</code> before it even reaches the <code>respond</code> method if the <code>course</code> parameter doesn&apos;t exist.</p>
+<pre><code class="lang-py"><span class="hljs-meta">@app.route(&quot;/course/&lt;course&gt;&quot;)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_course</span><span class="hljs-params">(course)</span>:</span>
+    course = Course.getBy(code=course)
+
+    <span class="hljs-keyword">return</span> respond({ <span class="hljs-string">&quot;course&quot;</span>: course })
+</code></pre>
+<h3 id="authentication">Authentication</h3>
+<p>The user authentication logic exists entirely within the <code>auth.py</code> blueprint in the <code>server/api</code> directory. It can be extracted and planted into any other app (if you take the <code>User</code> and <code>Session</code> models too). The authentication blueprint is relatively simple as far as login modules go however it does everything the application needs of it in it&apos;s current state. The Auth blueprint exposes two endpoints:</p>
+<ul>
+<li><p><code>POST /login</code></p>
+<p>  The client will post the <code>username</code> and <code>password</code> of the user attempting to login to this endpoint. The endpoint will verify those details, create a new session object and then return the newly created session object for the client to store in future requests. The token is passed via an <code>Auth-Key</code> custom header.</p>
+</li>
+<li><p><code>GET /auth</code></p>
+<p>  The client, on startup, will use this endpoint to test if their stored API key is still valid. If it is not valid, the client will redirect the client to the user the login page. Traditionally this step was ignored and a page load was attempted and if it failed, it redirected. This is costly to the server, attempting to load large objects when it&apos;s unnecessary. This endpoint simply returns <code>200 OK</code> standard success response if a valid token was passed, <code>401 UNAUTHORIZED</code> if not.</p>
+</li>
+</ul>
+<h4 id="middleware">Middleware</h4>
+<p>To simply the checking of user login on each request, some handy middleware was created. The <code>authorize</code> middleware can be put on any route to ensure the client requesting the resource is logged in and authorised. It will also store the loaded user in the request session storage.</p>
+<pre><code class="lang-py"><span class="hljs-meta">@app.route(&quot;/profile&quot;)</span>
+<span class="hljs-meta">@authorize</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_profile</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">return</span> respond({ <span class="hljs-string">&quot;profile&quot;</span>: g.user })
+</code></pre>
+<h4 id="handling-sensitive-user-data">Handling Sensitive User Data</h4>
+<p>To ensure the maximum security when it came to user details, passwords were hashed with a randomly generated salt and stored in the database. <strong>Never in cleartext.</strong> Each time the user would try to login, the login would get the user from the database via their email, run the hashing algorithm with the inputted password and the retrieved salt and compare the results.</p>
+<p>The hash and login implementation on the <code>User</code> model:</p>
+<pre><code class="lang-py"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span><span class="hljs-params">(Model)</span>:</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">login</span><span class="hljs-params">(self, password=None)</span>:</span>
+        <span class="hljs-string">&quot;&quot;&quot;Log the current user instance in. This does 2 things:
+            1. Compares the password.
+            2. Creates new session.
+        &quot;&quot;&quot;</span>
+        <span class="hljs-keyword">if</span> password:
+            hash = User.hash(password, self.salt)
+
+            <span class="hljs-keyword">if</span> hash != self.password:
+                <span class="hljs-keyword">raise</span> LoginError(self.email)
+
+        <span class="hljs-comment"># Create session token</span>
+        <span class="hljs-keyword">return</span> Session(self)
+
+<span class="hljs-meta">    @staticmethod</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">hash</span><span class="hljs-params">(password, salt)</span>:</span>
+        <span class="hljs-keyword">return</span> hashlib.sha256(password + salt).hexdigest()
+
+<span class="hljs-meta">    @staticmethod</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generateSalt</span><span class="hljs-params">(length=<span class="hljs-number">20</span>)</span>:</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-string">&apos;&apos;</span>.join(random.choice(ALPHABET) <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(length))
+</code></pre>
+<h3 id="similarity-analysis">Similarity Analysis</h3>
+<p>A particularly challenging part of the application was computing the similarity of questions. The implementation for this algorithm is in the <code>course.py</code> in the <code>servers/model</code> directory. The algorithm to compute the similarity of questions is detailed as follows:</p>
+<ol>
+<li><p><strong>Get the all the question content for a course.</strong></p>
+<p> This involves retrieving all the current revisions for all the questions on all papers contained within the course. The operation is quite hefty on the server because of the size of the query to load a question (this could be optimised to a simple <code>SELECT</code> from the question table and <code>JOIN</code> <code>question_revision</code> however). The content of each question is then stored in-memory in an array data structure. It is important to only include questions <strong>with content</strong> and not group questions that only have an index.</p>
+</li>
+<li><p><strong>Remove all stopwords from the question content.</strong></p>
+<p> A stopword is a word that don&apos;t have much significance or impact on the content such as &quot;the&quot;, &quot;a&quot;, &quot;we&quot;, &quot;it&quot; etc. The process removes noise from the question content and allows the algorithm to focus on the content that will identify the question.</p>
+</li>
+<li><p><strong>Count unique terms.</strong></p>
+<p> This is the process of converting the word content of the question to vectors to perform statistical analysis on their similarity. The process involves counting all the unique terms $N$ across all the documents (the content of the questions). This process is done via Scikit&apos;s <code>CounterVectorizer</code>.</p>
+</li>
+<li><p><strong>Vectorization and term weighting.</strong></p>
+<p> This step involves creating a <em>huge</em> 2 dimensional array $N \times |\text{Documents}|$. Each  cell represents the $tfidf$ weight of that term in the relation to the entire corpus (all the document). The $tfidf$ weight is the <em>term frequency</em> times the <em>inverse document frequency</em> of that term. Here is the implementation for calculating the $tfidf$.</p>
+<pre><code class="lang-py"> N = len(self.questions)
+ tf = <span class="hljs-keyword">lambda</span> document, term: self.documents[document, term]
+ df = <span class="hljs-keyword">lambda</span> term: self.documents[:, term].sign().sum()
+ idf = <span class="hljs-keyword">lambda</span> term: np.math.log10(float(N) / float(df(term)))
+ tfidf = <span class="hljs-keyword">lambda</span> document, term: float(tf(document, term)) * idf(term)
+</code></pre>
+</li>
+<li><p><strong>Compute the <em>cosine similarity</em> of every question against the all the question&apos;s in the course.</strong></p>
+<p> Next, we loop over every document (question) in the corpus (all questions) and compute the <code>cosine_similarity</code> of the document against all the other document vectors in the corpus. The <code>cosine_similarity</code> will return a scalar value that we use to base our similarity. </p>
+</li>
+<li><p><strong>Map the similarity vector to the questions.</strong></p>
+<p> Once the cosine similarity is calculated, we are left with a single dimension array of scalar values whose index corresponds to the document. We zip these two together to create our <code>Similar</code> objects:</p>
+<pre><code class="lang-py"> similarities = []
+ <span class="hljs-keyword">for</span> question, similarity <span class="hljs-keyword">in</span> zip(self.questions, similarity_vector)
+     similarities.append(Similar(
+         question_id=query_question.id, 
+         similar_question_id=question.id, 
+         similarity=similarity
+     ))
+</code></pre>
+</li>
+<li><p><strong>Filter out questions whose similarity is below the <code>SIMILARITY_THRESHOLD</code> and save to database.</strong></p>
+<p> Most of the similarity results are in the range of 0.00 to 0.002 which means they&apos;re not similar <em>at all</em>. We need to discard that noise and only insert the useful results into the database.</p>
+</li>
+</ol>
+<h4 id="getting-popular-questions">Getting popular questions</h4>
+<p><img src="assets/sim-table.png" style="float: right; width: 30%;"></p>
+<p>The app also calculates <em>popular</em> questions within a course using the similarity. It&apos;s essentially a complex SQL query that <code>SUM</code>s all the question&apos;s similarity when grouped by <code>question_id</code>, then orders by sum of the similarity. You can view the implementation in <code>server/model/course.py</code>.</p>
+<h3 id="caching">Caching</h3>
+<p>An <em>extremely</em> important aspect of the web application was the caching layer between the user and the server. Many of the SQL queries were <em>big</em> which caused a lot of strain on the database. Nothing it couldn&apos;t handle for one connection but with 100s of requests performing the query every second, it would break slow the app down to a crawl. The caching layer ensured that this wasn&apos;t a problem and it was imperative the implementation do the follow:</p>
+<ul>
+<li>Stay out of the programmers way.</li>
+<li>Don&apos;t adversely affect debugging or API tests.</li>
+<li>Allow for easy expiring of items in the cache.</li>
+</ul>
+<p>The base library for the caching was Flask-Cache. It provided a memoization layer for methods. The layer would hash the function name with it&apos;s parameters (<code>__repr__</code> magic for objects) and store the result in the cache. If the function was called again, it was checked for a cache hit and the cached result returned. To added the memoization layer to a function, a simple <code>@memoize</code> decorator was used and to remove a cached result: <code>delete_memoized</code>.</p>
+<p>The API added another layer of abstraction to these methods and created the <code>@cache_view</code> middleware for endpoint that would automatically cache the result return from the API. To invalidate the cached view, it was just a matter of calling <code>invalidate_view</code> with the view name.</p>
+<pre><code class="lang-py"><span class="hljs-meta">@Course.route(&quot;/course/&lt;course&gt;/popular&quot;, methods=[&quot;GET&quot;])</span>
+<span class="hljs-meta">@cache_view</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_popular</span><span class="hljs-params">(course)</span>:</span>
+    course = model.Course.getBy(db.session, code=course.upper())
+
+    <span class="hljs-keyword">return</span> respond({
+        <span class="hljs-string">&quot;course&quot;</span>: course,
+        <span class="hljs-string">&quot;popular_questions&quot;</span>: course.popular_questions
+    })
+</code></pre>
+<center><i>The cache middleware in action on the course endpoint.</i></center>
+
+<p>Some precautions had to be taken however to ensure the cache invalidated old data. Whenever a new entity was created or edited, all caches containing the entity had to be expired, like semi-manual garbage collection.</p>
+
+                            
+                            </section>
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="project-structure.html" class="navigation navigation-prev " aria-label="Previous page: Project Structure">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="frontend.html" class="navigation navigation-next " aria-label="Next page: Frontend">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+</div>
+
+        
+    <script src="../gitbook/app.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+    <script>
+    require(["gitbook"], function(gitbook) {
+        gitbook.start({"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}},"livereload":{}});
+    });
+    </script>
+
+    </body>
+</html>
