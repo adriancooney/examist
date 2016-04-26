@@ -26,5 +26,5 @@
 * [Conclusions](conclusions.md)
 * [References](references.md)
 * Appendices
-    - [Appendix 1: Test Fixtures](appendices/Test-Fixtures.md)
-    - [Appendix 2: Exam Paper Specification](appendices/Paper-specification.md)
+    - [Appendix 1: Test Fixtures](appendices/test-fixtures.md)
+    - [Appendix 2: Exam Paper Specification](appendices/paper-specification.md)
