@@ -1,27 +1,22 @@
 # FYP
-![Codeship](https://codeship.com/projects/cbaa04d0-b1be-0133-3eff-7e5a34091697/status?branch=master)
+This is my Final Year Project for an NUI Galway Computer Science and IT degree (2016). Feel free to pick apart everything and anything. Definitely take a look at [the report](http://adriancooney.github.io/examist/book) which gives an overview of the technologies and the choices behind them.
 
-# Client
-## Installation
-To install the client, you need Node.js installed (with `npm`). 
+[![Examist Screenshot](report/assets/2.png)](http://examist.xyz)
+
+#### [Read the report online.](http://adriancooney.github.io/examist/book)
+
+## Deploying
+To deploy the application, we need Node.js/npm and Docker. First, compile the client:
 
     $ cd client
-    $ npm install
-
-This will probably take a while. It will install all the necessary dependencies in the `node_modules` folder. Once the installation is complete, we need to build the app.
-
+    $ npm install # Will take a while, grab some tea
     $ npm run build
 
-## File Structure
-The client is a pretty large app. It's built using React so we have great composability between elements. We have the following folders:
+Now, connect to your Docker machine and run:
 
-- `build/` - This directory is created by webpack that outputs the built app.
-- `src/` - This contains the source for the client side.
-- `src/components` - This directory contains all the reusable components of the app such as buttons and inputs.
-- `src/views` - Views are collections of components that can be composed to form pages.
-- `src/pages` - Pages views composed to display data on the screen.
-- `style/` - This directory contains all the SASS (CSS) for the project. Each SCSS file corresponds to a React component that requires it.
+    $ cd deploy
+    $ docker-compose up
 
-## Python style guide
-* Double quotes always.
-* Package imports first, local package imports second.
+Done. Your application should be running on your Docker machine's ip (`docker-machine ip <machine> | pbcopy`). You can read more about the [Deploying in the report.](http://adriancooney.github.io/examist/book/development/deploying.html).
+
+**Warning: The report is dense *and written in 3 days* so apologies in advance for formatting and grammar errors.**
