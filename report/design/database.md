@@ -2,6 +2,8 @@
 ![](diagrams/summary/relationships.real.large.png)
 <center><i>The database ER diagram.</i></center>
 
+[Browse the database structure online.](http://adriancooney.ie/examist/research/database/ad04219e530a/public/index.html)
+
 ### Overview
 The database uses a relational model and has 16 tables in total (17 including the table created by the migration tool, Alembic). A relational model was chosen based up the type of data to be inserted into the database. The entire database (aside from `alembic_version`) is constructed by SQL Alchemy. No manual schema creation SQL needs to be written. See Migrations section in Development chapter for creating the database.
 
