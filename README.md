@@ -18,5 +18,3 @@ Now, connect to your Docker machine and run:
     $ docker-compose up
 
 Done. Your application should be running on your Docker machine's ip (`docker-machine ip <machine> | pbcopy`). You can read more about the [Deploying in the report.](http://adriancooney.github.io/examist/book/development/deploying.html).
-
-**Warning: The report is dense *and written in 3 days* so apologies in advance for formatting and grammar errors.**
