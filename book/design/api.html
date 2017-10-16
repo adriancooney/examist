@@ -1,0 +1,670 @@
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <title>API · Final Year Project</title>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="The API for the application was based upon RESTful architecture. Communication between the client and server was based upon the JSON format.">
+        <meta name="generator" content="GitBook 3.0.0-pre.5">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="ui.html" />
+    
+    
+    <link rel="prev" href="database.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book"
+    data-level="2.3"
+    data-chapter-title="API"
+    data-filepath="design/api.md"
+    data-basepath=".."
+    data-revision="Mon Oct 16 2017 21:24:52 GMT+0100 (IST)"
+    data-innerlanguage="">
+    
+
+<div class="book-summary">
+    
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+
+            
+
+
+            
+            
+    
+        <li class="chapter " data-level="0" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1" >
+            
+                <span>
+            
+                    
+                        <b>1.</b>
+                    
+                    Research
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1" data-path="../research/downloading-papers.html">
+            
+                <a href="../research/downloading-papers.html">
+            
+                    
+                        <b>1.1.</b>
+                    
+                    Downloading Exam Papers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../research/parsing-papers.html">
+            
+                <a href="../research/parsing-papers.html">
+            
+                    
+                        <b>1.2.</b>
+                    
+                    Parsing Exam Papers
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2" >
+            
+                <span>
+            
+                    
+                        <b>2.</b>
+                    
+                    Design
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="architecture.html">
+            
+                <a href="architecture.html">
+            
+                    
+                        <b>2.1.</b>
+                    
+                    Architecture
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="database.html">
+            
+                <a href="database.html">
+            
+                    
+                        <b>2.2.</b>
+                    
+                    Database
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.3" data-path="api.html">
+            
+                <a href="api.html">
+            
+                    
+                        <b>2.3.</b>
+                    
+                    API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.4" data-path="ui.html">
+            
+                <a href="ui.html">
+            
+                    
+                        <b>2.4.</b>
+                    
+                    UI
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" >
+            
+                <span>
+            
+                    
+                        <b>3.</b>
+                    
+                    Implementation
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="../implementation/project-structure.html">
+            
+                <a href="../implementation/project-structure.html">
+            
+                    
+                        <b>3.1.</b>
+                    
+                    Project Structure
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.2" data-path="../implementation/backend.html">
+            
+                <a href="../implementation/backend.html">
+            
+                    
+                        <b>3.2.</b>
+                    
+                    Backend
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="../implementation/frontend.html">
+            
+                <a href="../implementation/frontend.html">
+            
+                    
+                        <b>3.3.</b>
+                    
+                    Frontend
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" >
+            
+                <span>
+            
+                    
+                        <b>4.</b>
+                    
+                    Development
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="../development/version-control.html">
+            
+                <a href="../development/version-control.html">
+            
+                    
+                        <b>4.1.</b>
+                    
+                    Version Control
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="../development/tools.html">
+            
+                <a href="../development/tools.html">
+            
+                    
+                        <b>4.2.</b>
+                    
+                    Tools
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.3" data-path="../development/workflow.html">
+            
+                <a href="../development/workflow.html">
+            
+                    
+                        <b>4.3.</b>
+                    
+                    Workflow
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.4" data-path="../development/migrations.html">
+            
+                <a href="../development/migrations.html">
+            
+                    
+                        <b>4.4.</b>
+                    
+                    Migrations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="4.5" data-path="../development/deploying.html">
+            
+                <a href="../development/deploying.html">
+            
+                    
+                        <b>4.5.</b>
+                    
+                    Deploying
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" >
+            
+                <span>
+            
+                    
+                        <b>5.</b>
+                    
+                    Testing
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="../testing/test-design.html">
+            
+                <a href="../testing/test-design.html">
+            
+                    
+                        <b>5.1.</b>
+                    
+                    Test Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="../testing/continuous-integration.html">
+            
+                <a href="../testing/continuous-integration.html">
+            
+                    
+                        <b>5.2.</b>
+                    
+                    Continuous Integration
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="../results.html">
+            
+                <a href="../results.html">
+            
+                    
+                        <b>6.</b>
+                    
+                    Results
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="../conclusions.html">
+            
+                <a href="../conclusions.html">
+            
+                    
+                        <b>7.</b>
+                    
+                    Conclusions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="../references.html">
+            
+                <a href="../references.html">
+            
+                    
+                        <b>8.</b>
+                    
+                    References
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9" >
+            
+                <span>
+            
+                    
+                        <b>9.</b>
+                    
+                    Appendices
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="../appendices/test-fixtures.html">
+            
+                <a href="../appendices/test-fixtures.html">
+            
+                    
+                        <b>9.1.</b>
+                    
+                    Appendix 1: Test Fixtures
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="../appendices/paper-specification.html">
+            
+                <a href="../appendices/paper-specification.html">
+            
+                    
+                        <b>9.2.</b>
+                    
+                    Appendix 2: Exam Paper Specification
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            <li class="divider"></li>
+            
+
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+        </ul>
+    </nav>
+    
+</div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >API</a>
+    </h1>
+</div>
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            <section class="normal markdown-section">
+                            
+                            <h2 id="23-api">2.3 API</h2>
+<p>The API for the application was based upon RESTful architecture. Communication between the client and server was based upon the JSON format. </p>
+<h3 id="standard-responses">Standard Responses</h3>
+<p>The API follows a standard for three types of responses: error, success and data. Each endpoint responded in JSON of the following structures:</p>
+<h5 id="error-response">Error response</h5>
+<p>The error response had three fields: <code>error</code>, <code>message</code> and <code>meta</code>. The <code>error</code> field is just a boolean denoting an error has occurred while <code>message</code> and <code>meta</code> both describe the error. The <code>meta</code> object can contain anything and is usually contains extra data to display to the user to give a more detailed error report.</p>
+<pre><code class="lang-json">&gt; <span class="hljs-number">400</span> BAD REQUEST
+{
+    <span class="hljs-string">&quot;error&quot;</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">&quot;message&quot;</span>: <span class="hljs-string">&quot;Invalid data in request.&quot;</span>,
+    <span class="hljs-string">&quot;meta&quot;</span>: {
+        <span class="hljs-string">&quot;field&quot;</span>: <span class="hljs-string">&quot;email&quot;</span>
+    }
+}
+</code></pre>
+<h5 id="success-response">Success response</h5>
+<p>Sometimes requests to the server perform actions and required no more of a response than a simple &quot;Yes, the action was completed.&quot; For this, the API has a standard <em>success</em> response of the form below.</p>
+<pre><code class="lang-json">&gt; <span class="hljs-number">200</span> OK
+{
+    <span class="hljs-string">&quot;success&quot;</span>: <span class="hljs-literal">true</span>
+}
+</code></pre>
+<h5 id="data-response">Data response</h5>
+<p>The data response is more loose in what form it takes as a response. The data schema does not follow any pattern like the success and error responses however it must return a <code>200 OK</code> status code. Usually, however not enforced, the top level keys denote entities and the type of entity is used as the key. An example response from the API:</p>
+<pre><code class="lang-json">&gt; <span class="hljs-number">200</span> OK
+{
+  <span class="hljs-string">&quot;course&quot;</span>: {
+    <span class="hljs-string">&quot;code&quot;</span>: <span class="hljs-string">&quot;CT422-1&quot;</span>,
+    <span class="hljs-string">&quot;id&quot;</span>: <span class="hljs-number">2819</span>,
+    <span class="hljs-string">&quot;institution_id&quot;</span>: <span class="hljs-number">1</span>,
+    <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;Modern Information Management&quot;</span>,
+    <span class="hljs-string">&quot;papers&quot;</span>: [
+      <span class="hljs-number">3671</span>,
+      <span class="hljs-number">3672</span>,
+      ...
+      <span class="hljs-number">3685</span>,
+      <span class="hljs-number">3686</span>
+    ]
+  }
+}
+</code></pre>
+
+                            
+                            </section>
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="database.html" class="navigation navigation-prev " aria-label="Previous page: Database">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="ui.html" class="navigation navigation-next " aria-label="Next page: UI">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+</div>
+
+        
+    <script src="../gitbook/app.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/lunr.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/buttons.js"></script>
+        
+    
+    <script>
+    require(["gitbook"], function(gitbook) {
+        gitbook.start({"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"ebook":"styles/ebook.css","epub":"styles/epub.css","mobi":"styles/mobi.css","pdf":"styles/pdf.css","print":"styles/print.css","website":"styles/website.css"}}});
+    });
+    </script>
+
+    </body>
+</html>

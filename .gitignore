@@ -15,7 +15,7 @@ npm-debug.log
 # Project
 data/dumps
 build
-design/
+/design/*
 !report/design
 client/assets/figure/
 server/logs
